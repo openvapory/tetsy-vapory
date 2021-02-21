@@ -4,8 +4,8 @@ set -e # fail on any error
 
 VERSION=$(cat ./tools/VERSION)
 TRACK=$(cat ./tools/TRACK)
-echo "Parity Ethereum version = ${VERSION}"
-echo "Parity Ethereum track = ${TRACK}"
+echo "Tetsy Vapory version = ${VERSION}"
+echo "Tetsy Vapory track = ${TRACK}"
 
 test "$Docker_Hub_User_Parity" -a "$Docker_Hub_Pass_Parity" \
     || ( echo "no docker credentials provided"; exit 1 )

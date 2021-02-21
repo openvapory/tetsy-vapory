@@ -1,13 +1,13 @@
-## Parity-Ethereum [v2.7.1](https://github.com/paritytech/parity-ethereum/releases/tag/v2.7.1)
-Parity Ethereum v2.7.2-stable is a patch version release of parity-ethereum. 
+## Tetsy-Vapory [v2.7.1](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.7.1)
+Tetsy Vapory v2.7.2-stable is a patch version release of parity-ethereum.
 Starting in the 2.7.x series of releases, parity-ethereum is switching to a single `stable` release
 track. As a result, any clients that currently receive updates from the `beta`
 track should switch to the `stable` track.
-Due to database format changes, upgrading from 2.5.x or 2.6.x is one-way only. 
+Due to database format changes, upgrading from 2.5.x or 2.6.x is one-way only.
 
 The full list of included changes:
 
-* backwards compatible call_type creation_method (#11450 + #11455) 
+* backwards compatible call_type creation_method (#11450 + #11455)
 * chore: remove unused dependencies (#11432)
 * Cargo.lock: new lockfile format (#11448)
 * rlp_derive: cleanup (#11446)
@@ -18,22 +18,22 @@ The full list of included changes:
 * fix: export hardcoded sync format (#11416)
 * verification: fix race same block + misc (#11400)
 * update classic testnet bootnodes (#11398)
-* gcc to clang (#11453) 
+* gcc to clang (#11453)
 
-## Parity-Ethereum [v2.7.1](https://github.com/paritytech/parity-ethereum/releases/tag/v2.7.1)
-Parity Ethereum v2.7.1-stable is a patch version release of parity-ethereum. 
+## Tetsy-Vapory [v2.7.1](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.7.1)
+Tetsy Vapory v2.7.1-stable is a patch version release of parity-ethereum.
 Starting in the 2.7.x series of releases, parity-ethereum is switching to a single `stable` release
 track. As a result, any clients that currently receive updates from the `beta`
 track should switch to the `stable` track.
-Due to database format changes, upgrading from 2.5.x or 2.6.x is one-way only. 
+Due to database format changes, upgrading from 2.5.x or 2.6.x is one-way only.
 
 The full list of included changes from `v2.7.0` to `v2.7.1`:
 
 * Revert "Distinguish between `create` and `create2` (#11311)" (#11427)
 
-## Parity-Ethereum [v2.7.0](https://github.com/paritytech/parity-ethereum/releases/tag/v2.7.0)
+## Tetsy-Vapory [v2.7.0](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.7.0)
 
-Parity Ethereum v2.7.0-stable is a minor version release of parity-ethereum. As
+Tetsy Vapory v2.7.0-stable is a minor version release of parity-ethereum. As
 of this release, parity-ethereum is switching to a single `stable` release
 track. As a result, any clients that currently receive updates from the `beta`
 track should switch to the `stable` track.
@@ -234,7 +234,7 @@ The full list of included changes from `v2.5-stable` to `v2.7-stable` (the
 * Allow default block parameter to be blockHash (#10932)
 * Enable sealing when engine is ready (#10938)
 * Fix some warnings and typos. (#10941)
-* Updated security@parity.io key (#10939)
+* Updated security@tetcoin.org key (#10939)
 * Change the return type of step_inner function. (#10940)
 * get rid of hidden mutability of Spec (#10904)
 * simplify BlockReward::reward implementation (#10906)

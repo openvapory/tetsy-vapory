@@ -22,7 +22,7 @@ fi
 time cargo build --target $CARGO_TARGET --verbose --color=always --release --features final
 time cargo build --target $CARGO_TARGET --verbose --color=always --release -p evmbin
 time cargo build --target $CARGO_TARGET --verbose --color=always --release -p ethstore-cli
-time cargo build --target $CARGO_TARGET --verbose --color=always --release -p ethkey-cli
+time cargo build --target $CARGO_TARGET --verbose --color=always --release -p vapkey-cli
 
 echo "_____ Post-processing binaries _____"
 rm -rf artifacts/*

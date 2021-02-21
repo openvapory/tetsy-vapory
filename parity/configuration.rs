@@ -1,18 +1,18 @@
 // Copyright 2015-2020 Parity Technologies (UK) Ltd.
-// This file is part of Parity Ethereum.
+// This file is part of Tetsy Vapory.
 
-// Parity Ethereum is free software: you can redistribute it and/or modify
+// Tetsy Vapory is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Parity Ethereum is distributed in the hope that it will be useful,
+// Tetsy Vapory is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
+// along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::time::Duration;
 use std::io::Read;
@@ -775,7 +775,7 @@ impl Configuration {
 		ret.client_version = {
 			let mut client_version = version();
 			if !self.args.arg_identity.is_empty() {
-				// Insert name after the "Parity-Ethereum/" at the beginning of version string.
+				// Insert name after the "Tetsy-Vapory/" at the beginning of version string.
 				let idx = client_version.find('/').unwrap_or(client_version.len());
 				client_version.insert_str(idx, &format!("/{}", self.args.arg_identity));
 			}
@@ -1585,13 +1585,13 @@ mod tests {
 		let conf0 = parse(&["parity"]);
 		let conf1 = parse(&["parity", "--jsonrpc-hosts", "none"]);
 		let conf2 = parse(&["parity", "--jsonrpc-hosts", "all"]);
-		let conf3 = parse(&["parity", "--jsonrpc-hosts", "parity.io,something.io"]);
+		let conf3 = parse(&["parity", "--jsonrpc-hosts", "tetcoin.org,something.io"]);
 
 		// then
 		assert_eq!(conf0.rpc_hosts(), Some(Vec::new()));
 		assert_eq!(conf1.rpc_hosts(), Some(Vec::new()));
 		assert_eq!(conf2.rpc_hosts(), None);
-		assert_eq!(conf3.rpc_hosts(), Some(vec!["parity.io".into(), "something.io".into()]));
+		assert_eq!(conf3.rpc_hosts(), Some(vec!["tetcoin.org".into(), "something.io".into()]));
 	}
 
 	#[test]
@@ -1624,13 +1624,13 @@ mod tests {
 		let conf0 = parse(&["parity"]);
 		let conf1 = parse(&["parity", "--ipfs-api-hosts", "none"]);
 		let conf2 = parse(&["parity", "--ipfs-api-hosts", "all"]);
-		let conf3 = parse(&["parity", "--ipfs-api-hosts", "parity.io,something.io"]);
+		let conf3 = parse(&["parity", "--ipfs-api-hosts", "tetcoin.org,something.io"]);
 
 		// then
 		assert_eq!(conf0.ipfs_hosts(), Some(Vec::new()));
 		assert_eq!(conf1.ipfs_hosts(), Some(Vec::new()));
 		assert_eq!(conf2.ipfs_hosts(), None);
-		assert_eq!(conf3.ipfs_hosts(), Some(vec!["parity.io".into(), "something.io".into()]));
+		assert_eq!(conf3.ipfs_hosts(), Some(vec!["tetcoin.org".into(), "something.io".into()]));
 	}
 
 	#[test]
@@ -1640,12 +1640,12 @@ mod tests {
 		// when
 		let conf0 = parse(&["parity"]);
 		let conf1 = parse(&["parity", "--ipfs-api-cors", "*"]);
-		let conf2 = parse(&["parity", "--ipfs-api-cors", "http://parity.io,http://something.io"]);
+		let conf2 = parse(&["parity", "--ipfs-api-cors", "http://tetcoin.org,http://something.io"]);
 
 		// then
 		assert_eq!(conf0.ipfs_cors(), Some(vec![]));
 		assert_eq!(conf1.ipfs_cors(), None);
-		assert_eq!(conf2.ipfs_cors(), Some(vec!["http://parity.io".into(),"http://something.io".into()]));
+		assert_eq!(conf2.ipfs_cors(), Some(vec!["http://tetcoin.org".into(),"http://something.io".into()]));
 	}
 
 	#[test]
@@ -1808,7 +1808,7 @@ mod tests {
 		match conf.into_command().unwrap().cmd {
 			Cmd::Run(c) => {
 				assert_eq!(c.name, "Somebody");
-				assert!(c.net_conf.client_version.starts_with("Parity-Ethereum/Somebody/"));
+				assert!(c.net_conf.client_version.starts_with("Tetsy-Vapory/Somebody/"));
 			}
 			_ => panic!("Should be Cmd::Run"),
 		}
@@ -2008,11 +2008,11 @@ mod tests {
 		// when
 		let conf0 = parse(&["parity"]);
 		let conf1 = parse(&["parity", "--secretstore-http-cors", "*"]);
-		let conf2 = parse(&["parity", "--secretstore-http-cors", "http://parity.io,http://something.io"]);
+		let conf2 = parse(&["parity", "--secretstore-http-cors", "http://tetcoin.org,http://something.io"]);
 
 		// then
 		assert_eq!(conf0.secretstore_cors(), Some(vec![]));
 		assert_eq!(conf1.secretstore_cors(), None);
-		assert_eq!(conf2.secretstore_cors(), Some(vec!["http://parity.io".into(),"http://something.io".into()]));
+		assert_eq!(conf2.secretstore_cors(), Some(vec!["http://tetcoin.org".into(),"http://something.io".into()]));
 	}
 }

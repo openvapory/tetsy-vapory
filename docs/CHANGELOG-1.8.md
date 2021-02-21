@@ -439,7 +439,7 @@ The full list of included changes:
 - Disallow pasting recovery phrases on first run [#6602](https://github.com/paritytech/parity/pull/6602)
 - fix typo: Unkown => Unknown [#6559](https://github.com/paritytech/parity/pull/6559)
 - SecretStore: administrative sessions prototypes [#6605](https://github.com/paritytech/parity/pull/6605)
-- fix parity.io link 404 [#6617](https://github.com/paritytech/parity/pull/6617)
+- fix tetcoin.org link 404 [#6617](https://github.com/paritytech/parity/pull/6617)
 - SecretStore: add node to existing session poc + discussion [#6480](https://github.com/paritytech/parity/pull/6480)
 - Generalize engine trait [#6591](https://github.com/paritytech/parity/pull/6591)
 - Add RPC eth_chainId for querying the current blockchain chain ID [#6329](https://github.com/paritytech/parity/pull/6329)

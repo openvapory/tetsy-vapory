@@ -1,11 +1,11 @@
-## ethkey-cli
+## vapkey-cli
 
-Parity Ethereum keys generator.
+Tetsy Vapory keys generator.
 
 ### Usage
 
 ```
-Parity Ethereum Keys Generator.
+Tetsy Vapory Keys Generator.
   Copyright 2015-2020 Parity Technologies (UK) Ltd.
 
 Usage:
@@ -211,11 +211,11 @@ public:  4e19a5fdae82596e1485c69b687c9cc52b5078e5b0668ef3ce8543cd90e712cb00df822
 address: 00cf3711cbd3a1512570639280758118ba0b2bcb
 ```
 
-## Parity Ethereum toolchain
-_This project is a part of the Parity Ethereum toolchain._
+## Tetsy Vapory toolchain
+_This project is a part of the Tetsy Vapory toolchain._
 
-- [evmbin](https://github.com/paritytech/parity-ethereum/blob/master/evmbin/) - EVM implementation for Parity Ethereum.
-- [ethabi](https://github.com/paritytech/ethabi) - Parity Ethereum function calls encoding.
-- [ethstore](https://github.com/paritytech/parity-ethereum/blob/master/accounts/ethstore) - Parity Ethereum key management.
-- [ethkey](https://github.com/paritytech/parity-ethereum/blob/master/accounts/ethkey) - Parity Ethereum keys generator.
-- [whisper](https://github.com/paritytech/whisper) - Implementation of Whisper-v2 PoC.
+- [evmbin](https://github.com/openvapory/tetsy-vapory/blob/master/evmbin/) - EVM implementation for Tetsy Vapory.
+- [ethabi](https://github.com/tetcoin/ethabi) - Tetsy Vapory function calls encoding.
+- [ethstore](https://github.com/openvapory/tetsy-vapory/blob/master/accounts/ethstore) - Tetsy Vapory key management.
+- [ethkey](https://github.com/openvapory/tetsy-vapory/blob/master/accounts/ethkey) - Tetsy Vapory keys generator.
+- [whisper](https://github.com/tetcoin/whisper) - Implementation of Whisper-v2 PoC.

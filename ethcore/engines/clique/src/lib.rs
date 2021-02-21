@@ -1,18 +1,18 @@
 // Copyright 2015-2020 Parity Technologies (UK) Ltd.
-// This file is part of Parity Ethereum.
+// This file is part of Tetsy Vapory.
 
-// Parity Ethereum is free software: you can redistribute it and/or modify
+// Tetsy Vapory is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Parity Ethereum is distributed in the hope that it will be useful,
+// Tetsy Vapory is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
+// along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 //! Implementation of the Clique PoA Engine.
 //!
@@ -725,7 +725,7 @@ impl Engine for Clique {
 
 	// Our task here is to set difficulty
 	fn populate_from_parent(&self, header: &mut Header, parent: &Header) {
-		// TODO(https://github.com/paritytech/parity-ethereum/issues/10410): this is a horrible hack,
+		// TODO(https://github.com/openvapory/tetsy-vapory/issues/10410): this is a horrible hack,
 		// it is due to the fact that enact and miner both use OpenBlock::new() which will both call
 		// this function. more refactoring is definitely needed.
 		if header.extra_data().len() < VANITY_LENGTH + SIGNATURE_LENGTH {

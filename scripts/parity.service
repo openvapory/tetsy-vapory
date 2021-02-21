@@ -1,5 +1,5 @@
 [Unit]
-Description=Parity Ethereum Daemon
+Description=Tetsy Vapory Daemon
 After=network.target
 
 [Service]

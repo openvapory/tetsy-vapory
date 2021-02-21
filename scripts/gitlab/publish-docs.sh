@@ -6,8 +6,8 @@ set -u # treat unset variables as error
 clone_repos() {
     echo "__________Clone repos__________"
     git clone https://github.com/parity-js/jsonrpc.git jsonrpc
-    git clone https://github.com/paritytech/wiki.git wiki
-    git clone https://github.com/paritytech/parity-config-generator
+    git clone https://github.com/tetcoin/wiki.git wiki
+    git clone https://github.com/tetcoin/parity-config-generator
 }
 
 build_docs() {
@@ -28,17 +28,17 @@ update_wiki_docs() {
         module_name=${file:0:-3}
         mv jsonrpc/docs/$file wiki/JSONRPC-$module_name-module.md
     done
-    mv parity-config-generator/docs/config.md wiki/Configuring-Parity-Ethereum.md
+    mv parity-config-generator/docs/config.md wiki/Configuring-Tetsy-Vapory.md
 }
 
 setup_git() {
     echo "__________Set github__________"
-    git config --global user.email "devops-team@parity.io"
-    git config --global user.name "Devops Team Parity"
+    git config --global user.email "devops-team@tetcoin.org"
+    git config --global user.name "Devops Team Tetsy"
 }
 
 set_remote_wiki() {
-    git config remote.origin.url "https://${GITHUB_TOKEN}@github.com/paritytech/wiki.git"
+    git config remote.origin.url "https://${GITHUB_TOKEN}@github.com/tetcoin/wiki.git"
 }
 
 commit_files() {

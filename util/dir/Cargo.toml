@@ -7,5 +7,5 @@ license = "GPL3"
 [dependencies]
 ethereum-types = "0.8.0"
 journaldb = { path = "../journaldb" }
-app_dirs = { git = "https://github.com/paritytech/app-dirs-rs" }
+app_dirs = { git = "https://github.com/tetcoin/app-dirs-rs" }
 home = "0.3"

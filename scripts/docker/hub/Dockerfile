@@ -4,13 +4,13 @@ FROM ubuntu:xenial
 ARG VCS_REF
 ARG BUILD_DATE
 
-LABEL io.parity.image.authors="devops-team@parity.io" \
+LABEL io.parity.image.authors="devops-team@tetcoin.org" \
 	io.parity.image.vendor="Parity Technologies" \
 	io.parity.image.title="parity/parity" \
-	io.parity.image.description="Parity Ethereum. The Fastest and most Advanced Ethereum Client." \
-	io.parity.image.source="https://github.com/paritytech/parity-ethereum/blob/${VCS_REF}/\
+	io.parity.image.description="Tetsy Vapory. The Fastest and most Advanced Ethereum Client." \
+	io.parity.image.source="https://github.com/openvapory/tetsy-vapory/blob/${VCS_REF}/\
 scripts/docker/hub/Dockerfile" \
-	io.parity.image.documentation="https://wiki.parity.io/Parity-Ethereum" \
+	io.parity.image.documentation="https://wiki.tetcoin.org/Tetsy-Vapory" \
 	io.parity.image.revision="${VCS_REF}" \
 	io.parity.image.created="${BUILD_DATE}"
 

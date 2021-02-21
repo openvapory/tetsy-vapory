@@ -1,18 +1,18 @@
 // Copyright 2015-2020 Parity Technologies (UK) Ltd.
-// This file is part of Parity Ethereum.
+// This file is part of Tetsy Vapory.
 
-// Parity Ethereum is free software: you can redistribute it and/or modify
+// Tetsy Vapory is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Parity Ethereum is distributed in the hope that it will be useful,
+// Tetsy Vapory is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
+// along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 //! Parity-specific metadata extractors.
 
@@ -253,12 +253,12 @@ mod tests {
 
 		// when
 		let meta1 = extractor.read_metadata(None, None);
-		let meta2 = extractor.read_metadata(None, Some("http://parity.io".to_owned()));
-		let meta3 = extractor.read_metadata(None, Some("http://parity.io".to_owned()));
+		let meta2 = extractor.read_metadata(None, Some("http://tetcoin.org".to_owned()));
+		let meta3 = extractor.read_metadata(None, Some("http://tetcoin.org".to_owned()));
 
 		// then
 		assert_eq!(meta1.origin, Origin::Rpc("unknown origin / unknown agent".into()));
-		assert_eq!(meta2.origin, Origin::Rpc("unknown origin / http://parity.io".into()));
-		assert_eq!(meta3.origin, Origin::Rpc("unknown origin / http://parity.io".into()));
+		assert_eq!(meta2.origin, Origin::Rpc("unknown origin / http://tetcoin.org".into()));
+		assert_eq!(meta3.origin, Origin::Rpc("unknown origin / http://tetcoin.org".into()));
 	}
 }

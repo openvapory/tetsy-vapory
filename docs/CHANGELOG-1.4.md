@@ -671,7 +671,7 @@ This includes the new Parity Wallet and Warp-Sync synchronisation as well as sev
 - Fetching any content-addressed content [#2050](https://github.com/paritytech/parity/pull/2050)
 - Use proper database configuration in snapshots. [#2052](https://github.com/paritytech/parity/pull/2052)
 - periodic snapshot tweaks [#2054](https://github.com/paritytech/parity/pull/2054)
-- ethkey-cli [#2057](https://github.com/paritytech/parity/pull/2057)
+- vapkey-cli [#2057](https://github.com/paritytech/parity/pull/2057)
 - Forward ethstore-cli feature [#2056](https://github.com/paritytech/parity/pull/2056)
 - handling invalid spec jsons properly, additional tests, closes #1840 [#2049](https://github.com/paritytech/parity/pull/2049)
 - Periodic snapshots [#2044](https://github.com/paritytech/parity/pull/2044)

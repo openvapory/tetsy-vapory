@@ -21,7 +21,7 @@ export RUSTFLAGS=" -Ctarget-feature=+aes,+sse2,+ssse3 -Ctarget-feature=+crt-stat
 time cargo build --target $CARGO_TARGET --verbose --release --features final
 time cargo build --target $CARGO_TARGET --verbose --release -p evmbin
 time cargo build --target $CARGO_TARGET --verbose --release -p ethstore-cli
-time cargo build --target $CARGO_TARGET --verbose --release -p ethkey-cli
+time cargo build --target $CARGO_TARGET --verbose --release -p vapkey-cli
 
 echo "__________Sign binaries__________"
 scripts/gitlab/sign-win.cmd $keyfile $certpass target/$CARGO_TARGET/release/parity.exe

@@ -1,6 +1,6 @@
 [package]
-description = "Parity Ethereum Keys Generator CLI"
-name = "ethkey-cli"
+description = "Tetsy Vapory Keys Generator CLI"
+name = "vapkey-cli"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 
@@ -10,7 +10,7 @@ env_logger = "0.5"
 ethkey = { path = "../" }
 panic_hook = { path = "../../../util/panic-hook" }
 parity-crypto = { version = "0.4.2", features = ["publickey"] }
-parity-wordlist="1.2"
+tetsy-wordlist="1.2"
 rustc-hex = "1.0"
 serde = "1.0"
 serde_derive = "1.0"

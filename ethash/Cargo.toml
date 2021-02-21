@@ -1,5 +1,5 @@
 [package]
-description = "Parity Ethereum Ethash & ProgPoW Implementations"
+description = "Tetsy Vapory Ethash & ProgPoW Implementations"
 name = "ethash"
 version = "1.12.0"
 authors = ["Parity Technologies <admin@parity.io>"]

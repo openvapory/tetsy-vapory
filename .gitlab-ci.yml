@@ -14,7 +14,7 @@ variables:
   CARGO_HOME:                      "/ci-cache/${CI_PROJECT_NAME}/cargo/${CI_JOB_NAME}"
   CARGO_TARGET:                    x86_64-unknown-linux-gnu
   CARGO_INCREMENTAL:               0
-  REGISTRY:                        registry.parity.io/parity/infrastructure/scripts
+  REGISTRY:                        registry.tetcoin.org/parity/infrastructure/scripts
 
 .releaseable_branches:             # list of git refs for building GitLab artifacts (think "pre-release binaries")
   only:                            &releaseable_branches
@@ -306,7 +306,7 @@ publish-release-awss3-nightly:     &publish-release-awss3
     - echo "__________Push binaries to AWS S3____________"
     - case "${SCHEDULE_TAG:-${CI_COMMIT_REF_NAME}}" in
        (stable|nightly)
-         export BUCKET=releases.parity.io/ethereum;
+         export BUCKET=releases.tetcoin.org/ethereum;
          ;;
        (*)
          export BUCKET=builds-parity;

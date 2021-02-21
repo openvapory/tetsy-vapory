@@ -266,8 +266,8 @@ To reactivate the parity wallet, you have to run Parity either with `parity --fo
 
 Further reading:
 
-- [Docs: Parity Wallet](https://wiki.parity.io/Parity-Wallet)
-- [Docs: How to customize Parity UI?](https://wiki.parity.io/FAQ-Customize-Parity-UI.html)
+- [Docs: Parity Wallet](https://wiki.tetcoin.org/Parity-Wallet)
+- [Docs: How to customize Parity UI?](https://wiki.tetcoin.org/FAQ-Customize-Parity-UI.html)
 - [Github: Parity-JS](https://github.com/parity-js)
 
 ### Introducing the Wasm VM
@@ -278,9 +278,9 @@ To enable Wasm contracts on your custom network, just schedule a `wasmActivation
 
 Further reading:
 
-- [Docs: WebAssembly (wasm)](https://wiki.parity.io/WebAssembly-Home)
-- [Docs: Wasm VM Design](https://wiki.parity.io/WebAssembly-Design)
-- [Docs: Wasm tutorials and examples](https://wiki.parity.io/WebAssembly-Links)
+- [Docs: WebAssembly (wasm)](https://wiki.tetcoin.org/WebAssembly-Home)
+- [Docs: Wasm VM Design](https://wiki.tetcoin.org/WebAssembly-Design)
+- [Docs: Wasm tutorials and examples](https://wiki.tetcoin.org/WebAssembly-Links)
 
 ### Empty step messages in PoA
 

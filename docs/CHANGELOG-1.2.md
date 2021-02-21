@@ -91,7 +91,7 @@ DAO soft-fork control options have been replaced by the single `--fork` option w
 
 ## Parity [v1.2.0: "Security"](https://github.com/paritytech/parity/releases/tag/v1.2.0) (2016-06-24)
 
-[Blog post](https://blog.parity.io/announcing-parity-1-2/)
+[Blog post](https://blog.tetcoin.org/announcing-parity-1-2/)
 
 #### New
 

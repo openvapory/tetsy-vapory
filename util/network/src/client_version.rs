@@ -1,18 +1,18 @@
 // Copyright 2015-2020 Parity Technologies (UK) Ltd.
-// This file is part of Parity Ethereum.
+// This file is part of Tetsy Vapory.
 
-// Parity Ethereum is free software: you can redistribute it and/or modify
+// Tetsy Vapory is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Parity Ethereum is distributed in the hope that it will be useful,
+// Tetsy Vapory is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Parity Ethereum.  If not, see <http://www.gnu.org/licenses/>.
+// along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 #![warn(missing_docs)]
 
@@ -23,7 +23,7 @@ use std::fmt;
 
 /// Parity client string prefix
 const LEGACY_CLIENT_ID_PREFIX: &str = "Parity";
-const PARITY_CLIENT_ID_PREFIX: &str = "Parity-Ethereum";
+const PARITY_CLIENT_ID_PREFIX: &str = "Tetsy-Vapory";
 
 lazy_static! {
 /// Parity versions starting from this will accept block bodies requests
@@ -461,7 +461,7 @@ pub mod tests {
 	pub fn client_capabilities_when_parity_beta_version_then_not_handles_large_requests_true() {
 		let client_version_string: String = format!(
 			"{}/v{}/{}/{}",
-			"Parity-Ethereum",
+			"Tetsy-Vapory",
 			"2.4.0-beta",
 			"x86_64-linux-gnu",
 			"rustc1.31.1")
@@ -488,8 +488,8 @@ pub mod tests {
 	#[test]
 	fn client_version_accepts_service_transaction_for_different_versions() {
 		assert!(!ClientVersion::from("Geth").accepts_service_transaction());
-		assert!(ClientVersion::from("Parity-Ethereum/v2.6.0/linux/rustc").accepts_service_transaction());
-		assert!(ClientVersion::from("Parity-Ethereum/ABCDEFGH/v2.7.3/linux/rustc").accepts_service_transaction());
+		assert!(ClientVersion::from("Tetsy-Vapory/v2.6.0/linux/rustc").accepts_service_transaction());
+		assert!(ClientVersion::from("Tetsy-Vapory/ABCDEFGH/v2.7.3/linux/rustc").accepts_service_transaction());
 	}
 
 	#[test]

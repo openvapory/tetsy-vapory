@@ -29,7 +29,7 @@ contract TxPermission {
 
     /// @dev Defines the allowed transaction types which may be initiated by the specified sender with
     /// the specified gas price and data. Used by the Parity engine each time a transaction is about to be
-    /// included into a block. See https://wiki.parity.io/Permissioning.html#how-it-works-1
+    /// included into a block. See https://wiki.tetcoin.org/Permissioning.html#how-it-works-1
     /// @param _sender Transaction sender address.
     /// @param _to Transaction recipient address. If creating a contract, the `_to` address is zero.
     /// @param _value Transaction amount in wei.
