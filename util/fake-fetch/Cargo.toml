@@ -4,6 +4,9 @@ name = "fake-fetch"
 version = "0.0.1"
 license = "GPL-3.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+documentation = "https://docs.rs/fake-fetch"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 fetch = { path = "../fetch" }
