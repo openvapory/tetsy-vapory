@@ -1,6 +1,5 @@
 [package]
 description = "Tetsy custom panic hook"
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "panic-hook"
 version = "0.1.0"
