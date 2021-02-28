@@ -22,7 +22,7 @@ use ansi_term::Colour;
 use vapory_types::U256;
 use tetsy_runtime::Executor;
 use price_info::{Client as PriceInfoClient, PriceInfo};
-use price_info::fetch::Client as FetchClient;
+use price_info::tetsy_fetch::Client as FetchClient;
 
 /// Options for the dynamic gas price recalibrator.
 #[derive(Debug, PartialEq)]
