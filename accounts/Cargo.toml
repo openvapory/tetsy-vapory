@@ -1,11 +1,13 @@
 [package]
 description = "Tetsy Vapory Account Management"
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "vapcore-accounts"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
+documentation = "https://docs.rs/vapcore-accounts"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 vapkey = { version = "0.4.0", path = "vapkey" }
