@@ -3,6 +3,10 @@ description = "Tetsy Vapory Keys Generator"
 name = "vapkey"
 version = "0.4.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0"
+documentation = "https://docs.rs/vapkey"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 edit-distance = "2.0"
