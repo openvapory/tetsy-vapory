@@ -19,7 +19,7 @@
 #[macro_use]
 extern crate log;
 #[macro_use]
-extern crate macros;
+extern crate tetsy_macros;
 
 extern crate tetsy_kvdb;
 extern crate tetsy_kvdb_rocksdb;

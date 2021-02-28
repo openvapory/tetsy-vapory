@@ -19,7 +19,7 @@
 //! are performed in temp sub-directories.
 
 #[macro_use]
-extern crate macros;
+extern crate tetsy_macros;
 extern crate tempdir;
 extern crate tetsy_kvdb_rocksdb;
 extern crate migration_rocksdb as migration;

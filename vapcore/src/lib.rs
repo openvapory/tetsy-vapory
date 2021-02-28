@@ -85,7 +85,7 @@ extern crate tetsy_kvdb_rocksdb;
 extern crate lazy_static;
 #[cfg(any(test, feature = "json-tests"))]
 #[macro_use]
-extern crate macros;
+extern crate tetsy_macros;
 #[cfg(any(test, feature = "test-helpers"))]
 extern crate pod;
 #[cfg(any(test, feature = "blooms-db"))]

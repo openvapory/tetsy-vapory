@@ -77,7 +77,7 @@ vapcore-io = { path = "../util/io" }
 vapcore-network = { path = "../util/network" }
 vapjson = { path = "../json", features = ["test-helpers"] }
 fake-fetch = { path = "../util/fake-fetch" }
-macros = { path = "../util/macros" }
+tetsy-macros = { path = "../util/macros" }
 spec = { path = "../vapcore/spec" }
 pretty_assertions = "0.1"
 transaction-pool = "2.0.1"

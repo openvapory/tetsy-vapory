@@ -26,4 +26,4 @@ tetsy-trie-db = "0.20.0"
 triehash = { package = "triehash-vapory", version = "0.2",  path = "../../util/triehash-vapory" }
 
 [dev-dependencies]
-macros = { path = "../../util/macros" }
+tetsy-macros = { path = "../../util/macros" }

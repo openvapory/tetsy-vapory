@@ -23,7 +23,7 @@ indexmap = "1.3.0"
 tetsy-keccak-hash = "0.4.0"
 light = { package = "vapcore-light", path = "../light" }
 log = "0.4"
-macros = { path = "../../util/macros" }
+tetsy-macros = { path = "../../util/macros" }
 network = { package = "vapcore-network", path = "../../util/network" }
 tetsy-runtime = { path = "../../util/runtime" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }

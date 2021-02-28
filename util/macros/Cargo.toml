@@ -1,11 +1,11 @@
 [package]
-name = "macros"
+name = "tetsy-macros"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
-description =  "Utils common types and macros global reexport."
+description =  "Tetsy utils common types and macros global reexport."
 license = "GPL-3.0"
-documentation = "https://docs.rs/macros"
+documentation = "https://docs.rs/tetsy-macros"
 homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 # publish = false

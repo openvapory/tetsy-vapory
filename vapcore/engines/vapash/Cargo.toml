@@ -16,7 +16,7 @@ vapjson = { path = "../../../json" }
 tetsy-keccak-hash = "0.4.0"
 log = "0.4.8"
 machine = { path = "../../machine" }
-macros = { path = "../../../util/macros" }
+tetsy-macros = { path = "../../../util/macros" }
 tetsy-unexpected = { path = "../../../util/tetsy-unexpected" }
 
 [dev-dependencies]
