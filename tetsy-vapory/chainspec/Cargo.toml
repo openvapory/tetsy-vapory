@@ -1,0 +1,9 @@
+[package]
+description = "Tetsy Vapory Chain Specification"
+name = "chainspec"
+version = "0.1.0"
+authors = ["Marek Kotewicz <marek@parity.io>"]
+
+[dependencies]
+vapjson = { path = "../json" }
+serde_json = "1.0"

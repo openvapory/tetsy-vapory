@@ -1,0 +1,29 @@
+[package]
+name = "pod"
+description = "State/Account system expressed in Plain Old Data."
+authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+common-types = { path = "../types" }
+vapory-types = "0.8.0"
+vapjson = { path = "../../json" }
+vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory" }
+tetsy-hash-db = "0.15.2"
+itertools = "0.8"
+tetsy-keccak-hash = "0.4.0"
+tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+log = "0.4"
+tetsy-bytes = "0.1.0"
+tetsy-rlp = "0.4.5"
+rustc-hex = "1"
+serde = { version = "1.0", features = ["derive"] }
+tetsy-trie-db = "0.20.0"
+triehash = { package = "triehash-vapory", version = "0.2",  path = "../../util/triehash-vapory" }
+
+[dev-dependencies]
+macros = { path = "../../util/macros" }

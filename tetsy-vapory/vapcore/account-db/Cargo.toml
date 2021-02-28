@@ -1,0 +1,16 @@
+[package]
+name = "account-db"
+description = "DB backend wrapper for Account trie"
+authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+vapory-types = "0.8.0"
+tetsy-hash-db = "0.15.2"
+tetsy-keccak-hash = "0.4.0"
+tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+tetsy-rlp = "0.4.5"

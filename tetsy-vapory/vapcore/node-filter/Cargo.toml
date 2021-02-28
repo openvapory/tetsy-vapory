@@ -1,0 +1,29 @@
+[package]
+description = "Tetsy Smart Contract based Node Filter, Manage Permissions of Network Connections"
+homepage = "http://tetcoin.org"
+license = "GPL-3.0"
+name = "node-filter"
+version = "1.12.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+
+[dependencies]
+client-traits = { path = "../client-traits" }
+common-types = { path = "../types" }
+vapcore = { path = ".."}
+vapcore-network = { path = "../../util/network" }
+vapcore-network-devp2p = { path = "../../util/network-devp2p" }
+vapory-types = "0.8.0"
+log = "0.4"
+parking_lot = "0.9"
+vapabi = "9.0.1"
+vapabi-derive = "9.0.1"
+vapabi-contract = "9.0.0"
+lru-cache = "0.1"
+
+[dev-dependencies]
+vapcore = { path = "..", features = ["test-helpers"] }
+tetsy-kvdb-memorydb = "0.3.2"
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+vapcore-io = { path = "../../util/io" }
+spec = { path = "../spec" }
+tempdir = "0.3"

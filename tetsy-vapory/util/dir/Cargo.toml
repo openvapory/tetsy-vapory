@@ -1,0 +1,11 @@
+[package]
+name = "dir"
+version = "0.1.2"
+authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL3"
+
+[dependencies]
+vapory-types = "0.8.0"
+journaldb = { path = "../journaldb" }
+app_dirs = { git = "https://github.com/openvapory/app-dirs-rs" }
+home = "0.3"

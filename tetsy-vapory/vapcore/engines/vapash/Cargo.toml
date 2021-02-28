@@ -1,0 +1,27 @@
+[package]
+description = "Vapash PoW blockchain engine"
+name = "vapash-engine"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+license = "GPL-3.0"
+
+[dependencies]
+block-reward = { path = "../../block-reward" }
+common-types = { path = "../../types" }
+engine = { path = "../../engine" }
+vapash= { path = "../../../vapash" }
+vapory-types = "0.8.0"
+vapjson = { path = "../../../json" }
+tetsy-keccak-hash = "0.4.0"
+log = "0.4.8"
+machine = { path = "../../machine" }
+macros = { path = "../../../util/macros" }
+tetsy-unexpected = { path = "../../../util/tetsy-unexpected" }
+
+[dev-dependencies]
+vapcore = { path = "../..", features = ["test-helpers"] }
+tetsy-keccak-hash = "0.4.0"
+tetsy-rlp = "0.4.5"
+spec = { path = "../../spec" }
+tempdir = "0.3"

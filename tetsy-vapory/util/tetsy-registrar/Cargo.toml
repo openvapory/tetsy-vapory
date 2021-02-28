@@ -1,0 +1,14 @@
+[package]
+description = "Registar for Tetsy"
+name = "tetsy-registrar"
+version = "0.0.1"
+license = "GPL-3.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+
+[dependencies]
+call-contract = { package = "vapcore-call-contract", path = "../../vapcore/call-contract" }
+vapabi = "9.0.1"
+vapabi-derive = "9.0.1"
+vapabi-contract = "9.0.0"
+tetsy-keccak-hash = "0.4.0"
+types = { path = "../../vapcore/types", package = "common-types" }

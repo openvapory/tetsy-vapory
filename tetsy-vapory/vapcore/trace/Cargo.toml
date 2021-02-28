@@ -1,0 +1,26 @@
+[package]
+name = "trace"
+description = "Transaction tracing"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0"
+edition = "2018"
+
+[dependencies]
+vapcore-blockchain = { path = "../blockchain" }
+vapcore-db = { path = "../db" }
+vapory-types = "0.8.0"
+vvm = { path = "../vvm" }
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+log = "0.4"
+tetsy-bytes = "0.1.0"
+tetsy-util-mem = "0.3.0"
+parking_lot = "0.9"
+tetsy-rlp = "0.4.5"
+tetsy-rlp-derive = { path = "../../util/tetsy-rlp-derive" }
+vm = { path = "../vm" }
+
+[dev-dependencies]
+# Used for test helpers
+vapcore = { path = "..", features = ["test-helpers"] }

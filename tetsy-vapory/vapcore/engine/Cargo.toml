@@ -1,0 +1,31 @@
+[package]
+description = "Vapory engine trait definition"
+name = "engine"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+license = "GPL-3.0"
+
+[dependencies]
+blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
+builtin = { path = "../builtin", package = "vapcore-builtin" }
+bytes = { package = "tetsy-bytes", version = "0.1.0" }
+client-traits = { path = "../client-traits" }
+common-types = { path = "../types" }
+vapory-types = "0.8.0"
+tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
+machine = { path = "../machine" }
+vm = { path = "../vm" }
+
+# used from test-helpers
+accounts = { package = "vapcore-accounts", path = "../../accounts", optional = true }
+log = { version = "0.4.8", optional = true }
+vapkey = { path = "../../accounts/vapkey", optional = true }
+
+[dev-dependencies]
+accounts = { package = "vapcore-accounts", path = "../../accounts" }
+vapkey = { path = "../../accounts/vapkey" }
+log = "0.4.8"
+
+[features]
+test-helpers = ["accounts", "log", "vapkey"]

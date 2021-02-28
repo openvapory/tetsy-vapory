@@ -1,0 +1,42 @@
+[package]
+description = "Vapory engine specification"
+name = "spec"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+license = "GPL-3.0"
+
+[dependencies]
+account-state = { path = "../account-state" }
+authority-round = { path = "../engines/authority-round" }
+basic-authority = { path = "../engines/basic-authority" }
+builtin = { package = "vapcore-builtin", path = "../builtin" }
+bytes = { package = "tetsy-bytes", version = "0.1.0" }
+clique = { path = "../engines/clique" }
+common-types = { path = "../types" }
+engine = { path = "../engine" }
+vapash = { path = "../../vapash" }
+vapash-engine = { path = "../engines/vapash" }
+vapory-types = "0.8.0"
+vapjson = { path = "../../json" }
+vvm = { path = "../vvm" }
+executive-state = { path = "../executive-state" }
+tetsy-hash-db = "0.15.2"
+instant-seal = { path = "../engines/instant-seal" }
+journaldb = { path = "../../util/journaldb" }
+tetsy-keccak-hash = "0.4.0"
+tetsy-kvdb-memorydb = "0.3.2"
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+log = "0.4.8"
+machine = { path = "../machine" }
+null-engine = { path = "../engines/null-engine" }
+pod = { path = "../pod" }
+tetsy-rlp = "0.4.5"
+trace = { path = "../trace" }
+trie-vm-factories = { path = "../trie-vm-factories" }
+vm = { path = "../vm" }
+
+[dev-dependencies]
+vapcore = { path = "..", features = ["test-helpers"] }
+env_logger = "0.5"
+tempdir = "0.3.7"

@@ -1,0 +1,12 @@
+[package]
+description = "Tetsy Vapory (VapCore) Contract Calls and Blockchain Service & Registry Information"
+name = "vapcore-call-contract"
+version = "0.1.0"
+license = "GPL-3.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+
+[dependencies]
+types = { path = "../types", package = "common-types" }
+vapory-types = "0.8.0"
+bytes = { version = "0.1", package = "tetsy-bytes" }

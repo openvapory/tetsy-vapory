@@ -1,0 +1,40 @@
+[package]
+name = "account-state"
+description = "Vapory accounts, keeps track of changes to the code and storage"
+authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+common-types = { path = "../types"}
+derive_more = "0.15.0"
+vapory-types = "0.8.0"
+vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory" }
+trie-vm-factories = { path = "../trie-vm-factories" }
+tetsy-hash-db = "0.15.2"
+journaldb = { path = "../../util/journaldb" }
+tetsy-keccak-hash = "0.4.0"
+tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+log = "0.4"
+lru-cache = "0.1.2"
+tetsy-memory-db = "0.18.1"
+tetsy-bytes = "0.1.0"
+tetsy-util-mem = "0.3.0"
+parking_lot = "0.9"
+pod = { path = "../pod" }
+tetsy-rlp = "0.4.5"
+serde = { version = "1.0", features = ["derive"] }
+tetsy-trie-db = "0.20.0"
+
+# [dependencies.tetsy-memory-db]
+# git = "https://github.com/tetcoin/trie"
+# rev = "193a225"
+
+[dev-dependencies]
+account-db = { path = "../account-db" }
+journaldb = { path = "../../util/journaldb" }
+tetsy-bytes = "0.1.0"
+rlp-compress = { path = "../../util/rlp-compress" }

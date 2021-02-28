@@ -1,0 +1,20 @@
+[package]
+description = "Tetsy WASM Test Run"
+name = "twasm-run-test"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>"]
+
+[dependencies]
+serde = "1"
+serde_json = "1"
+serde_derive = "1"
+vapory-types = "0.8.0"
+vapjson = { path = "../../../json" }
+vm = { path = "../../vm" }
+wasm = { path = "../" }
+clap = "2.24"
+env_logger = "0.5"
+rustc-hex = "1"
+
+[features]
+default = ["vapory-types/std"]
