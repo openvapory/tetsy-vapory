@@ -83,7 +83,7 @@ pub mod accounts {
 }
 
 /// Tetsy-specific rpc interface for operations altering the settings.
-pub struct TetsySetClient<C, M, U, F = fetch::Client> {
+pub struct TetsySetClient<C, M, U, F = tetsy_fetch::Client> {
 	client: Arc<C>,
 	miner: Arc<M>,
 	updater: Arc<U>,
@@ -225,7 +225,7 @@ impl<C, M, U, F> TetsySet for TetsySetClient<C, M, U, F> where
 			result
 				.map_err(errors::fetch)
 				.and_then(move |response| {
-					let mut reader = io::BufReader::new(fetch::BodyReader::new(response));
+					let mut reader = io::BufReader::new(tetsy_fetch::BodyReader::new(response));
 					keccak_buffer(&mut reader).map_err(errors::fetch)
 				})
 				.map(Into::into)
