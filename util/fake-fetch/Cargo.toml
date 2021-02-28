@@ -9,6 +9,6 @@ homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
-fetch = { path = "../fetch" }
+fetch = { version = "0.1.0", path = "../fetch" }
 futures = "0.1"
 hyper = "0.12"
