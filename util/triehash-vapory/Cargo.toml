@@ -10,10 +10,10 @@ homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
-tetsy-triehash = "0.8.4"
+tetsy-triehash = "0.8.5"
 vapory-types = "0.8.0"
 tetsy-keccak-hasher = { version = "0.1.1", path = "../tetsy-keccak-hasher" }
 
 #[dependencies.tetsy-triehash]
-[patch.crates-io]
-tetsy-triehash = { git = "https://github.com/tetcoin/tetsy-common", rev = "ad4d6c67f5d514df6c890b9174f8f62d8960a8e0" }
+# [patch.crates-io]
+# tetsy-triehash = { git = "https://github.com/tetcoin/tetsy-common", rev = "ad4d6c67f5d514df6c890b9174f8f62d8960a8e0" }
