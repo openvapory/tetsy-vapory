@@ -35,7 +35,7 @@ extern crate rustc_hex;
 extern crate tetsy_registrar;
 extern crate types;
 
-pub extern crate fetch;
+pub extern crate tetsy_fetch;
 
 // #[macro_use]
 extern crate vapabi_derive;
