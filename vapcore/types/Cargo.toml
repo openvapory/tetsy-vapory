@@ -17,7 +17,7 @@ tetsy-util-mem = "0.3.0"
 tetsy-snappy = "0.1"
 patricia-trie-vapory = { path = "../../util/patricia-trie-vapory" }
 tetsy-rlp = "0.4.5"
-tetsy-rlp-derive = { path = "../../util/tetsy-rlp-derive" }
+tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
 tetsy-unexpected = { path = "../../util/tetsy-unexpected" }
 vm = { path = "../vm"}
 

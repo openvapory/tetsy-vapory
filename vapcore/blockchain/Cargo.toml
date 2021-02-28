@@ -25,7 +25,7 @@ parking_lot = "0.9"
 rayon = "1.0"
 tetsy-rlp = "0.4.5"
 rlp-compress = { path = "../../util/rlp-compress" }
-tetsy-rlp-derive = { path = "../../util/tetsy-rlp-derive" }
+tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
 triehash-vapory = { version = "0.2",  path = "../../util/triehash-vapory" }
 
 [dev-dependencies]

@@ -15,4 +15,4 @@ tetsy-kvdb = "0.3.2"
 tetsy-util-mem = "0.3.0"
 parking_lot = "0.9"
 tetsy-rlp = "0.4.5"
-tetsy-rlp-derive = { path = "../../util/tetsy-rlp-derive" }
+tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
