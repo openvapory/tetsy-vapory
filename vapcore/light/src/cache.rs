@@ -28,7 +28,7 @@ use common_types::BlockNumber;
 use common_types::receipt::Receipt;
 use vapory_types::{H256, U256};
 use memory_cache::MemoryLruCache;
-use stats::Corpus;
+use tetsy_stats::Corpus;
 
 /// Configuration for how much data to cache.
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]

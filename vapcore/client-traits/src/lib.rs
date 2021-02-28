@@ -50,7 +50,7 @@ use vapory_types::{Address, H256, U256};
 use vapcore_db::keys::BlockReceipts;
 use vapcore_miner::pool::VerifiedTransaction;
 use tetsy_kvdb::DBValue;
-use stats;
+use tetsy_stats;
 use trace::{
 	FlatTrace,
 	localized::LocalizedTrace,
@@ -345,7 +345,7 @@ pub trait BlockChainClient:
 	fn transactions_to_propagate(&self) -> Vec<Arc<VerifiedTransaction>>;
 
 	/// Sorted list of transaction gas prices from at least last sample_size blocks.
-	fn gas_price_corpus(&self, sample_size: usize) -> stats::Corpus<U256> {
+	fn gas_price_corpus(&self, sample_size: usize) -> tetsy_stats::Corpus<U256> {
 		let mut h = self.chain_info().best_block_hash;
 		let mut corpus = Vec::new();
 		while corpus.is_empty() {

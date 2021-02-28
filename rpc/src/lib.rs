@@ -86,7 +86,7 @@ extern crate vip_712;
 extern crate tetsy_rlp;
 extern crate account_state;
 
-extern crate stats;
+extern crate tetsy_stats;
 extern crate snapshot;
 extern crate tempdir;
 extern crate trace;

@@ -18,6 +18,6 @@ vapory-types = "0.8.0"
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 tetsy-registrar = { path = "../../util/tetsy-registrar" }
-stats = { path = "../../util/stats" }
+tetsy-stats = { version = "0.1.0", path = "../../util/stats" }
 trace = { path = "../trace" }
 vm = { path = "../vm" }

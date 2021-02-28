@@ -22,7 +22,7 @@ use light::cache::Cache as LightDataCache;
 use light::client::LightChainClient;
 use light::on_demand::{request, OnDemandRequester};
 use parking_lot::{Mutex, RwLock};
-use stats::Corpus;
+use tetsy_stats::Corpus;
 use sync::{LightSyncProvider, LightNetworkDispatcher, ManageNetwork};
 use types::basic_account::BasicAccount;
 use types::ids::BlockId;

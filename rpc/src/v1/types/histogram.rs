@@ -17,7 +17,7 @@
 //! Gas prices histogram.
 
 use vapory_types::U256;
-use stats;
+use tetsy_stats;
 
 /// Values of RPC settings.
 #[derive(Serialize, Deserialize)]
@@ -30,8 +30,8 @@ pub struct Histogram {
 	pub counts: Vec<usize>,
 }
 
-impl From<stats::Histogram<U256>> for Histogram {
-	fn from(h: stats::Histogram<U256>) -> Self {
+impl From<tetsy_stats::Histogram<U256>> for Histogram {
+	fn from(h: tetsy_stats::Histogram<U256>) -> Self {
 		Histogram {
 			bucket_bounds: h.bucket_bounds.into_iter().map(Into::into).collect(),
 			counts: h.counts

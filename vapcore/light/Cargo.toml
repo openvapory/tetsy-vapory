@@ -39,7 +39,7 @@ serde = "1.0"
 serde_derive = "1.0"
 spec = { path = "../spec" }
 parking_lot = "0.9"
-stats = { path = "../../util/stats" }
+tetsy-stats = { version = "0.1.0", path = "../../util/stats" }
 tetsy-keccak-hash = "0.4.0"
 tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }
 triehash-vapory = { version = "0.2",  path = "../../util/triehash-vapory" }

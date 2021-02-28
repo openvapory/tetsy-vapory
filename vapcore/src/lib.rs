@@ -64,7 +64,7 @@ extern crate account_db;
 #[cfg(test)]
 extern crate vapcore_accounts as accounts;
 #[cfg(test)]
-extern crate stats;
+extern crate tetsy_stats;
 
 #[cfg(feature = "stratum")]
 extern crate vapcore_stratum;

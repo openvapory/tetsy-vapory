@@ -1,10 +1,12 @@
 [package]
 description = "Tetsy Runtime"
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "tetsy-runtime"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+documentation = "https://docs.rs/tetsy-runtime"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 futures = "0.1"

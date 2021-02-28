@@ -65,7 +65,7 @@ tetsy-version = { path = "../util/version" }
 tetsy-rlp = "0.4.5"
 account-state = { path = "../vapcore/account-state" }
 snapshot = { path = "../vapcore/snapshot" }
-stats = { path = "../util/stats" }
+tetsy-stats = { version = "0.1.0", path = "../util/stats" }
 trace = { path = "../vapcore/trace" }
 vm = { path = "../vapcore/vm" }
 

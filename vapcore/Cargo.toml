@@ -90,7 +90,7 @@ machine = { path = "./machine", features = ["test-helpers"] }
 tetsy-macros = { version = "0.1.0", path = "../util/macros" }
 tetsy-runtime = { path = "../util/runtime" }
 serde_json = "1.0"
-stats = { path = "../util/stats" }
+tetsy-stats = { version = "0.1.0", path = "../util/stats" }
 pod = { path = "pod" }
 tempdir = "0.3"
 tetsy-trie-standardmap = "0.15.2"
