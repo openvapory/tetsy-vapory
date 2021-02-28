@@ -14,7 +14,8 @@ clap = "2"
 cli-signer= { path = "cli-signer", version = "1.4.0" }
 client-traits = { path = "vapcore/client-traits", version = "0.1.0" }
 common-types = { path = "vapcore/types", version = "0.1.0" }
-ctrlc = { git = "https://github.com/tetcoin/rust-ctrlc.git" }
+ctrlc = "1.1.1"
+# ctrlc = { git = "https://github.com/tetcoin/rust-ctrlc.git" }
 dir = { path = "util/dir", version = "0.1.2" }
 docopt = "1.0"
 engine = { path = "vapcore/engine", version = "0.1.0" }
