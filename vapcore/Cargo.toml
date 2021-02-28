@@ -96,7 +96,7 @@ tempdir = "0.3"
 tetsy-trie-standardmap = "0.15.2"
 
 [features]
-tetsy = ["work-notify", "price-info", "stratum", "macros"]
+tetsy = ["work-notify", "price-info", "stratum", "tetsy-macros"]
 # Large optional features that are enabled by default for Tetsy,
 # but might be omitted for other dependent crates.
 work-notify = ["vapcore-miner/work-notify"]
@@ -132,7 +132,7 @@ test-helpers = [
     "tetsy-crypto",
     "tetsy-kvdb-memorydb",
     "tetsy-kvdb-rocksdb",
-    "macros",
+    "tetsy-macros",
     "pod",
     "tempdir",
     "basic-authority/test-helpers"
