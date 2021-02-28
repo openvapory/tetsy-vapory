@@ -3,8 +3,11 @@ name = "tetsy-keccak-hasher"
 version = "0.1.1"
 edition = "2018"
 authors = ["Parity Technologies <admin@parity.io>"]
-description = "Keccak-256 implementation of the Hasher trait"
+description = "Tetsy Keccak-256 implementation of the Hasher trait"
 license = "GPL-3.0"
+documentation = "https://docs.rs/tetsy-keccak-hasher"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 vapory-types = "0.8.0"

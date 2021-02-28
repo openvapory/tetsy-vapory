@@ -2,8 +2,11 @@
 name = "time-utils"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
-description = "Time utilities for checked arithmetic"
-license = "GPL3"
+description = "Tetsy Time utilities for checked arithmetic"
 edition = "2018"
+license = "GPL-3.0"
+documentation = "https://docs.rs/time-utils"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]

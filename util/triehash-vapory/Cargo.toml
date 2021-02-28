@@ -4,6 +4,10 @@ version = "0.2.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 description = "Trie-root helpers, vapory style"
 license = "GPL-3.0"
+edition = "2018"
+documentation = "https://docs.rs/triehash-vapory"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 # tetsy-triehash = "0.8.4"

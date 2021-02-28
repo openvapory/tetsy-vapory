@@ -9,6 +9,7 @@ description = "vip-712 encoding"
 keywords = ["vip-712", "vip712", "vip"]
 license = "GPL-3.0"
 edition = "2018"
+homepage = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 serde_derive = "1.0"

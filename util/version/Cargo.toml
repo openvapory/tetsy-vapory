@@ -6,6 +6,11 @@ name = "tetsy-version"
 version = "2.7.2"
 authors = ["Parity Technologies <admin@parity.io>"]
 build = "build.rs"
+edition = "2018"
+license = "GPL-3.0"
+documentation = "https://docs.rs/tetsy-version"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [package.metadata]
 # This versions track. Should be changed to `stable` when on respective branches.
