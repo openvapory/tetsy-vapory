@@ -8,7 +8,7 @@ documentation = "https://docs.rs/fake-fetch"
 homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
-[dependencies]-
+[dependencies]
 futures = "0.1"
 hyper = "0.12"
 
