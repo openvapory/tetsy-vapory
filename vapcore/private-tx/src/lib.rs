@@ -36,7 +36,7 @@ extern crate vapcore_io as io;
 extern crate vapcore_miner;
 extern crate vapory_types;
 extern crate vapjson;
-extern crate fetch;
+extern crate tetsy_fetch;
 extern crate futures;
 extern crate tetsy_util_mem;
 extern crate tetsy_hash_db;
