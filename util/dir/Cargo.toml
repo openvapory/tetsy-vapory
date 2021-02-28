@@ -6,6 +6,7 @@ license = "GPL3"
 
 [dependencies]
 vapory-types = "0.8.0"
-journaldb = { path = "../journaldb" }
-app_dirs = { git = "https://github.com/openvapory/app-dirs-rs" }
+journaldb = { version = "0.2.0", path = "../journaldb" }
+app_dirs = "1.2.1"
+# app_dirs = { git = "https://github.com/openvapory/app-dirs-rs" }
 home = "0.3"
