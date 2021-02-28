@@ -1,4 +1,4 @@
-// Copyright 2015-2020 Parity Technologies (UK) Ltd.
+// Copyright 2015-2020 Tetsy Technologies (UK) Ltd.
 // This file is part of Tetsy Vapory.
 
 // Tetsy Vapory is free software: you can redistribute it and/or modify
@@ -416,7 +416,7 @@ impl From<Request> for hyper::Request<hyper::Body> {
 		hyper::Request::builder()
 			.method(req.method)
 			.uri(uri)
-			.header(header::USER_AGENT, HeaderValue::from_static("Parity Fetch Neo"))
+			.header(header::USER_AGENT, HeaderValue::from_static("Tetsy Fetch Neo"))
 			.body(req.body.into())
 			.expect("Header, uri, method, and body are already valid and can not fail to parse; qed")
 	}

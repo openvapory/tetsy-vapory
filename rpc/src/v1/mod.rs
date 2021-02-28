@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Ethcore rpc v1.
+//! Vapcore rpc v1.
 //!
-//! Compliant with ethereum rpc.
+//! Compliant with vapory rpc.
 
 // short for "try_boxfuture"
 // unwrap a result, returning a BoxFuture<_, Err> on failure.
@@ -41,7 +41,7 @@ pub mod informant;
 pub mod metadata;
 pub mod traits;
 
-pub use self::traits::{Debug, Eth, EthFilter, EthPubSub, EthSigning, Net, Parity, ParityAccountsInfo, ParityAccounts, ParitySet, ParitySetAccounts, ParitySigning, Personal, PubSub, Private, Rpc, SecretStore, Signer, Traces, Web3};
+pub use self::traits::{Debug, Vap, VapFilter, VapPubSub, VapSigning, Net, Tetsy, TetsyAccountsInfo, TetsyAccounts, TetsySet, TetsySetAccounts, TetsySigning, Personal, PubSub, Private, Rpc, SecretStore, Signer, Traces, Web3};
 pub use self::impls::*;
 pub use self::helpers::{NetworkSettings, block_import, dispatch};
 pub use self::metadata::Metadata;

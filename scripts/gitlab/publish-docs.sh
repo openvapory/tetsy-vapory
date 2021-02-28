@@ -5,9 +5,9 @@ set -u # treat unset variables as error
 
 clone_repos() {
     echo "__________Clone repos__________"
-    git clone https://github.com/parity-js/jsonrpc.git jsonrpc
+    git clone https://github.com/tetsy-js/jsonrpc.git jsonrpc
     git clone https://github.com/tetcoin/wiki.git wiki
-    git clone https://github.com/tetcoin/parity-config-generator
+    git clone https://github.com/tetcoin/tetsy-config-generator
 }
 
 build_docs() {
@@ -28,7 +28,7 @@ update_wiki_docs() {
         module_name=${file:0:-3}
         mv jsonrpc/docs/$file wiki/JSONRPC-$module_name-module.md
     done
-    mv parity-config-generator/docs/config.md wiki/Configuring-Tetsy-Vapory.md
+    mv tetsy-config-generator/docs/config.md wiki/Configuring-Tetsy-Vapory.md
 }
 
 setup_git() {
@@ -62,12 +62,12 @@ RPC_TRAITS_DIR="rpc/src/v1/traits"
 
 setup_git
 clone_repos
-mkdir -p "jsonrpc/.parity/$RPC_TRAITS_DIR"
-cp $RPC_TRAITS_DIR/*.rs "jsonrpc/.parity/$RPC_TRAITS_DIR"
+mkdir -p "jsonrpc/.tetsy/$RPC_TRAITS_DIR"
+cp $RPC_TRAITS_DIR/*.rs "jsonrpc/.tetsy/$RPC_TRAITS_DIR"
 cd jsonrpc
 build_docs
 cd ..
-cd parity-config-generator
+cd tetsy-config-generator
 build_config
 cd ..
 update_wiki_docs

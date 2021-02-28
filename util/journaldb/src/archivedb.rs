@@ -22,17 +22,17 @@ use std::{
 	sync::Arc,
 };
 
-use ethereum_types::H256;
-use hash_db::{HashDB, Prefix};
-use keccak_hasher::KeccakHasher;
-use kvdb::{KeyValueDB, DBTransaction, DBValue};
-use malloc_size_of::MallocSizeOfExt;
-use parity_bytes::Bytes;
-use rlp::{encode, decode};
+use vapory_types::H256;
+use tetsy_hash_db::{HashDB, Prefix};
+use tetsy_keccak_hasher::KeccakHasher;
+use tetsy_kvdb::{KeyValueDB, DBTransaction, DBValue};
+use tetsy_util_mem::MallocSizeOfExt;
+use tetsy_bytes::Bytes;
+use tetsy_rlp::{encode, decode};
 
 use crate::{
 	DB_PREFIX_LEN, LATEST_ERA_KEY, error_key_already_exists, error_negatively_reference_hash,
-	JournalDB, new_memory_db
+	JournalDB, new_tetsy_memory_db
 };
 
 /// Implementation of the `HashDB` trait for a disk-backed database with a memory overlay
@@ -56,7 +56,7 @@ impl ArchiveDB {
 			.expect("Low-level database error.")
 			.map(|val| decode::<u64>(&val).expect("decoding db value failed"));
 		ArchiveDB {
-			overlay: new_memory_db(),
+			overlay: new_tetsy_memory_db(),
 			backing,
 			latest_era,
 			column,
@@ -205,16 +205,16 @@ impl JournalDB for ArchiveDB {
 
 #[cfg(test)]
 mod tests {
-	use keccak_hash::keccak;
-	use hash_db::{HashDB, EMPTY_PREFIX};
+	use tetsy_keccak_hash::keccak;
+	use tetsy_hash_db::{HashDB, EMPTY_PREFIX};
 	use super::*;
-	use kvdb_memorydb;
+	use tetsy_kvdb_memorydb;
 	use crate::{JournalDB, inject_batch, commit_batch};
 
 	#[test]
 	fn insert_same_in_fork() {
 		// history is 1
-		let mut jdb = ArchiveDB::new(Arc::new(kvdb_memorydb::create(1)), 0);
+		let mut jdb = ArchiveDB::new(Arc::new(tetsy_kvdb_memorydb::create(1)), 0);
 
 		let x = jdb.insert(EMPTY_PREFIX, b"X");
 		commit_batch(&mut jdb, 1, &keccak(b"1"), None).unwrap();
@@ -236,7 +236,7 @@ mod tests {
 	#[test]
 	fn long_history() {
 		// history is 3
-		let mut jdb = ArchiveDB::new(Arc::new(kvdb_memorydb::create(1)), 0);
+		let mut jdb = ArchiveDB::new(Arc::new(tetsy_kvdb_memorydb::create(1)), 0);
 		let h = jdb.insert(EMPTY_PREFIX, b"foo");
 		commit_batch(&mut jdb, 0, &keccak(b"0"), None).unwrap();
 		assert!(jdb.contains(&h, EMPTY_PREFIX));
@@ -254,7 +254,7 @@ mod tests {
 	#[test]
 	#[should_panic]
 	fn multiple_owed_removal_not_allowed() {
-		let mut jdb = ArchiveDB::new(Arc::new(kvdb_memorydb::create(1)), 0);
+		let mut jdb = ArchiveDB::new(Arc::new(tetsy_kvdb_memorydb::create(1)), 0);
 		let h = jdb.insert(EMPTY_PREFIX, b"foo");
 		commit_batch(&mut jdb, 0, &keccak(b"0"), None).unwrap();
 		assert!(jdb.contains(&h, EMPTY_PREFIX));
@@ -268,7 +268,7 @@ mod tests {
 	#[test]
 	fn complex() {
 		// history is 1
-		let mut jdb = ArchiveDB::new(Arc::new(kvdb_memorydb::create(1)), 0);
+		let mut jdb = ArchiveDB::new(Arc::new(tetsy_kvdb_memorydb::create(1)), 0);
 
 		let foo = jdb.insert(EMPTY_PREFIX, b"foo");
 		let bar = jdb.insert(EMPTY_PREFIX, b"bar");
@@ -300,7 +300,7 @@ mod tests {
 	#[test]
 	fn fork() {
 		// history is 1
-		let mut jdb = ArchiveDB::new(Arc::new(kvdb_memorydb::create(1)), 0);
+		let mut jdb = ArchiveDB::new(Arc::new(tetsy_kvdb_memorydb::create(1)), 0);
 
 		let foo = jdb.insert(EMPTY_PREFIX, b"foo");
 		let bar = jdb.insert(EMPTY_PREFIX, b"bar");
@@ -326,7 +326,7 @@ mod tests {
 	#[test]
 	fn overwrite() {
 		// history is 1
-		let mut jdb = ArchiveDB::new(Arc::new(kvdb_memorydb::create(1)), 0);
+		let mut jdb = ArchiveDB::new(Arc::new(tetsy_kvdb_memorydb::create(1)), 0);
 
 		let foo = jdb.insert(EMPTY_PREFIX, b"foo");
 		commit_batch(&mut jdb, 0, &keccak(b"0"), None).unwrap();
@@ -345,7 +345,7 @@ mod tests {
 	#[test]
 	fn fork_same_key() {
 		// history is 1
-		let mut jdb = ArchiveDB::new(Arc::new(kvdb_memorydb::create(1)), 0);
+		let mut jdb = ArchiveDB::new(Arc::new(tetsy_kvdb_memorydb::create(1)), 0);
 		commit_batch(&mut jdb, 0, &keccak(b"0"), None).unwrap();
 
 		let foo = jdb.insert(EMPTY_PREFIX, b"foo");
@@ -361,7 +361,7 @@ mod tests {
 
 	#[test]
 	fn reopen() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 		let bar = H256::random();
 
 		let foo = {
@@ -389,7 +389,7 @@ mod tests {
 
 	#[test]
 	fn reopen_remove() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 
 		let foo = {
 			let mut jdb = ArchiveDB::new(shared_db.clone(), 0);
@@ -418,7 +418,7 @@ mod tests {
 
 	#[test]
 	fn reopen_fork() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 		let (foo, _, _) = {
 			let mut jdb = ArchiveDB::new(shared_db.clone(), 0);
 			// history is 1
@@ -443,7 +443,7 @@ mod tests {
 
 	#[test]
 	fn returns_state() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 
 		let key = {
 			let mut jdb = ArchiveDB::new(shared_db.clone(), 0);
@@ -461,7 +461,7 @@ mod tests {
 
 	#[test]
 	fn inject() {
-		let mut jdb = ArchiveDB::new(Arc::new(kvdb_memorydb::create(1)), 0);
+		let mut jdb = ArchiveDB::new(Arc::new(tetsy_kvdb_memorydb::create(1)), 0);
 		let key = jdb.insert(EMPTY_PREFIX, b"dog");
 		inject_batch(&mut jdb).unwrap();
 

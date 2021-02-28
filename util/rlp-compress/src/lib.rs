@@ -9,14 +9,14 @@
 extern crate elastic_array;
 #[macro_use]
 extern crate lazy_static;
-extern crate rlp;
+extern crate tetsy_rlp;
 
 mod common;
 
 use std::cmp;
 use std::collections::HashMap;
 use elastic_array::ElasticArray1024;
-use rlp::{Rlp, RlpStream};
+use tetsy_rlp::{Rlp, RlpStream};
 use common::{SNAPSHOT_SWAPPER, BLOCKS_SWAPPER};
 
 pub fn snapshot_swapper() -> &'static Swapper<'static> {

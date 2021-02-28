@@ -20,7 +20,7 @@ use std::fmt;
 use std::str::FromStr;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde::de::{Error, Visitor, Unexpected};
-use ethereum_types::U256;
+use vapory_types::U256;
 
 /// Lenient uint json deserialization for test json files.
 #[derive(Default, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Clone, Copy)]
@@ -124,7 +124,7 @@ pub fn validate_optional_non_zero<'de, D>(d: D) -> Result<Option<Uint>, D::Error
 #[cfg(test)]
 mod test {
 	use super::Uint;
-	use ethereum_types::U256;
+	use vapory_types::U256;
 
 	#[test]
 	fn uint_deserialization() {

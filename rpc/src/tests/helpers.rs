@@ -18,7 +18,7 @@ use std::ops::{Deref, DerefMut};
 use std::path::PathBuf;
 use tempdir::TempDir;
 
-use parity_runtime::{Runtime, TaskExecutor};
+use tetsy_runtime::{Runtime, TaskExecutor};
 
 use authcodes::AuthCodes;
 

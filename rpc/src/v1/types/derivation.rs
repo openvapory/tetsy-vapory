@@ -18,7 +18,7 @@ use std::fmt;
 use serde::{Deserialize, Deserializer};
 use serde::de::{Error, Visitor};
 
-use ethereum_types::H256;
+use vapory_types::H256;
 
 
 /// Type of derivation
@@ -78,16 +78,16 @@ pub enum ConvertError {
 impl Derive {
 	/// Convert to account provider struct dealing with possible overflows
 	#[cfg(any(test, feature = "accounts"))]
-	pub fn to_derivation(self) -> Result<ethstore::Derivation, ConvertError> {
+	pub fn to_derivation(self) -> Result<vapstore::Derivation, ConvertError> {
 		Ok(match self {
 			Derive::Hierarchical(drv) => {
-				ethstore::Derivation::Hierarchical({
-					let mut members = Vec::<ethstore::IndexDerivation>::new();
+				vapstore::Derivation::Hierarchical({
+					let mut members = Vec::<vapstore::IndexDerivation>::new();
 					for h in drv {
 						if h.index > ::std::u32::MAX as u64 { return Err(ConvertError::IndexOverlfow(h.index)); }
 						members.push(match h.d_type {
-							DerivationType::Soft => ethstore::IndexDerivation { soft: true, index: h.index as u32 },
-							DerivationType::Hard => ethstore::IndexDerivation { soft: false, index: h.index as u32 },
+							DerivationType::Soft => vapstore::IndexDerivation { soft: true, index: h.index as u32 },
+							DerivationType::Hard => vapstore::IndexDerivation { soft: false, index: h.index as u32 },
 						});
 					}
 					members
@@ -95,8 +95,8 @@ impl Derive {
 			},
 			Derive::Hash(drv) => {
 				match drv.d_type {
-					DerivationType::Soft => ethstore::Derivation::SoftHash(drv.hash.into()),
-					DerivationType::Hard => ethstore::Derivation::HardHash(drv.hash.into()),
+					DerivationType::Soft => vapstore::Derivation::SoftHash(drv.hash.into()),
+					DerivationType::Hard => vapstore::Derivation::HardHash(drv.hash.into()),
 				}
 			},
 		})

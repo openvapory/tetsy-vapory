@@ -17,8 +17,8 @@
 use std::sync::Arc;
 
 use client_traits::BlockChainClient;
-use ethcore::miner::{self, MinerService};
-use ethereum_types::{H256, U256, Address};
+use vapcore::miner::{self, MinerService};
+use vapory_types::{H256, U256, Address};
 use types::transaction::{SignedTransaction, PendingTransaction};
 use parking_lot::Mutex;
 

@@ -14,15 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Parity version specific information.
+//! Tetsy version specific information.
 
 extern crate target_info;
-extern crate parity_bytes as bytes;
-extern crate rlp;
+extern crate tetsy_bytes as bytes;
+extern crate tetsy_rlp;
 
 use target_info::Target;
 use bytes::Bytes;
-use rlp::RlpStream;
+use tetsy_rlp::RlpStream;
 
 mod generated {
 	include!(concat!(env!("OUT_DIR"), "/meta.rs"));
@@ -66,7 +66,7 @@ pub fn version_data() -> Bytes {
 	s.append(&"Tetsy-Vapory");
 	s.append(&generated::rustc_version());
 	s.append(&&Target::os()[0..2]);
-	s.out()
+	s.out().to_vec()
 }
 
 /// Provide raw information on the package.

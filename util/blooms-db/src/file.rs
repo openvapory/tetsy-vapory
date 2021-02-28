@@ -17,7 +17,7 @@
 use std::io::{Seek, SeekFrom, Write, Read};
 use std::path::Path;
 use std::{io, fs};
-use ethbloom;
+use vapbloom;
 
 /// Autoresizable file containing blooms.
 pub struct File {
@@ -60,18 +60,18 @@ impl File {
 	}
 
 	/// Read bloom at given position.
-	pub fn read_bloom(&self, pos: u64) -> io::Result<ethbloom::Bloom> {
+	pub fn read_bloom(&self, pos: u64) -> io::Result<vapbloom::Bloom> {
 		let mut file_ref = &self.file;
 		file_ref.seek(SeekFrom::Start(pos * 256))?;
-		let mut bloom = ethbloom::Bloom::default();
+		let mut bloom = vapbloom::Bloom::default();
 		file_ref.read_exact(bloom.as_bytes_mut())?;
 		Ok(bloom)
 	}
 
 	/// Accrue bloom into bloom at given position.
-	pub fn accrue_bloom<'a, B>(&mut self, pos: u64, bloom: B) -> io::Result<()> where ethbloom::BloomRef<'a>: From<B> {
+	pub fn accrue_bloom<'a, B>(&mut self, pos: u64, bloom: B) -> io::Result<()> where vapbloom::BloomRef<'a>: From<B> {
 		self.ensure_space_for_write(pos)?;
-		let mut old_bloom: ethbloom::Bloom = self.read_bloom(pos)?;
+		let mut old_bloom: vapbloom::Bloom = self.read_bloom(pos)?;
 		old_bloom.accrue_bloom(bloom);
 		let mut file_ref = &self.file;
 		file_ref.seek(SeekFrom::Start(pos * 256))?;
@@ -79,11 +79,11 @@ impl File {
 	}
 
 	/// Replace bloom at given position with a new one.
-	pub fn replace_bloom<'a, B>(&mut self, pos: u64, bloom: B) -> io::Result<()> where ethbloom::BloomRef<'a>: From<B> {
+	pub fn replace_bloom<'a, B>(&mut self, pos: u64, bloom: B) -> io::Result<()> where vapbloom::BloomRef<'a>: From<B> {
 		self.ensure_space_for_write(pos)?;
 		let mut file_ref = &self.file;
 		file_ref.seek(SeekFrom::Start(pos * 256))?;
-		file_ref.write_all(ethbloom::BloomRef::from(bloom).data())
+		file_ref.write_all(vapbloom::BloomRef::from(bloom).data())
 	}
 
 	/// Returns an iterator over file.
@@ -123,10 +123,10 @@ impl<'a> FileIterator<'a> {
 }
 
 impl<'a> Iterator for FileIterator<'a> {
-	type Item = io::Result<ethbloom::Bloom>;
+	type Item = io::Result<vapbloom::Bloom>;
 
 	fn next(&mut self) -> Option<Self::Item> {
-		let mut bloom = ethbloom::Bloom::default();
+		let mut bloom = vapbloom::Bloom::default();
 		match self.file.read_exact(bloom.as_bytes_mut()) {
 			Ok(_) => Some(Ok(bloom)),
 			Err(ref err) if err.kind() == io::ErrorKind::UnexpectedEof => None,
@@ -137,7 +137,7 @@ impl<'a> Iterator for FileIterator<'a> {
 
 #[cfg(test)]
 mod tests {
-	use ethbloom::Bloom;
+	use vapbloom::Bloom;
 	use tempdir::TempDir;
 	use super::File;
 

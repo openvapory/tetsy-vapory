@@ -16,7 +16,7 @@
 
 //! Types used in the public API
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use types::VersionInfo;
 
 /// Information regarding a particular release of Parity

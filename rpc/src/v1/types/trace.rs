@@ -18,8 +18,8 @@ use std::collections::BTreeMap;
 
 use machine::executed::Executed;
 use trace as et;
-use trace::{FlatTrace, LocalizedTrace as EthLocalizedTrace, trace, TraceError};
-use ethereum_types::{H160, H256, U256};
+use trace::{FlatTrace, LocalizedTrace as VapLocalizedTrace, trace, TraceError};
+use vapory_types::{H160, H256, U256};
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
 use types::account_diff;
@@ -541,8 +541,8 @@ impl Serialize for LocalizedTrace {
 	}
 }
 
-impl From<EthLocalizedTrace> for LocalizedTrace {
-	fn from(t: EthLocalizedTrace) -> Self {
+impl From<VapLocalizedTrace> for LocalizedTrace {
+	fn from(t: VapLocalizedTrace) -> Self {
 		LocalizedTrace {
 			action: t.action.into(),
 			result: t.result.into(),
@@ -678,7 +678,7 @@ mod tests {
 	use std::collections::BTreeMap;
 	use v1::types::Bytes;
 	use trace::TraceError;
-	use ethereum_types::Address;
+	use vapory_types::Address;
 	use super::*;
 
 	#[test]

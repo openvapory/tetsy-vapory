@@ -1,41 +1,41 @@
-Note: Parity 1.3 reached End-of-Life on 2017-01-19 (EOL).
+Note: Tetsy 1.3 reached End-of-Life on 2017-01-19 (EOL).
 
-## Parity [v1.3.15](https://github.com/tetcoin/tetsy/releases/tag/v1.3.15) (2016-12-10)
+## Tetsy [v1.3.15](https://github.com/tetcoin/tetsy/releases/tag/v1.3.15) (2016-12-10)
 
 This patch release fixes an issue with syncing on the Ropsten test network.
 
 - Backporting to stable [#3793](https://github.com/tetcoin/tetsy/pull/3793)
 
-## Parity [v1.3.14](https://github.com/tetcoin/tetsy/releases/tag/v1.3.14) (2016-11-25)
+## Tetsy [v1.3.14](https://github.com/tetcoin/tetsy/releases/tag/v1.3.14) (2016-11-25)
 
-Parity 1.3.14 fixes a few stability issues and adds support for the Ropsten testnet.
+Tetsy 1.3.14 fixes a few stability issues and adds support for the Ropsten testnet.
 
 - Backporting to stable [#3616](https://github.com/tetcoin/tetsy/pull/3616)
 
-## Parity [v1.3.13](https://github.com/tetcoin/tetsy/releases/tag/v1.3.13) (2016-11-18)
+## Tetsy [v1.3.13](https://github.com/tetcoin/tetsy/releases/tag/v1.3.13) (2016-11-18)
 
 This release fixes an issue with EIP-155 transactions being allowed into the transaction pool.
 
 - [stable] Check tx signatures before adding to the queue. [#3521](https://github.com/tetcoin/tetsy/pull/3521)
 - Fix Stable Docker Build [#3479](https://github.com/tetcoin/tetsy/pull/3479)
 
-## Parity [v1.3.12](https://github.com/tetcoin/tetsy/releases/tag/v1.3.12) (2016-11-16)
+## Tetsy [v1.3.12](https://github.com/tetcoin/tetsy/releases/tag/v1.3.12) (2016-11-16)
 
 This stable release enables EIP-155/160/161/170 hardfork at block 2675000 (1885000 for test network).
 
 - [stable] EIP-170 [#3462](https://github.com/tetcoin/tetsy/pull/3462)
 - #3035 Backport to stable [#3441](https://github.com/tetcoin/tetsy/pull/3441)
 
-## Parity [v1.3.11](https://github.com/tetcoin/tetsy/releases/tag/v1.3.11) (2016-11-11)
+## Tetsy [v1.3.11](https://github.com/tetcoin/tetsy/releases/tag/v1.3.11) (2016-11-11)
 
-This is a maintenance release for the stable series to delay the EIP-155/160/161 hard fork transition. **Update from 1.3.10 is mandatory**. It also deprecates and disables the old Parity UI.
+This is a maintenance release for the stable series to delay the EIP-155/160/161 hard fork transition. **Update from 1.3.10 is mandatory**. It also deprecates and disables the old Tetsy UI.
 
 - [stable] Disable HF and UI  [#3372](https://github.com/tetcoin/tetsy/pull/3372)
 - [stable] EIP-155 update with Vitalik's new test vectors (#3166) [#3190](https://github.com/tetcoin/tetsy/pull/3190)
 - Backport EIP-150 to stable [#2672](https://github.com/tetcoin/tetsy/pull/2672)
 - Create gitlab-ci.yml for stable [#2517](https://github.com/tetcoin/tetsy/pull/2517)
 
-## Parity [v1.3.10](https://github.com/tetcoin/tetsy/releases/tag/v1.3.10) (2016-11-04)
+## Tetsy [v1.3.10](https://github.com/tetcoin/tetsy/releases/tag/v1.3.10) (2016-11-04)
 
 The latest 1.3 series release, now considered stable.
 
@@ -48,9 +48,9 @@ This includes several additional optimisations and fixes together with provision
 - Bumping json-ipc-server [#2989](https://github.com/tetcoin/tetsy/pull/2989)
 - Backports for 1.3.10 [#2987](https://github.com/tetcoin/tetsy/pull/2987)
 
-## Parity [v1.3.9](https://github.com/tetcoin/tetsy/releases/tag/v1.3.9) (2016-10-21)
+## Tetsy [v1.3.9](https://github.com/tetcoin/tetsy/releases/tag/v1.3.9) (2016-10-21)
 
-This release enables EIP-150 hard fork for Ethereum Classic chain and resolves a few stability and performance issues, such as:
+This release enables EIP-150 hard fork for Vapory Classic chain and resolves a few stability and performance issues, such as:
 - Interrupted syncing on the test network.
 - Block import delays caused by a large number of incoming transactions. A full re-sync is recommended for performance improvement to take effect.
 
@@ -63,11 +63,11 @@ Full changes:
 - [beta] Bumping jsonrpc-http-server [#2715](https://github.com/tetcoin/tetsy/pull/2715)
 - [beta] Fix migration system, better errors [#2661](https://github.com/tetcoin/tetsy/pull/2661)
 
-## Parity [v1.3.8](https://github.com/tetcoin/tetsy/releases/tag/v1.3.8) (2016-10-15)
+## Tetsy [v1.3.8](https://github.com/tetcoin/tetsy/releases/tag/v1.3.8) (2016-10-15)
 
-Parity 1.3.8 is our EIP150 hard-fork compliant release.
+Tetsy 1.3.8 is our EIP150 hard-fork compliant release.
 
-Running this will enact a mild change of the protocol at block number 2,463,000 which should occur on Tuesday 18th October 2016 at approximately 12:20 London time (BST). This change alters the gas prices for a number of operations, mainly centring around i/o intensive Merkle trie lookups (`BALANCE`, `EXTCODESIZE` &c.) and state-trie polluters (`SUICIDE`, `CREATE` and `CALL`). These operations were heavily underpriced, an oversight which lead to the recent degradation of network service. The full details of the alteration are specified in [EIP-150](https://github.com/ethereum/EIPs/issues/150).
+Running this will enact a mild change of the protocol at block number 2,463,000 which should occur on Tuesday 18th October 2016 at approximately 12:20 London time (BST). This change alters the gas prices for a number of operations, mainly centring around i/o intensive Merkle trie lookups (`BALANCE`, `EXTCODESIZE` &c.) and state-trie polluters (`SUICIDE`, `CREATE` and `CALL`). These operations were heavily underpriced, an oversight which lead to the recent degradation of network service. The full details of the alteration are specified in [EIP-150](https://github.com/vaporyco/VIPs/issues/150).
 
 Additionally several issues have been fixed including:
 - a transaction queue limitation leading to dropped transactions;
@@ -77,7 +77,7 @@ And some small features including database performance improvements and addition
 
 #### Upgrading private chain specification files.
 
-All the chain specification files now have EIP-150 rules enabled by default. To continue using the chain add the `eip150Transition` key under `Engine/ethash/params` and set it to a future transition block as shown in [this example](https://github.com/tetcoin/tetsy/blob/85eeb3ea6e5e21ad8e5644241edf82eb8069f536/ethcore/res/ethereum/morden.json#L13).
+All the chain specification files now have EIP-150 rules enabled by default. To continue using the chain add the `eip150Transition` key under `Engine/vapash/params` and set it to a future transition block as shown in [this example](https://github.com/tetcoin/tetsy/blob/85eeb3ea6e5e21ad8e5644241edf82eb8069f536/vapcore/res/vapory/morden.json#L13).
 
 The key related to homestead transition has been renamed from `frontierCompatibilityModeLimit` to `homesteadTransition`.
 
@@ -90,7 +90,7 @@ The key related to homestead transition has been renamed from `frontierCompatibi
 - Bloom upgrade in beta [#2609](https://github.com/tetcoin/tetsy/pull/2609)
 - Backports to beta [#2628](https://github.com/tetcoin/tetsy/pull/2628)
 
-## Parity [v1.3.7](https://github.com/tetcoin/tetsy/releases/tag/v1.3.7) (2016-10-12)
+## Tetsy [v1.3.7](https://github.com/tetcoin/tetsy/releases/tag/v1.3.7) (2016-10-12)
 
 This release contains fixes to reduce memory usage under the DoS attack and improve transaction relay.
 
@@ -98,24 +98,24 @@ This release contains fixes to reduce memory usage under the DoS attack and impr
 - Backports to beta [#2592](https://github.com/tetcoin/tetsy/pull/2592)
 
 
-## Parity [v1.3.6](https://github.com/tetcoin/tetsy/releases/tag/v1.3.6) (2016-10-11)
+## Tetsy [v1.3.6](https://github.com/tetcoin/tetsy/releases/tag/v1.3.6) (2016-10-11)
 
-Parity 1.3.6 is another hotfix release to address transaction spam and deal with stability issues. With this release transaction pool gas limit no longer applies to local transactions. Full list of changes is available here:
+Tetsy 1.3.6 is another hotfix release to address transaction spam and deal with stability issues. With this release transaction pool gas limit no longer applies to local transactions. Full list of changes is available here:
 
 - Backports to beta v1.3.6 [#2571](https://github.com/tetcoin/tetsy/pull/2571)
 - Use global state cache when mining [#2529](https://github.com/tetcoin/tetsy/pull/2529)
 - Transaction queue limited by gas [#2528](https://github.com/tetcoin/tetsy/pull/2528)
 
-## Parity [v1.3.5](https://github.com/tetcoin/tetsy/releases/tag/v1.3.5) (2016-10-08)
+## Tetsy [v1.3.5](https://github.com/tetcoin/tetsy/releases/tag/v1.3.5) (2016-10-08)
 
 1.3.5 is a hotfix release for the transaction propagation issue. Transaction pool limit is now calculated based on the block gas limit.
 
 - Update appveyor rustc [beta] [#2521](https://github.com/tetcoin/tetsy/pull/2521)
 - Increase size of transaction queue by default [#2519](https://github.com/tetcoin/tetsy/pull/2519)
 
-## Parity [v1.3.4](https://github.com/tetcoin/tetsy/releases/tag/v1.3.4) (2016-10-07)
+## Tetsy [v1.3.4](https://github.com/tetcoin/tetsy/releases/tag/v1.3.4) (2016-10-07)
 
-Parity 1.3.4 release contains more optimizations to internal caching as well as stability improvements.
+Tetsy 1.3.4 release contains more optimizations to internal caching as well as stability improvements.
 
 It also introduces an ability for miners to choose a transaction ordering strategy:
 
@@ -127,15 +127,15 @@ It also introduces an ability for miners to choose a transaction ordering strate
                              and gas limit ratio [default: gas_factor].
 
 - Backport to beta [#2518](https://github.com/tetcoin/tetsy/pull/2518)
-- [beta] Fixing RPC Filter conversion to EthFilter [#2501](https://github.com/tetcoin/tetsy/pull/2501)
+- [beta] Fixing RPC Filter conversion to VapFilter [#2501](https://github.com/tetcoin/tetsy/pull/2501)
 - [beta] Using pending block only if is not old [#2515](https://github.com/tetcoin/tetsy/pull/2515)
 - Backports into beta [#2512](https://github.com/tetcoin/tetsy/pull/2512)
 - CLI to specify queue ordering strategy [#2494](https://github.com/tetcoin/tetsy/pull/2494)
-- Fix ethstore opening all key files in the directory at once (BETA) [#2472](https://github.com/tetcoin/tetsy/pull/2472)
+- Fix vapstore opening all key files in the directory at once (BETA) [#2472](https://github.com/tetcoin/tetsy/pull/2472)
 - Beta backports [#2465](https://github.com/tetcoin/tetsy/pull/2465)
 - IPC-library dependency fork & bump for beta [#2455](https://github.com/tetcoin/tetsy/pull/2455)
 
-## Parity [v1.3.3](https://github.com/tetcoin/tetsy/releases/tag/v1.3.3) (2016-10-04)
+## Tetsy [v1.3.3](https://github.com/tetcoin/tetsy/releases/tag/v1.3.3) (2016-10-04)
 
 1.3.3 is another hotfix release for the DoS attack
 
@@ -143,7 +143,7 @@ It also introduces an ability for miners to choose a transaction ordering strate
 - fix broken beta compilation (backport to beta) [#2414](https://github.com/tetcoin/tetsy/pull/2414)
 - Run inplace upgrades after version update [#2411](https://github.com/tetcoin/tetsy/pull/2411)
 
-## Parity [v1.3.2](https://github.com/tetcoin/tetsy/releases/tag/v1.3.2) (2016-09-29)
+## Tetsy [v1.3.2](https://github.com/tetcoin/tetsy/releases/tag/v1.3.2) (2016-09-29)
 
 This is a hotfix release to address stability and performance issues uncovered during the network DoS attack. Full list of changes is available [here](https://github.com/tetcoin/tetsy/compare/v1.3.1...v1.3.2)
 
@@ -167,7 +167,7 @@ This is a hotfix release to address stability and performance issues uncovered d
 - Avoid cloning clean stuff [beta backport] [#2173](https://github.com/tetcoin/tetsy/pull/2173)
 - v1.3.2 in beta [#2200](https://github.com/tetcoin/tetsy/pull/2200)
 
-## Parity [v1.3.1](https://github.com/tetcoin/tetsy/releases/tag/v1.3.1) (2016-09-11)
+## Tetsy [v1.3.1](https://github.com/tetcoin/tetsy/releases/tag/v1.3.1) (2016-09-11)
 
 1.3.1 includes many [bugfixes](https://github.com/tetcoin/tetsy/commit/2a82fa0a47b00bedfec520a2fdd3cc31aa4ccd8c). Critical ones:
 - **Chain reorganisation fix** Transaction receipts / traces were sometimes linked with incorrect block hash. Fixed in https://github.com/tetcoin/tetsy/commit/a9587f8965a32c84973c35ce1c8d51d07044143f
@@ -178,7 +178,7 @@ This is a hotfix release to address stability and performance issues uncovered d
 - Simplified db pruning detection in beta [#1924](https://github.com/tetcoin/tetsy/pull/1924)
 - Backports to beta [#1919](https://github.com/tetcoin/tetsy/pull/1919)
 
-## Parity [v1.3.0: "Acuity"](https://github.com/tetcoin/tetsy/releases/tag/v1.3.0) (2016-08-12)
+## Tetsy [v1.3.0: "Acuity"](https://github.com/tetcoin/tetsy/releases/tag/v1.3.0) (2016-08-12)
 
 As well as many bug fixes, 1.3.0 includes a number of important improvements including:
 - **Optimisations** Heavily optimised block/transaction processing core - up to 2x faster than 1.2 series.
@@ -194,13 +194,13 @@ Incremental improvements include:
 - Key naming includes date/time of creation.
 - Various improvements to networking robustness and performance.
 - Solidity compilation supported through RPC if `solc` is available.
-- Various improvements to the miner including [HTTP push work notification](https://github.com/ethcoreparitytech/parity/wiki/Mining#starting-it).
+- Various improvements to the miner including [HTTP push work notification](https://github.com/openvapory/tetsy-vapory/wiki/Mining#starting-it).
 
 Full changes:
-- Bumping Parity UI [#1920](https://github.com/tetcoin/tetsy/pull/1920)
+- Bumping Tetsy UI [#1920](https://github.com/tetcoin/tetsy/pull/1920)
 - Adding entrypoints to docker images [#1909](https://github.com/tetcoin/tetsy/pull/1909)
 - Save nodes removed from backing_overlay until commit [#1917](https://github.com/tetcoin/tetsy/pull/1917)
-- RPC for importing geth keys [#1916](https://github.com/tetcoin/tetsy/pull/1916)
+- RPC for importing gvap keys [#1916](https://github.com/tetcoin/tetsy/pull/1916)
 - Peers RPC + UI displaying active/connected/max peers [#1915](https://github.com/tetcoin/tetsy/pull/1915)
 - RPC for deriving address from phrase. [#1912](https://github.com/tetcoin/tetsy/pull/1912)
 - adjust polling & connection timeouts for ipc [#1910](https://github.com/tetcoin/tetsy/pull/1910)
@@ -211,7 +211,7 @@ Full changes:
 - Purging .derefs, fixing clippy warnings. [#1890](https://github.com/tetcoin/tetsy/pull/1890)
 - RocksDB version bump [#1904](https://github.com/tetcoin/tetsy/pull/1904)
 - Fix ipc compilation and add ipc feature to test targets [#1902](https://github.com/tetcoin/tetsy/pull/1902)
-- Autocreating geth dir if none and geth mode on [#1896](https://github.com/tetcoin/tetsy/pull/1896)
+- Autocreating gvap dir if none and gvap mode on [#1896](https://github.com/tetcoin/tetsy/pull/1896)
 - v1.4.0 in master [#1886](https://github.com/tetcoin/tetsy/pull/1886)
 - Adding more details to miner log [#1891](https://github.com/tetcoin/tetsy/pull/1891)
 - moved hash.rs to bigint library [#1827](https://github.com/tetcoin/tetsy/pull/1827)
@@ -227,7 +227,7 @@ Full changes:
 - Validating conversion U256->usize when doing gas calculation (for 32bits) [#1870](https://github.com/tetcoin/tetsy/pull/1870)
 - Sync to peers with confirmed fork block only [#1863](https://github.com/tetcoin/tetsy/pull/1863)
 - miner and client take spec reference [#1853](https://github.com/tetcoin/tetsy/pull/1853)
-- Unlock account with timeout for geth compatibility [#1854](https://github.com/tetcoin/tetsy/pull/1854)
+- Unlock account with timeout for gvap compatibility [#1854](https://github.com/tetcoin/tetsy/pull/1854)
 - Fixed reported max height and transaction propagation [#1852](https://github.com/tetcoin/tetsy/pull/1852)
 - Snapshot creation and restoration [#1679](https://github.com/tetcoin/tetsy/pull/1679)
 - fix deprecated typo [#1850](https://github.com/tetcoin/tetsy/pull/1850)
@@ -236,8 +236,8 @@ Full changes:
 - protect unsafety in plainhasher; get more unique hashes [#1841](https://github.com/tetcoin/tetsy/pull/1841)
 - use mutex in dbtransaction [#1843](https://github.com/tetcoin/tetsy/pull/1843)
 - Fix state not using "account_starting_nonce" [#1830](https://github.com/tetcoin/tetsy/pull/1830)
-- Supporting blockid in eth_call and trace_call/trace_raw [#1837](https://github.com/tetcoin/tetsy/pull/1837)
-- eth_checkTransaction renamed to eth_checkRequest [#1817](https://github.com/tetcoin/tetsy/pull/1817)
+- Supporting blockid in vap_call and trace_call/trace_raw [#1837](https://github.com/tetcoin/tetsy/pull/1837)
+- vap_checkTransaction renamed to vap_checkRequest [#1817](https://github.com/tetcoin/tetsy/pull/1817)
 - Bump json-ipc-server again [#1839](https://github.com/tetcoin/tetsy/pull/1839)
 - Fixing another deadlock in trace db [#1833](https://github.com/tetcoin/tetsy/pull/1833)
 - Fix up the VM trace. [#1829](https://github.com/tetcoin/tetsy/pull/1829)
@@ -248,9 +248,9 @@ Full changes:
 - Remove (almost all) panickers from trie module [#1776](https://github.com/tetcoin/tetsy/pull/1776)
 - Fixing account naming [#1810](https://github.com/tetcoin/tetsy/pull/1810)
 - JournalDB inject [#1806](https://github.com/tetcoin/tetsy/pull/1806)
-- No block number in get work while in geth-compat mode. [#1821](https://github.com/tetcoin/tetsy/pull/1821)
+- No block number in get work while in gvap-compat mode. [#1821](https://github.com/tetcoin/tetsy/pull/1821)
 - Import wallet fix [#1820](https://github.com/tetcoin/tetsy/pull/1820)
-- Supporting eth_sign in Signer [#1787](https://github.com/tetcoin/tetsy/pull/1787)
+- Supporting vap_sign in Signer [#1787](https://github.com/tetcoin/tetsy/pull/1787)
 - Fixing cache update after chain reorg [#1816](https://github.com/tetcoin/tetsy/pull/1816)
 - Development mode for Signer UI [#1788](https://github.com/tetcoin/tetsy/pull/1788)
 - Miner tweaks [#1797](https://github.com/tetcoin/tetsy/pull/1797)
@@ -300,7 +300,7 @@ Full changes:
 - Bump json-ipc-server version [#1733](https://github.com/tetcoin/tetsy/pull/1733)
 - bump json-ipc-server version [#1731](https://github.com/tetcoin/tetsy/pull/1731)
 - Fixing some clippy warnings [#1728](https://github.com/tetcoin/tetsy/pull/1728)
-- Bumping Parity UI [#1682](https://github.com/tetcoin/tetsy/pull/1682)
+- Bumping Tetsy UI [#1682](https://github.com/tetcoin/tetsy/pull/1682)
 - Various improvements to tracing & diagnostics. [#1707](https://github.com/tetcoin/tetsy/pull/1707)
 - Fixed reading chunked EIP8 handshake [#1712](https://github.com/tetcoin/tetsy/pull/1712)
 - Fix for importing blocks from a pipe file [#1724](https://github.com/tetcoin/tetsy/pull/1724)
@@ -316,7 +316,7 @@ Full changes:
 - cli overhaul [#1600](https://github.com/tetcoin/tetsy/pull/1600)
 - Key files include timestamp in name. [#1700](https://github.com/tetcoin/tetsy/pull/1700)
 - Fixing warnings [#1705](https://github.com/tetcoin/tetsy/pull/1705)
-- Ethereum classic [#1706](https://github.com/tetcoin/tetsy/pull/1706)
+- Vapory classic [#1706](https://github.com/tetcoin/tetsy/pull/1706)
 - Docker Arguments [#1703](https://github.com/tetcoin/tetsy/pull/1703)
 - Informant tidyup. [#1699](https://github.com/tetcoin/tetsy/pull/1699)
 - Name and meta in accounts [#1695](https://github.com/tetcoin/tetsy/pull/1695)
@@ -325,7 +325,7 @@ Full changes:
 - Prevent syncing to ancient blocks [#1693](https://github.com/tetcoin/tetsy/pull/1693)
 - Enable WAL and disable DB repair [#1696](https://github.com/tetcoin/tetsy/pull/1696)
 - Returning error when transaction is rejected (for consistency) [#1667](https://github.com/tetcoin/tetsy/pull/1667)
-- Disabling signer when in geth-compatibility mode [#1676](https://github.com/tetcoin/tetsy/pull/1676)
+- Disabling signer when in gvap-compatibility mode [#1676](https://github.com/tetcoin/tetsy/pull/1676)
 - Suicides tracing [#1688](https://github.com/tetcoin/tetsy/pull/1688)
 - small cleanup of substate.rs [#1685](https://github.com/tetcoin/tetsy/pull/1685)
 - resolve #411: remove install scripts [#1684](https://github.com/tetcoin/tetsy/pull/1684)
@@ -349,7 +349,7 @@ Full changes:
 - Removing unused client code [#1645](https://github.com/tetcoin/tetsy/pull/1645)
 - Asynchronous transactions (polling based for now). [#1652](https://github.com/tetcoin/tetsy/pull/1652)
 - Sync stand-alone binary and feature-gated dependencies refactoring  [#1637](https://github.com/tetcoin/tetsy/pull/1637)
-- Re-enabling Parity UI [#1627](https://github.com/tetcoin/tetsy/pull/1627)
+- Re-enabling Tetsy UI [#1627](https://github.com/tetcoin/tetsy/pull/1627)
 - Blockchain repair on missing state root [#1646](https://github.com/tetcoin/tetsy/pull/1646)
 - Multi-mode logging. [#1643](https://github.com/tetcoin/tetsy/pull/1643)
 - Pro paths [#1650](https://github.com/tetcoin/tetsy/pull/1650)
@@ -382,21 +382,21 @@ Full changes:
 - Optimizing & Cleaning the build [#1591](https://github.com/tetcoin/tetsy/pull/1591)
 - Fix logging [#1590](https://github.com/tetcoin/tetsy/pull/1590)
 - remove unnecessary mutex in logging [#1601](https://github.com/tetcoin/tetsy/pull/1601)
-- Using streamlined parity-ui repository [#1566](https://github.com/tetcoin/tetsy/pull/1566)
+- Using streamlined tetsy-ui repository [#1566](https://github.com/tetcoin/tetsy/pull/1566)
 - Optimizing InstructionInfo access. [#1595](https://github.com/tetcoin/tetsy/pull/1595)
 - V7 Migration progress indicator [#1594](https://github.com/tetcoin/tetsy/pull/1594)
 - bring snapshotting work into master [#1577](https://github.com/tetcoin/tetsy/pull/1577)
 - Bump clippy [#1587](https://github.com/tetcoin/tetsy/pull/1587)
 - refactoring of handshake messages serialization in ipc [#1586](https://github.com/tetcoin/tetsy/pull/1586)
 - expunge &Vec<T> pattern [#1579](https://github.com/tetcoin/tetsy/pull/1579)
-- EVM gas for memory tiny optimization [#1578](https://github.com/tetcoin/tetsy/pull/1578)
-- cleaned up parity/signer [#1551](https://github.com/tetcoin/tetsy/pull/1551)
+- VVM gas for memory tiny optimization [#1578](https://github.com/tetcoin/tetsy/pull/1578)
+- cleaned up tetsy/signer [#1551](https://github.com/tetcoin/tetsy/pull/1551)
 - Major sync <-> client interactions refactoring [#1572](https://github.com/tetcoin/tetsy/pull/1572)
 - failing test with overlayrecent pruning [#1567](https://github.com/tetcoin/tetsy/pull/1567)
 - Enable state queries for OverlayRecent DB [#1575](https://github.com/tetcoin/tetsy/pull/1575)
 - have AccountDB use address hash for uniqueness [#1533](https://github.com/tetcoin/tetsy/pull/1533)
-- Very basic EVM binary. [#1574](https://github.com/tetcoin/tetsy/pull/1574)
-- Some obvious evm & uint optimizations  [#1576](https://github.com/tetcoin/tetsy/pull/1576)
+- Very basic VVM binary. [#1574](https://github.com/tetcoin/tetsy/pull/1574)
+- Some obvious vvm & uint optimizations  [#1576](https://github.com/tetcoin/tetsy/pull/1576)
 - Fixing clippy warnings [#1568](https://github.com/tetcoin/tetsy/pull/1568)
 - Miner's gas price gets updated dynamically [#1570](https://github.com/tetcoin/tetsy/pull/1570)
 - bringing hypervisor as a crate in ipc dir [#1565](https://github.com/tetcoin/tetsy/pull/1565)
@@ -430,7 +430,7 @@ Full changes:
 - Fixing serving nested files for dapps. [#1539](https://github.com/tetcoin/tetsy/pull/1539)
 - Fixed public address config [#1537](https://github.com/tetcoin/tetsy/pull/1537)
 - Fixing compilation&clippy warnings [#1531](https://github.com/tetcoin/tetsy/pull/1531)
-- creating ethereum dir while in geth mode [#1530](https://github.com/tetcoin/tetsy/pull/1530)
+- creating vapory dir while in gvap mode [#1530](https://github.com/tetcoin/tetsy/pull/1530)
 - Bumping clippy [#1532](https://github.com/tetcoin/tetsy/pull/1532)
 - Make signer default as long as --unlock isn't used. [#1524](https://github.com/tetcoin/tetsy/pull/1524)
 - add client timeout when requesting usd price for gas [#1526](https://github.com/tetcoin/tetsy/pull/1526)
@@ -471,7 +471,7 @@ Full changes:
 - Snapshot state restoration [#1308](https://github.com/tetcoin/tetsy/pull/1308)
 - Merge master into pv64 branch [#1486](https://github.com/tetcoin/tetsy/pull/1486)
 - Ensure we don't reject our own transactions for gasprice. [#1485](https://github.com/tetcoin/tetsy/pull/1485)
-- Signing parity executable & windows installer in appveyor [#1481](https://github.com/tetcoin/tetsy/pull/1481)
+- Signing tetsy executable & windows installer in appveyor [#1481](https://github.com/tetcoin/tetsy/pull/1481)
 - Rearrange fork CLI options. [#1476](https://github.com/tetcoin/tetsy/pull/1476)
 - give appveyor some breath [#1475](https://github.com/tetcoin/tetsy/pull/1475)
 - Ensure we always get the latest work when mining on submitted. [#1469](https://github.com/tetcoin/tetsy/pull/1469)
@@ -485,7 +485,7 @@ Full changes:
 - Database configuration extended [#1454](https://github.com/tetcoin/tetsy/pull/1454)
 - Updating WS-RS server [#1459](https://github.com/tetcoin/tetsy/pull/1459)
 - Reduced IO messages; removed panics on IO notifications [#1457](https://github.com/tetcoin/tetsy/pull/1457)
-- Handle errors when starting parity --signer [#1451](https://github.com/tetcoin/tetsy/pull/1451)
+- Handle errors when starting tetsy --signer [#1451](https://github.com/tetcoin/tetsy/pull/1451)
 - Fixed losing queued blocks on error [#1453](https://github.com/tetcoin/tetsy/pull/1453)
 - Updated to latest hyper with patched mio [#1450](https://github.com/tetcoin/tetsy/pull/1450)
 - Retweak BASE and MULTIPLIER in rocksdb config. [#1445](https://github.com/tetcoin/tetsy/pull/1445)

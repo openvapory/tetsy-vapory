@@ -19,7 +19,7 @@ use std::collections::{BTreeSet, BTreeMap};
 use std::collections::btree_map::Entry;
 use futures::Oneshot;
 use parking_lot::Mutex;
-use ethereum_types::H256;
+use vapory_types::H256;
 use crypto::publickey::{Public, Signature};
 use key_server_cluster::{Error, NodeId, SessionId, KeyStorage};
 use key_server_cluster::math;
@@ -1049,7 +1049,7 @@ fn check_nodes_set(all_nodes_set: &BTreeSet<NodeId>, new_nodes_set: &BTreeSet<No
 pub mod tests {
 	use std::sync::Arc;
 	use std::collections::{VecDeque, BTreeMap, BTreeSet};
-	use ethereum_types::H256;
+	use vapory_types::H256;
 	use crypto::publickey::{Random, Generator, Public, Signature, KeyPair, sign};
 	use blockchain::SigningKeyPair;
 	use key_server_cluster::{NodeId, SessionId, Error, KeyStorage, PlainNodeKeyPair};

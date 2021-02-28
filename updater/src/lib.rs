@@ -20,23 +20,23 @@
 
 extern crate client_traits;
 extern crate common_types;
-extern crate ethabi;
-extern crate ethabi_derive;
-extern crate ethcore;
-extern crate ethcore_sync as sync;
-extern crate ethereum_types;
-extern crate keccak_hash as hash;
-extern crate parity_bytes as bytes;
-extern crate parity_hash_fetch as hash_fetch;
-extern crate parity_path;
-extern crate parity_version as version;
+extern crate vapabi;
+extern crate vapabi_derive;
+extern crate vapcore;
+extern crate vapcore_sync as sync;
+extern crate vapory_types;
+extern crate tetsy_keccak_hash as hash;
+extern crate tetsy_bytes as bytes;
+extern crate tetsy_hash_fetch as hash_fetch;
+extern crate tetsy_path;
+extern crate tetsy_version as version;
 extern crate parking_lot;
 extern crate rand;
 extern crate semver;
 extern crate target_info;
 
 #[macro_use]
-extern crate ethabi_contract;
+extern crate vapabi_contract;
 #[macro_use]
 extern crate lazy_static;
 #[macro_use]

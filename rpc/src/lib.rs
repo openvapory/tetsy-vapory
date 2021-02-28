@@ -63,27 +63,27 @@ extern crate jsonrpc_pubsub;
 
 extern crate client_traits;
 extern crate common_types as types;
-extern crate ethash;
-extern crate ethcore;
+extern crate vapash;
+extern crate vapcore;
 extern crate fastmap;
-extern crate parity_bytes as bytes;
-extern crate parity_crypto as crypto;
-extern crate ethcore_light as light;
-extern crate ethcore_logger;
-extern crate ethcore_miner as miner;
-extern crate ethcore_network as network;
-extern crate ethcore_private_tx;
-extern crate ethcore_sync as sync;
-extern crate ethereum_types;
-extern crate ethkey;
-extern crate ethstore;
+extern crate tetsy_bytes as bytes;
+extern crate tetsy_crypto as crypto;
+extern crate vapcore_light as light;
+extern crate vapcore_logger;
+extern crate vapcore_miner as miner;
+extern crate vapcore_network as network;
+extern crate vapcore_private_tx;
+extern crate vapcore_sync as sync;
+extern crate vapory_types;
+extern crate vapkey;
+extern crate vapstore;
 extern crate fetch;
-extern crate keccak_hash as hash;
-extern crate parity_runtime;
-extern crate parity_updater as updater;
-extern crate parity_version as version;
-extern crate eip_712;
-extern crate rlp;
+extern crate tetsy_keccak_hash as hash;
+extern crate tetsy_runtime;
+extern crate tetsy_updater as updater;
+extern crate tetsy_version as version;
+extern crate vip_712;
+extern crate tetsy_rlp;
 extern crate account_state;
 
 extern crate stats;
@@ -92,10 +92,10 @@ extern crate tempdir;
 extern crate trace;
 extern crate vm;
 
-#[cfg(any(test, feature = "ethcore-accounts"))]
-extern crate ethcore_accounts as accounts;
+#[cfg(any(test, feature = "vapcore-accounts"))]
+extern crate vapcore_accounts as accounts;
 
-#[cfg(any(test, feature = "ethcore-accounts"))]
+#[cfg(any(test, feature = "vapcore-accounts"))]
 extern crate tiny_keccak;
 
 #[macro_use]
@@ -110,7 +110,7 @@ extern crate rand_xorshift;
 extern crate engine;
 
 #[cfg(test)]
-extern crate ethjson;
+extern crate vapjson;
 #[cfg(test)]
 extern crate transaction_pool as txpool;
 
@@ -126,7 +126,7 @@ extern crate macros;
 extern crate fake_fetch;
 
 #[cfg(test)]
-extern crate ethcore_io as io;
+extern crate vapcore_io as io;
 
 #[cfg(test)]
 extern crate spec;
@@ -189,7 +189,7 @@ pub fn start_http<M, S, H, T>(
 		.threads(threads)
 		.cors(cors_domains)
 		.allowed_hosts(allowed_hosts)
-		.health_api(("/api/health", "parity_nodeStatus"))
+		.health_api(("/api/health", "tetsy_nodeStatus"))
 		.cors_allow_headers(AccessControlAllowHeaders::Any)
 		.max_request_body_size(max_payload * 1024 * 1024)
 		.start_http(addr)?)

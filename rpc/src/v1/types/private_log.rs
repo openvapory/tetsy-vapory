@@ -1,22 +1,22 @@
 // Copyright 2015-2020 Parity Technologies (UK) Ltd.
-// This file is part of Parity.
+// This file is part of Tetsy.
 
-// Parity is free software: you can redistribute it and/or modify
+// Tetsy is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Parity is distributed in the hope that it will be useful,
+// Tetsy is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Parity.  If not, see <http://www.gnu.org/licenses/>.
+// along with Tetsy.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::time::SystemTime;
-use ethereum_types::{H160, H256};
-use ethcore_private_tx::{TransactionLog as EthTransactionLog, ValidatorLog as EthValidatorLog, PrivateTxStatus as EthStatus};
+use vapory_types::{H160, H256};
+use vapcore_private_tx::{TransactionLog as VapTransactionLog, ValidatorLog as VapValidatorLog, PrivateTxStatus as VapStatus};
 
 /// Current status of the private transaction
 #[derive(Serialize, Debug)]
@@ -35,14 +35,14 @@ pub enum Status {
 	Deployed,
 }
 
-impl From<EthStatus> for Status {
-	fn from(c: EthStatus) -> Self {
+impl From<VapStatus> for Status {
+	fn from(c: VapStatus) -> Self {
 		match c {
-			EthStatus::Created => Status::Created,
-			EthStatus::PrivateStateSync => Status::PrivateStateSync,
-			EthStatus::PrivateStateSyncFailed => Status::PrivateStateSyncFailed,
-			EthStatus::Validating => Status::Validating,
-			EthStatus::Deployed => Status::Deployed,
+			VapStatus::Created => Status::Created,
+			VapStatus::PrivateStateSync => Status::PrivateStateSync,
+			VapStatus::PrivateStateSyncFailed => Status::PrivateStateSyncFailed,
+			VapStatus::Validating => Status::Validating,
+			VapStatus::Deployed => Status::Deployed,
 		}
 	}
 }
@@ -57,8 +57,8 @@ pub struct ValidatorLog {
 	pub validation_timestamp: Option<u64>,
 }
 
-impl From<EthValidatorLog> for ValidatorLog {
-	fn from(r: EthValidatorLog) -> Self {
+impl From<VapValidatorLog> for ValidatorLog {
+	fn from(r: VapValidatorLog) -> Self {
 		ValidatorLog {
 			account: r.account,
 			validation_timestamp: r.validation_timestamp.map(|t| t.duration_since(SystemTime::UNIX_EPOCH).unwrap_or_default().as_secs()),
@@ -84,8 +84,8 @@ pub struct PrivateTransactionLog {
 	pub public_tx_hash: Option<H256>,
 }
 
-impl From<EthTransactionLog> for PrivateTransactionLog {
-	fn from(r: EthTransactionLog) -> Self {
+impl From<VapTransactionLog> for PrivateTransactionLog {
+	fn from(r: VapTransactionLog) -> Self {
 		PrivateTransactionLog {
 			tx_hash: r.tx_hash,
 			status: r.status.into(),

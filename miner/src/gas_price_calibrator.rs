@@ -19,8 +19,8 @@
 use std::time::{Instant, Duration};
 
 use ansi_term::Colour;
-use ethereum_types::U256;
-use parity_runtime::Executor;
+use vapory_types::U256;
+use tetsy_runtime::Executor;
 use price_info::{Client as PriceInfoClient, PriceInfo};
 use price_info::fetch::Client as FetchClient;
 
@@ -59,11 +59,11 @@ impl GasPriceCalibrator {
 
 			self.price_info.get(move |price: PriceInfo| {
 				trace!(target: "miner", "Price info arrived: {:?}", price);
-				let usd_per_eth = price.ethusd;
-				let wei_per_usd: f32 = 1.0e18 / usd_per_eth;
+				let usd_per_vap = price.vapusd;
+				let wei_per_usd: f32 = 1.0e18 / usd_per_vap;
 				let gas_per_tx: f32 = 21000.0;
 				let wei_per_gas: f32 = wei_per_usd * usd_per_tx / gas_per_tx;
-				info!(target: "miner", "Updated conversion rate to Ξ1 = {} ({} wei/gas)", Colour::White.bold().paint(format!("US${:.2}", usd_per_eth)), Colour::Yellow.bold().paint(format!("{}", wei_per_gas)));
+				info!(target: "miner", "Updated conversion rate to Ξ1 = {} ({} wei/gas)", Colour::White.bold().paint(format!("US${:.2}", usd_per_vap)), Colour::Yellow.bold().paint(format!("{}", wei_per_gas)));
 				set_price(U256::from(wei_per_gas as u64));
 			});
 

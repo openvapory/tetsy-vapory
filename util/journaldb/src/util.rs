@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::H256;
-use rlp::{RlpStream, Encodable, Rlp, DecoderError};
+use vapory_types::H256;
+use tetsy_rlp::{RlpStream, Encodable, Rlp, DecoderError};
 
 const PADDING : [u8; 10] = [ 0u8; 10 ];
 

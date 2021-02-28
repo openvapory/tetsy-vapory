@@ -28,8 +28,8 @@ pub struct RpcClient {
 impl RpcClient {
 	/// Creates new `RpcClient`.
 	pub fn new(modules: BTreeMap<String, String>) -> Self {
-		// geth 1.3.6 fails upon receiving unknown api
-		let valid_apis = vec!["web3", "eth", "net", "personal", "rpc"];
+		// gvap 1.3.6 fails upon receiving unknown api
+		let valid_apis = vec!["web3", "vap", "net", "personal", "rpc"];
 
 		RpcClient {
 			modules,

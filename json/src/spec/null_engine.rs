@@ -34,14 +34,14 @@ pub struct NullEngineParams {
 #[derive(Debug, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct NullEngine {
-	/// Ethash params.
+	/// Vapash params.
 	pub params: NullEngineParams,
 }
 
 #[cfg(test)]
 mod tests {
 	use super::{NullEngine, Uint};
-	use ethereum_types::U256;
+	use vapory_types::U256;
 
 	#[test]
 	fn null_engine_deserialization() {

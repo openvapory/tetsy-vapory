@@ -39,7 +39,7 @@ use futures::{Future, Poll, Async};
 use tokio_io::{AsyncRead, AsyncWrite};
 use crypto::publickey::ecdh::agree;
 use crypto::publickey::{Random, Generator, KeyPair, Public, Signature, verify_public, sign, recover};
-use ethereum_types::H256;
+use vapory_types::H256;
 use blockchain::SigningKeyPair;
 use key_server_cluster::{NodeId, Error};
 use key_server_cluster::message::{Message, ClusterMessage, NodePublicKey, NodePrivateKeySignature};
@@ -319,7 +319,7 @@ mod tests {
 	use std::collections::BTreeSet;
 	use futures::Future;
 	use crypto::publickey::{Random, Generator, sign};
-	use ethereum_types::H256;
+	use vapory_types::H256;
 	use key_server_cluster::PlainNodeKeyPair;
 	use key_server_cluster::io::message::tests::TestIo;
 	use key_server_cluster::message::{Message, ClusterMessage, NodePublicKey, NodePrivateKeySignature};

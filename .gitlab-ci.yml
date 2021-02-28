@@ -4,7 +4,7 @@ stages:
   - publish
   - optional
 
-image:                             ${REGISTRY}/parity-ci-linux:latest
+image:                             ${REGISTRY}/tetsy-ci-linux:latest
 
 variables:
   GIT_STRATEGY:                    fetch
@@ -14,7 +14,7 @@ variables:
   CARGO_HOME:                      "/ci-cache/${CI_PROJECT_NAME}/cargo/${CI_JOB_NAME}"
   CARGO_TARGET:                    x86_64-unknown-linux-gnu
   CARGO_INCREMENTAL:               0
-  REGISTRY:                        registry.tetcoin.org/parity/infrastructure/scripts
+  REGISTRY:                        registry.tetcoin.org/tetsy/infrastructure/scripts
 
 .releaseable_branches:             # list of git refs for building GitLab artifacts (think "pre-release binaries")
   only:                            &releaseable_branches
@@ -85,11 +85,11 @@ cargo-check 2 3:
     - time cargo check --target $CARGO_TARGET --locked --manifest-path util/io/Cargo.toml --features "mio" --verbose --color=always
     - sccache --show-stats
 
-cargo-check-evmbin:
+cargo-check-vvmbin:
   stage:                           test
   <<:                              *docker-cache-status
   script:
-    - time cargo check -p evmbin --target $CARGO_TARGET --locked --verbose --color=always
+    - time cargo check -p vvmbin --target $CARGO_TARGET --locked --verbose --color=always
     - sccache --show-stats
 
 cargo-check-benches:
@@ -140,21 +140,21 @@ build-linux:
 build-linux-i386:
   <<:                              *build-on-linux
   only:                            *releaseable_branches
-  image:                           ${REGISTRY}/parity-ci-i386:latest
+  image:                           ${REGISTRY}/tetsy-ci-i386:latest
   variables:
     CARGO_TARGET:                  i686-unknown-linux-gnu
 
 build-linux-arm64:
   <<:                              *build-on-linux
   only:                            *releaseable_branches
-  image:                           ${REGISTRY}/parity-ci-arm64:latest
+  image:                           ${REGISTRY}/tetsy-ci-arm64:latest
   variables:
     CARGO_TARGET:                  aarch64-unknown-linux-gnu
 
 build-linux-armhf:
   <<:                              *build-on-linux
   only:                            *releaseable_branches
-  image:                           ${REGISTRY}/parity-ci-armhf:latest
+  image:                           ${REGISTRY}/tetsy-ci-armhf:latest
   variables:
     CARGO_TARGET:                  armv7-unknown-linux-gnueabihf
 
@@ -176,7 +176,7 @@ build-windows:
   only:                            *releaseable_branches
   variables:
     CARGO_TARGET:                  x86_64-pc-windows-msvc
-    CARGO_HOME:                    "C:/ci-cache/parity-ethereum/cargo/$CI_JOB_NAME"
+    CARGO_HOME:                    "C:/ci-cache/tetsy-vapory/cargo/$CI_JOB_NAME"
     GIT_SUBMODULE_STRATEGY:        none
   script:
     - sh scripts/gitlab/build-windows.sh
@@ -192,7 +192,7 @@ publish-docker:
   dependencies:
     - build-linux
   environment:
-    name: parity-build
+    name: tetsy-build
   cache:                           {}
   image:                           docker:stable
   services:
@@ -203,11 +203,11 @@ publish-docker:
     DOCKER_DRIVER:                 overlay2
     GIT_STRATEGY:                  none
     # DOCKERFILE:                  tools/Dockerfile
-    # CONTAINER_IMAGE:             parity/parity
+    # CONTAINER_IMAGE:             tetsy/tetsy
   script:
     - ./tools/publish-docker.sh
   tags:
-    - kubernetes-parity-build
+    - kubernetes-tetsy-build
 
 publish-snap-nightly:              &publish-snap
   stage:                           publish
@@ -306,10 +306,10 @@ publish-release-awss3-nightly:     &publish-release-awss3
     - echo "__________Push binaries to AWS S3____________"
     - case "${SCHEDULE_TAG:-${CI_COMMIT_REF_NAME}}" in
        (stable|nightly)
-         export BUCKET=releases.tetcoin.org/ethereum;
+         export BUCKET=releases.tetcoin.org/vapory;
          ;;
        (*)
-         export BUCKET=builds-parity;
+         export BUCKET=builds-tetsy;
          ;;
      esac
     - aws s3 sync ./artifacts s3://${BUCKET}/${SCHEDULE_TAG:-${CI_COMMIT_REF_NAME}}/
@@ -325,7 +325,7 @@ publish-release-awss3-manually:
 
 publish-docs:
   stage:                           publish
-  image:                           ${REGISTRY}/parity-ci-docs:latest
+  image:                           ${REGISTRY}/tetsy-ci-docs:latest
   only:
     - tags
   except:

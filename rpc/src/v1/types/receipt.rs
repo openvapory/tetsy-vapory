@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::{H160, H256, U64, U256, Bloom as H2048};
+use vapory_types::{H160, H256, U64, U256, Bloom as H2048};
 use v1::types::Log;
-use types::receipt::{Receipt as EthReceipt, RichReceipt, LocalizedReceipt, TransactionOutcome};
+use types::receipt::{Receipt as VapReceipt, RichReceipt, LocalizedReceipt, TransactionOutcome};
 
 /// Receipt
 #[derive(Debug, Serialize)]
@@ -110,8 +110,8 @@ impl From<RichReceipt> for Receipt {
 	}
 }
 
-impl From<EthReceipt> for Receipt {
-	fn from(r: EthReceipt) -> Self {
+impl From<VapReceipt> for Receipt {
+	fn from(r: VapReceipt) -> Self {
 		Receipt {
 			from: None,
 			to: None,
@@ -134,7 +134,7 @@ impl From<EthReceipt> for Receipt {
 mod tests {
 	use serde_json;
 	use v1::types::{Log, Receipt};
-	use ethereum_types::{H256, Bloom};
+	use vapory_types::{H256, Bloom};
 
 	#[test]
 	fn receipt_serialization() {

@@ -15,15 +15,15 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 extern crate byteorder;
-extern crate ethabi;
-extern crate ethereum_types;
+extern crate vapabi;
+extern crate vapory_types;
 extern crate hyper;
-extern crate keccak_hash as hash;
-extern crate kvdb;
-extern crate kvdb_rocksdb;
-extern crate parity_bytes as bytes;
-extern crate parity_crypto as crypto;
-extern crate parity_runtime;
+extern crate tetsy_keccak_hash as hash;
+extern crate tetsy_kvdb;
+extern crate tetsy_kvdb_rocksdb;
+extern crate tetsy_bytes as bytes;
+extern crate tetsy_crypto as crypto;
+extern crate tetsy_runtime;
 extern crate parking_lot;
 extern crate percent_encoding;
 extern crate rustc_hex;
@@ -36,9 +36,9 @@ extern crate tokio_service;
 extern crate url;
 extern crate jsonrpc_server_utils;
 
-extern crate ethabi_derive;
+extern crate vapabi_derive;
 #[macro_use]
-extern crate ethabi_contract;
+extern crate vapabi_contract;
 #[macro_use]
 extern crate futures;
 #[macro_use]
@@ -68,9 +68,9 @@ mod blockchain;
 mod migration;
 
 use std::sync::Arc;
-use kvdb::KeyValueDB;
-use kvdb_rocksdb::{Database, DatabaseConfig};
-use parity_runtime::Executor;
+use tetsy_kvdb::KeyValueDB;
+use tetsy_kvdb_rocksdb::{Database, DatabaseConfig};
+use tetsy_runtime::Executor;
 
 pub use types::{ServerKeyId, EncryptedDocumentKey, RequestSignature, Public,
 	Error, NodeAddress, ServiceConfiguration, ClusterConfiguration};

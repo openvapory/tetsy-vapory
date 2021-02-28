@@ -17,7 +17,7 @@
 use std::collections::{BTreeSet, BTreeMap};
 use std::net::SocketAddr;
 use std::sync::Arc;
-use ethereum_types::H256;
+use vapory_types::H256;
 use crypto::publickey::Public;
 use parking_lot::Mutex;
 use key_server_cluster::{KeyServerSet, KeyServerSetSnapshot, KeyServerSetMigration, is_migration_required};
@@ -453,7 +453,7 @@ mod tests {
 	use key_server_cluster::connection_trigger::ConnectionsAction;
 	use super::{MigrationState, SessionState, SessionAction, migration_state, maintain_session,
 		maintain_connections, select_master_node};
-	use ethereum_types::{H256, H512};
+	use vapory_types::{H256, H512};
 
 	#[test]
 	fn migration_state_is_idle_when_required_but_this_node_is_not_on_the_list() {

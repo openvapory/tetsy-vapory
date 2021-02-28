@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::{U256, H256};
-use parity_crypto::publickey::{Random, Generator};
+use vapory_types::{U256, H256};
+use tetsy_crypto::publickey::{Random, Generator};
 use rustc_hex::FromHex;
 use types::transaction::{self, Transaction, SignedTransaction, UnverifiedTransaction};
 

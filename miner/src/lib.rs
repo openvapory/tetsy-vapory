@@ -21,25 +21,25 @@
 
 extern crate ansi_term;
 extern crate common_types as types;
-extern crate ethabi;
-extern crate ethcore_call_contract as call_contract;
-extern crate ethereum_types;
+extern crate vapabi;
+extern crate vapcore_call_contract as call_contract;
+extern crate vapory_types;
 extern crate futures;
 
-extern crate parity_util_mem;
-extern crate keccak_hash as hash;
+extern crate tetsy_util_mem;
+extern crate tetsy_keccak_hash as hash;
 extern crate linked_hash_map;
-extern crate parity_runtime;
+extern crate tetsy_runtime;
 extern crate parking_lot;
 #[cfg(feature = "price-info")]
 extern crate price_info;
-extern crate registrar;
-extern crate rlp;
+extern crate tetsy_registrar;
+extern crate tetsy_rlp;
 extern crate transaction_pool as txpool;
 extern crate serde;
 
 #[macro_use]
-extern crate ethabi_contract;
+extern crate vapabi_contract;
 #[macro_use]
 extern crate log;
 #[macro_use]
@@ -50,7 +50,7 @@ extern crate trace_time;
 #[cfg(test)]
 extern crate rustc_hex;
 #[cfg(test)]
-extern crate parity_crypto;
+extern crate tetsy_crypto;
 #[cfg(test)]
 extern crate env_logger;
 

@@ -22,9 +22,9 @@ use crate::{
 use bytes::Bytes;
 use cid::{ToCid, Codec};
 use common_types::ids::{BlockId, TransactionId};
-use ethereum_types::H256;
+use vapory_types::H256;
 use multihash::{self, Hash};
-use rlp;
+use tetsy_rlp;
 
 type Reason = &'static str;
 
@@ -83,7 +83,7 @@ impl IpfsHandler {
 	fn block_list(&self, hash: H256) -> Result<Out> {
 		let uncles = self.client().find_uncles(&hash).ok_or(Error::BlockNotFound)?;
 
-		Ok(Out::OctetStream(rlp::encode_list(&uncles)))
+		Ok(Out::OctetStream(tetsy_rlp::encode_list(&uncles)))
 	}
 
 	/// Get transaction by hash and return as raw binary.
@@ -91,7 +91,7 @@ impl IpfsHandler {
 		let tx_id = TransactionId::Hash(hash);
 		let tx = self.client().transaction(tx_id).ok_or(Error::TransactionNotFound)?;
 
-		Ok(Out::OctetStream(rlp::encode(&*tx)))
+		Ok(Out::OctetStream(tetsy_rlp::encode(&*tx)))
 	}
 
 	/// Get state trie node by hash and return as raw binary.
@@ -120,7 +120,7 @@ fn get_param<'a>(query: &'a str, name: &str) -> Option<&'a str> {
 mod tests {
 	use std::sync::Arc;
 	use super::*;
-	use ethcore::test_helpers::TestBlockChainClient;
+	use vapcore::test_helpers::TestBlockChainClient;
 
 	fn get_mocked_handler() -> IpfsHandler {
 		IpfsHandler::new(None.into(), None.into(), Arc::new(TestBlockChainClient::new()))
@@ -145,7 +145,7 @@ mod tests {
 	fn cid_route_block() {
 		let handler = get_mocked_handler();
 
-		// `eth-block` with Keccak-256
+		// `vap-block` with Keccak-256
 		let cid = "z43AaGF5tmkT9SEX6urrhwpEW5ZSaACY73Vw357ZXTsur2fR8BM";
 
 		assert_eq!(Err(Error::BlockNotFound), handler.route_cid(cid));
@@ -155,7 +155,7 @@ mod tests {
 	fn cid_route_block_list() {
 		let handler = get_mocked_handler();
 
-		// `eth-block-list` with Keccak-256
+		// `vap-block-list` with Keccak-256
 		let cid = "z43c7o7FsNxqdLJW8Ucj19tuCALtnmUb2EkDptj4W6xSkFVTqWs";
 
 		assert_eq!(Err(Error::BlockNotFound), handler.route_cid(cid));
@@ -165,7 +165,7 @@ mod tests {
 	fn cid_route_tx() {
 		let handler = get_mocked_handler();
 
-		// `eth-tx` with Keccak-256
+		// `vap-tx` with Keccak-256
 		let cid = "z44VCrqbpbPcb8SUBc8Tba4EaKuoDz2grdEoQXx4TP7WYh9ZGBu";
 
 		assert_eq!(Err(Error::TransactionNotFound), handler.route_cid(cid));
@@ -175,7 +175,7 @@ mod tests {
 	fn cid_route_state_trie() {
 		let handler = get_mocked_handler();
 
-		// `eth-state-trie` with Keccak-256
+		// `vap-state-trie` with Keccak-256
 		let cid = "z45oqTS7kR2n2peRGJQ4VCJEeaG9sorqcCyfmznZPJM7FMdhQCT";
 
 		assert_eq!(Err(Error::StateRootNotFound), handler.route_cid(&cid));
@@ -195,7 +195,7 @@ mod tests {
 	fn cid_route_invalid_hash() {
 		let handler = get_mocked_handler();
 
-		// `eth-block` with SHA3-256 hash
+		// `vap-block` with SHA3-256 hash
 		let cid = "z43Aa9gr1MM7TENJh4Em9d9Ttr7p3UcfyMpNei6WLVeCmSEPu8F";
 
 		assert_eq!(Err(Error::UnsupportedHash), handler.route_cid(cid));

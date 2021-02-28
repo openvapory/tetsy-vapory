@@ -18,13 +18,13 @@
 extern crate criterion;
 extern crate tempdir;
 extern crate blooms_db;
-extern crate ethbloom;
+extern crate vapbloom;
 
 use std::iter;
 use criterion::Criterion;
 use tempdir::TempDir;
 use blooms_db::Database;
-use ethbloom::Bloom;
+use vapbloom::Bloom;
 
 criterion_group!(
 	blooms,

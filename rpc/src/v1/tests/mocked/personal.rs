@@ -19,17 +19,17 @@ use std::str::FromStr;
 
 use bytes::ToPretty;
 use accounts::AccountProvider;
-use ethereum_types::{Address, H520, U256};
-use ethcore::test_helpers::TestBlockChainClient;
+use vapory_types::{Address, H520, U256};
+use vapcore::test_helpers::TestBlockChainClient;
 use jsonrpc_core::IoHandler;
 use parking_lot::Mutex;
 use types::transaction::{Action, Transaction};
-use parity_runtime::Runtime;
+use tetsy_runtime::Runtime;
 use hash::keccak;
 
 use v1::{PersonalClient, Personal, Metadata};
 use v1::helpers::{nonce, eip191};
-use v1::helpers::dispatch::{eth_data_hash, FullDispatcher};
+use v1::helpers::dispatch::{vap_data_hash, FullDispatcher};
 use v1::tests::helpers::TestMinerService;
 use v1::types::{EIP191Version, PresignedTransaction};
 use rustc_hex::ToHex;
@@ -154,7 +154,7 @@ fn sign() {
 		"id": 1
 	}"#;
 
-	let hash = eth_data_hash(data);
+	let hash = vap_data_hash(data);
 	let signature = H520(tester.accounts.sign(address, Some("password123".into()), hash).unwrap().into_electrum());
 	let signature = format!("{:?}", signature);
 
@@ -262,7 +262,7 @@ fn ec_recover() {
 	let address = tester.accounts.new_account(&"password123".into()).unwrap();
 	let data = vec![5u8];
 
-	let hash = eth_data_hash(data.clone());
+	let hash = vap_data_hash(data.clone());
 	let signature = H520(tester.accounts.sign(address, Some("password123".into()), hash).unwrap().into_electrum());
 	let signature = format!("{:?}", signature);
 
@@ -385,7 +385,7 @@ fn sign_eip191_structured_data() {
 			{
 				"primaryType": "Mail",
 				"domain": {
-					"name": "Ether Mail",
+					"name": "Vapor Mail",
 					"version": "1",
 					"chainId": "0x1",
 					"verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"
@@ -402,7 +402,7 @@ fn sign_eip191_structured_data() {
 					"contents": "Hello, Bob!"
 				},
 				"types": {
-					"EIP712Domain": [
+					"VIP712Domain": [
 						{ "name": "name", "type": "string" },
 						{ "name": "version", "type": "string" },
 						{ "name": "chainId", "type": "uint256" },
@@ -441,7 +441,7 @@ fn sign_structured_data() {
 			{
 				"primaryType": "Mail",
 				"domain": {
-					"name": "Ether Mail",
+					"name": "Vapor Mail",
 					"version": "1",
 					"chainId": "0x1",
 					"verifyingContract": "0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"
@@ -458,7 +458,7 @@ fn sign_structured_data() {
 					"contents": "Hello, Bob!"
 				},
 				"types": {
-					"EIP712Domain": [
+					"VIP712Domain": [
 						{ "name": "name", "type": "string" },
 						{ "name": "version", "type": "string" },
 						{ "name": "chainId", "type": "uint256" },
@@ -528,9 +528,9 @@ fn should_disable_experimental_apis() {
 	let r2 = tester.io.handle_request_sync(&request).unwrap();
 
 	// then
-	let expected = r#"{"jsonrpc":"2.0","error":{"code":-32071,"message":"This method is not part of the official RPC API yet (EIP-191). Run with `--jsonrpc-experimental` to enable it.","data":"See EIP: https://eips.ethereum.org/EIPS/eip-191"},"id":1}"#;
+	let expected = r#"{"jsonrpc":"2.0","error":{"code":-32071,"message":"This method is not part of the official RPC API yet (EIP-191). Run with `--jsonrpc-experimental` to enable it.","data":"See EIP: https://eips.vapory.org/EIPS/eip-191"},"id":1}"#;
 	assert_eq!(r1, expected);
 
-	let expected = r#"{"jsonrpc":"2.0","error":{"code":-32071,"message":"This method is not part of the official RPC API yet (EIP-712). Run with `--jsonrpc-experimental` to enable it.","data":"See EIP: https://eips.ethereum.org/EIPS/eip-712"},"id":1}"#;
+	let expected = r#"{"jsonrpc":"2.0","error":{"code":-32071,"message":"This method is not part of the official RPC API yet (VIP-712). Run with `--jsonrpc-experimental` to enable it.","data":"See EIP: https://eips.vapory.org/VIPS/vip-712"},"id":1}"#;
 	assert_eq!(r2, expected);
 }

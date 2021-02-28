@@ -19,20 +19,20 @@
 use std::fmt;
 
 use jsonrpc_core::{futures, Result as RpcResult, Error, ErrorCode, Value};
-use rlp::DecoderError;
+use tetsy_rlp::DecoderError;
 use types::transaction::Error as TransactionError;
-use ethcore_private_tx::Error as PrivateTransactionError;
+use vapcore_private_tx::Error as PrivateTransactionError;
 use vm::Error as VMError;
 use light::on_demand::error::{Error as OnDemandError};
 use client_traits::BlockChainClient;
 use types::{
 	ids::BlockId,
 	blockchain_info::BlockChainInfo,
-	errors::{EthcoreError},
+	errors::{VapcoreError},
 	transaction::CallError,
 };
 use v1::types::BlockNumber;
-use v1::impls::EthClientOptions;
+use v1::impls::VapClientOptions;
 
 mod codes {
 	// NOTE [ToDr] Codes from [-32099, -32000]
@@ -134,7 +134,7 @@ pub fn account<T: fmt::Debug>(error: &str, details: T) -> Error {
 pub fn cannot_restart() -> Error {
 	Error {
 		code: ErrorCode::ServerError(codes::CANNOT_RESTART),
-		message: "Parity could not be restarted. This feature is disabled in development mode and if the binary name isn't parity.".into(),
+		message: "Tetsy could not be restarted. This feature is disabled in development mode and if the binary name isn't tetsy.".into(),
 		data: None,
 	}
 }
@@ -205,7 +205,7 @@ pub fn no_new_work() -> Error {
 pub fn no_author() -> Error {
 	Error {
 		code: ErrorCode::ServerError(codes::NO_AUTHOR),
-		message: "Author not configured. Run Parity with --author to configure.".into(),
+		message: "Author not configured. Run Tetsy with --author to configure.".into(),
 		data: None,
 	}
 }
@@ -218,7 +218,7 @@ pub fn no_work_required() -> Error {
 	}
 }
 
-pub fn cannot_submit_work(err: EthcoreError) -> Error {
+pub fn cannot_submit_work(err: VapcoreError) -> Error {
 	Error {
 		code: ErrorCode::ServerError(codes::CANNOT_SUBMIT_WORK),
 		message: "Cannot submit work.".into(),
@@ -250,7 +250,7 @@ pub fn unavailable_block(no_ancient_block: bool, by_hash: bool) -> Error {
 	}
 }
 
-pub fn cannot_submit_block(err: EthcoreError) -> Error {
+pub fn cannot_submit_block(err: VapcoreError) -> Error {
 	Error {
 		code: ErrorCode::ServerError(codes::CANNOT_SUBMIT_BLOCK),
 		message: "Cannot submit block.".into(),
@@ -261,7 +261,7 @@ pub fn cannot_submit_block(err: EthcoreError) -> Error {
 pub fn check_block_number_existence<'a, T, C>(
 	client: &'a C,
 	num: BlockNumber,
-	options: EthClientOptions,
+	options: VapClientOptions,
 ) ->
 	impl Fn(Option<T>) -> RpcResult<Option<T>> + 'a
 	where C: BlockChainClient,
@@ -282,7 +282,7 @@ pub fn check_block_number_existence<'a, T, C>(
 
 pub fn check_block_gap<'a, T, C>(
 	client: &'a C,
-	options: EthClientOptions,
+	options: VapClientOptions,
 ) -> impl Fn(Option<T>) -> RpcResult<Option<T>> + 'a
 	where C: BlockChainClient,
 {
@@ -290,7 +290,7 @@ pub fn check_block_gap<'a, T, C>(
 		if response.is_none() && !options.allow_missing_blocks {
 			let BlockChainInfo { ancient_block_hash, .. } = client.chain_info();
 			// block information was requested, but unfortunately we couldn't find it and there
-			// are gaps in the database ethcore/src/blockchain/blockchain.rs
+			// are gaps in the database vapcore/src/blockchain/blockchain.rs
 			if ancient_block_hash.is_some() {
 				return Err(unavailable_block(options.no_ancient_blocks, true))
 			}
@@ -463,9 +463,9 @@ pub fn transaction_message(error: &TransactionError) -> String {
 	}
 }
 
-pub fn transaction<T: Into<EthcoreError>>(error: T) -> Error {
+pub fn transaction<T: Into<VapcoreError>>(error: T) -> Error {
 	let error = error.into();
-	if let EthcoreError::Transaction(ref e) = error {
+	if let VapcoreError::Transaction(ref e) = error {
 		Error {
 			code: ErrorCode::ServerError(codes::TRANSACTION_ERROR),
 			message: transaction_message(e),
@@ -480,9 +480,9 @@ pub fn transaction<T: Into<EthcoreError>>(error: T) -> Error {
 	}
 }
 
-pub fn decode<T: Into<EthcoreError>>(error: T) -> Error {
+pub fn decode<T: Into<VapcoreError>>(error: T) -> Error {
 	match error.into() {
-		EthcoreError::Decoder(ref dec_err) => rlp(dec_err.clone()),
+		VapcoreError::Decoder(ref dec_err) => rlp(dec_err.clone()),
 		_ => Error {
 			code: ErrorCode::InternalError,
 			message: "decoding error".into(),
@@ -505,7 +505,7 @@ pub fn call(error: CallError) -> Error {
 		CallError::StateCorrupt => state_corrupt(),
 		CallError::Exceptional(e) => exceptional(e),
 		CallError::Execution(e) => execution(e),
-		CallError::TransactionNotFound => internal("{}, this should not be the case with eth_call, most likely a bug.", CallError::TransactionNotFound),
+		CallError::TransactionNotFound => internal("{}, this should not be the case with vap_call, most likely a bug.", CallError::TransactionNotFound),
 	}
 }
 
@@ -618,7 +618,7 @@ pub fn require_experimental(allow_experimental_rpcs: bool, eip: &str) -> Result<
 		Err(Error {
 			code: ErrorCode::ServerError(codes::EXPERIMENTAL_RPC),
 			message: format!("This method is not part of the official RPC API yet (EIP-{}). Run with `--jsonrpc-experimental` to enable it.", eip),
-			data: Some(Value::String(format!("See EIP: https://eips.ethereum.org/EIPS/eip-{}", eip))),
+			data: Some(Value::String(format!("See EIP: https://eips.vapory.org/EIPS/eip-{}", eip))),
 		})
 	}
 }

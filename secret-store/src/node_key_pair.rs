@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use crypto::publickey::{KeyPair, Public, Signature, Error as EthKeyError, sign, public_to_address};
-use ethereum_types::{H256, Address};
+use crypto::publickey::{KeyPair, Public, Signature, Error as VapKeyError, sign, public_to_address};
+use vapory_types::{H256, Address};
 use blockchain::SigningKeyPair;
 
 pub struct PlainNodeKeyPair {
@@ -44,7 +44,7 @@ impl SigningKeyPair for PlainNodeKeyPair {
 		public_to_address(self.key_pair.public())
 	}
 
-	fn sign(&self, data: &H256) -> Result<Signature, EthKeyError> {
+	fn sign(&self, data: &H256) -> Result<Signature, VapKeyError> {
 		sign(self.key_pair.secret(), data)
 	}
 }

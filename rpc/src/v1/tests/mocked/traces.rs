@@ -19,8 +19,8 @@ use std::sync::Arc;
 use machine::executed::Executed;
 use trace::trace::{Action, Res, Call};
 use trace::LocalizedTrace;
-use ethcore::test_helpers::TestBlockChainClient;
-use ethereum_types::{Address, H256};
+use vapcore::test_helpers::TestBlockChainClient;
+use vapory_types::{Address, H256};
 
 use types::transaction::CallError;
 use trace::trace::CallType;

@@ -27,7 +27,7 @@ use serde::Serialize;
 use serde_json;
 use tokio;
 use tokio::net::TcpListener;
-use parity_runtime::Executor;
+use tetsy_runtime::Executor;
 use futures::{future, Future, Stream};
 use percent_encoding::percent_decode;
 
@@ -456,8 +456,8 @@ mod tests {
 	use traits::KeyServer;
 	use key_server::tests::DummyKeyServer;
 	use types::NodeAddress;
-	use parity_runtime::Runtime;
-	use ethereum_types::H256;
+	use tetsy_runtime::Runtime;
+	use vapory_types::H256;
 	use super::{parse_request, Request, KeyServerHttpListener};
 
 	#[test]

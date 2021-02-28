@@ -16,13 +16,13 @@
 
 //! Provides a `H256FastMap` type with H256 keys and fast hashing function.
 
-extern crate ethereum_types;
-extern crate plain_hasher;
+extern crate vapory_types;
+extern crate tetsy_plain_hasher;
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use std::hash;
 use std::collections::{HashMap, HashSet};
-use plain_hasher::PlainHasher;
+use tetsy_plain_hasher::PlainHasher;
 
 /// Specialized version of `HashMap` with H256 keys and fast hashing function.
 pub type H256FastMap<T> = HashMap<H256, T, hash::BuildHasherDefault<PlainHasher>>;

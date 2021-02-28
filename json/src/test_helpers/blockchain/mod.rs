@@ -19,7 +19,7 @@
 use crate::{
 	bytes::Bytes,
 	hash::H256,
-	spec::{Ethereum, ForkSpec, Genesis, Seal, State}
+	spec::{Vapory, ForkSpec, Genesis, Seal, State}
 
 };
 use serde::Deserialize;
@@ -37,14 +37,14 @@ pub type Test = super::tester::GenericTester<String, BlockChain>;
 #[derive(Debug, PartialEq, Deserialize)]
 pub enum Engine {
 	/// Default (old) behaviour.
-	Ethash,
+	Vapash,
 	/// No check of block's difficulty and nonce for tests.
 	NoProof,
 }
 
 impl Default for Engine {
 	fn default() -> Self {
-		Engine::Ethash
+		Engine::Vapash
 	}
 }
 
@@ -85,7 +85,7 @@ impl BlockChain {
 	/// Returns spec compatible genesis struct.
 	pub fn genesis(&self) -> Genesis {
 		Genesis {
-			seal: Seal::Ethereum(Ethereum {
+			seal: Seal::Vapory(Vapory {
 				nonce: self.genesis_block.nonce.clone(),
 				mix_hash: self.genesis_block.mix_hash.clone(),
 			}),

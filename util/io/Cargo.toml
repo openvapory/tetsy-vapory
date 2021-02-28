@@ -1,6 +1,6 @@
 [package]
-name = "ethcore-io"
-description = "Ethcore IO library"
+name = "vapcore-io"
+description = "Vapcore IO library"
 version = "1.12.0"
 homepage = "http://tetcoin.org"
 license = "GPL-3.0"

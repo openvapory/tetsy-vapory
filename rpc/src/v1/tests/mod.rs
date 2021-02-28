@@ -19,7 +19,7 @@
 pub mod helpers;
 
 // extract a chain from the given JSON file,
-// stored in ethcore/res/ethereum/tests/.
+// stored in vapcore/res/vapory/tests/.
 //
 // usage:
 //     `extract_chain!("Folder/File")` will load Folder/File.json and extract
@@ -31,8 +31,8 @@ pub mod helpers;
 macro_rules! extract_chain {
 	(iter $file:expr) => {{
 		const RAW_DATA: &'static [u8] =
-			include_bytes!(concat!("../../../../ethcore/res/ethereum/tests/", $file, ".json"));
-		ethjson::test_helpers::blockchain::Test::load(RAW_DATA).unwrap().into_iter()
+			include_bytes!(concat!("../../../../vapcore/res/vapory/tests/", $file, ".json"));
+		vapjson::test_helpers::blockchain::Test::load(RAW_DATA).unwrap().into_iter()
 	}};
 
 	($file:expr) => {{
@@ -54,4 +54,4 @@ macro_rules! register_test {
 #[cfg(test)]
 mod mocked;
 #[cfg(test)]
-mod eth;
+mod vap;

@@ -21,7 +21,7 @@
 #[macro_use]
 extern crate macros;
 extern crate tempdir;
-extern crate kvdb_rocksdb;
+extern crate tetsy_kvdb_rocksdb;
 extern crate migration_rocksdb as migration;
 
 use std::collections::BTreeMap;
@@ -29,7 +29,7 @@ use std::io;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use tempdir::TempDir;
-use kvdb_rocksdb::{Database, DatabaseConfig};
+use tetsy_kvdb_rocksdb::{Database, DatabaseConfig};
 use migration::{Batch, Config, SimpleMigration, Migration, Manager, ChangeColumns};
 
 #[inline]
@@ -231,7 +231,7 @@ fn pre_columns() {
 
 #[test]
 fn change_columns() {
-	use kvdb_rocksdb::DatabaseConfig;
+	use tetsy_kvdb_rocksdb::DatabaseConfig;
 
 	let mut manager = Manager::new(Config::default());
 	manager.add_migration(ChangeColumns {

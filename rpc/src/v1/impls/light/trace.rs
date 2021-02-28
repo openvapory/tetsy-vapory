@@ -16,7 +16,7 @@
 
 //! Traces api implementation.
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use jsonrpc_core::Result;
 use v1::Metadata;
 use v1::traits::Traces;

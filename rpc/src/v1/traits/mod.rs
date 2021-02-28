@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Ethereum rpc interfaces.
+//! Vapory rpc interfaces.
 
 pub mod debug;
-pub mod eth;
-pub mod eth_pubsub;
-pub mod eth_signing;
+pub mod vap;
+pub mod vap_pubsub;
+pub mod vap_signing;
 pub mod net;
-pub mod parity;
-pub mod parity_accounts;
-pub mod parity_set;
-pub mod parity_signing;
+pub mod tetsy;
+pub mod tetsy_accounts;
+pub mod tetsy_set;
+pub mod tetsy_signing;
 pub mod personal;
 pub mod private;
 pub mod pubsub;
@@ -36,14 +36,14 @@ pub mod transactions_pool;
 pub mod web3;
 
 pub use self::debug::Debug;
-pub use self::eth::{Eth, EthFilter};
-pub use self::eth_pubsub::EthPubSub;
-pub use self::eth_signing::EthSigning;
+pub use self::vap::{Vap, VapFilter};
+pub use self::vap_pubsub::VapPubSub;
+pub use self::vap_signing::VapSigning;
 pub use self::net::Net;
-pub use self::parity::Parity;
-pub use self::parity_accounts::{ParityAccounts, ParityAccountsInfo};
-pub use self::parity_set::{ParitySet, ParitySetAccounts};
-pub use self::parity_signing::ParitySigning;
+pub use self::tetsy::Tetsy;
+pub use self::tetsy_accounts::{TetsyAccounts, TetsyAccountsInfo};
+pub use self::tetsy_set::{TetsySet, TetsySetAccounts};
+pub use self::tetsy_signing::TetsySigning;
 pub use self::personal::Personal;
 pub use self::private::Private;
 pub use self::pubsub::PubSub;

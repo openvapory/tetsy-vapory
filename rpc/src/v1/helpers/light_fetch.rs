@@ -25,7 +25,7 @@ use types::{
 	basic_account::BasicAccount,
 	encoded,
 	errors::ExecutionError,
-	filter::Filter as EthcoreFilter,
+	filter::Filter as VapcoreFilter,
 	ids::BlockId,
 	receipt::Receipt,
 };
@@ -48,11 +48,11 @@ use machine::executed::ExecutionResult;
 
 use sync::{LightNetworkDispatcher, ManageNetwork, LightSyncProvider};
 
-use ethereum_types::{Address, U256};
+use vapory_types::{Address, U256};
 use hash::H256;
 use parking_lot::{Mutex, RwLock};
 use fastmap::H256FastMap;
-use types::transaction::{Action, Transaction as EthTransaction, PendingTransaction, SignedTransaction, LocalizedTransaction};
+use types::transaction::{Action, Transaction as VapTransaction, PendingTransaction, SignedTransaction, LocalizedTransaction};
 
 use v1::helpers::{CallRequest as CallRequestHelper, errors, dispatch};
 use v1::types::{BlockNumber, CallRequest, Log, Transaction};
@@ -290,7 +290,7 @@ where
 		// fetch missing transaction fields from the network.
 		Box::new(nonce_fut.join(gas_price_fut).and_then(move |(nonce, gas_price)| {
 			future::done(
-				Ok((req.gas.is_some(), EthTransaction {
+				Ok((req.gas.is_some(), VapTransaction {
 					nonce: nonce.unwrap_or_default(),
 					action: req.to.map_or(Action::Create, Action::Call),
 					gas: req.gas.unwrap_or_else(|| START_GAS.into()),
@@ -369,7 +369,7 @@ where
 		}))
 	}
 
-	pub fn logs_no_tx_hash(&self, filter: EthcoreFilter) -> impl Future<Item = Vec<Log>, Error = Error> + Send {
+	pub fn logs_no_tx_hash(&self, filter: VapcoreFilter) -> impl Future<Item = Vec<Log>, Error = Error> + Send {
 		use jsonrpc_core::futures::stream::{self, Stream};
 
 		const MAX_BLOCK_RANGE: u64 = 1000;
@@ -436,7 +436,7 @@ where
 	}
 
 	/// Get transaction logs
-	pub fn logs(&self, filter: EthcoreFilter) -> impl Future<Item = Vec<Log>, Error = Error> + Send {
+	pub fn logs(&self, filter: VapcoreFilter) -> impl Future<Item = Vec<Log>, Error = Error> + Send {
 		use jsonrpc_core::futures::stream::{self, Stream};
 		let fetcher_block = self.clone();
 		self.logs_no_tx_hash(filter)
@@ -738,7 +738,7 @@ where
 	OD: OnDemandRequester + 'static
 {
 	from: Address,
-	tx: EthTransaction,
+	tx: VapTransaction,
 	hdr: encoded::Header,
 	env_info: ::vm::EnvInfo,
 	engine: Arc<dyn engine::Engine>,

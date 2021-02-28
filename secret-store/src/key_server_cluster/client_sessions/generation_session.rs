@@ -19,7 +19,7 @@ use std::fmt::{Debug, Formatter, Error as FmtError};
 use std::sync::Arc;
 use futures::Oneshot;
 use parking_lot::Mutex;
-use ethereum_types::Address;
+use vapory_types::Address;
 use crypto::publickey::{Public, Secret};
 use key_server_cluster::{Error, NodeId, SessionId, KeyStorage, DocumentKeyShare, DocumentKeyShareVersion};
 use key_server_cluster::math;
@@ -950,7 +950,7 @@ fn check_threshold(threshold: usize, nodes: &BTreeSet<NodeId>) -> Result<(), Err
 #[cfg(test)]
 pub mod tests {
 	use std::sync::Arc;
-	use ethereum_types::H256;
+	use vapory_types::H256;
 	use crypto::publickey::{Random, Generator, KeyPair, Secret};
 	use key_server_cluster::{NodeId, Error, KeyStorage};
 	use key_server_cluster::message::{self, Message, GenerationMessage, KeysDissemination,

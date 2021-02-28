@@ -4,15 +4,15 @@ FROM ubuntu:xenial
 ARG VCS_REF
 ARG BUILD_DATE
 
-LABEL io.parity.image.authors="devops-team@tetcoin.org" \
-	io.parity.image.vendor="Parity Technologies" \
-	io.parity.image.title="parity/parity" \
-	io.parity.image.description="Tetsy Vapory. The Fastest and most Advanced Ethereum Client." \
-	io.parity.image.source="https://github.com/openvapory/tetsy-vapory/blob/${VCS_REF}/\
+LABEL io.tetsy.image.authors="devops-team@tetcoin.org" \
+	io.tetsy.image.vendor="Tetsy Technologies" \
+	io.tetsy.image.title="tetsy/tetsy" \
+	io.tetsy.image.description="Tetsy Vapory. The Fastest and most Advanced Vapory Client." \
+	io.tetsy.image.source="https://github.com/openvapory/tetsy-vapory/blob/${VCS_REF}/\
 scripts/docker/hub/Dockerfile" \
-	io.parity.image.documentation="https://wiki.tetcoin.org/Tetsy-Vapory" \
-	io.parity.image.revision="${VCS_REF}" \
-	io.parity.image.created="${BUILD_DATE}"
+	io.tetsy.image.documentation="https://wiki.tetcoin.org/Tetsy-Vapory" \
+	io.tetsy.image.revision="${VCS_REF}" \
+	io.tetsy.image.created="${BUILD_DATE}"
 
 # show backtraces
 ENV RUST_BACKTRACE 1
@@ -27,21 +27,21 @@ RUN set -eux; \
 	apt-get clean; \
 	rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*; \
 # add user
-	groupadd -g 1000 parity; \
-	useradd -m -u 1000 -g parity -s /bin/sh parity
+	groupadd -g 1000 tetsy; \
+	useradd -m -u 1000 -g tetsy -s /bin/sh tetsy
 
-WORKDIR /home/parity
+WORKDIR /home/tetsy
 
-# add parity-ethereum binary to docker image
-COPY artifacts/x86_64-unknown-linux-gnu/parity /bin/parity
+# add tetsy-vapory binary to docker image
+COPY artifacts/x86_64-unknown-linux-gnu/tetsy /bin/tetsy
 COPY tools/check_sync.sh /check_sync.sh
 
-# switch to user parity here
-USER parity
+# switch to user tetsy here
+USER tetsy
 
 # check if executable works in this container
-RUN parity --version
+RUN tetsy --version
 
 EXPOSE 5001 8080 8082 8083 8545 8546 8180 30303/tcp 30303/udp
 
-ENTRYPOINT ["/bin/parity"]
+ENTRYPOINT ["/bin/tetsy"]

@@ -17,7 +17,7 @@
 use snapshot::SnapshotService;
 
 use bytes::Bytes;
-use ethereum_types::H256;
+use vapory_types::H256;
 use parking_lot::Mutex;
 use types::snapshot::{ManifestData, RestorationStatus};
 

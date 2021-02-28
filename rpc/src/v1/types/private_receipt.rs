@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethcore_private_tx::{Receipt as EthPrivateReceipt};
-use ethereum_types::{H160, H256};
+use vapcore_private_tx::{Receipt as VapPrivateReceipt};
+use vapory_types::{H160, H256};
 use v1::types::TransactionRequest;
 
 /// Receipt
@@ -31,8 +31,8 @@ pub struct PrivateTransactionReceipt {
 	pub status_code: u8,
 }
 
-impl From<EthPrivateReceipt> for PrivateTransactionReceipt {
-	fn from(r: EthPrivateReceipt) -> Self {
+impl From<VapPrivateReceipt> for PrivateTransactionReceipt {
+	fn from(r: VapPrivateReceipt) -> Self {
 		PrivateTransactionReceipt {
 			transaction_hash: r.hash,
 			contract_address: r.contract_address,

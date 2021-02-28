@@ -19,14 +19,14 @@ use std::sync::Arc;
 use accounts::AccountProvider;
 use bytes::Bytes;
 use crypto::DEFAULT_MAC;
-use ethereum_types::{H256, U256, Address};
+use vapory_types::{H256, U256, Address};
 use crypto::publickey::Signature;
 use types::transaction::{Transaction, Action, SignedTransaction};
 
 use jsonrpc_core::Result;
 use v1::helpers::{errors, FilledTransactionRequest};
 
-use super::{eth_data_hash, WithToken, SignWith, SignMessage};
+use super::{vap_data_hash, WithToken, SignWith, SignMessage};
 
 /// Account-aware signer
 pub struct Signer {
@@ -63,7 +63,7 @@ impl super::Accounts for Signer {
 	fn sign_message(&self, address: Address, password: SignWith, hash: SignMessage) -> Result<WithToken<Signature>> {
 		match hash {
 			SignMessage::Data(data) => {
-				let hash = eth_data_hash(data);
+				let hash = vap_data_hash(data);
 				signature(&self.accounts, address, hash, password)
 			},
 			SignMessage::Hash(hash) => {

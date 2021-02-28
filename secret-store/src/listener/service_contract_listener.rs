@@ -20,7 +20,7 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 use std::thread;
 use bytes::Bytes;
 use crypto::publickey::{Public, public_to_address};
-use ethereum_types::{H256, U256, Address, BigEndianHash as _};
+use vapory_types::{H256, U256, Address, BigEndianHash as _};
 use key_server_set::KeyServerSet;
 use key_server_cluster::{NodeId, ClusterClient, ClusterSessionsListener, ClusterSession};
 use key_server_cluster::math;
@@ -592,7 +592,7 @@ mod tests {
 	use blockchain::SigningKeyPair;
 	use {PlainNodeKeyPair, ServerKeyId};
 	use super::{ServiceTask, ServiceContractListener, ServiceContractListenerParams, is_processed_by_this_key_server};
-	use ethereum_types::Address;
+	use vapory_types::Address;
 
 	fn create_non_empty_key_storage(has_doc_key: bool) -> Arc<DummyKeyStorage> {
 		let key_storage = Arc::new(DummyKeyStorage::default());

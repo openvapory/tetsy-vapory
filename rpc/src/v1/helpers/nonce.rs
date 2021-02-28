@@ -19,11 +19,11 @@ use std::collections::HashMap;
 use std::sync::{atomic, Arc};
 use std::sync::atomic::{AtomicBool, AtomicUsize};
 
-use ethereum_types::{U256, Address};
+use vapory_types::{U256, Address};
 use futures::{Future, future, Poll, Async};
 use futures::future::Either;
 use futures::sync::oneshot;
-use parity_runtime::Executor;
+use tetsy_runtime::Executor;
 
 /// Manages currently reserved and prospective nonces
 /// for multiple senders.
@@ -244,7 +244,7 @@ impl Drop for Ready {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use parity_runtime::Runtime;
+    use tetsy_runtime::Runtime;
 
 	#[test]
 	fn should_reserve_a_set_of_nonces_and_resolve_them() {

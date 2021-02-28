@@ -16,12 +16,12 @@
 
 #![recursion_limit="128"]
 
-extern crate parity_crypto as crypto;
-extern crate ethcore_io as io;
-extern crate ethereum_types;
-extern crate rlp;
+extern crate tetsy_crypto as crypto;
+extern crate vapcore_io as io;
+extern crate vapory_types;
+extern crate tetsy_rlp;
 extern crate ipnetwork;
-extern crate parity_snappy as snappy;
+extern crate tetsy_snappy as snappy;
 extern crate libc;
 extern crate semver;
 extern crate serde;
@@ -54,8 +54,8 @@ use std::sync::Arc;
 use std::time::Duration;
 use ipnetwork::{IpNetwork, IpNetworkError};
 use crypto::publickey::Secret;
-use ethereum_types::H512;
-use rlp::{Decodable, DecoderError, Rlp};
+use vapory_types::H512;
+use tetsy_rlp::{Decodable, DecoderError, Rlp};
 
 /// Protocol handler level packet id
 pub type PacketId = u8;
@@ -251,7 +251,7 @@ impl NetworkConfiguration {
 			ip_filter: IpFilter::default(),
 			reserved_nodes: Vec::new(),
 			non_reserved_mode: NonReservedPeerMode::Accept,
-			client_version: "Parity-network".into(),
+			client_version: "Tetsy-network".into(),
 		}
 	}
 

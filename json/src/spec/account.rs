@@ -53,7 +53,7 @@ impl Account {
 #[cfg(test)]
 mod tests {
 	use super::{Account, Bytes, BTreeMap, Uint};
-	use ethereum_types::U256;
+	use vapory_types::U256;
 
 	#[test]
 	fn account_balance_missing_not_empty() {

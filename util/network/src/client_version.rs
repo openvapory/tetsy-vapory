@@ -16,27 +16,27 @@
 
 #![warn(missing_docs)]
 
-//! Parse ethereum client ID strings and provide querying functionality
+//! Parse vapory client ID strings and provide querying functionality
 
 use semver::Version;
 use std::fmt;
 
-/// Parity client string prefix
-const LEGACY_CLIENT_ID_PREFIX: &str = "Parity";
-const PARITY_CLIENT_ID_PREFIX: &str = "Tetsy-Vapory";
+/// Tetsy client string prefix
+const LEGACY_CLIENT_ID_PREFIX: &str = "Tetsy";
+const TETSY_CLIENT_ID_PREFIX: &str = "Tetsy-Vapory";
 
 lazy_static! {
-/// Parity versions starting from this will accept block bodies requests
+/// Tetsy versions starting from this will accept block bodies requests
 /// of 256 bodies
-	static ref PARITY_CLIENT_LARGE_REQUESTS_VERSION: Version = Version::parse("2.4.0").unwrap();
+	static ref TETSY_CLIENT_LARGE_REQUESTS_VERSION: Version = Version::parse("2.4.0").unwrap();
 }
 
 /// Description of the software version running in a peer
-/// according to https://github.com/ethereum/wiki/wiki/Client-Version-Strings
-/// This structure as it is represents the format used by Parity clients. Other
+/// according to https://github.com/vaporyco/wiki/wiki/Client-Version-Strings
+/// This structure as it is represents the format used by Tetsy clients. Other
 /// vendors may provide additional fields.
 #[derive(Clone,Debug,PartialEq,Eq,Serialize)]
-pub struct ParityClientData {
+pub struct TetsyClientData {
 	name: String,
 	identity: Option<String>,
 	semver: Version,
@@ -47,9 +47,9 @@ pub struct ParityClientData {
 	can_handle_large_requests: bool,
 }
 
-/// Accessor methods for ParityClientData. This will probably
+/// Accessor methods for TetsyClientData. This will probably
 /// need to be abstracted away into a trait.
-impl ParityClientData {
+impl TetsyClientData {
 	fn new(
 		name: String,
 		identity: Option<String>,
@@ -58,10 +58,10 @@ impl ParityClientData {
 		compiler: String,
 	) -> Self {
 		// Flags logic
-		let can_handle_large_requests = &semver >= &PARITY_CLIENT_LARGE_REQUESTS_VERSION;
+		let can_handle_large_requests = &semver >= &TETSY_CLIENT_LARGE_REQUESTS_VERSION;
 
 		// Instantiate and return
-		ParityClientData {
+		TetsyClientData {
 			name: name,
 			identity: identity,
 			semver: semver,
@@ -100,15 +100,15 @@ impl ParityClientData {
 /// Enum describing the version of the software running on a peer.
 #[derive(Clone,Debug,Eq,PartialEq,Serialize)]
 pub enum ClientVersion {
-	/// The peer runs software from parity and the string format is known
-	ParityClient(
+	/// The peer runs software from tetsy and the string format is known
+	TetsyClient(
 		/// The actual information fields: name, version, os, ...
-		ParityClientData
+		TetsyClientData
 	),
-	/// The string ID is recognized as Parity but the overall format
+	/// The string ID is recognized as Tetsy but the overall format
 	/// could not be parsed
-	ParityUnknownFormat(String),
-	/// Other software vendors than Parity
+	TetsyUnknownFormat(String),
+	/// Other software vendors than Tetsy
 	Other(String),
 }
 
@@ -121,14 +121,14 @@ impl Default for ClientVersion {
 /// Provide information about what a particular version of a
 /// peer software can do
 pub trait ClientCapabilities {
-	/// Parity versions before PARITY_CLIENT_LARGE_REQUESTS_VERSION would not
+	/// Tetsy versions before TETSY_CLIENT_LARGE_REQUESTS_VERSION would not
 	/// check the accumulated size of a packet when building a response to a
 	/// GET_BLOCK_BODIES request. If the packet was larger than a given limit,
 	/// instead of sending fewer blocks no packet would get sent at all. Query
 	/// if this version can handle requests for a large number of block bodies.
 	fn can_handle_large_requests(&self) -> bool;
 
-	/// Service transactions are specific to parity. Query if this version
+	/// Service transactions are specific to tetsy. Query if this version
 	/// accepts them.
 	fn accepts_service_transaction(&self) -> bool;
 }
@@ -136,34 +136,34 @@ pub trait ClientCapabilities {
 impl ClientCapabilities for ClientVersion {
 	fn can_handle_large_requests(&self) -> bool {
 		match self {
-			ClientVersion::ParityClient(data) => data.can_handle_large_requests(),
-			ClientVersion::ParityUnknownFormat(_) => false, // Play it safe
+			ClientVersion::TetsyClient(data) => data.can_handle_large_requests(),
+			ClientVersion::TetsyUnknownFormat(_) => false, // Play it safe
 			ClientVersion::Other(_) => true // As far as we know
 		}
 	}
 
 	fn accepts_service_transaction(&self) -> bool {
 		match self {
-			ClientVersion::ParityClient(_) => true,
-			ClientVersion::ParityUnknownFormat(_) => true,
+			ClientVersion::TetsyClient(_) => true,
+			ClientVersion::TetsyUnknownFormat(_) => true,
 			ClientVersion::Other(_) => false
 		}
 	}
 
 }
 
-fn is_parity(client_id: &str) -> bool {
-	client_id.starts_with(LEGACY_CLIENT_ID_PREFIX) || client_id.starts_with(PARITY_CLIENT_ID_PREFIX)
+fn is_tetsy(client_id: &str) -> bool {
+	client_id.starts_with(LEGACY_CLIENT_ID_PREFIX) || client_id.starts_with(TETSY_CLIENT_ID_PREFIX)
 }
 
-/// Parse known parity formats. Recognizes either a short format with four fields
+/// Parse known tetsy formats. Recognizes either a short format with four fields
 /// or a long format which includes the same fields and an identity one.
-fn parse_parity_format(client_version: &str) -> Result<ParityClientData, ()> {
-	const PARITY_ID_STRING_MINIMUM_TOKENS: usize = 4;
+fn parse_tetsy_format(client_version: &str) -> Result<TetsyClientData, ()> {
+	const TETSY_ID_STRING_MINIMUM_TOKENS: usize = 4;
 
 	let tokens: Vec<&str> = client_version.split("/").collect();
 
-	if tokens.len() < PARITY_ID_STRING_MINIMUM_TOKENS {
+	if tokens.len() < TETSY_ID_STRING_MINIMUM_TOKENS {
 		return Err(())
 	}
 
@@ -182,7 +182,7 @@ fn parse_parity_format(client_version: &str) -> Result<ParityClientData, ()> {
 	// result. Otherwise return an error.
 	get_number_from_version(tokens[tokens.len() - 3])
 		.and_then(|v| Version::parse(v).ok())
-		.map(|semver| ParityClientData::new(
+		.map(|semver| TetsyClientData::new(
 			name.to_owned(),
 			identity,
 			semver,
@@ -193,29 +193,29 @@ fn parse_parity_format(client_version: &str) -> Result<ParityClientData, ()> {
 }
 
 /// Parse a version string and return the corresponding
-/// ClientVersion. Only Parity clients are destructured right now, other
+/// ClientVersion. Only Tetsy clients are destructured right now, other
 /// strings will just get wrapped in a variant so that the information is
 /// not lost.
-/// The parsing for parity may still fail, in which case return a ParityUnknownFormat with
+/// The parsing for tetsy may still fail, in which case return a TetsyUnknownFormat with
 /// the original version string. TryFrom would be a better trait to implement.
 impl<T> From<T> for ClientVersion
 where T: AsRef<str> {
 	fn from(client_version: T) -> Self {
 		let client_version_str: &str = client_version.as_ref();
 
-		if !is_parity(client_version_str) {
+		if !is_tetsy(client_version_str) {
 			return ClientVersion::Other(client_version_str.to_owned());
 		}
 
-		if let Ok(data) = parse_parity_format(client_version_str) {
-			ClientVersion::ParityClient(data)
+		if let Ok(data) = parse_tetsy_format(client_version_str) {
+			ClientVersion::TetsyClient(data)
 		} else {
-			ClientVersion::ParityUnknownFormat(client_version_str.to_owned())
+			ClientVersion::TetsyUnknownFormat(client_version_str.to_owned())
 		}
 	}
 }
 
-fn format_parity_version_string(client_version: &ParityClientData, f: &mut fmt::Formatter) -> std::fmt::Result {
+fn format_tetsy_version_string(client_version: &TetsyClientData, f: &mut fmt::Formatter) -> std::fmt::Result {
 	let name = client_version.name();
 	let semver = client_version.semver();
 	let os = client_version.os();
@@ -230,8 +230,8 @@ fn format_parity_version_string(client_version: &ParityClientData, f: &mut fmt::
 impl fmt::Display for ClientVersion {
 	fn fmt(&self, f: &mut fmt::Formatter) -> std::fmt::Result {
 		match self {
-			ClientVersion::ParityClient(data) => format_parity_version_string(data, f),
-			ClientVersion::ParityUnknownFormat(id) => write!(f, "{}", id),
+			ClientVersion::TetsyClient(data) => format_tetsy_version_string(data, f),
+			ClientVersion::TetsyUnknownFormat(id) => write!(f, "{}", id),
 			ClientVersion::Other(id) => write!(f, "{}", id)
 		}
 	}
@@ -249,53 +249,53 @@ fn get_number_from_version(version: &str) -> Option<&str> {
 pub mod tests {
 	use super::*;
 
-	const PARITY_CLIENT_SEMVER: &str = "2.4.0";
-	const PARITY_CLIENT_OLD_SEMVER: &str = "2.2.0";
-	const PARITY_CLIENT_OS: &str = "linux";
-	const PARITY_CLIENT_COMPILER: &str = "rustc";
-	const PARITY_CLIENT_IDENTITY: &str = "ExpanseSOLO";
-	const PARITY_CLIENT_MULTITOKEN_IDENTITY: &str = "ExpanseSOLO/abc/v1.2.3";
+	const TETSY_CLIENT_SEMVER: &str = "2.4.0";
+	const TETSY_CLIENT_OLD_SEMVER: &str = "2.2.0";
+	const TETSY_CLIENT_OS: &str = "linux";
+	const TETSY_CLIENT_COMPILER: &str = "rustc";
+	const TETSY_CLIENT_IDENTITY: &str = "ExpanseSOLO";
+	const TETSY_CLIENT_MULTITOKEN_IDENTITY: &str = "ExpanseSOLO/abc/v1.2.3";
 
 
 	fn make_default_version_string() -> String {
 		format!(
 			"{}/v{}/{}/{}",
-			PARITY_CLIENT_ID_PREFIX,
-			PARITY_CLIENT_SEMVER,
-			PARITY_CLIENT_OS,
-			PARITY_CLIENT_COMPILER
+			TETSY_CLIENT_ID_PREFIX,
+			TETSY_CLIENT_SEMVER,
+			TETSY_CLIENT_OS,
+			TETSY_CLIENT_COMPILER
 		)
 	}
 
 	fn make_default_long_version_string() -> String {
 		format!(
 			"{}/{}/v{}/{}/{}",
-			PARITY_CLIENT_ID_PREFIX,
-			PARITY_CLIENT_IDENTITY,
-			PARITY_CLIENT_SEMVER,
-			PARITY_CLIENT_OS,
-			PARITY_CLIENT_COMPILER
+			TETSY_CLIENT_ID_PREFIX,
+			TETSY_CLIENT_IDENTITY,
+			TETSY_CLIENT_SEMVER,
+			TETSY_CLIENT_OS,
+			TETSY_CLIENT_COMPILER
 		)
 	}
 
 	fn make_multitoken_identity_long_version_string() -> String {
 		format!(
 			"{}/{}/v{}/{}/{}",
-			PARITY_CLIENT_ID_PREFIX,
-			PARITY_CLIENT_MULTITOKEN_IDENTITY,
-			PARITY_CLIENT_SEMVER,
-			PARITY_CLIENT_OS,
-			PARITY_CLIENT_COMPILER
+			TETSY_CLIENT_ID_PREFIX,
+			TETSY_CLIENT_MULTITOKEN_IDENTITY,
+			TETSY_CLIENT_SEMVER,
+			TETSY_CLIENT_OS,
+			TETSY_CLIENT_COMPILER
 		)
 	}
 
 	fn make_old_semver_version_string() -> String {
 		format!(
 			"{}/v{}/{}/{}",
-			PARITY_CLIENT_ID_PREFIX,
-			PARITY_CLIENT_OLD_SEMVER,
-			PARITY_CLIENT_OS,
-			PARITY_CLIENT_COMPILER
+			TETSY_CLIENT_ID_PREFIX,
+			TETSY_CLIENT_OLD_SEMVER,
+			TETSY_CLIENT_OS,
+			TETSY_CLIENT_COMPILER
 		)
 	}
 
@@ -308,122 +308,122 @@ pub mod tests {
 
 	#[test]
 	pub fn get_number_from_version_when_valid_then_number() {
-		let version_string = format!("v{}", PARITY_CLIENT_SEMVER);
+		let version_string = format!("v{}", TETSY_CLIENT_SEMVER);
 
-		assert_eq!(get_number_from_version(&version_string).unwrap(), PARITY_CLIENT_SEMVER);
+		assert_eq!(get_number_from_version(&version_string).unwrap(), TETSY_CLIENT_SEMVER);
 	}
 
 	#[test]
-	pub fn client_version_when_str_parity_format_and_valid_then_all_fields_match() {
+	pub fn client_version_when_str_tetsy_format_and_valid_then_all_fields_match() {
 		let client_version_string = make_default_version_string();
 
-		if let ClientVersion::ParityClient(client_version) = ClientVersion::from(client_version_string.as_str()) {
-			assert_eq!(client_version.name(), PARITY_CLIENT_ID_PREFIX);
-			assert_eq!(*client_version.semver(), Version::parse(PARITY_CLIENT_SEMVER).unwrap());
-			assert_eq!(client_version.os(), PARITY_CLIENT_OS);
-			assert_eq!(client_version.compiler(), PARITY_CLIENT_COMPILER);
+		if let ClientVersion::TetsyClient(client_version) = ClientVersion::from(client_version_string.as_str()) {
+			assert_eq!(client_version.name(), TETSY_CLIENT_ID_PREFIX);
+			assert_eq!(*client_version.semver(), Version::parse(TETSY_CLIENT_SEMVER).unwrap());
+			assert_eq!(client_version.os(), TETSY_CLIENT_OS);
+			assert_eq!(client_version.compiler(), TETSY_CLIENT_COMPILER);
 		} else {
 			panic!("shouldn't be here");
 		}
 	}
 
 	#[test]
-	pub fn client_version_when_str_parity_long_format_and_valid_then_all_fields_match() {
+	pub fn client_version_when_str_tetsy_long_format_and_valid_then_all_fields_match() {
 		let client_version_string = make_default_long_version_string();
 
-		if let ClientVersion::ParityClient(client_version) = ClientVersion::from(client_version_string.as_str()) {
-			assert_eq!(client_version.name(), PARITY_CLIENT_ID_PREFIX);
-			assert_eq!(client_version.identity().unwrap(), PARITY_CLIENT_IDENTITY);
-			assert_eq!(*client_version.semver(), Version::parse(PARITY_CLIENT_SEMVER).unwrap());
-			assert_eq!(client_version.os(), PARITY_CLIENT_OS);
-			assert_eq!(client_version.compiler(), PARITY_CLIENT_COMPILER);
+		if let ClientVersion::TetsyClient(client_version) = ClientVersion::from(client_version_string.as_str()) {
+			assert_eq!(client_version.name(), TETSY_CLIENT_ID_PREFIX);
+			assert_eq!(client_version.identity().unwrap(), TETSY_CLIENT_IDENTITY);
+			assert_eq!(*client_version.semver(), Version::parse(TETSY_CLIENT_SEMVER).unwrap());
+			assert_eq!(client_version.os(), TETSY_CLIENT_OS);
+			assert_eq!(client_version.compiler(), TETSY_CLIENT_COMPILER);
 		} else {
 			panic!("shouldnt be here");
 		}
 	}
 
 	#[test]
-	pub fn client_version_when_str_parity_long_format_and_valid_and_identity_multiple_tokens_then_all_fields_match() {
+	pub fn client_version_when_str_tetsy_long_format_and_valid_and_identity_multiple_tokens_then_all_fields_match() {
 		let client_version_string = make_multitoken_identity_long_version_string();
 
-		if let ClientVersion::ParityClient(client_version) = ClientVersion::from(client_version_string.as_str()) {
-			assert_eq!(client_version.name(), PARITY_CLIENT_ID_PREFIX);
-			assert_eq!(client_version.identity().unwrap(), PARITY_CLIENT_MULTITOKEN_IDENTITY);
-			assert_eq!(*client_version.semver(), Version::parse(PARITY_CLIENT_SEMVER).unwrap());
-			assert_eq!(client_version.os(), PARITY_CLIENT_OS);
-			assert_eq!(client_version.compiler(), PARITY_CLIENT_COMPILER);
+		if let ClientVersion::TetsyClient(client_version) = ClientVersion::from(client_version_string.as_str()) {
+			assert_eq!(client_version.name(), TETSY_CLIENT_ID_PREFIX);
+			assert_eq!(client_version.identity().unwrap(), TETSY_CLIENT_MULTITOKEN_IDENTITY);
+			assert_eq!(*client_version.semver(), Version::parse(TETSY_CLIENT_SEMVER).unwrap());
+			assert_eq!(client_version.os(), TETSY_CLIENT_OS);
+			assert_eq!(client_version.compiler(), TETSY_CLIENT_COMPILER);
 		} else {
 			panic!("shouldnt be here");
 		}
 	}
 
 	#[test]
-	pub fn client_version_when_string_parity_format_and_valid_then_all_fields_match() {
+	pub fn client_version_when_string_tetsy_format_and_valid_then_all_fields_match() {
 		let client_version_string: String = make_default_version_string();
 
-		if let ClientVersion::ParityClient(client_version) = ClientVersion::from(client_version_string.as_str()) {
-			assert_eq!(client_version.name(), PARITY_CLIENT_ID_PREFIX);
-			assert_eq!(*client_version.semver(), Version::parse(PARITY_CLIENT_SEMVER).unwrap());
-			assert_eq!(client_version.os(), PARITY_CLIENT_OS);
-			assert_eq!(client_version.compiler(), PARITY_CLIENT_COMPILER);
+		if let ClientVersion::TetsyClient(client_version) = ClientVersion::from(client_version_string.as_str()) {
+			assert_eq!(client_version.name(), TETSY_CLIENT_ID_PREFIX);
+			assert_eq!(*client_version.semver(), Version::parse(TETSY_CLIENT_SEMVER).unwrap());
+			assert_eq!(client_version.os(), TETSY_CLIENT_OS);
+			assert_eq!(client_version.compiler(), TETSY_CLIENT_COMPILER);
 		} else {
 			panic!("shouldn't be here");
 		}
 	}
 
 	#[test]
-	pub fn client_version_when_parity_format_and_invalid_then_equals_parity_unknown_client_version_string() {
+	pub fn client_version_when_tetsy_format_and_invalid_then_equals_tetsy_unknown_client_version_string() {
 		// This is invalid because version has no leading 'v'
 		let client_version_string = format!(
 			"{}/{}/{}/{}",
-			PARITY_CLIENT_ID_PREFIX,
-			PARITY_CLIENT_SEMVER,
-			PARITY_CLIENT_OS,
-			PARITY_CLIENT_COMPILER);
+			TETSY_CLIENT_ID_PREFIX,
+			TETSY_CLIENT_SEMVER,
+			TETSY_CLIENT_OS,
+			TETSY_CLIENT_COMPILER);
 
 		let client_version = ClientVersion::from(client_version_string.as_str());
 
-		let parity_unknown = ClientVersion::ParityUnknownFormat(client_version_string.to_string());
+		let tetsy_unknown = ClientVersion::TetsyUnknownFormat(client_version_string.to_string());
 
-		assert_eq!(client_version, parity_unknown);
+		assert_eq!(client_version, tetsy_unknown);
 	}
 
 	#[test]
-	pub fn client_version_when_parity_format_without_identity_and_missing_compiler_field_then_equals_parity_unknown_client_version_string() {
+	pub fn client_version_when_tetsy_format_without_identity_and_missing_compiler_field_then_equals_tetsy_unknown_client_version_string() {
 		let client_version_string = format!(
 			"{}/v{}/{}",
-			PARITY_CLIENT_ID_PREFIX,
-			PARITY_CLIENT_SEMVER,
-			PARITY_CLIENT_OS,
+			TETSY_CLIENT_ID_PREFIX,
+			TETSY_CLIENT_SEMVER,
+			TETSY_CLIENT_OS,
 			);
 
 		let client_version = ClientVersion::from(client_version_string.as_str());
 
-		let parity_unknown = ClientVersion::ParityUnknownFormat(client_version_string.to_string());
+		let tetsy_unknown = ClientVersion::TetsyUnknownFormat(client_version_string.to_string());
 
-		assert_eq!(client_version, parity_unknown);
+		assert_eq!(client_version, tetsy_unknown);
 	}
 
 	#[test]
-	pub fn client_version_when_parity_format_with_identity_and_missing_compiler_field_then_equals_parity_unknown_client_version_string() {
+	pub fn client_version_when_tetsy_format_with_identity_and_missing_compiler_field_then_equals_tetsy_unknown_client_version_string() {
 		let client_version_string = format!(
 			"{}/{}/v{}/{}",
-			PARITY_CLIENT_ID_PREFIX,
-			PARITY_CLIENT_IDENTITY,
-			PARITY_CLIENT_SEMVER,
-			PARITY_CLIENT_OS,
+			TETSY_CLIENT_ID_PREFIX,
+			TETSY_CLIENT_IDENTITY,
+			TETSY_CLIENT_SEMVER,
+			TETSY_CLIENT_OS,
 			);
 
 		let client_version = ClientVersion::from(client_version_string.as_str());
 
-		let parity_unknown = ClientVersion::ParityUnknownFormat(client_version_string.to_string());
+		let tetsy_unknown = ClientVersion::TetsyUnknownFormat(client_version_string.to_string());
 
-		assert_eq!(client_version, parity_unknown);
+		assert_eq!(client_version, tetsy_unknown);
 	}
 
 	#[test]
-	pub fn client_version_when_not_parity_format_and_valid_then_other_with_client_version_string() {
-		let client_version_string = "Geth/main.jnode.network/v1.8.21-stable-9dc5d1a9/linux";
+	pub fn client_version_when_not_tetsy_format_and_valid_then_other_with_client_version_string() {
+		let client_version_string = "Gvap/main.jnode.network/v1.8.21-stable-9dc5d1a9/linux";
 
 		let client_version = ClientVersion::from(client_version_string);
 
@@ -431,7 +431,7 @@ pub mod tests {
 	}
 
 	#[test]
-	pub fn client_version_when_parity_format_and_valid_then_to_string_equal() {
+	pub fn client_version_when_tetsy_format_and_valid_then_to_string_equal() {
 		let client_version_string: String = make_default_version_string();
 
 		let client_version = ClientVersion::from(client_version_string.as_str());
@@ -449,7 +449,7 @@ pub mod tests {
 	}
 
 	#[test]
-	pub fn client_capabilities_when_parity_old_version_then_handles_large_requests_false() {
+	pub fn client_capabilities_when_tetsy_old_version_then_handles_large_requests_false() {
 		let client_version_string: String = make_old_semver_version_string();
 
 		let client_version = ClientVersion::from(client_version_string.as_str());
@@ -458,7 +458,7 @@ pub mod tests {
 	}
 
 	#[test]
-	pub fn client_capabilities_when_parity_beta_version_then_not_handles_large_requests_true() {
+	pub fn client_capabilities_when_tetsy_beta_version_then_not_handles_large_requests_true() {
 		let client_version_string: String = format!(
 			"{}/v{}/{}/{}",
 			"Tetsy-Vapory",
@@ -487,29 +487,29 @@ pub mod tests {
 
 	#[test]
 	fn client_version_accepts_service_transaction_for_different_versions() {
-		assert!(!ClientVersion::from("Geth").accepts_service_transaction());
+		assert!(!ClientVersion::from("Gvap").accepts_service_transaction());
 		assert!(ClientVersion::from("Tetsy-Vapory/v2.6.0/linux/rustc").accepts_service_transaction());
 		assert!(ClientVersion::from("Tetsy-Vapory/ABCDEFGH/v2.7.3/linux/rustc").accepts_service_transaction());
 	}
 
 	#[test]
-	fn is_parity_when_parity_then_true() {
-		let client_id = format!("{}/", PARITY_CLIENT_ID_PREFIX);
+	fn is_tetsy_when_tetsy_then_true() {
+		let client_id = format!("{}/", TETSY_CLIENT_ID_PREFIX);
 
-		assert!(is_parity(&client_id));
+		assert!(is_tetsy(&client_id));
 	}
 
 	#[test]
-	fn is_parity_when_empty_then_false() {
+	fn is_tetsy_when_empty_then_false() {
 		let client_id = "";
 
-		assert!(!is_parity(&client_id));
+		assert!(!is_tetsy(&client_id));
 	}
 
 	#[test]
-	fn is_parity_when_other_then_false() {
+	fn is_tetsy_when_other_then_false() {
 		let client_id = "other";
 
-		assert!(!is_parity(&client_id));
+		assert!(!is_tetsy(&client_id));
 	}
 }

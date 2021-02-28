@@ -18,10 +18,10 @@
 
 use std::sync::Arc;
 
-use rlp::Rlp;
+use tetsy_rlp::Rlp;
 
-use ethcore_private_tx::Provider as PrivateTransactionManager;
-use ethereum_types::{Address, H160, H256, U256};
+use vapcore_private_tx::Provider as PrivateTransactionManager;
+use vapory_types::{Address, H160, H256, U256};
 use types::transaction::SignedTransaction;
 
 use jsonrpc_core::{Error};

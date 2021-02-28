@@ -18,8 +18,8 @@ use std::sync::Arc;
 use std::collections::{BTreeMap, BTreeSet};
 use parking_lot::RwLock;
 use crypto::publickey::{Public, Signature, Random, Generator};
-use ethereum_types::{Address, H256};
-use parity_runtime::Executor;
+use vapory_types::{Address, H256};
+use tetsy_runtime::Executor;
 use blockchain::SigningKeyPair;
 use key_server_cluster::{Error, NodeId, SessionId, Requester, AclStorage, KeyStorage, KeyServerSet};
 use key_server_cluster::cluster_sessions::{WaitableSession, ClusterSession, AdminSession, ClusterSessions,
@@ -655,7 +655,7 @@ pub mod tests {
 	use std::collections::{BTreeMap, BTreeSet, VecDeque};
 	use futures::Future;
 	use parking_lot::{Mutex, RwLock};
-	use ethereum_types::{Address, H256};
+	use vapory_types::{Address, H256};
 	use crypto::publickey::{Random, Generator, Public, Signature, sign};
 	use blockchain::SigningKeyPair;
 	use key_server_cluster::{NodeId, SessionId, Requester, Error, DummyAclStorage, DummyKeyStorage,

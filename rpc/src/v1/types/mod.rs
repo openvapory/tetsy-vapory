@@ -17,7 +17,7 @@
 //! RPC types
 
 #[cfg(test)]
-mod eth_types;
+mod vap_types;
 
 mod account_info;
 mod block;
@@ -50,14 +50,14 @@ mod eip191;
 pub mod pubsub;
 
 pub use self::eip191::{EIP191Version, PresignedTransaction};
-pub use self::account_info::{AccountInfo, ExtAccountInfo, EthAccount, StorageProof, RecoveredAccount};
+pub use self::account_info::{AccountInfo, ExtAccountInfo, VapAccount, StorageProof, RecoveredAccount};
 pub use self::bytes::Bytes;
 pub use self::block::{RichBlock, Block, BlockTransactions, Header, RichHeader, Rich};
 pub use self::block_number::{BlockNumber, LightBlockNumber, block_number_to_id};
 pub use self::call_request::CallRequest;
 pub use self::confirmations::{
 	ConfirmationPayload, ConfirmationRequest, ConfirmationResponse, ConfirmationResponseWithToken,
-	TransactionModification, EIP191SignRequest, EthSignRequest, DecryptRequest, Either
+	TransactionModification, EIP191SignRequest, VapSignRequest, DecryptRequest, Either
 };
 pub use self::consensus_status::*;
 pub use self::derivation::{DeriveHash, DeriveHierarchical, Derive};
@@ -74,7 +74,7 @@ pub use self::rpc_settings::RpcSettings;
 pub use self::secretstore::EncryptedDocumentKey;
 pub use self::sync::{
 	SyncStatus, SyncInfo, Peers, PeerInfo, PeerNetworkInfo, PeerProtocolsInfo,
-	TransactionStats, ChainStatus, EthProtocolInfo, PipProtocolInfo,
+	TransactionStats, ChainStatus, VapProtocolInfo, PipProtocolInfo,
 };
 pub use self::trace::{LocalizedTrace, TraceResults, TraceResultsWithTransactionHash};
 pub use self::trace_filter::TraceFilter;

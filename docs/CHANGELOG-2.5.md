@@ -13,7 +13,7 @@ EIP-2384/2387 - Muir Glacier.
 
 The full list of included changes:
 * Enable EIP-2384 for ice age hard fork (#11281)
-* ethcore/res: activate agharta on classic 9573000 (#11331)
+* vapcore/res: activate agharta on classic 9573000 (#11331)
 * Istanbul HF in xDai (2019-12-12) (#11299)
 * Istanbul HF in POA Core (2019-12-19) (#11298)
 * Istanbul HF in POA Sokol (2019-12-05) (#11282)
@@ -38,18 +38,18 @@ activating the Istanbul hardfork on mainnet, as well as a large number of
 various bugfixes, QoL changes, some code cleanup/refactoring and other
 miscellaneous changes.
 
-This release removes legacy aliases for the mainnet. If you specify `--chain homestead`, `--chain frontier` or `--chain byzantium`, this will need to be changed to one of: `--chain eth`, `--chain ethereum`, `--chain foundation` or `--chain mainnet`.
+This release removes legacy aliases for the mainnet. If you specify `--chain homestead`, `--chain frontier` or `--chain byzantium`, this will need to be changed to one of: `--chain vap`, `--chain vapory`, `--chain foundation` or `--chain mainnet`.
 
 The full list of included changes:
 
 * ropsten #6631425 foundation #8798209 (#11201)
 * [stable] builtin, istanbul and mordor testnet backports (#11234)
-  * ethcore-builtin (#10850)
+  * vapcore-builtin (#10850)
   * [builtin]: support `multiple prices and activations` in chain spec (#11039)
   * [chain specs]: activate `Istanbul` on mainnet (#11228)
-  * ethcore/res: add mordor testnet configuration (#11200)
+  * vapcore/res: add mordor testnet configuration (#11200)
 * Update list of bootnodes for xDai chain (#11236)
-* ethcore: remove `test-helper feat` from build (#11047)
+* vapcore: remove `test-helper feat` from build (#11047)
 * Secret store: fix Instant::now() related race in net_keep_alive (#11155) (#11159)
 * [stable]: backport #10691 and #10683 (#11143)
   * Fix compiler warning (that will become an error) (#10683)
@@ -59,11 +59,11 @@ The full list of included changes:
 * Insert explicit warning into the panic hook (#11225)
 * Fix docker centos build (#11226)
 * Update MIX bootnodes. (#11203)
-* Use provided usd-per-eth value if an endpoint is specified (#11209)
+* Use provided usd-per-vap value if an endpoint is specified (#11209)
 * Add new line after writing block to hex file. (#10984)
 * Type annotation for next_key() matching of json filter options (#11192) (but no `FilterOption` in 2.5 so…)
 * Upgrade jsonrpc to latest (#11206)
-* [CI] check evmbin build (#11096)
+* [CI] check vvmbin build (#11096)
 * Correct EIP-712 encoding (#11092)
 * [client]: Fix for incorrectly dropped consensus messages (#11086)
 * Fix block detail updating (#11015)
@@ -71,10 +71,10 @@ The full list of included changes:
 * Made ecrecover implementation trait public (#11188)
 * [dependencies]: jsonrpc `14.0.1` (#11183)
 * [receipt]: add `sender` & `receiver` to `RichReceipts` (#11179)
-* [ethcore/builtin]: do not panic in blake2pricer on short input (#11180)
+* [vapcore/builtin]: do not panic in blake2pricer on short input (#11180)
 * util Host: fix a double Read Lock bug in fn Host::session_readable() (#11175)
-* ethcore client: fix a double Read Lock bug in fn Client::logs() (#11172)
-* Change how RPCs eth_call and eth_estimateGas handle "Pending" (#11127)
+* vapcore client: fix a double Read Lock bug in fn Client::logs() (#11172)
+* Change how RPCs vap_call and vap_estimateGas handle "Pending" (#11127)
 * Cleanup stratum a bit (#11161)
 * Upgrade to jsonrpc v14 (#11151)
 * SecretStore: expose restore_key_public in HTTP API (#10241)
@@ -85,7 +85,7 @@ Tetsy Vapory v2.5.9-stable is a patch release that adds the block numbers for ac
 
 The full list of included changes:
 
-* ethcore/res: activate Istanbul on Ropsten, Görli, Rinkeby, Kovan (#11068)
+* vapcore/res: activate Istanbul on Ropsten, Görli, Rinkeby, Kovan (#11068)
 * [json-spec] make blake2 pricing spec more readable (#11034)
 
 ## Tetsy-Vapory [v2.5.8](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.5.8)
@@ -93,7 +93,7 @@ The full list of included changes:
 Tetsy Vapory v2.5.8-stable is a patch release that improves security, stability and performance.
 
 * The most noteworthy improvement in this release is incorporating all the EIPs required for the Istanbul hard fork.
-* This release also fixes certain security and performance issues, one of which was suspected to be consensus-threatening but turned out to be benign. Thanks to Martin Holst Swende and Felix Lange from the Ethereum Foundation for bringing the suspicious issue to our attention.
+* This release also fixes certain security and performance issues, one of which was suspected to be consensus-threatening but turned out to be benign. Thanks to Martin Holst Swende and Felix Lange from the Vapory Foundation for bringing the suspicious issue to our attention.
 
 The full list of included changes:
 
@@ -115,13 +115,13 @@ The full list of included changes:
 * Fix fork choice (#10837)
 * Cleanup unused vm dependencies (#10787)
 * Fix compilation on recent nightlies (#10991)
-* Don't build rpc with ethcore test-helpers (#11048)
+* Don't build rpc with vapcore test-helpers (#11048)
 * EIP 1884 Re-pricing of trie-size dependent operations  (#10992)
 * Implement EIP-1283 reenable transition, EIP-1706 and EIP-2200  (#10191)
 
 ## Tetsy-Vapory [v2.5.7](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.5.7)
 
-Tetsy Vapory v2.5.7-stable is a bugfix release that fixes a potential DoS attack in the trace_call RPC method. This is a critical upgrade for anyone running Parity nodes with RPC exposed to the public internet (and highly recommended for anyone else). For details see this blog post.
+Tetsy Vapory v2.5.7-stable is a bugfix release that fixes a potential DoS attack in the trace_call RPC method. This is a critical upgrade for anyone running Tetsy nodes with RPC exposed to the public internet (and highly recommended for anyone else). For details see this blog post.
 
 ## Tetsy-Vapory [v2.5.6](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.5.6)
 
@@ -139,7 +139,7 @@ The full list of included changes:
 * Allow --nat extip:your.host.here.org (#10830)
 * When updating the client or when called from RPC, sleep should mean sleep (#10814)
 * added new ropsten-bootnode and removed old one (#10794)
-* ethkey no longer uses byteorder (#10786)
+* vapkey no longer uses byteorder (#10786)
 * Do not drop the peer with None difficulty (#10772)
 * docs: Update Readme with TOC, Contributor Guideline. Update Cargo package descriptions (#10652)
 
@@ -163,15 +163,15 @@ The full list of included changes:
 
 Tetsy-Vapory 2.5.3-beta is a bugfix release that improves performance and stability.
 
-* EthereumClassic: activate the Atlantis Hardfork
+* VaporyClassic: activate the Atlantis Hardfork
 * Clique: fix time overflow
 * State tests: treat empty accounts the same as non-existant accounts (EIP 1052)
-* Networking: support discovery-only peers (geth bootnodes)
+* Networking: support discovery-only peers (gvap bootnodes)
 * Snapshotting: fix unclean shutdown while snappshotting is under way
 
 The full list of included changes:
 
-* ethcore/res: activate atlantis classic hf on block 8772000 ([#10766](https://github.com/openvapory/tetsy-vapory/pull/10766))
+* vapcore/res: activate atlantis classic hf on block 8772000 ([#10766](https://github.com/openvapory/tetsy-vapory/pull/10766))
 * fix docker tags for publishing ([#10741](https://github.com/openvapory/tetsy-vapory/pull/10741))
 * fix: aura don't add `SystemTime::now()` ([#10720](https://github.com/openvapory/tetsy-vapory/pull/10720))
 * Treat empty account the same as non-exist accounts in EIP-1052 ([#10775](https://github.com/openvapory/tetsy-vapory/pull/10775))
@@ -192,7 +192,7 @@ The full list of included changes:
 * Update publishing ([#10644](https://github.com/openvapory/tetsy-vapory/pull/10644))
 * enable lto for release builds ([#10717](https://github.com/openvapory/tetsy-vapory/pull/10717))
 * Use RUSTFLAGS to set the optimization level ([#10719](https://github.com/openvapory/tetsy-vapory/pull/10719))
-* ethcore: enable ECIP-1054 for classic ([#10731](https://github.com/openvapory/tetsy-vapory/pull/10731))
+* vapcore: enable ECIP-1054 for classic ([#10731](https://github.com/openvapory/tetsy-vapory/pull/10731))
 
 ## Tetsy-Vapory [v2.5.1](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.5.1)
 
@@ -209,8 +209,8 @@ The full list of included changes:
 Tetsy-Vapory 2.5.0-beta is a minor release that improves performance and stabilizes the 2.5 branch by marking it as beta release.
 
 - This release adds support for the Clique consensus engine ([#9981](https://github.com/openvapory/tetsy-vapory/pull/9981))
-  - This enables Tetsy-Vapory users to use the Görli, the Kotti Classic, and the legacy Rinkeby testnet. To get started try `parity --chain goerli`; note that light client support is currently not yet fully functional.
-- This release removes the dead chain configs for Easthub and Ethereum Social ([#10531](https://github.com/openvapory/tetsy-vapory/pull/10531))
+  - This enables Tetsy-Vapory users to use the Görli, the Kotti Classic, and the legacy Rinkeby testnet. To get started try `tetsy --chain goerli`; note that light client support is currently not yet fully functional.
+- This release removes the dead chain configs for Easthub and Vapory Social ([#10531](https://github.com/openvapory/tetsy-vapory/pull/10531))
 
 As of today, Tetsy-Vapory 2.3 reaches end of life and everyone is encouraged to upgrade.
 

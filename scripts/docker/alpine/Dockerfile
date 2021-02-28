@@ -12,10 +12,10 @@ RUN apk add --no-cache \
   perl \
   rust
 
-WORKDIR /parity
-COPY . /parity
+WORKDIR /tetsy
+COPY . /tetsy
 RUN cargo build --release --target x86_64-alpine-linux-musl --verbose
-RUN strip target/x86_64-alpine-linux-musl/release/parity
+RUN strip target/x86_64-alpine-linux-musl/release/tetsy
 
 
 FROM alpine:edge
@@ -28,16 +28,16 @@ RUN apk add --no-cache \
   eudev-libs \
   libgcc
 
-RUN addgroup -g 1000 parity \
-  && adduser -u 1000 -G parity -s /bin/sh -D parity
+RUN addgroup -g 1000 tetsy \
+  && adduser -u 1000 -G tetsy -s /bin/sh -D tetsy
 
-USER parity
+USER tetsy
 
 EXPOSE 8080 8545 8180
 
-WORKDIR /home/parity
+WORKDIR /home/tetsy
 
-RUN mkdir -p /home/parity/.local/share/io.parity.ethereum/
-COPY --chown=parity:parity --from=builder /parity/target/x86_64-alpine-linux-musl/release/parity ./
+RUN mkdir -p /home/tetsy/.local/share/io.tetsy.vapory/
+COPY --chown=tetsy:tetsy --from=builder /tetsy/target/x86_64-alpine-linux-musl/release/tetsy ./
 
-ENTRYPOINT ["./parity"]
+ENTRYPOINT ["./tetsy"]

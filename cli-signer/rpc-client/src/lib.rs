@@ -17,16 +17,16 @@
 pub mod client;
 pub mod signer_client;
 
-extern crate ethereum_types;
+extern crate vapory_types;
 extern crate futures;
 extern crate jsonrpc_core;
 extern crate jsonrpc_ws_server as ws;
-extern crate parity_rpc as rpc;
+extern crate tetsy_rpc as rpc;
 extern crate parking_lot;
 extern crate serde;
 extern crate serde_json;
 extern crate url;
-extern crate keccak_hash as hash;
+extern crate tetsy_keccak_hash as hash;
 
 #[macro_use]
 extern crate log;

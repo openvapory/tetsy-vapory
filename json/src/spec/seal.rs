@@ -19,11 +19,11 @@
 use crate::{bytes::Bytes, hash::{H64, H256, H520}, uint::Uint};
 use serde::Deserialize;
 
-/// Ethereum seal.
+/// Vapory seal.
 #[derive(Debug, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "camelCase")]
-pub struct Ethereum {
+pub struct Vapory {
 	/// Seal nonce.
 	pub nonce: H64,
 	/// Seal mix hash.
@@ -57,8 +57,8 @@ pub struct TendermintSeal {
 #[serde(deny_unknown_fields)]
 #[serde(rename_all = "camelCase")]
 pub enum Seal {
-	/// Ethereum seal.
-	Ethereum(Ethereum),
+	/// Vapory seal.
+	Vapory(Vapory),
 	/// AuthorityRound seal.
 	AuthorityRound(AuthorityRoundSeal),
 	/// Tendermint seal.
@@ -70,13 +70,13 @@ pub enum Seal {
 #[cfg(test)]
 mod tests {
 	use std::str::FromStr;
-	use super::{AuthorityRoundSeal, Bytes, Ethereum, H64, H256, H520, TendermintSeal, Seal, Uint};
-	use ethereum_types::{U256, H64 as Eth64, H256 as Eth256, H520 as Eth520};
+	use super::{AuthorityRoundSeal, Bytes, Vapory, H64, H256, H520, TendermintSeal, Seal, Uint};
+	use vapory_types::{U256, H64 as Vap64, H256 as Vap256, H520 as Vap520};
 
 	#[test]
 	fn seal_deserialization() {
 		let s = r#"[{
-			"ethereum": {
+			"vapory": {
 				"nonce": "0x0000000000000042",
 				"mixHash": "0x1000000000000000000000000000000000000000000000000000000000000001"
 			}
@@ -101,9 +101,9 @@ mod tests {
 		assert_eq!(deserialized.len(), 4);
 
 		// [0]
-		assert_eq!(deserialized[0], Seal::Ethereum(Ethereum {
-			nonce: H64(Eth64::from_str("0000000000000042").unwrap()),
-			mix_hash: H256(Eth256::from_str("1000000000000000000000000000000000000000000000000000000000000001").unwrap())
+		assert_eq!(deserialized[0], Seal::Vapory(Vapory {
+			nonce: H64(Vap64::from_str("0000000000000042").unwrap()),
+			mix_hash: H256(Vap256::from_str("1000000000000000000000000000000000000000000000000000000000000001").unwrap())
 		}));
 
 		// [1]
@@ -114,14 +114,14 @@ mod tests {
 		// [2]
 		assert_eq!(deserialized[2], Seal::AuthorityRound(AuthorityRoundSeal {
 			step: Uint(U256::from(0x0)),
-			signature: H520(Eth520::from_str("2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002").unwrap())
+			signature: H520(Vap520::from_str("2000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002").unwrap())
 		}));
 
 		// [3]
 		assert_eq!(deserialized[3], Seal::Tendermint(TendermintSeal {
 			round: Uint(U256::from(0x3)),
-			proposal: H520(Eth520::from_str("3000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003").unwrap()),
-			precommits: vec![H520(Eth520::from_str("4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004").unwrap())]
+			proposal: H520(Vap520::from_str("3000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003").unwrap()),
+			precommits: vec![H520(Vap520::from_str("4000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004").unwrap())]
 		}));
 	}
 }

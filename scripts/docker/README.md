@@ -1,34 +1,34 @@
 ## Usage
 
-```docker build -f docker/ubuntu/Dockerfile --tag ethcore/parity:branch_or_tag_name .```
+```docker build -f docker/ubuntu/Dockerfile --tag vapcore/tetsy:branch_or_tag_name .```
 
 ## Usage - CentOS
 
-Builds a lightweight non-root Parity docker image:
+Builds a lightweight non-root Tetsy docker image:
 ```
 git clone https://github.com/openvapory/tetsy-vapory.git
-cd parity-ethereum
+cd tetsy-vapory
 ./scripts/docker/centos/build.sh
 ```
 
 Fully customised build:
 ```
-PARITY_IMAGE_REPO=my-personal/parity \
-PARITY_BUILDER_IMAGE_TAG=build-latest \
-PARITY_RUNNER_IMAGE_TAG=centos-parity-experimental \
+TETSY_IMAGE_REPO=my-personal/tetsy \
+TETSY_BUILDER_IMAGE_TAG=build-latest \
+TETSY_RUNNER_IMAGE_TAG=centos-tetsy-experimental \
 ./scripts/docker/centos/build.sh
 ```
 
 Default values:
 ```
 # The image name
-PARITY_IMAGE_REPO - parity/parity
+TETSY_IMAGE_REPO - tetsy/tetsy
 
 # The tag to be used for builder image, git commit sha will be appended
-PARITY_BUILDER_IMAGE_TAG - build
+TETSY_BUILDER_IMAGE_TAG - build
 
 # The tag to be used for runner image
-PARITY_RUNNER_IMAGE_TAG - latest
+TETSY_RUNNER_IMAGE_TAG - latest
 ```
 
 All default ports you might use will be exposed:

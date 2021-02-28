@@ -2,12 +2,12 @@
 description = "Fetching hash-addressed content."
 homepage = "http://tetcoin.org"
 license = "GPL-3.0"
-name = "parity-hash-fetch"
+name = "tetsy-hash-fetch"
 version = "1.12.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 
 [dependencies]
-call-contract = { package = "ethcore-call-contract", path = "../../ethcore/call-contract" }
+call-contract = { package = "vapcore-call-contract", path = "../../vapcore/call-contract" }
 futures = "0.1"
 log = "0.4"
 mime = "0.3"
@@ -15,16 +15,16 @@ mime_guess = "2.0.0-alpha.2"
 rand = "0.7"
 rustc-hex = "1.0"
 fetch = { path = "../../util/fetch" }
-parity-bytes = "0.1"
-ethereum-types = "0.8.0"
-parity-runtime = { path = "../../util/runtime" }
-keccak-hash = "0.4.0"
-registrar = { path = "../../util/registrar" }
-types = { path = "../../ethcore/types", package = "common-types" }
+tetsy-bytes = "0.1"
+vapory-types = "0.8.0"
+tetsy-runtime = { path = "../../util/runtime" }
+tetsy-keccak-hash = "0.4.0"
+tetsy-registrar = { path = "../../util/tetsy-registrar" }
+types = { path = "../../vapcore/types", package = "common-types" }
 
-ethabi = "9.0.1"
-ethabi-derive = "9.0.1"
-ethabi-contract = "9.0.0"
+vapabi = "9.0.1"
+vapabi-derive = "9.0.1"
+vapabi-contract = "9.0.0"
 
 [dev-dependencies]
 parking_lot = "0.9"

@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Ethereum blooms database
+//! Vapory blooms database
 
 mod db;
 mod file;
 
 use std::io;
 use std::path::Path;
-use ethbloom;
+use vapbloom;
 use parking_lot::Mutex;
 
 /// Threadsafe API for blooms database.
@@ -64,7 +64,7 @@ impl Database {
 	/// * `from` - index of the first bloom that needs to be inserted
 	/// * `blooms` - iterator over blooms
 	pub fn insert_blooms<'a, I, B>(&self, from: u64, blooms: I) -> io::Result<()>
-	where ethbloom::BloomRef<'a>: From<B>, I: Iterator<Item = B> {
+	where vapbloom::BloomRef<'a>: From<B>, I: Iterator<Item = B> {
 		self.database.lock().insert_blooms(from, blooms)
 	}
 
@@ -76,7 +76,7 @@ impl Database {
 	/// * `to` - index of the last bloom that needs to be checked (inclusive range)
 	/// * `blooms` - searched pattern
 	pub fn filter<'a, B, I, II>(&self, from: u64, to: u64, blooms: II) -> io::Result<Vec<u64>>
-	where ethbloom::BloomRef<'a>: From<B>, II: IntoIterator<Item = B, IntoIter = I> + Copy, I: Iterator<Item = B> {
+	where vapbloom::BloomRef<'a>: From<B>, II: IntoIterator<Item = B, IntoIter = I> + Copy, I: Iterator<Item = B> {
 		self.database.lock()
 			.iterate_matching(from, to, blooms)?
 			.collect::<Result<Vec<u64>, _>>()

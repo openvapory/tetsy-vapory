@@ -19,14 +19,14 @@
 //! This doesn't re-implement all of the RPC APIs, just those which aren't
 //! significantly generic to be reused.
 
-pub mod eth;
-pub mod parity;
-pub mod parity_set;
+pub mod vap;
+pub mod tetsy;
+pub mod tetsy_set;
 pub mod trace;
 pub mod net;
 
-pub use self::eth::EthClient;
-pub use self::parity::ParityClient;
-pub use self::parity_set::ParitySetClient;
+pub use self::vap::VapClient;
+pub use self::tetsy::TetsyClient;
+pub use self::tetsy_set::TetsySetClient;
 pub use self::net::NetClient;
 pub use self::trace::TracesClient;

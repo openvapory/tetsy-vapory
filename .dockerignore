@@ -19,4 +19,4 @@ target
 # git stuff
 .git
 
-ethcore/res/ethereum/tests
+vapcore/res/vapory/tests

@@ -70,7 +70,7 @@ mod tests {
 
 	#[test]
 	fn test_blake2_f() {
-		// test from https://github.com/ethereum/EIPs/blob/master/EIPS/eip-152.md#example-usage-in-solidity
+		// test from https://github.com/vaporyco/VIPs/blob/master/EIPS/eip-152.md#example-usage-in-solidity
 		let mut h_in = [
 			0x6a09e667f2bdc948_u64, 0xbb67ae8584caa73b_u64,
 			0x3c6ef372fe94f82b_u64, 0xa54ff53a5f1d36f1_u64,

@@ -16,7 +16,7 @@
 
 use std::{error, io, fmt};
 use std::path::{Path, PathBuf};
-use ethbloom;
+use vapbloom;
 use crate::file::{File, FileIterator};
 
 fn other_io_err<E>(e: E) -> io::Error where E: Into<Box<dyn error::Error + Send + Sync>> {
@@ -59,7 +59,7 @@ struct DatabaseFiles {
 	mid: File,
 	/// Bot level bloom file
 	///
-	/// Every bloom is an ethereum header bloom
+	/// Every bloom is an vapory header bloom
 	bot: File,
 }
 
@@ -73,10 +73,10 @@ impl DatabaseFiles {
 		})
 	}
 
-	pub fn accrue_bloom(&mut self, pos: Positions, bloom: ethbloom::BloomRef) -> io::Result<()> {
-		self.top.accrue_bloom::<ethbloom::BloomRef>(pos.top, bloom)?;
-		self.mid.accrue_bloom::<ethbloom::BloomRef>(pos.mid, bloom)?;
-		self.bot.replace_bloom::<ethbloom::BloomRef>(pos.bot, bloom)?;
+	pub fn accrue_bloom(&mut self, pos: Positions, bloom: vapbloom::BloomRef) -> io::Result<()> {
+		self.top.accrue_bloom::<vapbloom::BloomRef>(pos.top, bloom)?;
+		self.mid.accrue_bloom::<vapbloom::BloomRef>(pos.mid, bloom)?;
+		self.bot.replace_bloom::<vapbloom::BloomRef>(pos.bot, bloom)?;
 		Ok(())
 	}
 
@@ -137,7 +137,7 @@ impl Database {
 
 	/// Insert consecutive blooms into database starting at the given positon.
 	pub fn insert_blooms<'a, I, B>(&mut self, from: u64, blooms: I) -> io::Result<()>
-	where ethbloom::BloomRef<'a>: From<B>, I: Iterator<Item = B> {
+	where vapbloom::BloomRef<'a>: From<B>, I: Iterator<Item = B> {
 		match self.db_files {
 			Some(ref mut db_files) => {
 				for (index, bloom) in (from..).into_iter().zip(blooms.map(Into::into)) {
@@ -157,7 +157,7 @@ impl Database {
 
 	/// Returns an iterator yielding all indexes containing given bloom.
 	pub fn iterate_matching<'a, 'b, B, I, II>(&'a mut self, from: u64, to: u64, blooms: II) -> io::Result<DatabaseIterator<'a, II>>
-	where ethbloom::BloomRef<'b>: From<B>, 'b: 'a, II: IntoIterator<Item = B, IntoIter = I> + Copy, I: Iterator<Item = B> {
+	where vapbloom::BloomRef<'b>: From<B>, 'b: 'a, II: IntoIterator<Item = B, IntoIter = I> + Copy, I: Iterator<Item = B> {
 		match self.db_files {
 			Some(ref mut db_files) => {
 				let index = from / 256 * 256;
@@ -182,8 +182,8 @@ impl Database {
 	}
 }
 
-fn contains_any<'a, I, B>(bloom: ethbloom::Bloom, mut iterator: I) -> bool
-where ethbloom::BloomRef<'a>: From<B>, I: Iterator<Item = B> {
+fn contains_any<'a, I, B>(bloom: vapbloom::Bloom, mut iterator: I) -> bool
+where vapbloom::BloomRef<'a>: From<B>, I: Iterator<Item = B> {
 	iterator.any(|item| bloom.contains_bloom(item))
 }
 
@@ -227,7 +227,7 @@ enum IteratorState {
 }
 
 impl<'a, 'b, B, I, II> Iterator for DatabaseIterator<'a, II>
-where ethbloom::BloomRef<'b>: From<B>, 'b: 'a, II: IntoIterator<Item = B, IntoIter = I> + Copy, I: Iterator<Item = B> {
+where vapbloom::BloomRef<'b>: From<B>, 'b: 'a, II: IntoIterator<Item = B, IntoIter = I> + Copy, I: Iterator<Item = B> {
 	type Item = io::Result<u64>;
 
 	fn next(&mut self) -> Option<Self::Item> {
@@ -293,7 +293,7 @@ where ethbloom::BloomRef<'b>: From<B>, 'b: 'a, II: IntoIterator<Item = B, IntoIt
 
 #[cfg(test)]
 mod tests {
-	use ethbloom::Bloom;
+	use vapbloom::Bloom;
 	use tempdir::TempDir;
 	use super::Database;
 

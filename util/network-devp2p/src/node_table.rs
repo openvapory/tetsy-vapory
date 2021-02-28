@@ -24,10 +24,10 @@ use std::path::PathBuf;
 use std::str::FromStr;
 use std::time::{self, Duration, SystemTime};
 
-use ethereum_types::H512;
+use vapory_types::H512;
 use log::{debug, warn};
 use rand::seq::SliceRandom;
-use rlp::{DecoderError, Rlp, RlpStream};
+use tetsy_rlp::{DecoderError, Rlp, RlpStream};
 use serde::{Deserialize, Serialize};
 use serde_json;
 
@@ -614,7 +614,7 @@ mod tests {
 	use std::thread::sleep;
 	use std::time::Duration;
 
-	use ethereum_types::H512;
+	use vapory_types::H512;
 	use ipnetwork::IpNetwork;
 	use tempdir::TempDir;
 

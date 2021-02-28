@@ -16,7 +16,7 @@
 
 use std::sync::Arc;
 
-use ethereum_types::U256;
+use vapory_types::U256;
 use jsonrpc_core::{Result, Error};
 use jsonrpc_core::futures::{Future, Poll, Async, IntoFuture};
 use types::transaction::SignedTransaction;

@@ -19,7 +19,7 @@ use std::sync::Arc;
 use futures::Oneshot;
 use parking_lot::Mutex;
 use crypto::publickey::{Public, Secret};
-use ethereum_types::H256;
+use vapory_types::H256;
 use key_server_cluster::{Error, NodeId, SessionId, Requester, SessionMeta, AclStorage, DocumentKeyShare};
 use key_server_cluster::cluster::{Cluster};
 use key_server_cluster::cluster_sessions::{SessionIdWithSubSession, ClusterSession, CompletionSignal};
@@ -818,7 +818,7 @@ mod tests {
 	use std::sync::Arc;
 	use std::str::FromStr;
 	use std::collections::BTreeMap;
-	use ethereum_types::{Address, H256};
+	use vapory_types::{Address, H256};
 	use crypto::publickey::{Random, Generator, Public, Secret, public_to_address};
 	use acl_storage::DummyAclStorage;
 	use key_server_cluster::{SessionId, Requester, SessionMeta, Error, KeyStorage};

@@ -21,7 +21,7 @@ use std::{fs, time, mem};
 use itertools::Itertools;
 use rand::{Rng, rngs::OsRng, distributions::Alphanumeric};
 use hash::keccak;
-use ethereum_types::H256;
+use vapory_types::H256;
 
 /// Providing current time in seconds
 pub trait TimeProvider {
@@ -218,7 +218,7 @@ mod tests {
 	use tempdir::TempDir;
 	use hash::keccak;
 
-	use ethereum_types::H256;
+	use vapory_types::H256;
 	use super::*;
 
 	fn generate_hash(val: &str, time: u64) -> H256 {

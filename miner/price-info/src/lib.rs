@@ -16,25 +16,25 @@
 
 #![warn(missing_docs)]
 
-//! A simple client to get the current ETH price using an external API.
+//! A simple client to get the current VAP price using an external API.
 
 use std::{cmp, fmt, io, str};
 use fetch::{Client as FetchClient, Fetch};
 use futures::{Future, Stream};
 use log::warn;
-use parity_runtime::Executor;
+use tetsy_runtime::Executor;
 use serde_json::Value;
 
 pub use fetch;
 
-/// Current ETH price information.
+/// Current VAP price information.
 #[derive(Debug)]
 pub struct PriceInfo {
-	/// Current ETH price in USD.
-	pub ethusd: f32,
+	/// Current VAP price in USD.
+	pub vapusd: f32,
 }
 
-/// A client to get the current ETH price using an external API.
+/// A client to get the current VAP price using an external API.
 pub struct Client<F = FetchClient> {
 	pool: Executor,
 	api_endpoint: String,
@@ -61,7 +61,7 @@ impl<F: Fetch> Client<F> {
 		Client { pool, api_endpoint, fetch }
 	}
 
-	/// Gets the current ETH price and calls `set_price` with the result.
+	/// Gets the current VAP price and calls `set_price` with the result.
 	pub fn get<G: FnOnce(PriceInfo) + Sync + Send + 'static>(&self, set_price: G) {
 		let future = self.fetch.get(&self.api_endpoint, fetch::Abort::default())
 			.and_then(|response| response.concat2())
@@ -69,15 +69,15 @@ impl<F: Fetch> Client<F> {
 				let body_str = str::from_utf8(&body).ok();
 				let value: Option<Value> = body_str.and_then(|s| serde_json::from_str(s).ok());
 
-				let ethusd = value
+				let vapusd = value
 					.as_ref()
-					.and_then(|value| value.pointer("/result/ethusd"))
+					.and_then(|value| value.pointer("/result/vapusd"))
 					.and_then(|obj| obj.as_str())
 					.and_then(|s| s.parse().ok());
 
-				match ethusd {
-					Some(ethusd) => {
-						set_price(PriceInfo { ethusd });
+				match vapusd {
+					Some(vapusd) => {
+						set_price(PriceInfo { vapusd });
 						Ok(())
 					},
 					None => {
@@ -88,7 +88,7 @@ impl<F: Fetch> Client<F> {
 				}
 			})
 			.map_err(|err| {
-				warn!("Failed to auto-update latest ETH price: {:?}", err);
+				warn!("Failed to auto-update latest VAP price: {:?}", err);
 			});
 		self.pool.spawn(future)
 	}
@@ -100,7 +100,7 @@ mod test {
 		Arc, atomic::{AtomicBool, Ordering}
 	};
 	use fake_fetch::FakeFetch;
-	use parity_runtime::{Runtime, Executor};
+	use tetsy_runtime::{Runtime, Executor};
 	use super::Client;
 
 	fn price_info_ok(response: &str, executor: Executor) -> Client<FakeFetch<String>> {
@@ -120,10 +120,10 @@ mod test {
 			"status": "1",
 			"message": "OK",
 			"result": {
-				"ethbtc": "0.0891",
-				"ethbtc_timestamp": "1499894236",
-				"ethusd": "209.55",
-				"ethusd_timestamp": "1499894229"
+				"vapbtc": "0.0891",
+				"vapbtc_timestamp": "1499894236",
+				"vapusd": "209.55",
+				"vapusd_timestamp": "1499894229"
 			}
 		}"#;
 
@@ -133,7 +133,7 @@ mod test {
 		price_info.get(|price| {
 
 			// then
-			assert_eq!(price.ethusd, 209.55);
+			assert_eq!(price.vapusd, 209.55);
 		});
 	}
 

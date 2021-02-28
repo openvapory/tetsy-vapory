@@ -17,12 +17,12 @@
 //! Transaction Pool state client.
 //!
 //! `Client` encapsulates all external data required for the verifaction and readiness.
-//! It includes any Ethereum state parts required for checking the transaction and
+//! It includes any Vapory state parts required for checking the transaction and
 //! any consensus-required structure of the transaction.
 
 use std::fmt;
 
-use ethereum_types::{U256, H256, H160 as Address};
+use vapory_types::{U256, H256, H160 as Address};
 use types::transaction;
 
 /// Account Details

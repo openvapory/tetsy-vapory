@@ -1,7 +1,0 @@
-[submodule "vapcore/res/vapory/tests"]
-	path = vapcore/res/vapory/tests
-	url = https://github.com/vaporyco/tests.git
-	branch = develop
-[submodule "vapcore/res/wasm-tests"]
-	path = vapcore/res/wasm-tests
-	url = https://github.com/tetcoin/wasm-tests

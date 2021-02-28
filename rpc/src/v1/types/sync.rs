@@ -17,7 +17,7 @@
 use network::client_version::ClientVersion;
 use std::collections::BTreeMap;
 
-use ethereum_types::{U256, H512};
+use vapory_types::{U256, H512};
 use sync::{self, PeerInfo as SyncPeerInfo, TransactionStats as SyncTransactionStats};
 use serde::{Serialize, Serializer};
 
@@ -78,16 +78,16 @@ pub struct PeerNetworkInfo {
 /// Peer protocols information
 #[derive(Default, Debug, Serialize)]
 pub struct PeerProtocolsInfo {
-	/// Ethereum protocol information
-	pub eth: Option<EthProtocolInfo>,
+	/// Vapory protocol information
+	pub vap: Option<VapProtocolInfo>,
 	/// PIP protocol information.
 	pub pip: Option<PipProtocolInfo>,
 }
 
-/// Peer Ethereum protocol information
+/// Peer Vapory protocol information
 #[derive(Default, Debug, Serialize)]
-pub struct EthProtocolInfo {
-	/// Negotiated ethereum protocol version
+pub struct VapProtocolInfo {
+	/// Negotiated vapory protocol version
 	pub version: u32,
 	/// Peer total difficulty if known
 	pub difficulty: Option<U256>,
@@ -95,9 +95,9 @@ pub struct EthProtocolInfo {
 	pub head: String,
 }
 
-impl From<sync::EthProtocolInfo> for EthProtocolInfo {
-	fn from(info: sync::EthProtocolInfo) -> Self {
-		EthProtocolInfo {
+impl From<sync::VapProtocolInfo> for VapProtocolInfo {
+	fn from(info: sync::VapProtocolInfo) -> Self {
+		VapProtocolInfo {
 			version: info.version,
 			difficulty: info.difficulty.map(Into::into),
 			head: format!("{:x}", info.head),
@@ -166,7 +166,7 @@ impl From<SyncPeerInfo> for PeerInfo {
 				local_address: p.local_address,
 			},
 			protocols: PeerProtocolsInfo {
-				eth: p.eth_info.map(Into::into),
+				vap: p.vap_info.map(Into::into),
 				pip: p.pip_info.map(Into::into),
 			},
 		}

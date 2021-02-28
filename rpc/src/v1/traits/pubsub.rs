@@ -14,23 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Parity-specific PUB-SUB rpc interface.
+//! Tetsy-specific PUB-SUB rpc interface.
 
 use jsonrpc_core::{Result, Value, Params};
 use jsonrpc_pubsub::{typed::Subscriber, SubscriptionId};
 use jsonrpc_derive::rpc;
 
-/// Parity-specific PUB-SUB rpc interface.
+/// Tetsy-specific PUB-SUB rpc interface.
 #[rpc(server)]
 pub trait PubSub {
 	/// Pub/Sub Metadata
 	type Metadata;
 
-	/// Subscribe to changes of any RPC method in Parity.
-	#[pubsub(subscription = "parity_subscription", subscribe, name = "parity_subscribe")]
-	fn parity_subscribe(&self, _: Self::Metadata, _: Subscriber<Value>, _: String, _: Option<Params>);
+	/// Subscribe to changes of any RPC method in Tetsy.
+	#[pubsub(subscription = "tetsy_subscription", subscribe, name = "tetsy_subscribe")]
+	fn tetsy_subscribe(&self, _: Self::Metadata, _: Subscriber<Value>, _: String, _: Option<Params>);
 
-	/// Unsubscribe from existing Parity subscription.
-	#[pubsub(subscription = "parity_subscription", unsubscribe, name = "parity_unsubscribe")]
-	fn parity_unsubscribe(&self, _: Option<Self::Metadata>, _: SubscriptionId) -> Result<bool>;
+	/// Unsubscribe from existing Tetsy subscription.
+	#[pubsub(subscription = "tetsy_subscription", unsubscribe, name = "tetsy_unsubscribe")]
+	fn tetsy_unsubscribe(&self, _: Option<Self::Metadata>, _: SubscriptionId) -> Result<bool>;
 }

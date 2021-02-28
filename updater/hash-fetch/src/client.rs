@@ -24,10 +24,10 @@ use std::path::PathBuf;
 use hash::keccak_buffer;
 use fetch::{self, Fetch};
 use futures::{Future, IntoFuture};
-use parity_runtime::Executor;
+use tetsy_runtime::Executor;
 use urlhint::{URLHintContract, URLHint, URLHintResult};
-use registrar::RegistrarClient;
-use ethereum_types::H256;
+use tetsy_registrar::RegistrarClient;
+use vapory_types::H256;
 
 /// API for fetching by hash.
 pub trait HashFetch: Send + Sync + 'static {
@@ -194,11 +194,11 @@ mod tests {
 	use rustc_hex::FromHex;
 	use std::sync::{Arc, mpsc};
 	use parking_lot::Mutex;
-	use parity_runtime::Executor;
+	use tetsy_runtime::Executor;
 	use urlhint::tests::{FakeRegistrar, URLHINT};
 	use super::{Error, Client, HashFetch, random_temp_path, H256};
 	use std::str::FromStr;
-	use registrar::RegistrarClient;
+	use tetsy_registrar::RegistrarClient;
 
 	fn registrar() -> FakeRegistrar {
 		let mut registrar = FakeRegistrar::new();

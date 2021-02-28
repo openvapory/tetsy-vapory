@@ -52,7 +52,7 @@ pub struct Transaction {
 #[cfg(test)]
 mod tests {
 	use super::{Bytes, H256, MaybeEmpty, Transaction, Uint};
-	use ethereum_types::{H256 as Eth256, U256};
+	use vapory_types::{H256 as Vap256, U256};
 
 	#[test]
 	fn transaction_deserialization() {
@@ -78,6 +78,6 @@ mod tests {
 		assert_eq!(tx.r, Uint(U256::zero()).into());
 		assert_eq!(tx.s, Uint(U256::one()).into());
 		assert_eq!(tx.v, Uint(U256::from(2)).into());
-		assert_eq!(tx.secret, Some(H256(Eth256::zero())));
+		assert_eq!(tx.secret, Some(H256(Vap256::zero())));
 	}
 }

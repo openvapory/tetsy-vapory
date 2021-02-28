@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::collections::{BTreeSet, BTreeMap};
-use ethereum_types::H256;
+use vapory_types::H256;
 use crypto::publickey::{Public, Secret};
 use crypto::DEFAULT_MAC;
 use crypto::publickey::ecies::encrypt;

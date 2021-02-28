@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::{H160, H256};
+use vapory_types::{H160, H256};
 use jsonrpc_core::{Error as RpcError};
 use serde::de::{Error, DeserializeOwned};
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde_json::{Value, from_value};
-use types::filter::Filter as EthFilter;
+use types::filter::Filter as VapFilter;
 use types::ids::BlockId;
 
 use v1::types::{BlockNumber, Log};
@@ -76,7 +76,7 @@ pub struct Filter {
 }
 
 impl Filter {
-	pub fn try_into(self) -> Result<EthFilter, RpcError> {
+	pub fn try_into(self) -> Result<VapFilter, RpcError> {
 		if self.block_hash.is_some() && (self.from_block.is_some() || self.to_block.is_some()) {
 			return Err(invalid_params("blockHash", "blockHash is mutually exclusive with fromBlock/toBlock"));
 		}
@@ -95,7 +95,7 @@ impl Filter {
 				 self.to_block.map_or_else(|| BlockId::Latest, &num_to_id)),
 		};
 
-		Ok(EthFilter {
+		Ok(VapFilter {
 			from_block, to_block,
 			address: self.address.and_then(|address| match address {
 				VariadicValue::Null => None,
@@ -146,10 +146,10 @@ impl Serialize for FilterChanges {
 mod tests {
 	use serde_json;
 	use std::str::FromStr;
-	use ethereum_types::H256;
+	use vapory_types::H256;
 	use super::{VariadicValue, Topic, Filter};
 	use v1::types::BlockNumber;
-	use types::filter::Filter as EthFilter;
+	use types::filter::Filter as VapFilter;
 	use types::ids::BlockId;
 
 	#[test]
@@ -195,8 +195,8 @@ mod tests {
 			limit: None,
 		};
 
-		let eth_filter: EthFilter = filter.try_into().unwrap();
-		assert_eq!(eth_filter, EthFilter {
+		let vap_filter: VapFilter = filter.try_into().unwrap();
+		assert_eq!(vap_filter, VapFilter {
 			from_block: BlockId::Earliest,
 			to_block: BlockId::Latest,
 			address: Some(vec![]),

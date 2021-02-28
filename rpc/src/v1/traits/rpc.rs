@@ -24,12 +24,12 @@ use jsonrpc_derive::rpc;
 /// RPC Interface.
 #[rpc(server)]
 pub trait Rpc {
-	/// Returns supported modules for Geth 1.3.6
+	/// Returns supported modules for Gvap 1.3.6
 	/// @ignore
 	#[rpc(name = "modules")]
 	fn modules(&self) -> Result<BTreeMap<String, String>>;
 
-	/// Returns supported modules for Geth 1.4.0
+	/// Returns supported modules for Gvap 1.4.0
 	/// @ignore
 	#[rpc(name = "rpc_modules")]
 	fn rpc_modules(&self) -> Result<BTreeMap<String, String>>;

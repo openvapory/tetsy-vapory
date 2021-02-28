@@ -16,7 +16,7 @@
 
 use std::sync::Arc;
 use std::collections::{BTreeSet, BTreeMap};
-use ethereum_types::{Address, H256};
+use vapory_types::{Address, H256};
 use crypto::publickey::Secret;
 use futures::Oneshot;
 use parking_lot::Mutex;
@@ -616,7 +616,7 @@ impl SessionResultComputer for LargestSupportResultComputer {
 mod tests {
 	use std::sync::Arc;
 	use std::collections::{VecDeque, BTreeMap, BTreeSet};
-	use ethereum_types::{H512, H160, Address};
+	use vapory_types::{H512, H160, Address};
 	use crypto::publickey::public_to_address;
 	use key_server_cluster::{NodeId, SessionId, Error, KeyStorage, DummyKeyStorage,
 		DocumentKeyShare, DocumentKeyShareVersion};

@@ -14,17 +14,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Ethereum rpc interface implementation.
+//! Vapory rpc interface implementation.
 
 mod debug;
-mod eth;
-mod eth_filter;
-mod eth_pubsub;
+mod vap;
+mod vap_filter;
+mod vap_pubsub;
 mod net;
-mod parity;
+mod tetsy;
 #[cfg(any(test, feature = "accounts"))]
-mod parity_accounts;
-mod parity_set;
+mod tetsy_accounts;
+mod tetsy_set;
 #[cfg(any(test, feature = "accounts"))]
 mod personal;
 mod private;
@@ -42,17 +42,17 @@ mod web3;
 pub mod light;
 
 pub use self::debug::DebugClient;
-pub use self::eth::{EthClient, EthClientOptions};
-pub use self::eth_filter::EthFilterClient;
-pub use self::eth_pubsub::EthPubSubClient;
+pub use self::vap::{VapClient, VapClientOptions};
+pub use self::vap_filter::VapFilterClient;
+pub use self::vap_pubsub::VapPubSubClient;
 pub use self::transactions_pool::TransactionsPoolClient;
 pub use self::net::NetClient;
-pub use self::parity::ParityClient;
+pub use self::tetsy::TetsyClient;
 #[cfg(any(test, feature = "accounts"))]
-pub use self::parity_accounts::ParityAccountsClient;
-pub use self::parity_set::ParitySetClient;
+pub use self::tetsy_accounts::TetsyAccountsClient;
+pub use self::tetsy_set::TetsySetClient;
 #[cfg(any(test, feature = "accounts"))]
-pub use self::parity_set::accounts::ParitySetAccountsClient;
+pub use self::tetsy_set::accounts::TetsySetAccountsClient;
 #[cfg(any(test, feature = "accounts"))]
 pub use self::personal::PersonalClient;
 pub use self::private::PrivateClient;

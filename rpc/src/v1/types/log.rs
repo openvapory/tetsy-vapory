@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::{H160, H256, U256};
+use vapory_types::{H160, H256, U256};
 use types::log_entry::{LocalizedLogEntry, LogEntry};
 use v1::types::Bytes;
 
@@ -43,7 +43,7 @@ pub struct Log {
 	/// Log Type
 	#[serde(rename = "type")]
 	pub log_type: String,
-	/// Whether Log Type is Removed (Geth Compatibility Field)
+	/// Whether Log Type is Removed (Gvap Compatibility Field)
 	#[serde(default)]
 	pub removed: bool,
 }
@@ -89,7 +89,7 @@ mod tests {
 	use serde_json;
 	use std::str::FromStr;
 	use v1::types::Log;
-	use ethereum_types::{H160, H256, U256};
+	use vapory_types::{H160, H256, U256};
 
 	#[test]
 	fn log_serialization() {

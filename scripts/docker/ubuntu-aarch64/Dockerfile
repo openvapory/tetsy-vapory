@@ -42,19 +42,19 @@ ENV RUST_BACKTRACE 1
 # show tools
 RUN rustc -vV && cargo -V
 
-# build parity
-ADD . /build/parity
-RUN cd parity && \
+# build tetsy
+ADD . /build/tetsy
+RUN cd tetsy && \
 	mkdir -p .cargo && \
 	echo '[target.aarch64-unknown-linux-gnu]\n\
 	linker = "aarch64-linux-gnu-gcc"\n'\
 	>>.cargo/config && \
 	cat .cargo/config && \
 	cargo build --target aarch64-unknown-linux-gnu --release --verbose && \
-	ls /build/parity/target/aarch64-unknown-linux-gnu/release/parity && \
-	/usr/bin/aarch64-linux-gnu-strip /build/parity/target/aarch64-unknown-linux-gnu/release/parity
+	ls /build/tetsy/target/aarch64-unknown-linux-gnu/release/tetsy && \
+	/usr/bin/aarch64-linux-gnu-strip /build/tetsy/target/aarch64-unknown-linux-gnu/release/tetsy
 
-RUN file /build/parity/target/aarch64-unknown-linux-gnu/release/parity
+RUN file /build/tetsy/target/aarch64-unknown-linux-gnu/release/tetsy
 
 EXPOSE 8080 8545 8180
-ENTRYPOINT ["/build/parity/target/aarch64-unknown-linux-gnu/release/parity"]
+ENTRYPOINT ["/build/tetsy/target/aarch64-unknown-linux-gnu/release/tetsy"]

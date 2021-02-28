@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Parity RPC requests Metadata.
+//! Tetsy RPC requests Metadata.
 use std::sync::Arc;
 
 use jsonrpc_core;

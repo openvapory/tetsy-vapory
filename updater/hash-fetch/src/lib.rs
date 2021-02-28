@@ -22,25 +22,25 @@
 extern crate log;
 
 extern crate call_contract;
-extern crate ethabi;
-extern crate parity_bytes as bytes;
-extern crate ethereum_types;
+extern crate vapabi;
+extern crate tetsy_bytes as bytes;
+extern crate vapory_types;
 extern crate futures;
-extern crate keccak_hash as hash;
+extern crate tetsy_keccak_hash as hash;
 extern crate mime;
 extern crate mime_guess;
-extern crate parity_runtime;
+extern crate tetsy_runtime;
 extern crate rand;
 extern crate rustc_hex;
-extern crate registrar;
+extern crate tetsy_registrar;
 extern crate types;
 
 pub extern crate fetch;
 
 // #[macro_use]
-extern crate ethabi_derive;
+extern crate vapabi_derive;
 #[macro_use]
-extern crate ethabi_contract;
+extern crate vapabi_contract;
 #[cfg(test)]
 extern crate parking_lot;
 #[cfg(test)]

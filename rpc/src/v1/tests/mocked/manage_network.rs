@@ -16,9 +16,9 @@
 
 use std::ops::RangeInclusive;
 use sync::ManageNetwork;
-use self::ethcore_network::{ProtocolId, NetworkContext};
+use self::vapcore_network::{ProtocolId, NetworkContext};
 
-extern crate ethcore_network;
+extern crate vapcore_network;
 
 pub struct TestManageNetwork;
 

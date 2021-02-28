@@ -16,8 +16,8 @@
 
 //! Transaction Pool
 
-use ethereum_types::{U256, H256, Address};
-use parity_util_mem::MallocSizeOfExt;
+use vapory_types::{U256, H256, Address};
+use tetsy_util_mem::MallocSizeOfExt;
 use types::transaction;
 use txpool;
 
@@ -96,7 +96,7 @@ pub enum Priority {
 	/// Local transactions (high priority)
 	///
 	/// Transactions either from a local account or
-	/// submitted over local RPC connection via `eth_sendRawTransaction`
+	/// submitted over local RPC connection via `vap_sendRawTransaction`
 	Local,
 }
 

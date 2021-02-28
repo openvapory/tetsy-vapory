@@ -10,9 +10,9 @@ The full list of included changes:
   - Version: bump stable to v2.1.11
   - HF in POA Sokol (2019-01-04) ([#10077](https://github.com/openvapory/tetsy-vapory/pull/10077))
   - Add --locked when running cargo ([#10107](https://github.com/openvapory/tetsy-vapory/pull/10107))
-  - Ethcore: update hardcoded headers ([#10123](https://github.com/openvapory/tetsy-vapory/pull/10123))
+  - Vapcore: update hardcoded headers ([#10123](https://github.com/openvapory/tetsy-vapory/pull/10123))
   - Identity fix ([#10128](https://github.com/openvapory/tetsy-vapory/pull/10128))
-  - Update pwasm-utils to 0.6.1 ([#10134](https://github.com/openvapory/tetsy-vapory/pull/10134))
+  - Update twasm-utils to 0.6.1 ([#10134](https://github.com/openvapory/tetsy-vapory/pull/10134))
   - Version: mark upgrade critical on kovan
 
 ## Tetsy-Vapory [v2.1.10](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.1.10) (2018-12-14)
@@ -29,14 +29,14 @@ The full list of included changes:
 
 -  Backports for stable 2.1.10 ([#10046](https://github.com/openvapory/tetsy-vapory/pull/10046))
 	- Bump stable to 2.1.10 ([#10046](https://github.com/openvapory/tetsy-vapory/pull/10046))
-	- RPC: parity_getBlockReceipts ([#9527](https://github.com/openvapory/tetsy-vapory/pull/9527))
+	- RPC: tetsy_getBlockReceipts ([#9527](https://github.com/openvapory/tetsy-vapory/pull/9527))
 		- Block receipts RPC.
 		- Use lazy evaluation of block receipts (ecrecover).
 		- Optimize transaction_receipt to prevent performance regression.
 		- Add block & transaction receipt tests.
 		- Fix conversion to block id.
-	- Update a few parity-common dependencies ([#9663](https://github.com/openvapory/tetsy-vapory/pull/9663))
-		- revert update of ethereum/tests
+	- Update a few tetsy-common dependencies ([#9663](https://github.com/openvapory/tetsy-vapory/pull/9663))
+		- revert update of vapory/tests
 		- better reporting of network rlp errors
 		- Use rlp 0.3.0-beta.1
 		- fix util function get_dummy_blocks
@@ -51,10 +51,10 @@ The full list of included changes:
 		- Enables strict verification of empty steps - there can be no duplicates and empty steps should be ordered inside the seal.
 		- Note that authorities won't produce invalid seals after [#9939](https://github.com/openvapory/tetsy-vapory/pull/9939), this PR just adds verification to the seal to prevent forging incorrect blocks and potentially causing consensus issues.
 		- This features is enabled by default so any AuRa + EmptySteps chain should set `strict_empty_steps_transition` fork block number in their spec and upgrade to v2.2.5-beta or v2.1.10-stable.
-	- ethcore: enable constantinople on ethereum ([#10031](https://github.com/openvapory/tetsy-vapory/pull/10031))
-		- ethcore: change blockreward to 2e18 for foundation after constantinople
-		- ethcore: delay diff bomb by 2e6 blocks for foundation after constantinople
-		- ethcore: enable eip-{145,1014,1052,1283} for foundation after constantinople
+	- vapcore: enable constantinople on vapory ([#10031](https://github.com/openvapory/tetsy-vapory/pull/10031))
+		- vapcore: change blockreward to 2e18 for foundation after constantinople
+		- vapcore: delay diff bomb by 2e6 blocks for foundation after constantinople
+		- vapcore: enable eip-{145,1014,1052,1283} for foundation after constantinople
 	- Change test miner max memory to malloc reports. ([#10024](https://github.com/openvapory/tetsy-vapory/pull/10024))
 
 ## Tetsy-Vapory [v2.1.7](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.1.7) (2018-11-28)
@@ -101,8 +101,8 @@ The full list of included changes:
     - Do not create a home directory.
     - Re-add -m flag
   - Fix docker build ([#9971](https://github.com/openvapory/tetsy-vapory/pull/9971))
-  - Bump smallvec to 0.6 in ethcore-light, ethstore and whisper ([#9588](https://github.com/openvapory/tetsy-vapory/pull/9588))
-    - Bump smallvec to 0.6 in ethcore-light, ethstore and whisper
+  - Bump smallvec to 0.6 in vapcore-light, vapstore and whisper ([#9588](https://github.com/openvapory/tetsy-vapory/pull/9588))
+    - Bump smallvec to 0.6 in vapcore-light, vapstore and whisper
     - Bump transaction-pool
     - Fix test.
   - Patch cargo to use tokio-proto from git repo
@@ -114,7 +114,7 @@ The full list of included changes:
 Tetsy-Vapory 2.1.6-stable is a release that improves performance and stability.
 
 The full list of included changes:
-- Backport to parity 2.1.6-stable ([#9904](https://github.com/openvapory/tetsy-vapory/pull/9904))
+- Backport to tetsy 2.1.6-stable ([#9904](https://github.com/openvapory/tetsy-vapory/pull/9904))
   - Bump version to 2.1.6
   - Fix: Intermittent failing CI due to addr in use ([#9885](https://github.com/openvapory/tetsy-vapory/pull/9885))
   - Add hardcoded headers for light client ([#9907](https://github.com/openvapory/tetsy-vapory/pull/9907))
@@ -124,7 +124,7 @@ The full list of included changes:
   - Simplify cargo audit ([#9918](https://github.com/openvapory/tetsy-vapory/pull/9918))
   - Ci: nuke the gitlab caches ([#9855](https://github.com/openvapory/tetsy-vapory/pull/9855))
 
-- Backports to parity stable 2.1.5 (not released) ([#9821](https://github.com/openvapory/tetsy-vapory/pull/9821))
+- Backports to tetsy stable 2.1.5 (not released) ([#9821](https://github.com/openvapory/tetsy-vapory/pull/9821))
   - Ci: remove failing tests for android, windows, and macos ([#9788](https://github.com/openvapory/tetsy-vapory/pull/9788))
   - Move state root verification before gas used ([#9841](https://github.com/openvapory/tetsy-vapory/pull/9841))
   - Classic.json Bootnode Update ([#9828](https://github.com/openvapory/tetsy-vapory/pull/9828))
@@ -135,10 +135,10 @@ Tetsy-Vapory 2.1.4-beta is a release that improves performance and stability.
 
 The full list of included changes:
 
-- Backports: parity beta 2.1.4 ([#9787](https://github.com/openvapory/tetsy-vapory/pull/9787))
-  - Version: bump parity beta to 2.1.4
-  - Ethcore: bump ropsten forkblock checkpoint ([#9775](https://github.com/openvapory/tetsy-vapory/pull/9775))
-  - Ethcore: handle vm exception when estimating gas ([#9615](https://github.com/openvapory/tetsy-vapory/pull/9615))
+- Backports: tetsy beta 2.1.4 ([#9787](https://github.com/openvapory/tetsy-vapory/pull/9787))
+  - Version: bump tetsy beta to 2.1.4
+  - Vapcore: bump ropsten forkblock checkpoint ([#9775](https://github.com/openvapory/tetsy-vapory/pull/9775))
+  - Vapcore: handle vm exception when estimating gas ([#9615](https://github.com/openvapory/tetsy-vapory/pull/9615))
   - Removed "rustup" & added new runner tag ([#9731](https://github.com/openvapory/tetsy-vapory/pull/9731))
     - Removed "rustup" & added new runner tag
     - Exchanged tag "rust-windows" with "windows"
@@ -157,12 +157,12 @@ The full list of included changes:
 
 ## Tetsy-Vapory [v2.1.3](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.1.3) (2018-10-16)
 
-Tetsy-Vapory 2.1.3-stable is a release that fixes a consensus issue with the recent Constantinople release. Upgrading is mandatory whatever network you are connected to that plans enabling EIP-1283, e.g., Ropsten, Kovan, Ethereum.
+Tetsy-Vapory 2.1.3-stable is a release that fixes a consensus issue with the recent Constantinople release. Upgrading is mandatory whatever network you are connected to that plans enabling EIP-1283, e.g., Ropsten, Kovan, Vapory.
 
 The full list of included changes:
 
 - Beta release 2.1.3 backports ([#9749](https://github.com/openvapory/tetsy-vapory/pull/9749))
-  - Parity-version: mark 2.1.3 beta as critical
+  - Tetsy-version: mark 2.1.3 beta as critical
   - Use signed 256-bit integer for sstore gas refund substate ([#9746](https://github.com/openvapory/tetsy-vapory/pull/9746))
   - Add --force to cargo audit install script ([#9735](https://github.com/openvapory/tetsy-vapory/pull/9735))
   - Heads ref not present for branches beta and stable ([#9741](https://github.com/openvapory/tetsy-vapory/pull/9741))
@@ -170,7 +170,7 @@ The full list of included changes:
 
 ## Tetsy-Vapory [v2.1.2](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.1.2) (2018-10-12)
 
-Tetsy-Vapory 2.1.2-beta is a release that introduces **Constantinople** to the Ethereum client. Upgrading is strongly recommended.
+Tetsy-Vapory 2.1.2-beta is a release that introduces **Constantinople** to the Vapory client. Upgrading is strongly recommended.
 
 ![europe-1803495_1280](https://user-images.githubusercontent.com/15729797/46785767-15f1e280-cd33-11e8-862a-458edfd73ecf.png)
 
@@ -184,8 +184,8 @@ Running one of these networks, an upgrade to 2.0.7 or 2.1.2 is mandatory. More d
 
 Please note, the following deprecations in our distribution of binaries:
 
-- `arm*` targets are no longer served by parity, please consider (cross-)compiling from source yourself.
-- `i*86` targets are no longer served by parity, please consider upgrading your operating system.
+- `arm*` targets are no longer served by tetsy, please consider (cross-)compiling from source yourself.
+- `i*86` targets are no longer served by tetsy, please consider upgrading your operating system.
 - Snapcraft is no longer maintained. please use binaries directly or your distro's repositories.
 
 The full list of included changes:
@@ -199,8 +199,8 @@ The full list of included changes:
   - Add hardcoded headers ([#9730](https://github.com/openvapory/tetsy-vapory/pull/9730))
   - Gitlab ci: releasable_branches: change variables condition to schedule ([#9729](https://github.com/openvapory/tetsy-vapory/pull/9729))
 - Backports for beta 2.1.2 ([#9649](https://github.com/openvapory/tetsy-vapory/pull/9649))
-  - Parity-version: bump beta to 2.1.2
-  - Ethcore: fix detection of major import ([#9552](https://github.com/openvapory/tetsy-vapory/pull/9552))
+  - Tetsy-version: bump beta to 2.1.2
+  - Vapcore: fix detection of major import ([#9552](https://github.com/openvapory/tetsy-vapory/pull/9552))
   - Hardfork the testnets ([#9562](https://github.com/openvapory/tetsy-vapory/pull/9562))
   - Docs(rpc): push the branch along with tags ([#9578](https://github.com/openvapory/tetsy-vapory/pull/9578))
   - Remove snapcraft clean ([#9585](https://github.com/openvapory/tetsy-vapory/pull/9585))
@@ -212,7 +212,7 @@ The full list of included changes:
   - Fix(network): don't disconnect reserved peers ([#9608](https://github.com/openvapory/tetsy-vapory/pull/9608))
   - Fix failing node-table tests on mac os ([#9633](https://github.com/openvapory/tetsy-vapory/pull/9633))
   - Fix bad-block reporting no reason ([#9638](https://github.com/openvapory/tetsy-vapory/pull/9638))
-  - Ethcore-io retries failed work steal ([#9651](https://github.com/openvapory/tetsy-vapory/pull/9651))
+  - Vapcore-io retries failed work steal ([#9651](https://github.com/openvapory/tetsy-vapory/pull/9651))
   - Remove master from releasable branches ([#9655](https://github.com/openvapory/tetsy-vapory/pull/9655))
   - Test fix for windows cache name... ([#9658](https://github.com/openvapory/tetsy-vapory/pull/9658))
   - Fix(light_fetch): avoid race with BlockNumber::Latest ([#9665](https://github.com/openvapory/tetsy-vapory/pull/9665))
@@ -220,11 +220,11 @@ The full list of included changes:
   - Ci: fix push script ([#9679](https://github.com/openvapory/tetsy-vapory/pull/9679))
   - CI: Remove unnecessary pipes ([#9681](https://github.com/openvapory/tetsy-vapory/pull/9681))
   - Don't hash the init_code of CREATE. ([#9688](https://github.com/openvapory/tetsy-vapory/pull/9688))
-  - Docker: run parity as normal user ([#9689](https://github.com/openvapory/tetsy-vapory/pull/9689))
+  - Docker: run tetsy as normal user ([#9689](https://github.com/openvapory/tetsy-vapory/pull/9689))
   - CI: Skip docs job for master and nightly ([#9693](https://github.com/openvapory/tetsy-vapory/pull/9693))
   - Implement CREATE2 gas changes and fix some potential overflowing ([#9694](https://github.com/openvapory/tetsy-vapory/pull/9694))
   - Make instantSeal engine backwards compatible ([#9700](https://github.com/openvapory/tetsy-vapory/pull/9700))
-  - Ethcore: delay ropsten hardfork ([#9704](https://github.com/openvapory/tetsy-vapory/pull/9704))
+  - Vapcore: delay ropsten hardfork ([#9704](https://github.com/openvapory/tetsy-vapory/pull/9704))
 
 ## Tetsy-Vapory [v2.1.1](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.1.1) (2018-09-20)
 
@@ -233,7 +233,7 @@ Tetsy-Vapory 2.1.1-beta is a release that does not improve performance and stabi
 The full list of included changes:
 
 - Backports for 2.1.1 beta ([#9599](https://github.com/openvapory/tetsy-vapory/pull/9599))
-  - Parity: bump version to 2.1.1 beta
+  - Tetsy: bump version to 2.1.1 beta
   - Ci: fix regex roll_eyes
   - Docs(rpc): annotate tag with the provided message
 
@@ -252,13 +252,13 @@ Important notices:
 Further changes worth highlighting:
 
 - Generalized `blockReward` and `difficultyBombDelays` config ([#9480](https://github.com/openvapory/tetsy-vapory/pull/9480)): This removes `eip649*` parameters from chain specs and allows `blockReward` to accept `multi`. Please review your chain-specs!
-- Implement EIP234 `block_hash` for `eth_getLogs` ([#9256](https://github.com/openvapory/tetsy-vapory/pull/9256)): If `block_hash` and `from_block`/`to_block` present, return error. This also changes `eth_getLogs` to return error if any of `block_hash`/`from_block`/`to_block` cannot be found.
+- Implement EIP234 `block_hash` for `vap_getLogs` ([#9256](https://github.com/openvapory/tetsy-vapory/pull/9256)): If `block_hash` and `from_block`/`to_block` present, return error. This also changes `vap_getLogs` to return error if any of `block_hash`/`from_block`/`to_block` cannot be found.
 - The default `gas_floor_target` was increased to `8_000_000`, the default `gas_cap` to `10_000_000`.
-- Light clients provide the actual account for `eth_coinbase` RPC ([#9383](https://github.com/openvapory/tetsy-vapory/pull/9383)). Note, this behavior is different from the full client where we return the `0x0` address if no accounts are found!
+- Light clients provide the actual account for `vap_coinbase` RPC ([#9383](https://github.com/openvapory/tetsy-vapory/pull/9383)). Note, this behavior is different from the full client where we return the `0x0` address if no accounts are found!
 - Light servers give free credits for reserved peers ([#9448](https://github.com/openvapory/tetsy-vapory/pull/9448)): When connecting to a reserved peers in light client, assign free credits to them. This fixes the scenario where a home server is running a full node, and another light client connects to the full node as a reserved peer.
 - Multi-threaded snapshot creation ([#9239](https://github.com/openvapory/tetsy-vapory/pull/9239)): to speed up the generation of snapshots on disk, this can be parallelized now. By default N/2 CPU cores are being used. Use `--snapshot-threads` flag to customize the number of threads.
 - Remove all dapp permissions related settings ([#9120](https://github.com/openvapory/tetsy-vapory/pull/9120)). This completely removes dapp permission settings from `AccountProvider` and JSON-RPC: In JSON-RPC, all available accounts are returned, regardless of the origin; previously we return accounts based on dapps policy. It's not possible to set a "default account" (as for dapps) any more; this is now always the first account in the available account list.
-- Remove unused `--tx_queue_gas` parameter ([#9153](https://github.com/openvapory/tetsy-vapory/pull/9153)). Please use `parity --help` to learn about available transaction queue strategies.
+- Remove unused `--tx_queue_gas` parameter ([#9153](https://github.com/openvapory/tetsy-vapory/pull/9153)). Please use `tetsy --help` to learn about available transaction queue strategies.
 
 The full list of included changes:
 
@@ -267,14 +267,14 @@ The full list of included changes:
   - Update .gitlab-ci.yml
   - Remove snapcraft clean
 - Backports for 2.1.0 beta ([#9518](https://github.com/openvapory/tetsy-vapory/pull/9518))
-  - Parity-version: mark 2.1.0 track beta
+  - Tetsy-version: mark 2.1.0 track beta
   - Ci: update branch version references
   - Docker: release master to latest
   - Fix checkpointing when creating contract failed ([#9514](https://github.com/openvapory/tetsy-vapory/pull/9514))
   - Ci: fix json docs generation ([#9515](https://github.com/openvapory/tetsy-vapory/pull/9515))
   - Fix typo in version string ([#9516](https://github.com/openvapory/tetsy-vapory/pull/9516))
     - Update patricia trie to 0.2.2 crates. Default dependencies on minor version only.
-    - Putting back ethereum tests to the right commit
+    - Putting back vapory tests to the right commit
     - Enable all Constantinople hard fork changes in constantinople_test.json ([#9505](https://github.com/openvapory/tetsy-vapory/pull/9505))
     - Enable all Constantinople hard fork changes in constantinople_test.json
     - Address grumbles
@@ -294,7 +294,7 @@ The full list of included changes:
     - Remove randomness, add debugging
     - Add warning
     - Add tracing
-    - Use parity-common fix seek branch
+    - Use tetsy-common fix seek branch
     - Fix log
     - Fix tests
     - Fix tests
@@ -333,20 +333,20 @@ The full list of included changes:
   - Increase Gas-floor-target and Gas Cap ([#9564](https://github.com/openvapory/tetsy-vapory/pull/9564))
     - Gas-floor-target increased to 8M by default
     - Gas-cap increased to 10M by default
-  - Revert to old parity-tokio-ipc.
+  - Revert to old tetsy-tokio-ipc.
   - Downgrade named pipes.
 - Fix checkpointing when creating contract failed ([#9514](https://github.com/openvapory/tetsy-vapory/pull/9514))
 - Ci: fix json docs generation ([#9515](https://github.com/openvapory/tetsy-vapory/pull/9515))
 - Update state tests execution model ([#9440](https://github.com/openvapory/tetsy-vapory/pull/9440))
   - Update & fix JSON state tests.
-  - Update tests to be able to run ethtest at 021fe3d410773024cd5f0387e62db6e6ec800f32.
+  - Update tests to be able to run vaptest at 021fe3d410773024cd5f0387e62db6e6ec800f32.
   - Touch user in state
   - Adjust transaction tests to new json format
-  - Switch to same commit for submodule ethereum/test as geth (next includes constantinople changes).
+  - Switch to same commit for submodule vapory/test as gvap (next includes constantinople changes).
   - Added test `json_tests::trie::generic::TrieTests_trieanyorder` and a few difficulty tests.
   - Remove trietestnextprev as it would require to parse differently and implement it.
   - Support new (shitty) format of transaction tests.
-  - Ignore junk in ethereum/tests repo.
+  - Ignore junk in vapory/tests repo.
   - Ignore incorrect test.
   - Update to a later commit
   - Move block number to a constant.
@@ -360,9 +360,9 @@ The full list of included changes:
 - Don't error when Snapshot is aborted ([#9492](https://github.com/openvapory/tetsy-vapory/pull/9492))
 - Light: give free credits for reserved peers ([#9448](https://github.com/openvapory/tetsy-vapory/pull/9448))
   - Light: give free credits for reserved peers
-  - Fix ethcore-light tests
+  - Fix vapcore-light tests
   - Test free_flow_params
-- Parity: print correct keys path on startup ([#9501](https://github.com/openvapory/tetsy-vapory/pull/9501))
+- Tetsy: print correct keys path on startup ([#9501](https://github.com/openvapory/tetsy-vapory/pull/9501))
 - Generalized blockReward and difficultyBombDelays config ([#9480](https://github.com/openvapory/tetsy-vapory/pull/9480))
   - Implement multi blockReward
   - Implement difficultyBombDelays
@@ -382,9 +382,9 @@ The full list of included changes:
   - Implement last_checkpoint_storage_at
   - Add reverted_storage_at for externalities
   - Sstore_clears_count -> sstore_clears_refund
-  - Implement eip1283 for evm
+  - Implement eip1283 for vvm
   - Add eip1283Transition params
-  - Evm: fix tests
+  - Vvm: fix tests
   - Jsontests: fix test
   - Return checkpoint index when creating
   - Comply with spec Version II
@@ -431,29 +431,29 @@ The full list of included changes:
   - Fix json crate compile
   - Fix private_spec.json
   - Option<bool> -> bool
-- Ethcore: don't validate difficulty when ignoring seal check ([#9470](https://github.com/openvapory/tetsy-vapory/pull/9470))
-  - Ethcore: don't validate difficulty when ignoring seal check
-  - Ethcore: fix block verification test
-  - Ethcore: document skipped verifications when check_seal is disabled
-- [light/jsonrpc] Provide the actual account for `eth_coinbase` RPC and unify error handling for light and full client ([#9383](https://github.com/openvapory/tetsy-vapory/pull/9383))
-  - Provide the actual `account` for eth_coinbase
-    - The previous implementation always provided the `zero address` on `eth_coinbase` RPC. Now, instead the actual address is returned on success or an error when no account(s) is found!
-  - Full client `eth_coinbase` return err
+- Vapcore: don't validate difficulty when ignoring seal check ([#9470](https://github.com/openvapory/tetsy-vapory/pull/9470))
+  - Vapcore: don't validate difficulty when ignoring seal check
+  - Vapcore: fix block verification test
+  - Vapcore: document skipped verifications when check_seal is disabled
+- [light/jsonrpc] Provide the actual account for `vap_coinbase` RPC and unify error handling for light and full client ([#9383](https://github.com/openvapory/tetsy-vapory/pull/9383))
+  - Provide the actual `account` for vap_coinbase
+    - The previous implementation always provided the `zero address` on `vap_coinbase` RPC. Now, instead the actual address is returned on success or an error when no account(s) is found!
+  - Full client `vap_coinbase` return err
     - In the full-client return an error when no account is found instead of returning the `zero address`
   - Remove needless blocks on single import
   - Remove needless `static` lifetime on const
-  - Fix `rpc_eth_author` test
+  - Fix `rpc_vap_author` test
 - Add a Java interface ([#9346](https://github.com/openvapory/tetsy-vapory/pull/9346))
   - Add a Java interface
   - Use system ABI
   - Forgot exception
-  - Fix param for parity_rpc
+  - Fix param for tetsy_rpc
   - Address concerns
-- Fetch `parity-common` crates from crates.io ([#9410](https://github.com/openvapory/tetsy-vapory/pull/9410))
-  - Fetch `parity-common` crates from crates.io
-  - Add doc tests from `patricia-trie` to `patricia-trie-ethereum`
+- Fetch `tetsy-common` crates from crates.io ([#9410](https://github.com/openvapory/tetsy-vapory/pull/9410))
+  - Fetch `tetsy-common` crates from crates.io
+  - Add doc tests from `patricia-trie` to `patricia-trie-vapory`
   - Fix/update a few deps
-  - [ethkey] upgrade ethereum-types
+  - [vapkey] upgrade vapory-types
   - [whisper] update deps
   - [network] deps
   - [network-devp2p] deps
@@ -463,17 +463,17 @@ The full list of included changes:
   - [machine] deps
   - [json] deps
   - [hw] deps
-  - [ethash] deps
+  - [vapash] deps
   - [registrar] deps
-  - Update a few more dependencies with new ethabi-*
+  - Update a few more dependencies with new vapabi-*
   - [updater] Update deps
   - Deps
-  - [ethcore] Update deps
-  - Use new parity-snappy and parity-rocksdb crates
+  - [vapcore] Update deps
+  - Use new tetsy-snappy and tetsy-rocksdb crates
   - Updated submodules
-  - Use parity-snappy 0.1
+  - Use tetsy-snappy 0.1
   - Use kvdb-rocksdb 0.1.2
-  - Don't use latest ethereum/tests
+  - Don't use latest vapory/tests
   - Fix merge conflicts errors
   - Remove superseeded comment
   - Address grumbles: add newlines, add/remove spaces
@@ -487,10 +487,10 @@ The full list of included changes:
   - Also, for the reviewers there may be better solution than modifying the informant.
 - Fix docs of address_hash ([#9463](https://github.com/openvapory/tetsy-vapory/pull/9463))
 - Fix typo in bash script ([#9462](https://github.com/openvapory/tetsy-vapory/pull/9462))
-- Fix a bug in evmbin initial_gas display ([#9457](https://github.com/openvapory/tetsy-vapory/pull/9457))
-- Evmbin: escape newlines in json errors ([#9458](https://github.com/openvapory/tetsy-vapory/pull/9458))
-- Use kvdb-* and parity-snappy crates from crates.io ([#9441](https://github.com/openvapory/tetsy-vapory/pull/9441))
-  - Use kvdb-* and parity-snappy crates from crates.io
+- Fix a bug in vvmbin initial_gas display ([#9457](https://github.com/openvapory/tetsy-vapory/pull/9457))
+- Vvmbin: escape newlines in json errors ([#9458](https://github.com/openvapory/tetsy-vapory/pull/9458))
+- Use kvdb-* and tetsy-snappy crates from crates.io ([#9441](https://github.com/openvapory/tetsy-vapory/pull/9441))
+  - Use kvdb-* and tetsy-snappy crates from crates.io
   - Update rocksdb-sys and snappy-sys
 - Add EIP-1014 transition config flag ([#9268](https://github.com/openvapory/tetsy-vapory/pull/9268))
   - Add EIP-1014 transition config flag
@@ -506,27 +506,27 @@ The full list of included changes:
   - Pending case never instantiated, and only ever matched together with Unknown
 - Ci: only include local paths in coverage script (except target) ([#9437](https://github.com/openvapory/tetsy-vapory/pull/9437))
 - Add POA Networks: Core and Sokol ([#9413](https://github.com/openvapory/tetsy-vapory/pull/9413))
-  - Ethcore: add poa network and sokol chainspecs
+  - Vapcore: add poa network and sokol chainspecs
   - Rpc: simplify chain spec docs
   - Cli: rearrange networks by main/test and size/range
-  - Parity: don't blacklist 0x00a328 on sokol testnet
-  - Parity: add sokol and poanet to params and clean up a bit, add tests
-  - Ethcore: add the poa networks and clean up a bit
-  - Ethcore: fix path to poacore chain spec
-  - Parity: rename poa networks to poacore and poasokol
-  - Parity: fix configuration tests
-  - Parity: fix parameter tests
-  - Ethcore: rename POA Core and POA Sokol
+  - Tetsy: don't blacklist 0x00a328 on sokol testnet
+  - Tetsy: add sokol and poanet to params and clean up a bit, add tests
+  - Vapcore: add the poa networks and clean up a bit
+  - Vapcore: fix path to poacore chain spec
+  - Tetsy: rename poa networks to poacore and poasokol
+  - Tetsy: fix configuration tests
+  - Tetsy: fix parameter tests
+  - Vapcore: rename POA Core and POA Sokol
 - Docker: install missing dependencies in arm target dockerfiles ([#9436](https://github.com/openvapory/tetsy-vapory/pull/9436))
 - Random small cleanups ([#9423](https://github.com/openvapory/tetsy-vapory/pull/9423))
   - Clean up toml files
-  - Update the parity ethereum toolchain docs
+  - Update the tetsy vapory toolchain docs
   - Update contribution guide and issue templates
   - Update desktop and service files
   - Build clib examples with 8 threads
   - Update header templates
-  - Replace parity technologies with parity ethereum logo
-- Evmbin: Fix gas_used issue in state root mismatch and handle output better ([#9418](https://github.com/openvapory/tetsy-vapory/pull/9418))
+  - Replace tetsy technologies with tetsy vapory logo
+- Vvmbin: Fix gas_used issue in state root mismatch and handle output better ([#9418](https://github.com/openvapory/tetsy-vapory/pull/9418))
   - Fix gas used in staterootmismatch, and print full state root hash
   - Write trace info for stdjson to stderr
   - Fix tests
@@ -535,8 +535,8 @@ The full list of included changes:
   - Update foundation hardcoded header to block 6219777
   - Update ropsten hardcoded header to block 3917825
   - Update kovan hardcoded header to block 8511489
-- Add block reward contract config to ethash and allow off-chain contracts ([#9312](https://github.com/openvapory/tetsy-vapory/pull/9312))
-  - This adds block reward contract config to ethash. A new config `blockRewardContractCode` is also added to both Aura and ethash. When specified, it will execute the code directly and overrides any `blockRewardContractAddress` config. Having this `blockRewardContractCode` config allows chains to deploy hard fork by simply replacing the current config value, without the need from us to support any `multi` block reward scheme.
+- Add block reward contract config to vapash and allow off-chain contracts ([#9312](https://github.com/openvapory/tetsy-vapory/pull/9312))
+  - This adds block reward contract config to vapash. A new config `blockRewardContractCode` is also added to both Aura and vapash. When specified, it will execute the code directly and overrides any `blockRewardContractAddress` config. Having this `blockRewardContractCode` config allows chains to deploy hard fork by simply replacing the current config value, without the need from us to support any `multi` block reward scheme.
 - Private packets verification and queue refactoring ([#8715](https://github.com/openvapory/tetsy-vapory/pull/8715))
   - Verify private transaction before propagating
   - Private transactions queue reworked with tx pool queue direct usage
@@ -558,8 +558,8 @@ The full list of included changes:
   - Logging reworked, target added
   - Fix after merge
 - Update tobalaba.json ([#9419](https://github.com/openvapory/tetsy-vapory/pull/9419))
-- Docs: add parity ethereum logo to readme ([#9415](https://github.com/openvapory/tetsy-vapory/pull/9415))
-  - Docs: add parity ethereum logo
+- Docs: add tetsy vapory logo to readme ([#9415](https://github.com/openvapory/tetsy-vapory/pull/9415))
+  - Docs: add tetsy vapory logo
   - Docs: add logo to readme
   - Docs: align logo center
   - Docs: remove separators from readme
@@ -583,7 +583,7 @@ The full list of included changes:
   - Ci: remove sleep from gitlab config
   - Ci: replace ':' with '-' in gitlab targets
   - Ci: fix recursive copy in docs script
-- Better support for eth_getLogs in light mode ([#9186](https://github.com/openvapory/tetsy-vapory/pull/9186))
+- Better support for vap_getLogs in light mode ([#9186](https://github.com/openvapory/tetsy-vapory/pull/9186))
   - Light client on-demand request for headers range.
   - Cache headers in HeaderWithAncestors response.
     - Also fulfills request locally if all headers are in cache.
@@ -599,26 +599,26 @@ The full list of included changes:
   - Fix gitlab ci lint
   - Only apply jsonrpc docs update on tags
   - Update gitlab-rpc-docs.sh
-  - Copy correct parity repo to jsonrpc folder
-    - Copy correct parity repo to jsonrpc folder before attempting to build docs since the CI runner clones the repo as parity and not parity-ethereum.
+  - Copy correct tetsy repo to jsonrpc folder
+    - Copy correct tetsy repo to jsonrpc folder before attempting to build docs since the CI runner clones the repo as tetsy and not tetsy-vapory.
   - Fix JSONRPC docs CI job
-    - Update remote config in wiki repo before pushing changes using a github token for authentication. Add message to wiki tag when pushing changes. Use project directory to correctly copy parity code base into the jsonrpc repo for doc generation.
+    - Update remote config in wiki repo before pushing changes using a github token for authentication. Add message to wiki tag when pushing changes. Use project directory to correctly copy tetsy code base into the jsonrpc repo for doc generation.
   - Fix set_remote_wiki function call in CI
 - `gasleft` extern implemented for WASM runtime (kip-6) ([#9357](https://github.com/openvapory/tetsy-vapory/pull/9357))
   - Wasm gasleft extern added
   - Wasm_gasleft_activation_transition -> kip4_transition
   - Use kip-6 switch
   - Gasleft_panic -> gasleft_fail rename
-  - Call_msg_gasleft test added and gas_left agustments because this paritytech/wasm-tests#52
+  - Call_msg_gasleft test added and gas_left agustments because this tetsytech/wasm-tests#52
   - Change .. to _
   - Fix comment for the have_gasleft param
-  - Update tests (paritytech/wasm-tests-0edbf86)
+  - Update tests (tetsytech/wasm-tests-0edbf86)
 - Block view! removal in progress ([#9397](https://github.com/openvapory/tetsy-vapory/pull/9397))
 - Prevent sync restart if import queue full ([#9381](https://github.com/openvapory/tetsy-vapory/pull/9381))
 - Nonroot CentOS Docker image ([#9280](https://github.com/openvapory/tetsy-vapory/pull/9280))
   - Updates CentOS Docker image build process
   - Rename build.Dockerfile
-- Ethcore: kovan: delay activation of strict score validation ([#9406](https://github.com/openvapory/tetsy-vapory/pull/9406))
+- Vapcore: kovan: delay activation of strict score validation ([#9406](https://github.com/openvapory/tetsy-vapory/pull/9406))
 - Revert "Use std::sync::Condvar ([#1732](https://github.com/openvapory/tetsy-vapory/pull/1732))" ([#9392](https://github.com/openvapory/tetsy-vapory/pull/9392))
   - Revert "Use std::sync::Condvar ([#1732](https://github.com/openvapory/tetsy-vapory/pull/1732))"
     - This reverts commit c65ee93.
@@ -646,11 +646,11 @@ The full list of included changes:
 - Fix typos in `network-devp2p` ([#9371](https://github.com/openvapory/tetsy-vapory/pull/9371))
 - Light client `Provide default nonce in transactions when it´s missing` ([#9370](https://github.com/openvapory/tetsy-vapory/pull/9370))
   - Provide `default_nonce` in tx`s when it´s missing
-    - When `nonce` is missing in a `EthTransaction` will cause it to fall in these cases provide `default_nonce` value instead!
+    - When `nonce` is missing in a `VapTransaction` will cause it to fall in these cases provide `default_nonce` value instead!
   - Changed http:// to https:// on Yasm link ([#9369](https://github.com/openvapory/tetsy-vapory/pull/9369))
     - Changed http:// to https:// on Yasm link in README.md
   - Provide `default_nonce` in tx`s when it´s missing
-    - When `nonce` is missing in a `EthTransaction` will cause it to fall in these cases provide `default_nonce` value instead!
+    - When `nonce` is missing in a `VapTransaction` will cause it to fall in these cases provide `default_nonce` value instead!
   - Address grumbles
 - Changed http:// to https:// on Yasm link ([#9369](https://github.com/openvapory/tetsy-vapory/pull/9369))
   - Changed http:// to https:// on Yasm link in README.md
@@ -679,14 +679,14 @@ The full list of included changes:
   - Json_tests: fix compile
   - Typo: 0..32 -> ..32 to keep it consistent with other occurance
   - Fix tests
-- Allow single opcode stepping for EVM ([#9051](https://github.com/openvapory/tetsy-vapory/pull/9051))
+- Allow single opcode stepping for VVM ([#9051](https://github.com/openvapory/tetsy-vapory/pull/9051))
   - Feed in ActionParams on VM creation
-  - Fix ethcore after Vm interface change
+  - Fix vapcore after Vm interface change
   - Move informant inside Interpreter struct
   - Move do_trace to Interpreter struct
   - Move all remaining exec variables to Interpreter struct
   - Refactor VM to allow single opcode step
-  - Fix all EVM tests
+  - Fix all VVM tests
   - Fix all wasm tests
   - Fix wasm runner tests
   - Fix a check case where code length is zero
@@ -696,45 +696,45 @@ The full list of included changes:
   - Use cheaper check reader.len() == 0 for the initial special case
   - Get rid of try_and_done! macro by using Result<(), ReturnType>
   - Use Never instead of ()
-  - Fix parity-bytes path
+  - Fix tetsy-bytes path
   - Bypass gasometer lifetime problem by borrow only for a instance
   - Typo: missing {
-  - Fix ethcore test compile
-  - Fix evm tests
+  - Fix vapcore test compile
+  - Fix vvm tests
 - Fix load share ([#9321](https://github.com/openvapory/tetsy-vapory/pull/9321))
   - Fix(light_sync): calculate `load_share` properly
   - Refactor(api.rs): extract `light_params` fn, add test
   - Style(api.rs): add trailing commas
-- Implement EIP234 block_hash for eth_getLogs ([#9256](https://github.com/openvapory/tetsy-vapory/pull/9256))
+- Implement EIP234 block_hash for vap_getLogs ([#9256](https://github.com/openvapory/tetsy-vapory/pull/9256))
   - Implement EIP234
   - Make filter conversion returns error if both blockHash and from/toBlock is found
-    - This also changes PollFilter to store the EthFilter type, instead of the jsonrpc one, saving repeated conversion.
-  - Return error if block filtering target is not found in eth_getLogs
+    - This also changes PollFilter to store the VapFilter type, instead of the jsonrpc one, saving repeated conversion.
+  - Return error if block filtering target is not found in vap_getLogs
     - Use the old behavior (unwrap_or_default) for anywhere else.
   - Fix test: secret_store
   - Fix weird indentation
   - Make client log filter return error in case a block cannot be found
   - Return blockId error in rpc
   - Test_client: allow return error on logs
-  - Add a mocked test for eth_getLogs error
+  - Add a mocked test for vap_getLogs error
   - Fix: should return error if from_block/to_block greater than best block number
   - Add notes on pending
   - Add comment for UNSUPPORTED_REQUEST
   - Address grumbles
   - Return err if from > to
-- Ethcore: fix pow difficulty validation ([#9328](https://github.com/openvapory/tetsy-vapory/pull/9328))
-  - Ethcore: fix pow difficulty validation
-  - Ethcore: validate difficulty is not zero
-  - Ethcore: add issue link to regression test
-  - Ethcore: fix tests
-  - Ethcore: move difficulty_to_boundary to ethash crate
-  - Ethcore: reuse difficulty_to_boundary and boundary_to_difficulty
-  - Ethcore: fix grumbles in difficulty_to_boundary_aux
-- Ethcore/sync `Make view macro only visible to test` ([#9316](https://github.com/openvapory/tetsy-vapory/pull/9316))
+- Vapcore: fix pow difficulty validation ([#9328](https://github.com/openvapory/tetsy-vapory/pull/9328))
+  - Vapcore: fix pow difficulty validation
+  - Vapcore: validate difficulty is not zero
+  - Vapcore: add issue link to regression test
+  - Vapcore: fix tests
+  - Vapcore: move difficulty_to_boundary to vapash crate
+  - Vapcore: reuse difficulty_to_boundary and boundary_to_difficulty
+  - Vapcore: fix grumbles in difficulty_to_boundary_aux
+- Vapcore/sync `Make view macro only visible to test` ([#9316](https://github.com/openvapory/tetsy-vapory/pull/9316))
   - Remove needless macro import
-  - Enable ethcore/macros in tests
-- Allow setting the panic hook with parity-clib ([#9292](https://github.com/openvapory/tetsy-vapory/pull/9292))
-  - Allow setting the panic hook with parity-clib
+  - Enable vapcore/macros in tests
+- Allow setting the panic hook with tetsy-clib ([#9292](https://github.com/openvapory/tetsy-vapory/pull/9292))
+  - Allow setting the panic hook with tetsy-clib
   - Make all FFI functions unsafe
   - Fix comment
   - Fix concern
@@ -750,26 +750,26 @@ The full list of included changes:
 - Update tobalaba.json ([#9313](https://github.com/openvapory/tetsy-vapory/pull/9313))
 - Allow tx pool to be Send ([#9315](https://github.com/openvapory/tetsy-vapory/pull/9315))
 - Fix codecov.io badge in README ([#9327](https://github.com/openvapory/tetsy-vapory/pull/9327))
-- Move ethereum-specific H256FastMap type to own crate ([#9307](https://github.com/openvapory/tetsy-vapory/pull/9307))
+- Move vapory-specific H256FastMap type to own crate ([#9307](https://github.com/openvapory/tetsy-vapory/pull/9307))
   - Add a `fastmap` crate that provides the H256FastMap specialized HashMap
-  - Use `fastmap` instead of `plain_hasher`
+  - Use `fastmap` instead of `tetsy-plain-hasher`
   - Update submodules for Reasons™
   - Submodule update
-- Ethcore sync decodes rlp less often ([#9264](https://github.com/openvapory/tetsy-vapory/pull/9264))
+- Vapcore sync decodes rlp less often ([#9264](https://github.com/openvapory/tetsy-vapory/pull/9264))
   - Deserialize block only once during verification
-  - Ethcore-sync uses Unverified
-  - Ethcore-sync uses Unverified
+  - Vapcore-sync uses Unverified
+  - Vapcore-sync uses Unverified
   - Fixed build error
   - Removed Block::is_good
   - Applied review suggestions
-  - Ethcore-sync deserializes headers and blocks only once
-- Ethcore: add transition flag for transaction permission contract ([#9275](https://github.com/openvapory/tetsy-vapory/pull/9275))
-  - Ethcore: add transition flag for transaction permission contract
-  - Ethcore: fix transaction permission contract tests
+  - Vapcore-sync deserializes headers and blocks only once
+- Vapcore: add transition flag for transaction permission contract ([#9275](https://github.com/openvapory/tetsy-vapory/pull/9275))
+  - Vapcore: add transition flag for transaction permission contract
+  - Vapcore: fix transaction permission contract tests
 - Remove all dapp permissions related settings ([#9120](https://github.com/openvapory/tetsy-vapory/pull/9120))
   - Completely remove all dapps struct from rpc
   - Remove unused pub use
-  - Remove dapp policy/permission func in ethcore
+  - Remove dapp policy/permission func in vapcore
   - Remove all dapps settings from rpc
   - Fix rpc tests
   - Use both origin and user_agent
@@ -786,7 +786,7 @@ The full list of included changes:
   - Typo: docs fix
   - Fix args offset
   - Add tests for create2
-  - Tests: evm
+  - Tests: vvm
   - Update wasm-tests and fix all gas costs
   - Update wasm-tests
   - Update wasm-tests and fix gas costs
@@ -794,8 +794,8 @@ The full list of included changes:
 - Avoid using $HOME if not necessary ([#9273](https://github.com/openvapory/tetsy-vapory/pull/9273))
   - Avoid using $HOME if not necessary
   - Fix concerns and issues
-- Fix path to parity.h ([#9274](https://github.com/openvapory/tetsy-vapory/pull/9274))
-  - Fix path to parity.h
+- Fix path to tetsy.h ([#9274](https://github.com/openvapory/tetsy-vapory/pull/9274))
+  - Fix path to tetsy.h
   - Fix other paths as well
 - Propagate transactions for next 4 blocks. ([#9265](https://github.com/openvapory/tetsy-vapory/pull/9265))
   - Closes [#9255](https://github.com/openvapory/tetsy-vapory/issues/9255)
@@ -804,8 +804,8 @@ The full list of included changes:
   - Removed 4 redundant rlp deserializations
   - Avoid 1 redundant block data copy
 - Fix eternalities tests can_create (missing parameter) ([#9270](https://github.com/openvapory/tetsy-vapory/pull/9270))
-- Update ref to `parity-common` and update `seek` behaviour ([#9257](https://github.com/openvapory/tetsy-vapory/pull/9257))
-  - Update ref to `parity-common` and update `seek` behaviour
+- Update ref to `tetsy-common` and update `seek` behaviour ([#9257](https://github.com/openvapory/tetsy-vapory/pull/9257))
+  - Update ref to `tetsy-common` and update `seek` behaviour
   - Remove reference to `ng-fix-triedb-seek` branch
 - Comply EIP-86 with the new definition ([#9140](https://github.com/openvapory/tetsy-vapory/pull/9140))
   - Comply EIP-86 with the new CREATE2 opcode
@@ -817,13 +817,13 @@ The full list of included changes:
   - Add new tests in executive
   - Fix have_create2 comment
   - Remove all unused references of eip86_transition and block_number
-- Check if synced when using eth_getWork ([#9193](https://github.com/openvapory/tetsy-vapory/pull/9193)) ([#9210](https://github.com/openvapory/tetsy-vapory/pull/9210))
-  - Check if synced when using eth_getWork ([#9193](https://github.com/openvapory/tetsy-vapory/pull/9193))
+- Check if synced when using vap_getWork ([#9193](https://github.com/openvapory/tetsy-vapory/pull/9193)) ([#9210](https://github.com/openvapory/tetsy-vapory/pull/9210))
+  - Check if synced when using vap_getWork ([#9193](https://github.com/openvapory/tetsy-vapory/pull/9193))
   - Don't use fn syncing
   - Fix identation
   - Fix typo
   - Don't check for warping
-  - Rpc: avoid calling queue_info twice on eth_getWork
+  - Rpc: avoid calling queue_info twice on vap_getWork
 - Removed client error ([#9253](https://github.com/openvapory/tetsy-vapory/pull/9253))
 - Implement EIP-1052 (EXTCODEHASH) and fix several issues in state account cache ([#9234](https://github.com/openvapory/tetsy-vapory/pull/9234))
   - Implement EIP-1052 and fix several issues related to account cache
@@ -835,13 +835,13 @@ The full list of included changes:
 - Update Dockerfile ([#9242](https://github.com/openvapory/tetsy-vapory/pull/9242))
   - Update Dockerfile
     - Fix Docker build
-  - Fix dockerfile paths: parity -> parity-ethereum ([#9248](https://github.com/openvapory/tetsy-vapory/pull/9248))
+  - Fix dockerfile paths: tetsy -> tetsy-vapory ([#9248](https://github.com/openvapory/tetsy-vapory/pull/9248))
 - Block cleanup ([#9117](https://github.com/openvapory/tetsy-vapory/pull/9117))
   - Blockchain insert expects owned block instead of block reference
   - Reduce a number of times a block is deserialized
   - Removed cached uncle_bytes from block
   - Removed is_finalized from OpenBlock
-  - Removed unused parity_machine::WithMetadata trait
+  - Removed unused tetsy_machine::WithMetadata trait
   - Removed commented out code
   - Remove unused metadata from block
   - Remove unused metadata from block
@@ -862,13 +862,13 @@ The full list of included changes:
   - Break expect to its own line to avoid things being too long
   - Be more specific for all low-level database error cases
   - Fix BranchBecomingCanonChain expect
-  - Ethcore: fix typo in expect proof message
+  - Vapcore: fix typo in expect proof message
 - [chain] Add more bootnodes ([#9174](https://github.com/openvapory/tetsy-vapory/pull/9174))
     - For ETC, ELLA, EXP, Morden, MUSIC
-- Ethcore: update bn version ([#9217](https://github.com/openvapory/tetsy-vapory/pull/9217))
+- Vapcore: update bn version ([#9217](https://github.com/openvapory/tetsy-vapory/pull/9217))
 - Deserialize block only once during verification ([#9161](https://github.com/openvapory/tetsy-vapory/pull/9161))
 - Simple build instruction fix ([#9215](https://github.com/openvapory/tetsy-vapory/pull/9215))
-    - Changed `parity` dir name into  `parity-ethereum`
+    - Changed `tetsy` dir name into  `tetsy-vapory`
 - Added --tx-queue-no-early-reject flag to disable early tx queue rejects ([#9143](https://github.com/openvapory/tetsy-vapory/pull/9143))
   - Added --tx-queue-no-early-reject flag to disable early tx queue rejects because of low gas price
   - Fixed failing tests, clarified comments and simplified no_early_reject field name.
@@ -879,21 +879,21 @@ The full list of included changes:
   - Fix test: wrong Schedule used
   - Fix private-tx test
   - Fix jsontests compilation
-- Ethcore: add builtin benchmarks based on geth ([#9179](https://github.com/openvapory/tetsy-vapory/pull/9179))
-  - Ethcore: add geth benchmarks for all builtins
-  - Ethcore: remove old builtin benchmarks
+- Vapcore: add builtin benchmarks based on gvap ([#9179](https://github.com/openvapory/tetsy-vapory/pull/9179))
+  - Vapcore: add gvap benchmarks for all builtins
+  - Vapcore: remove old builtin benchmarks
 - Rpc: fix is_major_importing sync state condition ([#9112](https://github.com/openvapory/tetsy-vapory/pull/9112))
   - Rpc: fix is_major_importing sync state condition
   - Rpc: fix informant printout when waiting for peers
 - Docs: update repository links ([#9159](https://github.com/openvapory/tetsy-vapory/pull/9159))
   - Docs: update repository links
   - Docs: update repository links in contribution guide
-- Parity: fix UserDefaults json parser ([#9189](https://github.com/openvapory/tetsy-vapory/pull/9189))
-  - Parity: fix UserDefaults json parser
-  - Parity: use serde_derive for UserDefaults
-  - Parity: support deserialization of old UserDefault json format
-  - Parity: make UserDefaults serde backwards compatible
-  - Parity: tabify indentation in UserDefaults
+- Tetsy: fix UserDefaults json parser ([#9189](https://github.com/openvapory/tetsy-vapory/pull/9189))
+  - Tetsy: fix UserDefaults json parser
+  - Tetsy: use serde_derive for UserDefaults
+  - Tetsy: support deserialization of old UserDefault json format
+  - Tetsy: make UserDefaults serde backwards compatible
+  - Tetsy: tabify indentation in UserDefaults
 - Update "This is a bug. Please report it at:" link ([#9191](https://github.com/openvapory/tetsy-vapory/pull/9191))
 - Docker: update hub dockerfile ([#9173](https://github.com/openvapory/tetsy-vapory/pull/9173))
   - Update Dockerfile for hub
@@ -901,9 +901,9 @@ The full list of included changes:
     - Fix cmake version
   - Docker: fix tab indentation in hub dockerfile
 - Ci: update version strings for snaps ([#9160](https://github.com/openvapory/tetsy-vapory/pull/9160))
-- Ethcore: add missing builtins benchmarks ([#9170](https://github.com/openvapory/tetsy-vapory/pull/9170))
-  - Ethcore: add modexp benchmarks
-  - Ethcore: add_bn_128_add benchmark
+- Vapcore: add missing builtins benchmarks ([#9170](https://github.com/openvapory/tetsy-vapory/pull/9170))
+  - Vapcore: add modexp benchmarks
+  - Vapcore: add_bn_128_add benchmark
 - Fix bugfix hard fork logic ([#9138](https://github.com/openvapory/tetsy-vapory/pull/9138))
   - Fix bugfix hard fork logic
   - Remove dustProtectionTransition from bugfix category
@@ -941,29 +941,29 @@ The full list of included changes:
 - Disable per-sender limit for local transactions. ([#9148](https://github.com/openvapory/tetsy-vapory/pull/9148))
   - Disable per-sender limit for local transactions.
   - Add a missing new line.
-- Parity: fix logging cli parameter example ([#9154](https://github.com/openvapory/tetsy-vapory/pull/9154))
+- Tetsy: fix logging cli parameter example ([#9154](https://github.com/openvapory/tetsy-vapory/pull/9154))
 - Be more specific for `-l` CLI arguments ([#9149](https://github.com/openvapory/tetsy-vapory/pull/9149))
   - Update mod.rs
 - Receipt constructor `Allocate less stack for blooms` ([#9146](https://github.com/openvapory/tetsy-vapory/pull/9146))
   - Allocate less stack in `Receipt ctor`
-  - Ethcore: use accrue_bloom when computing transaction receipt
-- `evm bench` fix broken dependencies ([#9134](https://github.com/openvapory/tetsy-vapory/pull/9134))
-  - `evm bench` use valid dependencies
-    - Benchmarks of the `evm` used stale versions of a couple a crates that this commit fixes!
+  - Vapcore: use accrue_bloom when computing transaction receipt
+- `vvm bench` fix broken dependencies ([#9134](https://github.com/openvapory/tetsy-vapory/pull/9134))
+  - `vvm bench` use valid dependencies
+    - Benchmarks of the `vvm` used stale versions of a couple a crates that this commit fixes!
   - Fix warnings
 - Update snapcraft.yaml ([#9132](https://github.com/openvapory/tetsy-vapory/pull/9132))
-- Fix verification in ethcore-sync collect_blocks ([#9135](https://github.com/openvapory/tetsy-vapory/pull/9135))
+- Fix verification in vapcore-sync collect_blocks ([#9135](https://github.com/openvapory/tetsy-vapory/pull/9135))
 - Unify engine error to reject blocks ([#9085](https://github.com/openvapory/tetsy-vapory/pull/9085))
   - Reject if Engine::on_close_block returns error
   - Unify open block behaviors
-  - Fix tests in ethcore
+  - Fix tests in vapcore
   - Fix Aura tests
   - Fix RPC test
   - Print a warning if open block failed
   - Print the actual error when closing the block
   - Update comments for prepare_pending_block
   - Add BlockPreparationStatus to distingish three different state after prepare_pending_block
-- Fix `todo` in `ethcore/types::Receipt` constructor ([#9086](https://github.com/openvapory/tetsy-vapory/pull/9086))
+- Fix `todo` in `vapcore/types::Receipt` constructor ([#9086](https://github.com/openvapory/tetsy-vapory/pull/9086))
   - Remove needless mutable variable and assignment
 - Completely remove all dapps struct from rpc ([#9107](https://github.com/openvapory/tetsy-vapory/pull/9107))
   - Completely remove all dapps struct from rpc
@@ -978,7 +978,7 @@ The full list of included changes:
   - Insert Kovan hardcoded headers until block 7690241
   - Insert Ropsten hardcoded headers until 3612673
   - Insert Mainnet hardcoded headers until block 5941249
-- Parity-version: bump nightly version to 2.1 ([#9095](https://github.com/openvapory/tetsy-vapory/pull/9095))
+- Tetsy-version: bump nightly version to 2.1 ([#9095](https://github.com/openvapory/tetsy-vapory/pull/9095))
 - Fix work-notify. ([#9104](https://github.com/openvapory/tetsy-vapory/pull/9104))
 - Update snappy ([#9082](https://github.com/openvapory/tetsy-vapory/pull/9082))
 - Offload cull to IoWorker. ([#9099](https://github.com/openvapory/tetsy-vapory/pull/9099))
@@ -986,14 +986,14 @@ The full list of included changes:
 - Update hidapi, fixes [#7542](https://github.com/openvapory/tetsy-vapory/issues/7542) ([#9108](https://github.com/openvapory/tetsy-vapory/pull/9108))
 - Update README.md ([#9084](https://github.com/openvapory/tetsy-vapory/pull/9084))
   - Update README.md
-  - Rename parity client
+  - Rename tetsy client
   - Docs: remove UI stuff from readme.
   - Docs: add changelog link to readme
 - Revert "Replace `std::env::home_dir` with `dirs::home_dir` ([#9077](https://github.com/openvapory/tetsy-vapory/pull/9077))" ([#9097](https://github.com/openvapory/tetsy-vapory/pull/9097))
   - Revert "Replace `std::env::home_dir` with `dirs::home_dir` ([#9077](https://github.com/openvapory/tetsy-vapory/pull/9077))"
     - This reverts commit 7e77932.
   - Restore some of the changes
-  - Update parity-common
+  - Update tetsy-common
 - Multiple improvements to discovery ping handling ([#8771](https://github.com/openvapory/tetsy-vapory/pull/8771))
   - Discovery: Only add nodes to routing table after receiving pong.
     - Previously the discovery algorithm would add nodes to the routing table before confirming that the endpoint is participating in the protocol. This now tracks in-flight pings and adds to the routing table only after receiving a response.

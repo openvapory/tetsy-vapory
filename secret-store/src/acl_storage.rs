@@ -17,8 +17,8 @@
 use std::sync::Arc;
 use std::collections::{HashMap, HashSet};
 use parking_lot::{Mutex, RwLock};
-use ethereum_types::Address;
-use ethabi::FunctionOutputDecoder;
+use vapory_types::Address;
+use vapabi::FunctionOutputDecoder;
 use blockchain::{SecretStoreChain, NewBlocksNotify, ContractAddress, BlockId};
 use types::{Error, ServerKeyId};
 

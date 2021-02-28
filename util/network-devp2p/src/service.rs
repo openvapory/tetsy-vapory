@@ -22,7 +22,7 @@ use ansi_term::Colour;
 use log::info;
 use parking_lot::RwLock;
 
-use ethcore_io::{IoContext, IoHandler, IoService};
+use vapcore_io::{IoContext, IoHandler, IoService};
 use network::{
 	ConnectionFilter, Error, NetworkConfiguration, NetworkContext,
 	NetworkIoMessage, NetworkProtocolHandler, NonReservedPeerMode, PeerId, ProtocolId,

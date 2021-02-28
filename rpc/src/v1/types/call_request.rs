@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::{H160, U256};
+use vapory_types::{H160, U256};
 use v1::helpers::CallRequest as Request;
 use v1::types::Bytes;
 
@@ -58,7 +58,7 @@ mod tests {
 	use std::str::FromStr;
 	use rustc_hex::FromHex;
 	use serde_json;
-	use ethereum_types::{U256, H160};
+	use vapory_types::{U256, H160};
 	use super::CallRequest;
 
 	#[test]

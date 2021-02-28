@@ -22,11 +22,11 @@ use std::{
 	collections::HashMap,
 };
 
-use ethereum_types::H256;
-use hash_db::HashDB;
-use keccak_hasher::KeccakHasher;
-use kvdb::{self, DBTransaction, DBValue};
-use parity_bytes::Bytes;
+use vapory_types::H256;
+use tetsy_hash_db::HashDB;
+use tetsy_keccak_hasher::KeccakHasher;
+use tetsy_kvdb::{self, DBTransaction, DBValue};
+use tetsy_bytes::Bytes;
 
 mod archivedb;
 mod earlymergedb;
@@ -82,7 +82,7 @@ pub trait JournalDB: HashDB<KeccakHasher, DBValue> {
 	fn is_prunable(&self) -> bool { true }
 
 	/// Get backing database.
-	fn backing(&self) -> &Arc<dyn kvdb::KeyValueDB>;
+	fn backing(&self) -> &Arc<dyn tetsy_kvdb::KeyValueDB>;
 
 	/// Clear internal structure. This should be called after changes have been written
 	/// to the backing storage.
@@ -95,11 +95,11 @@ pub trait JournalDB: HashDB<KeccakHasher, DBValue> {
 	fn keys(&self) -> HashMap<H256, i32>;
 }
 
-/// Alias to ethereum MemoryDB
-type MemoryDB = memory_db::MemoryDB<
-	keccak_hasher::KeccakHasher,
-	memory_db::HashKey<keccak_hasher::KeccakHasher>,
-	kvdb::DBValue,
+/// Alias to vapory MemoryDB
+type MemoryDB = tetsy_memory_db::MemoryDB<
+	tetsy_keccak_hasher::KeccakHasher,
+	tetsy_memory_db::HashKey<tetsy_keccak_hasher::KeccakHasher>,
+	tetsy_kvdb::DBValue,
 >;
 
 /// Journal database operating strategy.
@@ -185,7 +185,7 @@ impl fmt::Display for Algorithm {
 }
 
 /// Create a new `JournalDB` trait object over a generic key-value database.
-pub fn new(backing: Arc<dyn (::kvdb::KeyValueDB)>, algorithm: Algorithm, col: u32) -> Box<dyn JournalDB> {
+pub fn new(backing: Arc<dyn (::tetsy_kvdb::KeyValueDB)>, algorithm: Algorithm, col: u32) -> Box<dyn JournalDB> {
 	match algorithm {
 		Algorithm::Archive => Box::new(archivedb::ArchiveDB::new(backing, col)),
 		Algorithm::EarlyMerge => Box::new(earlymergedb::EarlyMergeDB::new(backing, col)),
@@ -195,19 +195,19 @@ pub fn new(backing: Arc<dyn (::kvdb::KeyValueDB)>, algorithm: Algorithm, col: u3
 }
 
 // all keys must be at least 12 bytes
-const DB_PREFIX_LEN : usize = ::kvdb::PREFIX_LEN;
-const LATEST_ERA_KEY : [u8; ::kvdb::PREFIX_LEN] = [ b'l', b'a', b's', b't', 0, 0, 0, 0, 0, 0, 0, 0 ];
+const DB_PREFIX_LEN : usize = ::tetsy_kvdb::PREFIX_LEN;
+const LATEST_ERA_KEY : [u8; ::tetsy_kvdb::PREFIX_LEN] = [ b'l', b'a', b's', b't', 0, 0, 0, 0, 0, 0, 0, 0 ];
 
-fn error_key_already_exists(hash: &ethereum_types::H256) -> io::Error {
+fn error_key_already_exists(hash: &vapory_types::H256) -> io::Error {
 	io::Error::new(io::ErrorKind::AlreadyExists, hash.to_string())
 }
 
-fn error_negatively_reference_hash(hash: &ethereum_types::H256) -> io::Error {
+fn error_negatively_reference_hash(hash: &vapory_types::H256) -> io::Error {
 	io::Error::new(io::ErrorKind::Other, format!("Entry {} removed from database more times than it was added.", hash))
 }
 
-pub fn new_memory_db() -> MemoryDB {
-	MemoryDB::from_null_node(&rlp::NULL_RLP, rlp::NULL_RLP.as_ref().into())
+pub fn new_tetsy_memory_db() -> MemoryDB {
+	MemoryDB::from_null_node(&tetsy_rlp::NULL_RLP, tetsy_rlp::NULL_RLP.as_ref().into())
 }
 
 #[cfg(test)]

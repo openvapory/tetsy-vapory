@@ -20,7 +20,7 @@ use std::{
 	collections::{BTreeSet, HashSet, VecDeque},
 	sync::Arc,
 };
-use ethereum_types::H256;
+use vapory_types::H256;
 use parking_lot::Mutex;
 use v1::types::Log;
 use types::filter::Filter;

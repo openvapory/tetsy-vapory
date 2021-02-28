@@ -59,7 +59,7 @@ mod testing {
 	use super::{serve, request, http_client};
 
 	#[test]
-	fn should_not_redirect_to_parity_host() {
+	fn should_not_redirect_to_tetsy_host() {
 		// given
 		let (server, port, _) = serve();
 

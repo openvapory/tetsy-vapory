@@ -22,7 +22,7 @@ use serde_json;
 use crypto::publickey::ecies;
 use crypto::publickey::{Secret, KeyPair};
 use crypto::publickey::ec_math_utils::CURVE_ORDER;
-use ethereum_types::{H256, U256, BigEndianHash};
+use vapory_types::{H256, U256, BigEndianHash};
 use key_server_cluster::Error;
 use key_server_cluster::message::{Message, ClusterMessage, GenerationMessage, EncryptionMessage, DecryptionMessage,
 	SchnorrSigningMessage, EcdsaSigningMessage, ServersSetChangeMessage, ShareAddMessage, KeyVersionNegotiationMessage};

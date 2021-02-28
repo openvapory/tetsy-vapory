@@ -1,12 +1,12 @@
 FROM centos:latest
 
-RUN mkdir -p /opt/parity/data && \
-    chmod g+rwX /opt/parity/data && \
-    mkdir -p /opt/parity/release
+RUN mkdir -p /opt/tetsy/data && \
+    chmod g+rwX /opt/tetsy/data && \
+    mkdir -p /opt/tetsy/release
 
-COPY parity/parity /opt/parity/release
+COPY tetsy/tetsy /opt/tetsy/release
 
-WORKDIR /opt/parity/data
+WORKDIR /opt/tetsy/data
 
 # exposing default ports
 #
@@ -20,9 +20,9 @@ USER 1001
 
 #if no base path provided, assume it's current workdir
 CMD ["--base-path","."]
-ENTRYPOINT ["/opt/parity/release/parity"]  
+ENTRYPOINT ["/opt/tetsy/release/tetsy"]
 
 
-   
+
 
 

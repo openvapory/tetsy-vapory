@@ -19,7 +19,7 @@
 use std::fmt;
 use std::marker::PhantomData;
 
-use ethereum_types::U256;
+use vapory_types::U256;
 use serde::{Deserialize, Deserializer};
 use serde::de::{Error, Visitor, IntoDeserializer};
 
@@ -126,7 +126,7 @@ mod tests {
 		let deserialized: Vec<MaybeEmpty<H256>> = serde_json::from_str(s).unwrap();
 		assert_eq!(deserialized, vec![
 				   MaybeEmpty::None,
-				   MaybeEmpty::Some(H256(ethereum_types::H256::from_str("5a39ed1020c04d4d84539975b893a4e7c53eab6c2965db8bc3468093a31bc5ae").unwrap()))
+				   MaybeEmpty::Some(H256(vapory_types::H256::from_str("5a39ed1020c04d4d84539975b893a4e7c53eab6c2965db8bc3468093a31bc5ae").unwrap()))
 		]);
 	}
 

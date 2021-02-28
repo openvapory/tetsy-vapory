@@ -18,7 +18,7 @@ use std::fmt;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde::de::{Error, Visitor, MapAccess};
 use types::ids::BlockId;
-use ethereum_types::H256;
+use vapory_types::H256;
 
 /// Represents rpc api block number param.
 #[derive(Debug, PartialEq, Clone, Hash, Eq)]

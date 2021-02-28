@@ -16,20 +16,20 @@
 
 //! EIP-191 compliant decoding + hashing
 use v1::types::{EIP191Version, Bytes, PresignedTransaction};
-use eip_712::{hash_structured_data, EIP712};
+use vip_712::{hash_structured_data, VIP712};
 use serde_json::{Value, from_value};
 use v1::helpers::errors;
 use jsonrpc_core::Error;
-use v1::helpers::dispatch::eth_data_hash;
+use v1::helpers::dispatch::vap_data_hash;
 use hash::keccak;
 use std::fmt::Display;
-use ethereum_types::H256;
+use vapory_types::H256;
 
 /// deserializes and hashes the message depending on the version specifier
 pub fn hash_message(version: EIP191Version, message: Value) -> Result<H256, Error> {
 	let data = match version {
 		EIP191Version::StructuredData => {
-			let typed_data = from_value::<EIP712>(message)
+			let typed_data = from_value::<VIP712>(message)
 				.map_err(map_serde_err("StructuredData"))?;
 
 			hash_structured_data(typed_data)
@@ -47,7 +47,7 @@ pub fn hash_message(version: EIP191Version, message: Value) -> Result<H256, Erro
 		EIP191Version::PersonalMessage => {
 			let bytes = from_value::<Bytes>(message)
 				.map_err(map_serde_err("Bytes"))?;
-			eth_data_hash(bytes.0)
+			vap_data_hash(bytes.0)
 		}
 	};
 

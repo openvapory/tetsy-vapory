@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Stratum protocol implementation for parity ethereum/bitcoin clients
+//! Stratum protocol implementation for parity vapory/bitcoin clients
 
 extern crate jsonrpc_tcp_server;
 extern crate jsonrpc_core;
-extern crate ethereum_types;
-extern crate keccak_hash as hash;
+extern crate vapory_types;
+extern crate tetsy_keccak_hash as hash;
 extern crate parking_lot;
 
 #[macro_use] extern crate log;
@@ -44,7 +44,7 @@ use std::sync::Arc;
 use std::net::SocketAddr;
 use std::collections::{HashSet, HashMap};
 use hash::keccak;
-use ethereum_types::H256;
+use vapory_types::H256;
 use parking_lot::RwLock;
 
 type RpcResult = Result<jsonrpc_core::Value, jsonrpc_core::Error>;

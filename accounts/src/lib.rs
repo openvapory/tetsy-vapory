@@ -28,17 +28,17 @@ use self::stores::AddressBook;
 use std::collections::HashMap;
 use std::time::{Instant, Duration};
 
-use ethkey::Password;
-use parity_crypto::publickey::{Address, Message, Public, Secret, Random, Generator, Signature};
-use ethstore::accounts_dir::MemoryDirectory;
-use ethstore::{
-	SimpleSecretStore, SecretStore, EthStore, EthMultiStore,
+use vapkey::Password;
+use tetsy_crypto::publickey::{Address, Message, Public, Secret, Random, Generator, Signature};
+use vapstore::accounts_dir::MemoryDirectory;
+use vapstore::{
+	SimpleSecretStore, SecretStore, VapStore, VapMultiStore,
 	random_string, SecretVaultRef, StoreAccountRef, OpaqueSecret,
 };
 use log::warn;
 use parking_lot::RwLock;
 
-pub use ethstore::{Derivation, IndexDerivation, KeyFile, Error};
+pub use vapstore::{Derivation, IndexDerivation, KeyFile, Error};
 
 pub use self::account_data::AccountMeta;
 pub use self::error::SignError;
@@ -66,7 +66,7 @@ pub struct AccountProvider {
 	/// Accounts on disk
 	sstore: Box<dyn SecretStore>,
 	/// Accounts unlocked with rolling tokens
-	transient_sstore: EthMultiStore,
+	transient_sstore: VapMultiStore,
 	/// When unlocking account permanently we additionally keep a raw secret in memory
 	/// to increase the performance of transaction signing.
 	unlock_keep_secret: bool,
@@ -74,8 +74,8 @@ pub struct AccountProvider {
 	blacklisted_accounts: Vec<Address>,
 }
 
-fn transient_sstore() -> EthMultiStore {
-	EthMultiStore::open(Box::new(MemoryDirectory::default())).expect("MemoryDirectory load always succeeds; qed")
+fn transient_sstore() -> VapMultiStore {
+	VapMultiStore::open(Box::new(MemoryDirectory::default())).expect("MemoryDirectory load always succeeds; qed")
 }
 
 impl AccountProvider {
@@ -111,7 +111,7 @@ impl AccountProvider {
 			unlocked_secrets: RwLock::new(HashMap::new()),
 			unlocked: RwLock::new(HashMap::new()),
 			address_book: RwLock::new(AddressBook::transient()),
-			sstore: Box::new(EthStore::open(Box::new(MemoryDirectory::default())).expect("MemoryDirectory load always succeeds; qed")),
+			sstore: Box::new(VapStore::open(Box::new(MemoryDirectory::default())).expect("MemoryDirectory load always succeeds; qed")),
 			transient_sstore: transient_sstore(),
 			unlock_keep_secret: false,
 			blacklisted_accounts: vec![],
@@ -430,13 +430,13 @@ impl AccountProvider {
 	}
 
 	/// Returns the underlying `SecretStore` reference if one exists.
-	pub fn list_geth_accounts(&self, testnet: bool) -> Vec<Address> {
-		self.sstore.list_geth_accounts(testnet).into_iter().map(|a| Address::from(a).into()).collect()
+	pub fn list_gvap_accounts(&self, testnet: bool) -> Vec<Address> {
+		self.sstore.list_gvap_accounts(testnet).into_iter().map(|a| Address::from(a).into()).collect()
 	}
 
 	/// Returns the underlying `SecretStore` reference if one exists.
-	pub fn import_geth_accounts(&self, desired: Vec<Address>, testnet: bool) -> Result<Vec<Address>, Error> {
-		self.sstore.import_geth_accounts(SecretVaultRef::Root, desired, testnet)
+	pub fn import_gvap_accounts(&self, desired: Vec<Address>, testnet: bool) -> Result<Vec<Address>, Error> {
+		self.sstore.import_gvap_accounts(SecretVaultRef::Root, desired, testnet)
 			.map(|a| a.into_iter().map(|a| a.address).collect())
 			.map_err(Into::into)
 	}
@@ -503,9 +503,9 @@ impl AccountProvider {
 mod tests {
 	use super::{AccountProvider, Unlock};
 	use std::time::{Duration, Instant};
-	use parity_crypto::publickey::{Generator, Random, Address};
-	use ethstore::{StoreAccountRef, Derivation};
-	use ethereum_types::H256;
+	use tetsy_crypto::publickey::{Generator, Random, Address};
+	use vapstore::{StoreAccountRef, Derivation};
+	use vapory_types::H256;
 
 	#[test]
 	fn unlock_account_temp() {

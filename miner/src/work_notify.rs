@@ -16,19 +16,19 @@
 
 //! Sends HTTP notifications to a list of URLs every time new work is available.
 
-extern crate ethash;
+extern crate vapash;
 extern crate fetch;
-extern crate parity_runtime;
+extern crate tetsy_runtime;
 extern crate url;
 extern crate hyper;
 
 use self::fetch::{Fetch, Request, Client as FetchClient, Method};
-use self::parity_runtime::Executor;
-use self::ethash::SeedHashCompute;
+use self::tetsy_runtime::Executor;
+use self::vapash::SeedHashCompute;
 use self::url::Url;
 use self::hyper::header::{self, HeaderValue};
 
-use ethereum_types::{H256, U256};
+use vapory_types::{H256, U256};
 use parking_lot::Mutex;
 
 use futures::Future;
@@ -71,7 +71,7 @@ impl WorkPoster {
 impl NotifyWork for WorkPoster {
 	fn notify(&self, pow_hash: H256, difficulty: U256, number: u64) {
 		// TODO: move this to engine
-		let target = ethash::difficulty_to_boundary(&difficulty);
+		let target = vapash::difficulty_to_boundary(&difficulty);
 		let seed_hash = &self.seed_compute.lock().hash_block_number(number);
 		let seed_hash = H256::from_slice(&seed_hash[..]);
 		let body = format!(

@@ -16,7 +16,7 @@
 
 //! Transaction Scoring and Ordering
 //!
-//! Ethereum transactions from the same sender are ordered by `nonce`.
+//! Vapory transactions from the same sender are ordered by `nonce`.
 //! Low nonces need to be included first. If there are two transactions from the same sender
 //! and with the same `nonce` only one of them can be included.
 //! We choose the one with higher gas price, but also require that gas price increment
@@ -29,7 +29,7 @@
 
 use std::cmp;
 
-use ethereum_types::U256;
+use vapory_types::U256;
 use txpool::{self, scoring};
 use super::{verifier, PrioritizationStrategy, VerifiedTransaction, ScoredTransaction};
 

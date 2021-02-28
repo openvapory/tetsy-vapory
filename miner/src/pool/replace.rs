@@ -25,7 +25,7 @@
 
 use std::cmp;
 
-use ethereum_types::{U256, H160 as Address};
+use vapory_types::{U256, H160 as Address};
 use txpool::{self, scoring::{Choice, Scoring}, ReplaceTransaction};
 use txpool::VerifiedTransaction;
 use super::{client, ScoredTransaction};
@@ -119,7 +119,7 @@ mod tests {
 	use super::*;
 
 	use std::sync::Arc;
-	use parity_crypto::publickey::{Random, Generator, KeyPair};
+	use tetsy_crypto::publickey::{Random, Generator, KeyPair};
 	use pool::tests::tx::{Tx, TxExt};
 	use pool::tests::client::TestClient;
 	use pool::scoring::*;

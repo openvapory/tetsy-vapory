@@ -18,7 +18,7 @@
 
 use std::{fmt, sync::Arc};
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use linked_hash_map::LinkedHashMap;
 use pool::{VerifiedTransaction as Transaction, ScoredTransaction};
 use txpool::{self, VerifiedTransaction};
@@ -234,8 +234,8 @@ impl txpool::Listener<Transaction> for LocalTransactionsList {
 #[cfg(test)]
 mod tests {
 	use super::*;
-	use ethereum_types::U256;
-	use parity_crypto::publickey::{Random, Generator};
+	use vapory_types::U256;
+	use tetsy_crypto::publickey::{Random, Generator};
 	use types::transaction;
 	use txpool::Listener;
 

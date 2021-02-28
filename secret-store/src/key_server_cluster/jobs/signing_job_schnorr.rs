@@ -16,7 +16,7 @@
 
 use std::collections::{BTreeSet, BTreeMap};
 use crypto::publickey::{Public, Secret};
-use ethereum_types::H256;
+use vapory_types::H256;
 use key_server_cluster::{Error, NodeId, DocumentKeyShare};
 use key_server_cluster::math;
 use key_server_cluster::jobs::job_session::{JobPartialRequestAction, JobPartialResponseAction, JobExecutor};

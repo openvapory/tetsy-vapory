@@ -23,20 +23,20 @@ use std::{
 	time::Duration,
 };
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use fastmap::H256FastMap;
-use hash_db::{HashDB, Prefix, EMPTY_PREFIX};
-use keccak_hasher::KeccakHasher;
-use kvdb::{KeyValueDB, DBTransaction, DBValue};
+use tetsy_hash_db::{HashDB, Prefix, EMPTY_PREFIX};
+use tetsy_keccak_hasher::KeccakHasher;
+use tetsy_kvdb::{KeyValueDB, DBTransaction, DBValue};
 use log::trace;
-use malloc_size_of::{MallocSizeOf, allocators::new_malloc_size_ops};
-use parity_bytes::Bytes;
+use tetsy_util_mem::{MallocSizeOf, allocators::new_malloc_size_ops};
+use tetsy_bytes::Bytes;
 use parking_lot::RwLock;
-use rlp::{Rlp, RlpStream, encode, decode, DecoderError, Decodable, Encodable};
+use tetsy_rlp::{Rlp, RlpStream, encode, decode, DecoderError, Decodable, Encodable};
 
 use crate::{
 	DB_PREFIX_LEN, LATEST_ERA_KEY, JournalDB, error_negatively_reference_hash,
-	new_memory_db,
+	new_tetsy_memory_db,
 	util::DatabaseKey
 };
 
@@ -157,7 +157,7 @@ impl OverlayRecentDB {
 	pub fn new(backing: Arc<dyn KeyValueDB>, col: u32) -> OverlayRecentDB {
 		let journal_overlay = Arc::new(RwLock::new(OverlayRecentDB::read_overlay(&*backing, col)));
 		OverlayRecentDB {
-			transaction_overlay: new_memory_db(),
+			transaction_overlay: new_tetsy_memory_db(),
 			backing,
 			journal_overlay,
 			column: col,
@@ -183,7 +183,7 @@ impl OverlayRecentDB {
 
 	fn read_overlay(db: &dyn KeyValueDB, col: u32) -> JournalOverlay {
 		let mut journal = HashMap::new();
-		let mut overlay = new_memory_db();
+		let mut overlay = new_tetsy_memory_db();
 		let mut count = 0;
 		let mut latest_era = None;
 		let mut earliest_era = None;
@@ -505,14 +505,14 @@ impl HashDB<KeccakHasher, DBValue> for OverlayRecentDB {
 
 #[cfg(test)]
 mod tests {
-	use keccak_hash::keccak;
+	use tetsy_keccak_hash::keccak;
 	use super::*;
-	use hash_db::{HashDB, EMPTY_PREFIX};
-	use kvdb_memorydb;
+	use tetsy_hash_db::{HashDB, EMPTY_PREFIX};
+	use tetsy_kvdb_memorydb;
 	use crate::{JournalDB, inject_batch, commit_batch};
 
 	fn new_db() -> OverlayRecentDB {
-		let backing = Arc::new(kvdb_memorydb::create(1));
+		let backing = Arc::new(tetsy_kvdb_memorydb::create(1));
 		OverlayRecentDB::new(backing, 0)
 	}
 
@@ -754,7 +754,7 @@ mod tests {
 
 	#[test]
 	fn reopen() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 		let bar = H256::random();
 
 		let foo = {
@@ -921,7 +921,7 @@ mod tests {
 	fn reopen_remove_three() {
 		let _ = ::env_logger::try_init();
 
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 		let foo = keccak(b"foo");
 
 		{
@@ -974,7 +974,7 @@ mod tests {
 
 	#[test]
 	fn reopen_fork() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 
 		let (foo, bar, baz) = {
 			let mut jdb = OverlayRecentDB::new(shared_db.clone(), 0);
@@ -1039,7 +1039,7 @@ mod tests {
 
 	#[test]
 	fn earliest_era() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 
 		// empty DB
 		let mut jdb = OverlayRecentDB::new(shared_db.clone(), 0);

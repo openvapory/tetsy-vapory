@@ -20,8 +20,8 @@ then
   export RUSTFLAGS+=" -C target-feature=+aes,+sse2,+ssse3"
 fi
 time cargo build --target $CARGO_TARGET --verbose --color=always --release --features final
-time cargo build --target $CARGO_TARGET --verbose --color=always --release -p evmbin
-time cargo build --target $CARGO_TARGET --verbose --color=always --release -p ethstore-cli
+time cargo build --target $CARGO_TARGET --verbose --color=always --release -p vvmbin
+time cargo build --target $CARGO_TARGET --verbose --color=always --release -p vapstore-cli
 time cargo build --target $CARGO_TARGET --verbose --color=always --release -p vapkey-cli
 
 echo "_____ Post-processing binaries _____"
@@ -29,10 +29,10 @@ rm -rf artifacts/*
 mkdir -p artifacts/$CARGO_TARGET
 cd artifacts/$CARGO_TARGET
 
-cp -v ../../target/$CARGO_TARGET/release/parity ./parity
-cp -v ../../target/$CARGO_TARGET/release/parity-evm ./parity-evm
-cp -v ../../target/$CARGO_TARGET/release/ethstore ./ethstore
-cp -v ../../target/$CARGO_TARGET/release/ethkey ./ethkey
+cp -v ../../target/$CARGO_TARGET/release/tetsy ./tetsy
+cp -v ../../target/$CARGO_TARGET/release/tetsy-vvm ./tetsy-vvm
+cp -v ../../target/$CARGO_TARGET/release/vapstore ./vapstore
+cp -v ../../target/$CARGO_TARGET/release/vapkey ./vapkey
 
 echo "_____ Calculating checksums _____"
 for binary in $(ls)
@@ -40,7 +40,7 @@ do
   rhash --sha256 $binary -o $binary.sha256 #do we still need this hash (SHA2)?
   if [[ $CARGO_TARGET == *"x86_64"* ]];
   then
-      ./parity tools hash $binary > $binary.sha3
+      ./tetsy tools hash $binary > $binary.sha3
   else
       echo ">[WARN] ${binary} cannot be hashed with cross-compiled binary (keccak256)"
   fi

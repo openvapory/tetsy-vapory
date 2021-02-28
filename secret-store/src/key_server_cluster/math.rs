@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use crypto::publickey::{Public, Secret, Signature, Random, Generator, ec_math_utils};
-use ethereum_types::{H256, U256, BigEndianHash};
+use vapory_types::{H256, U256, BigEndianHash};
 use hash::keccak;
 use key_server_cluster::Error;
 

@@ -90,7 +90,7 @@ mod tests {
 		"name": "Morden",
 		"dataDir": "morden",
 		"engine": {
-			"Ethash": {
+			"Vapash": {
 				"params": {
 					"minimumDifficulty": "0x020000",
 					"difficultyBoundDivisor": "0x0800",
@@ -114,7 +114,7 @@ mod tests {
 		},
 		"genesis": {
 			"seal": {
-				"ethereum": {
+				"vapory": {
 					"mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
 					"nonce": "0x00006d6f7264656e"
 				}
@@ -155,7 +155,7 @@ mod tests {
 		"name": "Morden",
 		"dataDir": "morden",
 		"engine": {
-			"Ethash": {
+			"Vapash": {
 				"params": {
 					"minimumDifficulty": "0x020000",
 					"difficultyBoundDivisor": "0x0800",
@@ -178,7 +178,7 @@ mod tests {
 		},
 		"genesis": {
 			"seal": {
-				"ethereum": {
+				"vapory": {
 					"mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
 					"nonce": "0x00006d6f7264656e"
 				}

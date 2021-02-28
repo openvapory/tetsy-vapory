@@ -16,7 +16,7 @@
 
 use std::sync::Arc;
 
-use ethereum_types::{H256, Address, U256};
+use vapory_types::{H256, Address, U256};
 use light::TransactionQueue as LightTransactionQueue;
 use light::cache::Cache as LightDataCache;
 use light::client::LightChainClient;

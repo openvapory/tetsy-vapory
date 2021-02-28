@@ -17,10 +17,10 @@
 use std::ops::Deref;
 use std::collections::BTreeMap;
 
-use ethereum_types::{H160, H256, U256, Bloom as H2048};
+use vapory_types::{H160, H256, U256, Bloom as H2048};
 use serde::ser::Error;
 use serde::{Serialize, Serializer};
-use types::encoded::Header as EthHeader;
+use types::encoded::Header as VapHeader;
 use v1::types::{Bytes, Transaction};
 
 /// Block Transactions
@@ -130,14 +130,14 @@ pub struct Header {
 	pub size: Option<U256>,
 }
 
-impl From<EthHeader> for Header {
-	fn from(h: EthHeader) -> Self {
+impl From<VapHeader> for Header {
+	fn from(h: VapHeader) -> Self {
 		(&h).into()
 	}
 }
 
-impl<'a> From<&'a EthHeader> for Header {
-	fn from(h: &'a EthHeader) -> Self {
+impl<'a> From<&'a VapHeader> for Header {
+	fn from(h: &'a VapHeader) -> Self {
 		Header {
 			hash: Some(h.hash()),
 			size: Some(h.rlp().as_raw().len().into()),
@@ -205,7 +205,7 @@ impl<T: Serialize> Serialize for Rich<T> {
 #[cfg(test)]
 mod tests {
 	use std::collections::BTreeMap;
-	use ethereum_types::{H64, H160, H256, U256, Bloom as H2048};
+	use vapory_types::{H64, H160, H256, U256, Bloom as H2048};
 	use serde_json;
 	use v1::types::{Transaction, Bytes};
 	use super::{Block, RichBlock, BlockTransactions, Header, RichHeader};

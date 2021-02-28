@@ -20,14 +20,14 @@ use std::default::Default;
 use std::net::SocketAddr;
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
-use ethereum_types::{H256, H520};
-use keccak_hash::keccak;
+use vapory_types::{H256, H520};
+use tetsy_keccak_hash::keccak;
 use log::{debug, trace, warn};
 use lru_cache::LruCache;
-use parity_bytes::Bytes;
-use rlp::{Rlp, RlpStream};
+use tetsy_bytes::Bytes;
+use tetsy_rlp::{Rlp, RlpStream};
 
-use parity_crypto::publickey::{KeyPair, recover, Secret, sign};
+use tetsy_crypto::publickey::{KeyPair, recover, Secret, sign};
 use network::Error;
 use network::IpFilter;
 
@@ -131,7 +131,7 @@ struct PingRequest {
 	node: NodeEntry,
 	// The hash sent in the Ping request
 	echo_hash: H256,
-	// The hash Parity used to respond with (until rev 01f825b0e1f1c4c420197b51fc801cbe89284b29)
+	// The hash Tetsy used to respond with (until rev 01f825b0e1f1c4c420197b51fc801cbe89284b29)
 	#[deprecated()]
 	deprecated_echo_hash: H256,
 	reason: PingReason
@@ -388,14 +388,14 @@ impl<'a> Discovery<'a> {
 		self.public_endpoint.to_rlp_list(&mut rlp);
 		node.endpoint.to_rlp_list(&mut rlp);
 		append_expiration(&mut rlp);
-		let old_parity_hash = keccak(rlp.as_raw());
+		let old_tetsy_hash = keccak(rlp.as_raw());
 		let hash = self.send_packet(PACKET_PING, &node.endpoint.udp_address(), &rlp.drain())?;
 
 		self.in_flight_pings.insert(node.id, PingRequest {
 			sent_at: Instant::now(),
 			node: node.clone(),
 			echo_hash: hash,
-			deprecated_echo_hash: old_parity_hash,
+			deprecated_echo_hash: old_tetsy_hash,
 			reason: reason
 		});
 
@@ -547,9 +547,9 @@ impl<'a> Discovery<'a> {
 		};
 		// Here the PONG's `To` field should be the node we are
 		// sending the request to
-		// WARNING: this field _should not be used_, but old Parity versions
+		// WARNING: this field _should not be used_, but old Tetsy versions
 		// use it in order to get the node's address.
-		// So this is a temporary fix so that older Parity versions don't brake completely.
+		// So this is a temporary fix so that older Tetsy versions don't brake completely.
 		ping_to.to_rlp_list(&mut response);
 		// pong_to.to_rlp_list(&mut response);
 
@@ -584,7 +584,7 @@ impl<'a> Discovery<'a> {
 						None
 					} else {
 						if request.deprecated_echo_hash == echo_hash {
-							trace!(target: "discovery", "Got Pong from an old parity-ethereum version.");
+							trace!(target: "discovery", "Got Pong from an old tetsy-vapory version.");
 						}
 						Some((request.node.clone(), request.reason.clone()))
 					}
@@ -901,7 +901,7 @@ mod tests {
 
 	use rustc_hex::FromHex;
 
-	use parity_crypto::publickey::{Generator, Random};
+	use tetsy_crypto::publickey::{Generator, Random};
 
 	use crate::node_table::{Node, NodeEndpoint, NodeId};
 

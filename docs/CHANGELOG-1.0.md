@@ -1,38 +1,38 @@
-Note: Parity 1.0 reached End-of-Life on 2016-06-24 (EOL).
+Note: Tetsy 1.0 reached End-of-Life on 2016-06-24 (EOL).
 
-## Parity [v1.0.2](https://github.com/tetcoin/tetsy/releases/tag/v1.0.2) (2016-04-11)
+## Tetsy [v1.0.2](https://github.com/tetcoin/tetsy/releases/tag/v1.0.2) (2016-04-11)
 
-Parity 1.0.2 release improves Json RPC compatibility and fixes a number of stability issues.
+Tetsy 1.0.2 release improves Json RPC compatibility and fixes a number of stability issues.
 
 - Flush password prompt [#1031](https://github.com/tetcoin/tetsy/pull/1031)
 - [beta] dependencies update [#949](https://github.com/tetcoin/tetsy/pull/949)
 - Master to beta v1.0.2 [#922](https://github.com/tetcoin/tetsy/pull/922)
 - Master to beta 1.0.2 [#908](https://github.com/tetcoin/tetsy/pull/908)
 
-## Parity [v1.0.1](https://github.com/tetcoin/tetsy/releases/tag/v1.0.1) (2016-03-28)
+## Tetsy [v1.0.1](https://github.com/tetcoin/tetsy/releases/tag/v1.0.1) (2016-03-28)
 
-Parity 1.0.1 update fixes a number of issues with Json RPC, transaction propagation and syncing.
+Tetsy 1.0.1 update fixes a number of issues with Json RPC, transaction propagation and syncing.
 
 - Imporved sync error handling [#905](https://github.com/tetcoin/tetsy/pull/905)
 - Publish locally-made transactions to peers. [#851](https://github.com/tetcoin/tetsy/pull/851)
 - Merge fixes from master to beta [#845](https://github.com/tetcoin/tetsy/pull/845)
 - Full sync restart on bad block [#844](https://github.com/tetcoin/tetsy/pull/844)
-- Make BlockNumber optional, fix eth_call [#828](https://github.com/tetcoin/tetsy/pull/828)
+- Make BlockNumber optional, fix vap_call [#828](https://github.com/tetcoin/tetsy/pull/828)
 - Web3sha3 beta [#826](https://github.com/tetcoin/tetsy/pull/826)
 - Use network id for the web3_net_version return. [#821](https://github.com/tetcoin/tetsy/pull/821)
 - Fix mining from spinning [#806](https://github.com/tetcoin/tetsy/pull/806)
 - Merge master to beta [#796](https://github.com/tetcoin/tetsy/pull/796)
 
-## Parity [v1.0.0](https://github.com/tetcoin/tetsy/releases/tag/v1.0.0) (2016-03-24)
+## Tetsy [v1.0.0](https://github.com/tetcoin/tetsy/releases/tag/v1.0.0) (2016-03-24)
 
-Parity 1.0.0 release adds the following features:
+Tetsy 1.0.0 release adds the following features:
 
 - Standard JsonRPC interface.
 - Full Homestead compatibility.
 - Transaction management.
 - Mining with external miner.
 - Account management.
-- Geth key chain compatibility.
+- Gvap key chain compatibility.
 - Additional command line options.
 - State trie pruning.
 - Cache and queue footprint.
@@ -48,19 +48,19 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Avoid tracing DELEGATECALL and CALLCODE. Plus tests for it. [#794](https://github.com/tetcoin/tetsy/pull/794)
 - complete getting started steps for OS X [#793](https://github.com/tetcoin/tetsy/pull/793)
 - Auto detect available port (with fixed test) [#788](https://github.com/tetcoin/tetsy/pull/788)
-- eth_getTransactionReceipt [#792](https://github.com/tetcoin/tetsy/pull/792)
+- vap_getTransactionReceipt [#792](https://github.com/tetcoin/tetsy/pull/792)
 - Comprehensive tests for tracing transactions [#791](https://github.com/tetcoin/tetsy/pull/791)
 - Disable preparing work package if miners don't ask for it. [#771](https://github.com/tetcoin/tetsy/pull/771)
 - Listen on all interfaces for JSONRPC by default. [#786](https://github.com/tetcoin/tetsy/pull/786)
-- eth_call [#783](https://github.com/tetcoin/tetsy/pull/783)
+- vap_call [#783](https://github.com/tetcoin/tetsy/pull/783)
 - Revert "Auto detect available port" [#789](https://github.com/tetcoin/tetsy/pull/789)
 - added output to execution result [#777](https://github.com/tetcoin/tetsy/pull/777)
 - Auto detect available port [#782](https://github.com/tetcoin/tetsy/pull/782)
 - Allow 0x prefix for --author. [#785](https://github.com/tetcoin/tetsy/pull/785)
 - updated dependencies, moved rpctest to its own submodule [#784](https://github.com/tetcoin/tetsy/pull/784)
-- use ethjson module to load chain json tests [#778](https://github.com/tetcoin/tetsy/pull/778)
+- use vapjson module to load chain json tests [#778](https://github.com/tetcoin/tetsy/pull/778)
 - Tracing implemented. [#772](https://github.com/tetcoin/tetsy/pull/772)
-- test ethjson module on travis [#780](https://github.com/tetcoin/tetsy/pull/780)
+- test vapjson module on travis [#780](https://github.com/tetcoin/tetsy/pull/780)
 - batch of rpc fixes [#775](https://github.com/tetcoin/tetsy/pull/775)
 - rpctest executable [#757](https://github.com/tetcoin/tetsy/pull/757)
 - Refactoring error transaction_queue error handling and `update_sealing` method. [#753](https://github.com/tetcoin/tetsy/pull/753)
@@ -75,7 +75,7 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Speeding up build [#733](https://github.com/tetcoin/tetsy/pull/733)
 - adding check for a sync when giving work to miner [#742](https://github.com/tetcoin/tetsy/pull/742)
 - json deserialization module [#745](https://github.com/tetcoin/tetsy/pull/745)
-- Update install-parity.sh [#749](https://github.com/tetcoin/tetsy/pull/749)
+- Update install-tetsy.sh [#749](https://github.com/tetcoin/tetsy/pull/749)
 - Restart sync on getting old unknown header [#747](https://github.com/tetcoin/tetsy/pull/747)
 - Missing return for #737 [#744](https://github.com/tetcoin/tetsy/pull/744)
 - Enact block with uncles test [#741](https://github.com/tetcoin/tetsy/pull/741)
@@ -103,16 +103,16 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Remove EarlyMerge from user docs. [#708](https://github.com/tetcoin/tetsy/pull/708)
 - Fixes and traces for refcountdb. [#705](https://github.com/tetcoin/tetsy/pull/705)
 - Check for NULL_RLP in AccountDB [#706](https://github.com/tetcoin/tetsy/pull/706)
-- ethminer as crate [#700](https://github.com/tetcoin/tetsy/pull/700)
+- vapminer as crate [#700](https://github.com/tetcoin/tetsy/pull/700)
 - Old ref-counted DB code [#692](https://github.com/tetcoin/tetsy/pull/692)
 - next batch of rpc tests and fixes [#699](https://github.com/tetcoin/tetsy/pull/699)
-- implemented eth_geStorageAt rpc method, added more tests for rpc [#695](https://github.com/tetcoin/tetsy/pull/695)
+- implemented vap_geStorageAt rpc method, added more tests for rpc [#695](https://github.com/tetcoin/tetsy/pull/695)
 - Fix JournalDB era marker [#690](https://github.com/tetcoin/tetsy/pull/690)
 - More sync fixes [#685](https://github.com/tetcoin/tetsy/pull/685)
 - mark some key tests as heavy [#694](https://github.com/tetcoin/tetsy/pull/694)
 - Limit incoming connections [#693](https://github.com/tetcoin/tetsy/pull/693)
 - Updating clippy [#688](https://github.com/tetcoin/tetsy/pull/688)
-- eth_accounts, eth_getBalance rpc functions && tests [#691](https://github.com/tetcoin/tetsy/pull/691)
+- vap_accounts, vap_getBalance rpc functions && tests [#691](https://github.com/tetcoin/tetsy/pull/691)
 - state query for archive jdb [#683](https://github.com/tetcoin/tetsy/pull/683)
 - Fix for option 1 of JournalDB [#658](https://github.com/tetcoin/tetsy/pull/658)
 - Rename into something that is a little more descriptive. [#689](https://github.com/tetcoin/tetsy/pull/689)
@@ -128,7 +128,7 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Adding std::mem back (only for asm) [#680](https://github.com/tetcoin/tetsy/pull/680)
 - update readme to exclude beta step (stable is ok) [#679](https://github.com/tetcoin/tetsy/pull/679)
 - fixed U256 and transaction request deserialization [#675](https://github.com/tetcoin/tetsy/pull/675)
-- More geth compatibility. [#666](https://github.com/tetcoin/tetsy/pull/666)
+- More gvap compatibility. [#666](https://github.com/tetcoin/tetsy/pull/666)
 - Removing running clippy by default on nightly. [#671](https://github.com/tetcoin/tetsy/pull/671)
 - rpc net submodule tests [#667](https://github.com/tetcoin/tetsy/pull/667)
 - Client module overhaul [#665](https://github.com/tetcoin/tetsy/pull/665)
@@ -156,7 +156,7 @@ Note that in this release the state database is in archive (full) mode by defaul
 - updated jsonrpc-core and http-server libs [#642](https://github.com/tetcoin/tetsy/pull/642)
 - jsonrpc panics gracefully shutdown client [#638](https://github.com/tetcoin/tetsy/pull/638)
 - Fixing CLI parameters [#633](https://github.com/tetcoin/tetsy/pull/633)
-- Normal CLI options with geth. [#628](https://github.com/tetcoin/tetsy/pull/628)
+- Normal CLI options with gvap. [#628](https://github.com/tetcoin/tetsy/pull/628)
 - Do not remove the peer immediatelly on send error [#626](https://github.com/tetcoin/tetsy/pull/626)
 - Jsonrpc block behind [#622](https://github.com/tetcoin/tetsy/pull/622)
 - Remove println!s. [#624](https://github.com/tetcoin/tetsy/pull/624)
@@ -167,7 +167,7 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Transaction Queue integration [#595](https://github.com/tetcoin/tetsy/pull/595)
 - verifier trait improvements [#597](https://github.com/tetcoin/tetsy/pull/597)
 - build on rust stable [#600](https://github.com/tetcoin/tetsy/pull/600)
-- Geth import silent if no geth [#599](https://github.com/tetcoin/tetsy/pull/599)
+- Gvap import silent if no gvap [#599](https://github.com/tetcoin/tetsy/pull/599)
 - Additional journaldb logging and assert [#593](https://github.com/tetcoin/tetsy/pull/593)
 - Uncle inclusion in block authoring. [#578](https://github.com/tetcoin/tetsy/pull/578)
 - Fixed potential deadlock on startup [#592](https://github.com/tetcoin/tetsy/pull/592)
@@ -218,7 +218,7 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Better memory management [#516](https://github.com/tetcoin/tetsy/pull/516)
 - Typo [#523](https://github.com/tetcoin/tetsy/pull/523)
 - U512 add/sub optimize [#521](https://github.com/tetcoin/tetsy/pull/521)
-- Account management + geth keystore import (no utility crate added) [#509](https://github.com/tetcoin/tetsy/pull/509)
+- Account management + gvap keystore import (no utility crate added) [#509](https://github.com/tetcoin/tetsy/pull/509)
 - Delayed UPnP initialization [#505](https://github.com/tetcoin/tetsy/pull/505)
 - Fixing marking blocks as bad & SyncMessage bugs + small client refactoring. [#503](https://github.com/tetcoin/tetsy/pull/503)
 - optimization of U256 [#515](https://github.com/tetcoin/tetsy/pull/515)
@@ -253,8 +253,8 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Secret store (part2 - encrypted key/value svc) [#449](https://github.com/tetcoin/tetsy/pull/449)
 - Kill bad test. [#473](https://github.com/tetcoin/tetsy/pull/473)
 - Make clippy an optional dependency [#422](https://github.com/tetcoin/tetsy/pull/422)
-- parity compiling fine [#469](https://github.com/tetcoin/tetsy/pull/469)
-- compiling ethcore on beta [#468](https://github.com/tetcoin/tetsy/pull/468)
+- tetsy compiling fine [#469](https://github.com/tetcoin/tetsy/pull/469)
+- compiling vapcore on beta [#468](https://github.com/tetcoin/tetsy/pull/468)
 - Utils compiling in beta [#467](https://github.com/tetcoin/tetsy/pull/467)
 - Get rid of lru_cache dependency [#466](https://github.com/tetcoin/tetsy/pull/466)
 - Add daemonization. [#459](https://github.com/tetcoin/tetsy/pull/459)
@@ -281,7 +281,7 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Fix test. [#405](https://github.com/tetcoin/tetsy/pull/405)
 - Allow path to be configured. [#404](https://github.com/tetcoin/tetsy/pull/404)
 - Upnp [#400](https://github.com/tetcoin/tetsy/pull/400)
-- eth_syncing, fixed #397 [#398](https://github.com/tetcoin/tetsy/pull/398)
+- vap_syncing, fixed #397 [#398](https://github.com/tetcoin/tetsy/pull/398)
 - Using modified version of ctrlc that catches SIGTERM [#399](https://github.com/tetcoin/tetsy/pull/399)
 - Catching panics. [#396](https://github.com/tetcoin/tetsy/pull/396)
 - jsonrpc [#391](https://github.com/tetcoin/tetsy/pull/391)
@@ -289,7 +289,7 @@ Note that in this release the state database is in archive (full) mode by defaul
 - excluding test code itself from coverage [#395](https://github.com/tetcoin/tetsy/pull/395)
 - Additional tweaks to options. [#390](https://github.com/tetcoin/tetsy/pull/390)
 - --chain option for setting which network to go on. [#388](https://github.com/tetcoin/tetsy/pull/388)
-- Ethash unit tests final [#387](https://github.com/tetcoin/tetsy/pull/387)
+- Vapash unit tests final [#387](https://github.com/tetcoin/tetsy/pull/387)
 - jsonrpc [#374](https://github.com/tetcoin/tetsy/pull/374)
 - Editorconfig file. [#384](https://github.com/tetcoin/tetsy/pull/384)
 - Coverage effort [in progress] [#382](https://github.com/tetcoin/tetsy/pull/382)
@@ -298,13 +298,13 @@ Note that in this release the state database is in archive (full) mode by defaul
 - Check for handshake expiration before attempting connection replace [#375](https://github.com/tetcoin/tetsy/pull/375)
 - Blocks propagation [#364](https://github.com/tetcoin/tetsy/pull/364)
 - Network params. [#376](https://github.com/tetcoin/tetsy/pull/376)
-- Add parity-node-zero to bootnodes. [#373](https://github.com/tetcoin/tetsy/pull/373)
+- Add tetsy-node-zero to bootnodes. [#373](https://github.com/tetcoin/tetsy/pull/373)
 - kcov uses travis_job_id instead of coveralls token [#370](https://github.com/tetcoin/tetsy/pull/370)
-- Add parity-node-zero.ethcore.io to boot nodes. [#371](https://github.com/tetcoin/tetsy/pull/371)
+- Add tetsy-node-zero.vapcore.io to boot nodes. [#371](https://github.com/tetcoin/tetsy/pull/371)
 
-## Parity [v1.0.0-rc1](https://github.com/tetcoin/tetsy/releases/tag/v1.0.0-rc1) (2016-03-15)
+## Tetsy [v1.0.0-rc1](https://github.com/tetcoin/tetsy/releases/tag/v1.0.0-rc1) (2016-03-15)
 
-First Parity 1.0.0 release candidate.
+First Tetsy 1.0.0 release candidate.
 
 - Version 1.0 in beta [#712](https://github.com/tetcoin/tetsy/pull/712)
 - Fix test for beta [#617](https://github.com/tetcoin/tetsy/pull/617)

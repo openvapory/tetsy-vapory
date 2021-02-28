@@ -21,10 +21,10 @@ use serde::{Serialize, Serializer};
 use ansi_term::Colour;
 use bytes::ToPretty;
 
-use ethereum_types::{H160, H256, H520, U256};
+use vapory_types::{H160, H256, H520, U256};
 use v1::types::{TransactionRequest, RichRawTransaction, Bytes, TransactionCondition, Origin};
 use v1::helpers;
-use ethkey::Password;
+use vapkey::Password;
 
 /// Confirmation waiting in a queue
 #[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize)]
@@ -59,17 +59,17 @@ impl fmt::Display for ConfirmationPayload {
 		match *self {
 			ConfirmationPayload::SendTransaction(ref transaction) => write!(f, "{}", transaction),
 			ConfirmationPayload::SignTransaction(ref transaction) => write!(f, "(Sign only) {}", transaction),
-			ConfirmationPayload::EthSignMessage(ref sign) => write!(f, "{}", sign),
+			ConfirmationPayload::VapSignMessage(ref sign) => write!(f, "{}", sign),
 			ConfirmationPayload::EIP191SignMessage(ref sign) => write!(f, "{}", sign),
 			ConfirmationPayload::Decrypt(ref decrypt) => write!(f, "{}", decrypt),
 		}
 	}
 }
 
-/// Ethereum-prefixed Sign request
+/// Vapory-prefixed Sign request
 #[derive(Debug, Clone, Eq, PartialEq, Hash, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
-pub struct EthSignRequest {
+pub struct VapSignRequest {
 	/// Address
 	pub address: H160,
 	/// Hash to sign
@@ -106,16 +106,16 @@ impl fmt::Display for EIP191SignRequest {
 	}
 }
 
-impl From<(H160, Bytes)> for EthSignRequest {
+impl From<(H160, Bytes)> for VapSignRequest {
 	fn from(tuple: (H160, Bytes)) -> Self {
-		EthSignRequest {
+		VapSignRequest {
 			address: tuple.0,
 			data: tuple.1,
 		}
 	}
 }
 
-impl fmt::Display for EthSignRequest {
+impl fmt::Display for VapSignRequest {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
 		write!(
 			f,
@@ -201,7 +201,7 @@ pub enum ConfirmationPayload {
 	SignTransaction(TransactionRequest),
 	/// Signature
 	#[serde(rename = "sign")]
-	EthSignMessage(EthSignRequest),
+	VapSignMessage(VapSignRequest),
 	/// signature without prefix
 	EIP191SignMessage(EIP191SignRequest),
 	/// Decryption
@@ -213,7 +213,7 @@ impl From<helpers::ConfirmationPayload> for ConfirmationPayload {
 		match c {
 			helpers::ConfirmationPayload::SendTransaction(t) => ConfirmationPayload::SendTransaction(t.into()),
 			helpers::ConfirmationPayload::SignTransaction(t) => ConfirmationPayload::SignTransaction(t.into()),
-			helpers::ConfirmationPayload::EthSignMessage(address, data) => ConfirmationPayload::EthSignMessage(EthSignRequest {
+			helpers::ConfirmationPayload::VapSignMessage(address, data) => ConfirmationPayload::VapSignMessage(VapSignRequest {
 				address,
 				data: data.into(),
 			}),
@@ -234,7 +234,7 @@ impl ConfirmationPayload {
 		match *self {
 			ConfirmationPayload::SendTransaction(ref request) => request.from.as_ref(),
 			ConfirmationPayload::SignTransaction(ref request) => request.from.as_ref(),
-			ConfirmationPayload::EthSignMessage(ref request) => Some(&request.address),
+			ConfirmationPayload::VapSignMessage(ref request) => Some(&request.address),
 			ConfirmationPayload::EIP191SignMessage(ref request) => Some(&request.address),
 			ConfirmationPayload::Decrypt(ref request) => Some(&request.address),
 		}
@@ -294,7 +294,7 @@ impl<A, B> Serialize for Either<A, B>  where
 #[cfg(test)]
 mod tests {
 	use std::str::FromStr;
-    use ethereum_types::{H256, U256, Address};
+    use vapory_types::{H256, U256, Address};
 	use serde_json;
 	use v1::types::TransactionCondition;
 	use v1::helpers;
@@ -305,7 +305,7 @@ mod tests {
 		// given
 		let request = helpers::ConfirmationRequest {
 			id: 15.into(),
-			payload: helpers::ConfirmationPayload::EthSignMessage(Address::from_low_u64_be(1), vec![5].into()),
+			payload: helpers::ConfirmationPayload::VapSignMessage(Address::from_low_u64_be(1), vec![5].into()),
 			origin: Origin::Rpc("test service".into()),
 		};
 

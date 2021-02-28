@@ -1,6 +1,6 @@
 [package]
 description = "Tetsy Vapory JSON-RPC Servers (WS, HTTP, IPC)"
-name = "parity-rpc"
+name = "tetsy-rpc"
 version = "1.12.0"
 license = "GPL-3.0"
 authors = ["Parity Technologies <admin@parity.io>"]
@@ -35,53 +35,53 @@ jsonrpc-ws-server = "14.0.5"
 jsonrpc-ipc-server = "14.0.6"
 jsonrpc-pubsub = "14.0.5"
 
-client-traits = { path = "../ethcore/client-traits" }
-common-types = { path = "../ethcore/types" }
-engine = { path = "../ethcore/engine" }
-ethash = { path = "../ethash" }
-ethcore = { path = "../ethcore" }
-ethcore-accounts = { path = "../accounts", optional = true }
-ethcore-light = { path = "../ethcore/light" }
-ethcore-logger = { path = "../parity/logger" }
-ethcore-miner = { path = "../miner" }
-ethcore-network = { path = "../util/network" }
-ethcore-private-tx = { path = "../ethcore/private-tx" }
-ethcore-sync = { path = "../ethcore/sync" }
-ethereum-types = "0.8.0"
+client-traits = { path = "../vapcore/client-traits" }
+common-types = { path = "../vapcore/types" }
+engine = { path = "../vapcore/engine" }
+vapash = { path = "../vapash" }
+vapcore = { path = "../vapcore" }
+vapcore-accounts = { path = "../accounts", optional = true }
+vapcore-light = { path = "../vapcore/light" }
+vapcore-logger = { path = "../tetsy/logger" }
+vapcore-miner = { path = "../miner" }
+vapcore-network = { path = "../util/network" }
+vapcore-private-tx = { path = "../vapcore/private-tx" }
+vapcore-sync = { path = "../vapcore/sync" }
+vapory-types = "0.8.0"
 fastmap = { path = "../util/fastmap" }
-machine = { path = "../ethcore/machine" }
-parity-bytes = "0.1"
-parity-crypto = { version = "0.4.2", features = ["publickey"] }
+machine = { path = "../vapcore/machine" }
+tetsy-bytes = "0.1"
+tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 
-eip-712 = { path = "../util/EIP-712" }
-ethjson = { path = "../json" }
-ethkey = { path = "../accounts/ethkey" }
-ethstore = { path = "../accounts/ethstore" }
+vip-712 = { path = "../util/vip-712" }
+vapjson = { path = "../json" }
+vapkey = { path = "../accounts/vapkey" }
+vapstore = { path = "../accounts/vapstore" }
 fetch = { path = "../util/fetch" }
-keccak-hash = "0.4.0"
-parity-runtime = { path = "../util/runtime" }
-parity-updater = { path = "../updater" }
-parity-version = { path = "../util/version" }
-rlp = "0.4.0"
-account-state = { path = "../ethcore/account-state" }
-snapshot = { path = "../ethcore/snapshot" }
+tetsy-keccak-hash = "0.4.0"
+tetsy-runtime = { path = "../util/runtime" }
+tetsy-updater = { path = "../updater" }
+tetsy-version = { path = "../util/version" }
+tetsy-rlp = "0.4.5"
+account-state = { path = "../vapcore/account-state" }
+snapshot = { path = "../vapcore/snapshot" }
 stats = { path = "../util/stats" }
-trace = { path = "../ethcore/trace" }
-vm = { path = "../ethcore/vm" }
+trace = { path = "../vapcore/trace" }
+vm = { path = "../vapcore/vm" }
 
 [dev-dependencies]
-client-traits = { path = "../ethcore/client-traits" }
-ethcore = { path = "../ethcore", features = ["test-helpers"] }
-ethcore-accounts = { path = "../accounts" }
-ethcore-io = { path = "../util/io" }
-ethcore-network = { path = "../util/network" }
-ethjson = { path = "../json", features = ["test-helpers"] }
+client-traits = { path = "../vapcore/client-traits" }
+vapcore = { path = "../vapcore", features = ["test-helpers"] }
+vapcore-accounts = { path = "../accounts" }
+vapcore-io = { path = "../util/io" }
+vapcore-network = { path = "../util/network" }
+vapjson = { path = "../json", features = ["test-helpers"] }
 fake-fetch = { path = "../util/fake-fetch" }
 macros = { path = "../util/macros" }
-spec = { path = "../ethcore/spec" }
+spec = { path = "../vapcore/spec" }
 pretty_assertions = "0.1"
 transaction-pool = "2.0.1"
-verification = { path = "../ethcore/verification" }
+verification = { path = "../vapcore/verification" }
 
 [features]
-accounts = ["ethcore-accounts"]
+accounts = ["vapcore-accounts"]

@@ -18,14 +18,14 @@
 //! method calls properly.
 
 mod debug;
-mod eth;
-mod eth_pubsub;
+mod vap;
+mod vap_pubsub;
 mod manage_network;
 mod net;
-mod parity;
+mod tetsy;
 #[cfg(any(test, feature = "accounts"))]
-mod parity_accounts;
-mod parity_set;
+mod tetsy_accounts;
+mod tetsy_set;
 #[cfg(any(test, feature = "accounts"))]
 mod personal;
 mod pubsub;

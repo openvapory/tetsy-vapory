@@ -16,7 +16,7 @@
 
 //! Pub-Sub types.
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde::de::Error;
 use serde_json::{Value, from_value};

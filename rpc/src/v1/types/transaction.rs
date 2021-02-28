@@ -20,7 +20,7 @@ use serde::{Serialize, Serializer};
 use serde::ser::SerializeStruct;
 use machine::executive::{contract_address};
 use vm::CreateContractAddress;
-use ethereum_types::{H160, H256, H512, U64, U256};
+use vapory_types::{H160, H256, H512, U64, U256};
 use miner;
 use types::transaction::{LocalizedTransaction, Action, PendingTransaction, SignedTransaction};
 use v1::types::{Bytes, TransactionCondition};
@@ -151,7 +151,7 @@ impl Serialize for LocalTransactionStatus {
 	}
 }
 
-/// Geth-compatible output for eth_signTransaction method
+/// Gvap-compatible output for vap_signTransaction method
 #[derive(Debug, Default, Clone, PartialEq, Serialize)]
 pub struct RichRawTransaction {
 	/// Raw transaction RLP
@@ -196,7 +196,7 @@ impl Transaction {
 				Action::Create => Some(contract_address(scheme, &t.sender(), &t.nonce, &t.data).0),
 				Action::Call(_) => None,
 			},
-			raw: ::rlp::encode(&t.signed).into(),
+			raw: ::tetsy_rlp::encode(&t.signed).into(),
 			public_key: t.recover_public().ok().map(Into::into),
 			chain_id: t.chain_id().map(U64::from),
 			standard_v: t.standard_v().into(),
@@ -230,7 +230,7 @@ impl Transaction {
 				Action::Create => Some(contract_address(scheme, &t.sender(), &t.nonce, &t.data).0),
 				Action::Call(_) => None,
 			},
-			raw: ::rlp::encode(&t).into(),
+			raw: ::tetsy_rlp::encode(&t).into(),
 			public_key: t.public_key().map(Into::into),
 			chain_id: t.chain_id().map(U64::from),
 			standard_v: t.standard_v().into(),
@@ -287,7 +287,7 @@ mod tests {
 
 	#[test]
 	fn test_local_transaction_status_serialize() {
-		use ethereum_types::H256;
+		use vapory_types::H256;
 
 		let tx_ser = serde_json::to_string(&Transaction::default()).unwrap();
 		let status1 = LocalTransactionStatus::Pending;

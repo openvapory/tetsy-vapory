@@ -24,19 +24,19 @@ use jsonrpc_core::{IoHandler, Success};
 use jsonrpc_core::futures::Future;
 use v1::impls::SigningQueueClient;
 use v1::metadata::Metadata;
-use v1::traits::{EthSigning, ParitySigning, Parity};
+use v1::traits::{VapSigning, TetsySigning, Tetsy};
 use v1::helpers::{nonce, dispatch, FullDispatcher};
 use v1::helpers::external_signer::{SignerService, SigningQueue};
 use v1::types::{ConfirmationResponse, RichRawTransaction};
 use v1::tests::helpers::TestMinerService;
-use v1::tests::mocked::parity;
+use v1::tests::mocked::tetsy;
 
 use accounts::AccountProvider;
 use bytes::ToPretty;
-use ethcore::test_helpers::TestBlockChainClient;
-use ethereum_types::{U256, Address, Signature, H256};
+use vapcore::test_helpers::TestBlockChainClient;
+use vapory_types::{U256, Address, Signature, H256};
 use crypto::publickey::{Generator, Random, Secret};
-use parity_runtime::{Runtime, Executor};
+use tetsy_runtime::{Runtime, Executor};
 use parking_lot::Mutex;
 use serde_json;
 use types::transaction::{Transaction, Action, SignedTransaction};
@@ -66,9 +66,9 @@ impl SigningTester {
 		let executor = Executor::new_thread_per_future();
 
 		let rpc = SigningQueueClient::new(&signer, dispatcher.clone(), executor.clone(), &account_signer);
-		io.extend_with(EthSigning::to_delegate(rpc));
+		io.extend_with(VapSigning::to_delegate(rpc));
 		let rpc = SigningQueueClient::new(&signer, dispatcher, executor, &account_signer);
-		io.extend_with(ParitySigning::to_delegate(rpc));
+		io.extend_with(TetsySigning::to_delegate(rpc));
 
 		SigningTester {
 			runtime,
@@ -81,15 +81,15 @@ impl SigningTester {
 	}
 }
 
-fn eth_signing(signing_queue_enabled: bool) -> SigningTester {
+fn vap_signing(signing_queue_enabled: bool) -> SigningTester {
 	SigningTester::new(signing_queue_enabled)
 }
 
 #[test]
-fn rpc_eth_sign() {
+fn rpc_vap_sign() {
 	use rustc_hex::FromHex;
 
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 
 	let account = tester.accounts.insert_account(Secret::from([69u8; 32]), &"abcd".into()).unwrap();
 	tester.accounts.unlock_account_permanently(account, "abcd".into()).unwrap();
@@ -97,7 +97,7 @@ fn rpc_eth_sign() {
 
 	let req = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sign",
+		"method": "vap_sign",
 		"params": [
 			""#.to_owned() + &format!("0x{:x}", account) + r#"",
 			"0x0cc175b9c0f1b6a831c399e26977266192eb5ffee6ae2fec3ad71c777531578f"
@@ -112,14 +112,14 @@ fn rpc_eth_sign() {
 #[test]
 fn should_add_sign_to_queue() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let address = Address::random();
 	assert_eq!(tester.signer.requests().len(), 0);
 
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sign",
+		"method": "vap_sign",
 		"params": [
 			""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"0x0000000000000000000000000000000000000000000000000000000000000005"
@@ -150,14 +150,14 @@ fn should_add_sign_to_queue() {
 #[test]
 fn should_post_sign_to_queue() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let address = Address::random();
 	assert_eq!(tester.signer.requests().len(), 0);
 
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "parity_postSign",
+		"method": "tetsy_postSign",
 		"params": [
 			""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"0x0000000000000000000000000000000000000000000000000000000000000005"
@@ -174,11 +174,11 @@ fn should_post_sign_to_queue() {
 #[test]
 fn should_check_status_of_request() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let address = Address::random();
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "parity_postSign",
+		"method": "tetsy_postSign",
 		"params": [
 			""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"0x0000000000000000000000000000000000000000000000000000000000000005"
@@ -190,7 +190,7 @@ fn should_check_status_of_request() {
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "parity_checkRequest",
+		"method": "tetsy_checkRequest",
 		"params": ["0x1"],
 		"id": 1
 	}"#;
@@ -203,11 +203,11 @@ fn should_check_status_of_request() {
 #[test]
 fn should_check_status_of_request_when_its_resolved() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let address = Address::random();
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "parity_postSign",
+		"method": "tetsy_postSign",
 		"params": [
 			""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"0x0000000000000000000000000000000000000000000000000000000000000005"
@@ -224,7 +224,7 @@ fn should_check_status_of_request_when_its_resolved() {
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "parity_checkRequest",
+		"method": "tetsy_checkRequest",
 		"params": ["0x1"],
 		"id": 1
 	}"#;
@@ -235,14 +235,14 @@ fn should_check_status_of_request_when_its_resolved() {
 }
 
 #[test]
-fn eth_sign_locked_account() {
+fn vap_sign_locked_account() {
 	let secret = "8a283037bb19c4fed7b1c569e40c7dcff366165eb869110a1b11532963eb9cb2".parse().unwrap();
-	let tester = eth_signing(false);
+	let tester = vap_signing(false);
 	let address = tester.accounts.insert_account(secret, &"".into()).unwrap();
 
 	let req_send_trans = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sendTransaction",
+		"method": "vap_sendTransaction",
 		"params": [{
 			"from": ""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
@@ -283,7 +283,7 @@ fn eth_sign_locked_account() {
 #[test]
 fn should_sign_if_account_is_unlocked() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let data = vec![5u8];
 	let acc = tester.accounts.insert_account(Secret::from([69u8; 32]), &"test".into()).unwrap();
 	tester.accounts.unlock_account_permanently(acc, "test".into()).unwrap();
@@ -291,7 +291,7 @@ fn should_sign_if_account_is_unlocked() {
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sign",
+		"method": "vap_sign",
 		"params": [
 			""#.to_owned() + format!("0x{:x}", acc).as_ref() + r#"",
 			""# + format!("0x{}", data.to_hex()).as_ref() + r#""
@@ -306,14 +306,14 @@ fn should_sign_if_account_is_unlocked() {
 #[test]
 fn should_add_transaction_to_queue() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let address = Address::random();
 	assert_eq!(tester.signer.requests().len(), 0);
 
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sendTransaction",
+		"method": "vap_sendTransaction",
 		"params": [{
 			"from": ""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
@@ -347,7 +347,7 @@ fn should_add_transaction_to_queue() {
 #[test]
 fn should_add_sign_transaction_to_the_queue() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let address = tester.accounts.new_account(&"test".into()).unwrap();
 
 	assert_eq!(tester.signer.requests().len(), 0);
@@ -355,7 +355,7 @@ fn should_add_sign_transaction_to_the_queue() {
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_signTransaction",
+		"method": "vap_signTransaction",
 		"params": [{
 			"from": ""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
@@ -378,7 +378,7 @@ fn should_add_sign_transaction_to_the_queue() {
 	let t = t.with_signature(signature, None);
 	let t = SignedTransaction::new(t).unwrap();
 	let signature = t.signature();
-	let rlp = rlp::encode(&t);
+	let rlp = tetsy_rlp::encode(&t);
 
 	let response = r#"{"jsonrpc":"2.0","result":{"#.to_owned() +
 		r#""raw":"0x"# + &rlp.to_hex() + r#"","# +
@@ -426,7 +426,7 @@ fn should_add_sign_transaction_to_the_queue() {
 #[test]
 fn should_dispatch_transaction_if_account_is_unlock() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let acc = tester.accounts.new_account(&"test".into()).unwrap();
 	tester.accounts.unlock_account_permanently(acc, "test".into()).unwrap();
 
@@ -444,7 +444,7 @@ fn should_dispatch_transaction_if_account_is_unlock() {
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sendTransaction",
+		"method": "vap_sendTransaction",
 		"params": [{
 			"from": ""#.to_owned() + format!("0x{:x}", acc).as_ref() + r#"",
 			"to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
@@ -463,15 +463,15 @@ fn should_dispatch_transaction_if_account_is_unlock() {
 #[test]
 fn should_decrypt_message_if_account_is_unlocked() {
 	// given
-	let mut tester = eth_signing(true);
-	let parity = parity::Dependencies::new();
-	tester.io.extend_with(parity.client(None).to_delegate());
+	let mut tester = vap_signing(true);
+	let tetsy = tetsy::Dependencies::new();
+	tester.io.extend_with(tetsy.client(None).to_delegate());
 	let (address, public) = tester.accounts.new_account_and_public(&"test".into()).unwrap();
 	tester.accounts.unlock_account_permanently(address, "test".into()).unwrap();
 
 	// First encrypt message
 	let request = format!("{}0x{:x}{}",
-		r#"{"jsonrpc": "2.0", "method": "parity_encryptMessage", "params":[""#,
+		r#"{"jsonrpc": "2.0", "method": "tetsy_encryptMessage", "params":[""#,
 		public,
 		r#"", "0x01020304"], "id": 1}"#
 	);
@@ -479,7 +479,7 @@ fn should_decrypt_message_if_account_is_unlocked() {
 
 	// then call decrypt
 	let request = format!("{}{:x}{}{}{}",
-		r#"{"jsonrpc": "2.0", "method": "parity_decryptMessage", "params":["0x"#,
+		r#"{"jsonrpc": "2.0", "method": "tetsy_decryptMessage", "params":["0x"#,
 		address,
 		r#"","#,
 		encrypted.result,
@@ -495,14 +495,14 @@ fn should_decrypt_message_if_account_is_unlocked() {
 #[test]
 fn should_add_decryption_to_the_queue() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let acc = Random.generate().unwrap();
 	assert_eq!(tester.signer.requests().len(), 0);
 
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "parity_decryptMessage",
+		"method": "tetsy_decryptMessage",
 		"params": ["0x"#.to_owned() + &format!("{:x}", acc.address()) + r#"",
 		"0x012345"],
 		"id": 1
@@ -532,7 +532,7 @@ fn should_add_decryption_to_the_queue() {
 #[test]
 fn should_compose_transaction() {
 	// given
-	let tester = eth_signing(true);
+	let tester = vap_signing(true);
 	let acc = Random.generate().unwrap();
 	assert_eq!(tester.signer.requests().len(), 0);
 	let from = format!("{:x}", acc.address());
@@ -540,7 +540,7 @@ fn should_compose_transaction() {
 	// when
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "parity_composeTransaction",
+		"method": "tetsy_composeTransaction",
 		"params": [{"from":"0x"#.to_owned() + &from + r#"","value":"0x5"}],
 		"id": 1
 	}"#;

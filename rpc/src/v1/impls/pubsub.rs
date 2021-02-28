@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Parity-specific PUB-SUB rpc implementation.
+//! Tetsy-specific PUB-SUB rpc implementation.
 
 use std::sync::Arc;
 use std::time::Duration;
@@ -26,12 +26,12 @@ use jsonrpc_pubsub::typed::Subscriber;
 use jsonrpc_pubsub::SubscriptionId;
 use tokio_timer;
 
-use parity_runtime::Executor;
+use tetsy_runtime::Executor;
 use v1::helpers::GenericPollManager;
 use v1::metadata::Metadata;
 use v1::traits::PubSub;
 
-/// Parity PubSub implementation.
+/// Tetsy PubSub implementation.
 pub struct PubSubClient<S: core::Middleware<Metadata>> {
 	poll_manager: Arc<RwLock<GenericPollManager<S>>>,
 	executor: Executor,
@@ -80,7 +80,7 @@ impl PubSubClient<core::NoopMiddleware> {
 impl<S: core::Middleware<Metadata>> PubSub for PubSubClient<S> {
 	type Metadata = Metadata;
 
-	fn parity_subscribe(&self, mut meta: Metadata, subscriber: Subscriber<core::Value>, method: String, params: Option<core::Params>) {
+	fn tetsy_subscribe(&self, mut meta: Metadata, subscriber: Subscriber<core::Value>, method: String, params: Option<core::Params>) {
 		let params = params.unwrap_or_else(|| core::Params::Array(vec![]));
 		// Make sure to get rid of PubSub session otherwise it will never be dropped.
 		meta.session = None;
@@ -99,7 +99,7 @@ impl<S: core::Middleware<Metadata>> PubSub for PubSubClient<S> {
 		}
 	}
 
-	fn parity_unsubscribe(&self, _: Option<Self::Metadata>, id: SubscriptionId) -> Result<bool> {
+	fn tetsy_unsubscribe(&self, _: Option<Self::Metadata>, id: SubscriptionId) -> Result<bool> {
 		let res = self.poll_manager.write().unsubscribe(&id);
 		Ok(res)
 	}

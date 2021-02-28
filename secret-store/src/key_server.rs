@@ -20,7 +20,7 @@ use futures::{future::{err, result}, Future};
 use parking_lot::Mutex;
 use crypto::DEFAULT_MAC;
 use crypto::publickey::public_to_address;
-use parity_runtime::Executor;
+use tetsy_runtime::Executor;
 use super::acl_storage::AclStorage;
 use super::key_storage::KeyStorage;
 use super::key_server_set::KeyServerSet;
@@ -322,8 +322,8 @@ pub mod tests {
 	use node_key_pair::PlainNodeKeyPair;
 	use key_server_set::tests::MapKeyServerSet;
 	use key_server_cluster::math;
-	use ethereum_types::{H256, H520};
-	use parity_runtime::Runtime;
+	use vapory_types::{H256, H520};
+	use tetsy_runtime::Runtime;
 	use types::{Error, Public, ClusterConfiguration, NodeAddress, RequestSignature, ServerKeyId,
 		EncryptedDocumentKey, EncryptedDocumentKeyShadow, MessageHash, EncryptedMessageSignature,
 		Requester, NodeId};

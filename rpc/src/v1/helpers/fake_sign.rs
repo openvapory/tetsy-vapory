@@ -17,7 +17,7 @@
 use types::transaction::{Transaction, SignedTransaction, Action};
 use std::cmp::min;
 
-use ethereum_types::U256;
+use vapory_types::U256;
 use jsonrpc_core::Error;
 use v1::helpers::CallRequest;
 

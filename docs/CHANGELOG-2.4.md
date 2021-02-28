@@ -13,12 +13,12 @@ Tetsy-Vapory 2.4.8-stable is a bugfix release that improves performance and stab
 * Blockchain: fix reset chain
 * State tests: treat empty accounts the same as non-existant accounts (EIP 1052)
 * Aura: fix Timestamp Overflow
-* Networking: support discovery-only peers (geth bootnodes)
+* Networking: support discovery-only peers (gvap bootnodes)
 * Snapshotting: fix unclean shutdown while snappshotting is under way
 
 The full list of included changes:
 
-* ethcore/res: activate atlantis classic hf on block 8772000 ([#10766](https://github.com/openvapory/tetsy-vapory/pull/10766))
+* vapcore/res: activate atlantis classic hf on block 8772000 ([#10766](https://github.com/openvapory/tetsy-vapory/pull/10766))
 * fix docker tags for publishing ([#10741](https://github.com/openvapory/tetsy-vapory/pull/10741))
 * Reset blockchain properly ([#10669](https://github.com/openvapory/tetsy-vapory/pull/10669))
 * adds rpc error message for --no-ancient-blocks ([#10608](https://github.com/openvapory/tetsy-vapory/pull/10608))
@@ -41,7 +41,7 @@ The full list of included changes:
 * Update publishing ([#10644](https://github.com/openvapory/tetsy-vapory/pull/10644))
 * enable lto for release builds ([#10717](https://github.com/openvapory/tetsy-vapory/pull/10717))
 * Use RUSTFLAGS to set the optimization level ([#10719](https://github.com/openvapory/tetsy-vapory/pull/10719))
-* ethcore: enable ECIP-1054 for classic ([#10731](https://github.com/openvapory/tetsy-vapory/pull/10731))
+* vapcore: enable ECIP-1054 for classic ([#10731](https://github.com/openvapory/tetsy-vapory/pull/10731))
 
 ## Tetsy-Vapory [v2.4.6](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.4.6)
 
@@ -61,13 +61,13 @@ As of today, Tetsy-Vapory 2.3 reaches end of life and everyone is encouraged to 
 
 ## Tetsy-Vapory [v2.4.4](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.4.4)
 
-Tetsy-Vapory 2.4.4-beta is a bugfix release that improves performance and stability. This patch release removes the dead chain configs for Easthub and Ethereum Social.
+Tetsy-Vapory 2.4.4-beta is a bugfix release that improves performance and stability. This patch release removes the dead chain configs for Easthub and Vapory Social.
 
 The full list of included changes:
 
-* fix(rpc-types): replace uint and hash with `ethereum_types v0.4` ([#10217](https://github.com/openvapory/tetsy-vapory/pull/10217))
-* chore(bump ethereum-types) ([#10396](https://github.com/openvapory/tetsy-vapory/pull/10396))
-* fix(light eth_gasPrice): ask network if not in cache ([#10535](https://github.com/openvapory/tetsy-vapory/pull/10535))
+* fix(rpc-types): replace uint and hash with `vapory_types v0.4` ([#10217](https://github.com/openvapory/tetsy-vapory/pull/10217))
+* chore(bump vapory-types) ([#10396](https://github.com/openvapory/tetsy-vapory/pull/10396))
+* fix(light vap_gasPrice): ask network if not in cache ([#10535](https://github.com/openvapory/tetsy-vapory/pull/10535))
 * fix(light account response): update `tx_queue` ([#10545](https://github.com/openvapory/tetsy-vapory/pull/10545))
 * fix(bump dependencies) ([#10540](https://github.com/openvapory/tetsy-vapory/pull/10540))
 * tx-pool: check transaction readiness before replacing ([#10526](https://github.com/openvapory/tetsy-vapory/pull/10526))
@@ -98,7 +98,7 @@ Tetsy-Vapory 2.4.1-beta is a bugfix release that improves performance and stabil
 
 The full list of included changes:
 
-* Implement parity_versionInfo & parity_setChain on LC; fix parity_setChain ([#10312](https://github.com/openvapory/tetsy-vapory/pull/10312))
+* Implement tetsy_versionInfo & tetsy_setChain on LC; fix tetsy_setChain ([#10312](https://github.com/openvapory/tetsy-vapory/pull/10312))
 * CI publish to aws ([#10446](https://github.com/openvapory/tetsy-vapory/pull/10446))
 * CI aws git checkout ([#10451](https://github.com/openvapory/tetsy-vapory/pull/10451))
 * Revert "CI aws git checkout ([#10451](https://github.com/openvapory/tetsy-vapory/pull/10451))" (#10456)
@@ -114,7 +114,7 @@ Notable changes:
 - Account management is now deprecated ([#10213](https://github.com/openvapory/tetsy-vapory/pull/10213))
 - Local accounts can now be specified via CLI ([#9960](https://github.com/openvapory/tetsy-vapory/pull/9960))
 - Chains can now be reset to a particular block via CLI ([#9782](https://github.com/openvapory/tetsy-vapory/pull/9782))
-- Ethash now additionally implements ProgPoW ([#9762](https://github.com/openvapory/tetsy-vapory/pull/9762))
+- Vapash now additionally implements ProgPoW ([#9762](https://github.com/openvapory/tetsy-vapory/pull/9762))
 - The `eip1283DisableTransition` flag was added to revert EIP-1283 ([#10214](https://github.com/openvapory/tetsy-vapory/pull/10214))
 
 The full list of included changes:

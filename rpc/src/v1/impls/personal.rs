@@ -20,8 +20,8 @@ use std::time::Duration;
 
 use accounts::AccountProvider;
 use bytes::Bytes;
-use eip_712::{EIP712, hash_structured_data};
-use ethereum_types::{H160, H256, H520, U128, Address};
+use vip_712::{VIP712, hash_structured_data};
+use vapory_types::{H160, H256, H520, U128, Address};
 use crypto::publickey::{public_to_address, recover, Signature};
 use types::transaction::{PendingTransaction, SignedTransaction};
 
@@ -29,7 +29,7 @@ use jsonrpc_core::futures::{future, Future};
 use jsonrpc_core::types::Value;
 use jsonrpc_core::{BoxFuture, Result};
 use v1::helpers::deprecated::{self, DeprecationNotice};
-use v1::helpers::dispatch::{self, eth_data_hash, Dispatcher, SignWith, PostSign, WithToken};
+use v1::helpers::dispatch::{self, vap_data_hash, Dispatcher, SignWith, PostSign, WithToken};
 use v1::helpers::{errors, eip191};
 use v1::metadata::Metadata;
 use v1::traits::Personal;
@@ -158,7 +158,7 @@ impl<D: Dispatcher + 'static> Personal for PersonalClient<D> {
 		let dispatcher = self.dispatcher.clone();
 		let accounts = Arc::new(dispatch::Signer::new(self.accounts.clone())) as _;
 
-		let payload = RpcConfirmationPayload::EthSignMessage((account.clone(), data).into());
+		let payload = RpcConfirmationPayload::VapSignMessage((account.clone(), data).into());
 
 		Box::new(dispatch::from_rpc(payload, account.into(), &dispatcher)
 				 .and_then(move |payload| {
@@ -195,7 +195,7 @@ impl<D: Dispatcher + 'static> Personal for PersonalClient<D> {
 		)
 	}
 
-	fn sign_typed_data(&self, typed_data: EIP712, account: H160, password: String) -> BoxFuture<H520> {
+	fn sign_typed_data(&self, typed_data: VIP712, account: H160, password: String) -> BoxFuture<H520> {
 		self.deprecation_notice.print("personal_signTypedData", deprecated::msgs::ACCOUNTS);
 		try_bf!(errors::require_experimental(self.allow_experimental_rpcs, "712"));
 
@@ -226,7 +226,7 @@ impl<D: Dispatcher + 'static> Personal for PersonalClient<D> {
 		let signature = Signature::from_electrum(signature.as_bytes());
 		let data: Bytes = data.into();
 
-		let hash = eth_data_hash(data);
+		let hash = vap_data_hash(data);
 		let account = recover(&signature.into(), &hash)
 			.map_err(errors::encryption)
 			.map(|public| {

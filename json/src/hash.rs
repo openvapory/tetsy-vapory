@@ -20,7 +20,7 @@ use std::str::FromStr;
 use std::fmt;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde::de::{Error, Visitor};
-use ethereum_types::{H64 as Hash64, H160 as Hash160, H256 as Hash256, H520 as Hash520, Bloom as Hash2048};
+use vapory_types::{H64 as Hash64, H160 as Hash160, H256 as Hash256, H520 as Hash520, Bloom as Hash2048};
 
 macro_rules! impl_hash {
 	($name: ident, $inner: ident) => {
@@ -102,13 +102,13 @@ mod test {
 		let s = r#"["", "5a39ed1020c04d4d84539975b893a4e7c53eab6c2965db8bc3468093a31bc5ae"]"#;
 		let deserialized: Vec<H256> = serde_json::from_str(s).unwrap();
 		assert_eq!(deserialized, vec![
-				   H256(ethereum_types::H256::zero()),
-				   H256(ethereum_types::H256::from_str("5a39ed1020c04d4d84539975b893a4e7c53eab6c2965db8bc3468093a31bc5ae").unwrap())
+				   H256(vapory_types::H256::zero()),
+				   H256(vapory_types::H256::from_str("5a39ed1020c04d4d84539975b893a4e7c53eab6c2965db8bc3468093a31bc5ae").unwrap())
 		]);
 	}
 
 	#[test]
 	fn hash_into() {
-		assert_eq!(ethereum_types::H256::zero(), H256(ethereum_types::H256::zero()).into());
+		assert_eq!(vapory_types::H256::zero(), H256(vapory_types::H256::zero()).into());
 	}
 }

@@ -32,15 +32,15 @@ use common_types::{
 	chain_notify::NewBlocks,
 };
 use client_traits::{BlockChainClient, ChainNotify};
-use ethereum_types::{H256, H160};
+use vapory_types::{H256, H160};
 use hash_fetch::{self as fetch, HashFetch};
-use parity_path::restrict_permissions_owner;
+use tetsy_path::restrict_permissions_owner;
 use service::Service;
 use sync::{SyncProvider};
 use types::{ReleaseInfo, OperationsInfo, CapState, VersionInfo, ReleaseTrack};
 use version;
 use semver::Version;
-use ethabi::FunctionOutputDecoder;
+use vapabi::FunctionOutputDecoder;
 
 use_contract!(operations, "res/operations.json");
 
@@ -160,7 +160,7 @@ pub struct Updater<O = OperationsContractClient, F = fetch::Client, T = StdTimeP
 	state: Mutex<UpdaterState>,
 }
 
-const CLIENT_ID: &str = "parity";
+const CLIENT_ID: &str = "tetsy";
 
 lazy_static! {
 	static ref CLIENT_ID_HASH: H256 = h256_from_str_resizing(CLIENT_ID);
@@ -404,7 +404,7 @@ impl Updater {
 	}
 
 	fn update_file_name(v: &VersionInfo) -> String {
-		format!("parity-{}.{}.{}-{:x}", v.version.major, v.version.minor, v.version.patch, v.hash)
+		format!("tetsy-{}.{}.{}-{:x}", v.version.major, v.version.minor, v.version.patch, v.hash)
 	}
 }
 
@@ -725,7 +725,7 @@ pub mod tests {
 	use std::sync::Arc;
 	use semver::Version;
 	use tempdir::TempDir;
-	use ethcore::test_helpers::{TestBlockChainClient, EachBlockWith};
+	use vapcore::test_helpers::{TestBlockChainClient, EachBlockWith};
 	use self::fetch::Error;
 	use super::*;
 
@@ -935,7 +935,7 @@ pub mod tests {
 			UpdaterStatus::Fetching { ref release, retries, .. } if *release == latest_release && retries == 1);
 
 		// mock fetcher with update binary and trigger the fetch
-		let update_file = tempdir.path().join("parity");
+		let update_file = tempdir.path().join("tetsy");
 		File::create(update_file.clone()).unwrap();
 		fetcher.trigger(Some(update_file));
 
@@ -1081,7 +1081,7 @@ pub mod tests {
 		time_provider.set_result(now);
 		updater.poll();
 
-		let update_file = tempdir.path().join("parity");
+		let update_file = tempdir.path().join("tetsy");
 		File::create(update_file.clone()).unwrap();
 		fetcher.trigger(Some(update_file));
 
@@ -1109,7 +1109,7 @@ pub mod tests {
 		// mock new working release and trigger the fetch afterwards
 		let (_, latest_release, latest) = new_upgrade("1.0.2");
 		operations_client.set_result(Some(latest.clone()), None);
-		let update_file = tempdir.path().join("parity");
+		let update_file = tempdir.path().join("tetsy");
 		File::create(update_file.clone()).unwrap();
 
 		updater.poll();
@@ -1150,7 +1150,7 @@ pub mod tests {
 
 		updater.poll();
 		// trigger the fetch but don't create the file on-disk. this should lead to a fatal error that disables the updater
-		let update_file = tempdir.path().join("parity");
+		let update_file = tempdir.path().join("tetsy");
 		fetcher.trigger(Some(update_file));
 
 		assert_eq!(updater.state.lock().status, UpdaterStatus::Disabled);
@@ -1214,7 +1214,7 @@ pub mod tests {
 		updater.poll();
 
 		// mock fetcher with update binary and trigger the fetch
-		let update_file = tempdir.path().join("parity");
+		let update_file = tempdir.path().join("tetsy");
 		File::create(update_file.clone()).unwrap();
 		fetcher.trigger(Some(update_file));
 

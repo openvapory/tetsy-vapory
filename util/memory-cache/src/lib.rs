@@ -18,10 +18,10 @@
 //! crate.
 // TODO: push changes upstream in a clean way.
 
-extern crate parity_util_mem;
+extern crate tetsy_util_mem;
 extern crate lru_cache;
 
-use parity_util_mem::{MallocSizeOf, MallocSizeOfExt};
+use tetsy_util_mem::{MallocSizeOf, MallocSizeOfExt};
 use lru_cache::LruCache;
 
 use std::hash::Hash;

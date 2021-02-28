@@ -15,14 +15,14 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use crypto::publickey::{recover, public_to_address, Signature};
-use ethereum_types::{H256, U64};
+use vapory_types::{H256, U64};
 use jsonrpc_core::Result;
 use v1::types::{Bytes, RecoveredAccount};
 use v1::helpers::errors;
-use v1::helpers::dispatch::eth_data_hash;
+use v1::helpers::dispatch::vap_data_hash;
 use hash::keccak;
 
-/// helper method for parity_verifySignature
+/// helper method for tetsy_verifySignature
 pub fn verify_signature(
 	is_prefixed: bool,
 	message: Bytes,
@@ -32,7 +32,7 @@ pub fn verify_signature(
 	chain_id: Option<u64>
 ) -> Result<RecoveredAccount> {
 	let hash = if is_prefixed {
-		eth_data_hash(message.0)
+		vap_data_hash(message.0)
 	} else {
 		keccak(message.0)
 	};
@@ -55,7 +55,7 @@ pub fn verify_signature(
 mod tests {
 	use super::*;
 	use crypto::publickey::{Generator, Random};
-	use ethereum_types::{H160, U64};
+	use vapory_types::{H160, U64};
 
 	pub fn add_chain_replay_protection(v: u64, chain_id: Option<u64>) -> u64 {
 		v + if let Some(n) = chain_id { 35 + n * 2 } else { 0 }
@@ -70,7 +70,7 @@ mod tests {
 
 	/// mocked signer
 	fn sign(should_prefix: bool, data: Vec<u8>, signing_chain_id: Option<u64>) -> (H160, [u8; 32], [u8; 32], U64) {
-		let hash = if should_prefix { eth_data_hash(data) } else { keccak(data) };
+		let hash = if should_prefix { vap_data_hash(data) } else { keccak(data) };
 		let account = Random.generate().unwrap();
 		let address = account.address();
 		let sig = crypto::publickey::sign(account.secret(), &hash).unwrap();

@@ -16,16 +16,16 @@
 
 use std::time::Duration;
 
-use ethereum_types::{H256, H520};
-use keccak_hash::write_keccak;
+use vapory_types::{H256, H520};
+use tetsy_keccak_hash::write_keccak;
 use log::{debug, trace};
 use mio::tcp::*;
-use parity_bytes::Bytes;
+use tetsy_bytes::Bytes;
 use rand::random;
-use rlp::{Rlp, RlpStream};
+use tetsy_rlp::{Rlp, RlpStream};
 
-use ethcore_io::{IoContext, StreamToken};
-use parity_crypto::publickey::{Generator, KeyPair, Public, Random, recover, Secret, sign, ecdh, ecies};
+use vapcore_io::{IoContext, StreamToken};
+use tetsy_crypto::publickey::{Generator, KeyPair, Public, Random, recover, Secret, sign, ecdh, ecies};
 use network::Error;
 
 use crate::connection::Connection;
@@ -48,7 +48,7 @@ enum HandshakeState {
 	StartSession,
 }
 
-/// `RLPx` protocol handshake. See https://github.com/ethereum/devp2p/blob/master/rlpx.md#encrypted-handshake
+/// `RLPx` protocol handshake. See https://github.com/vaporyco/devp2p/blob/master/rlpx.md#encrypted-handshake
 pub struct Handshake {
 	/// Remote node public key
 	pub id: NodeId,
@@ -323,12 +323,12 @@ impl Handshake {
 mod test {
 	use std::str::FromStr;
 
-	use ethereum_types::{H256, H512};
+	use vapory_types::{H256, H512};
 	use mio::tcp::TcpStream;
 	use rustc_hex::FromHex;
 
-	use ethcore_io::*;
-	use parity_crypto::publickey::Public;
+	use vapcore_io::*;
+	use tetsy_crypto::publickey::Public;
 
 	use super::*;
 

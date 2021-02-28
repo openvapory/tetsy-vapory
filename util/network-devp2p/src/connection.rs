@@ -21,19 +21,19 @@ use std::sync::atomic::{AtomicBool, Ordering as AtomicOrdering};
 use std::time::Duration;
 
 use bytes::{Buf, BufMut};
-use parity_crypto::aes::{AesCtr256, AesEcb256};
-use parity_crypto::publickey::Secret;
-use ethereum_types::{H128, H256, H512};
-use keccak_hash::{keccak, write_keccak};
+use tetsy_crypto::aes::{AesCtr256, AesEcb256};
+use tetsy_crypto::publickey::Secret;
+use vapory_types::{H128, H256, H512};
+use tetsy_keccak_hash::{keccak, write_keccak};
 use log::{debug, trace, warn};
 use mio::{PollOpt, Ready, Token};
 use mio::deprecated::{EventLoop, Handler, TryRead, TryWrite};
 use mio::tcp::TcpStream;
-use parity_bytes::Bytes;
-use rlp::{Rlp, RlpStream};
+use tetsy_bytes::Bytes;
+use tetsy_rlp::{Rlp, RlpStream};
 use tiny_keccak::Keccak;
 
-use ethcore_io::{IoContext, StreamToken};
+use vapcore_io::{IoContext, StreamToken};
 use network::Error;
 
 use crate::handshake::Handshake;
@@ -275,7 +275,7 @@ enum EncryptedConnectionState {
 }
 
 /// Connection implementing `RLPx` framing
-/// https://github.com/ethereum/devp2p/blob/master/rlpx.md#framing
+/// https://github.com/vaporyco/devp2p/blob/master/rlpx.md#framing
 pub struct EncryptedConnection {
 	/// Underlying tcp connection
 	pub connection: Connection,
@@ -301,7 +301,7 @@ const NULL_IV : [u8; 16] = [0;16];
 impl EncryptedConnection {
 	/// Create an encrypted connection out of the handshake.
 	pub fn new(handshake: &mut Handshake) -> Result<EncryptedConnection, Error> {
-		let shared = parity_crypto::publickey::ecdh::agree(handshake.ecdhe.secret(), &handshake.remote_ephemeral)?;
+		let shared = tetsy_crypto::publickey::ecdh::agree(handshake.ecdhe.secret(), &handshake.remote_ephemeral)?;
 		let mut nonce_material = H512::default();
 		if handshake.originated {
 			(&mut nonce_material[0..32]).copy_from_slice(handshake.remote_nonce.as_bytes());
@@ -494,9 +494,9 @@ mod tests {
 	use std::sync::atomic::AtomicBool;
 
 	use mio::Ready;
-	use parity_bytes::Bytes;
+	use tetsy_bytes::Bytes;
 
-	use ethcore_io::*;
+	use vapcore_io::*;
 
 	use super::*;
 
@@ -642,7 +642,7 @@ mod tests {
 
 	#[test]
 	pub fn test_encryption() {
-		use ethereum_types::{H256, H128};
+		use vapory_types::{H256, H128};
 		use std::str::FromStr;
 		let key = H256::from_str("2212767d793a7a3d66f869ae324dd11bd17044b82c9f463b8a541a4d089efec5").unwrap();
 		let before = H128::from_str("12532abaec065082a3cf1da7d0136f15").unwrap();

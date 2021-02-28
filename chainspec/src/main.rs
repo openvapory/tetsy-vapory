@@ -15,10 +15,10 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 extern crate serde_json;
-extern crate ethjson;
+extern crate vapjson;
 
 use std::{fs, env, process};
-use ethjson::spec::Spec;
+use vapjson::spec::Spec;
 
 fn quit(s: &str) -> ! {
 	println!("{}", s);

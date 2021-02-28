@@ -19,10 +19,10 @@
 use std::sync::Arc;
 
 use account_state::state::StateInfo;
-use ethcore::client::Call;
+use vapcore::client::Call;
 use client_traits::{BlockChainClient, StateClient};
-use ethereum_types::H256;
-use rlp::Rlp;
+use vapory_types::H256;
+use tetsy_rlp::Rlp;
 use types::{
 	call_analytics::CallAnalytics,
 	ids::{BlockId, TransactionId, TraceId},

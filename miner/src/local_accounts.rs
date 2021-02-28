@@ -18,7 +18,7 @@
 
 use std::collections::HashSet;
 
-use ethereum_types::Address;
+use vapory_types::Address;
 
 /// Local accounts checker
 pub trait LocalAccounts: Send + Sync {

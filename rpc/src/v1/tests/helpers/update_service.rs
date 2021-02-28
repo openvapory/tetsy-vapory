@@ -19,7 +19,7 @@
 use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 use semver::Version;
 use updater::{Service as UpdateService, CapState, ReleaseInfo, VersionInfo, OperationsInfo, ReleaseTrack};
-use ethereum_types::{H160, H256};
+use vapory_types::{H160, H256};
 
 /// Test implementation of fetcher. Will always return the same file.
 #[derive(Default)]

@@ -77,7 +77,7 @@ pub enum Error {
 	/// Insufficient requester data.
 	InsufficientRequesterData(String),
 	/// Cryptographic error.
-	EthKey(String),
+	VapKey(String),
 	/// I/O error has occurred.
 	Io(String),
 	/// Deserialization error has occurred.
@@ -122,7 +122,7 @@ impl Error {
 			Error::AccessDenied | Error::ConsensusUnreachable |
 			// indeterminate internal errors, which could be either fatal (db failure, invalid request), or not (network error),
 			// but we still consider these errors as fatal
-			Error::EthKey(_) | Error::Serde(_) | Error::Hyper(_) | Error::Database(_) | Error::Internal(_) | Error::Io(_) => false,
+			Error::VapKey(_) | Error::Serde(_) | Error::Hyper(_) | Error::Database(_) | Error::Internal(_) | Error::Io(_) => false,
 		}
 	}
 }
@@ -152,7 +152,7 @@ impl fmt::Display for Error {
 			Error::ExclusiveSessionActive => write!(f, "Exclusive session active"),
 			Error::HasActiveSessions => write!(f, "Unable to start exclusive session"),
 			Error::InsufficientRequesterData(ref e) => write!(f, "Insufficient requester data: {}", e),
-			Error::EthKey(ref e) => write!(f, "cryptographic error {}", e),
+			Error::VapKey(ref e) => write!(f, "cryptographic error {}", e),
 			Error::Hyper(ref msg) => write!(f, "Hyper error: {}", msg),
 			Error::Serde(ref msg) => write!(f, "Serialization error: {}", msg),
 			Error::Database(ref msg) => write!(f, "Database error: {}", msg),
@@ -164,13 +164,13 @@ impl fmt::Display for Error {
 
 impl From<crypto::publickey::Error> for Error {
 	fn from(err: crypto::publickey::Error) -> Self {
-		Error::EthKey(err.into())
+		Error::VapKey(err.into())
 	}
 }
 
 impl From<crypto::Error> for Error {
 	fn from(err: crypto::Error) -> Self {
-		Error::EthKey(err.to_string())
+		Error::VapKey(err.to_string())
 	}
 }
 

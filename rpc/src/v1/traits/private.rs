@@ -16,7 +16,7 @@
 
 //! SecretStore-specific rpc interface.
 
-use ethereum_types::{H160, H256, U256};
+use vapory_types::{H160, H256, U256};
 use jsonrpc_core::Error;
 use jsonrpc_derive::rpc;
 

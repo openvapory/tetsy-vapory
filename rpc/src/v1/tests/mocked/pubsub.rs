@@ -20,7 +20,7 @@ use jsonrpc_core::{self as core, MetaIoHandler};
 use jsonrpc_core::futures::{self, Stream, Future};
 use jsonrpc_pubsub::Session;
 
-use parity_runtime::Runtime;
+use tetsy_runtime::Runtime;
 use v1::{PubSub, PubSubClient, Metadata};
 
 fn rpc() -> MetaIoHandler<Metadata, core::NoopMiddleware> {
@@ -52,23 +52,23 @@ fn should_subscribe_to_a_method() {
 	metadata.session = Some(Arc::new(Session::new(sender)));
 
 	// Subscribe
-	let request = r#"{"jsonrpc": "2.0", "method": "parity_subscribe", "params": ["hello", []], "id": 1}"#;
+	let request = r#"{"jsonrpc": "2.0", "method": "tetsy_subscribe", "params": ["hello", []], "id": 1}"#;
 	let response = r#"{"jsonrpc":"2.0","result":"0x43ca64edf03768e1","id":1}"#;
 	assert_eq!(io.handle_request_sync(request, metadata.clone()), Some(response.to_owned()));
 
 	// Check notifications
 	let (res, receiver) = receiver.into_future().wait().unwrap();
 	let response =
-		r#"{"jsonrpc":"2.0","method":"parity_subscription","params":{"result":"hello","subscription":"0x43ca64edf03768e1"}}"#;
+		r#"{"jsonrpc":"2.0","method":"tetsy_subscription","params":{"result":"hello","subscription":"0x43ca64edf03768e1"}}"#;
 	assert_eq!(res, Some(response.into()));
 
 	let (res, receiver) = receiver.into_future().wait().unwrap();
 	let response =
-		r#"{"jsonrpc":"2.0","method":"parity_subscription","params":{"result":"world","subscription":"0x43ca64edf03768e1"}}"#;
+		r#"{"jsonrpc":"2.0","method":"tetsy_subscription","params":{"result":"world","subscription":"0x43ca64edf03768e1"}}"#;
 	assert_eq!(res, Some(response.into()));
 
 	// And unsubscribe
-	let request = r#"{"jsonrpc": "2.0", "method": "parity_unsubscribe", "params": ["0x43ca64edf03768e1"], "id": 1}"#;
+	let request = r#"{"jsonrpc": "2.0", "method": "tetsy_unsubscribe", "params": ["0x43ca64edf03768e1"], "id": 1}"#;
 	let response = r#"{"jsonrpc":"2.0","result":true,"id":1}"#;
 	assert_eq!(io.handle_request_sync(request, metadata), Some(response.to_owned()));
 

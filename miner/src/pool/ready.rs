@@ -41,7 +41,7 @@
 use std::cmp;
 use std::collections::HashMap;
 
-use ethereum_types::{U256, H160 as Address};
+use vapory_types::{U256, H160 as Address};
 use txpool::{self, VerifiedTransaction as PoolVerifiedTransaction};
 use types::transaction;
 

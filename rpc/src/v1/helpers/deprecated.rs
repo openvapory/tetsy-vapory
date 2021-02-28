@@ -1,18 +1,18 @@
 // Copyright 2015-2020 Parity Technologies (UK) Ltd.
-// This file is part of Parity.
+// This file is part of Tetsy.
 
-// Parity is free software: you can redistribute it and/or modify
+// Tetsy is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Parity is distributed in the hope that it will be useful,
+// Tetsy is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Parity.  If not, see <http://www.gnu.org/licenses/>.
+// along with Tetsy.  If not, see <http://www.gnu.org/licenses/>.
 
 //! Deprecation notice for RPC methods.
 //!
@@ -95,17 +95,17 @@ mod tests {
 		let notice = DeprecationNotice::new(get_now, printer);
 
 		let details = Some("See issue #123456");
-		notice.print("eth_test", details.clone());
+		notice.print("vap_test", details.clone());
 		// printer shouldn't be called
-		notice.print("eth_test", None);
-		assert_eq!(saved.read().clone().unwrap(), ("eth_test", details.as_ref().map(|x| x.to_string())));
+		notice.print("vap_test", None);
+		assert_eq!(saved.read().clone().unwrap(), ("vap_test", details.as_ref().map(|x| x.to_string())));
 		// but calling a different method is fine
-		notice.print("eth_test2", None);
-		assert_eq!(saved.read().clone().unwrap(), ("eth_test2", None));
+		notice.print("vap_test2", None);
+		assert_eq!(saved.read().clone().unwrap(), ("vap_test2", None));
 
 		// wait and call again
 		*now.write() = Instant::now() + PRINT_INTERVAL;
-		notice.print("eth_test", None);
-		assert_eq!(saved.read().clone().unwrap(), ("eth_test", None));
+		notice.print("vap_test", None);
+		assert_eq!(saved.read().clone().unwrap(), ("vap_test", None));
 	}
 }

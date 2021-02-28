@@ -4,7 +4,7 @@
 
 Check out our [Basic Usage](https://wiki.tetcoin.org/Basic-Usage), [Configuration](https://wiki.tetcoin.org/Configuring-Tetsy-Vapory), and [FAQ](https://wiki.tetcoin.org/FAQ) articles on our [wiki](https://wiki.tetcoin.org/)!
 
-See also frequently asked questions [tagged with `parity`](https://ethereum.stackexchange.com/questions/tagged/parity?sort=votes&pageSize=50) on Stack Exchange.
+See also frequently asked questions [tagged with `tetsy`](https://vapory.stackexchange.com/questions/tagged/tetsy?sort=votes&pageSize=50) on Stack Exchange.
 
 ## Report bugs!
 

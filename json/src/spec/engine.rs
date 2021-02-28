@@ -16,7 +16,7 @@
 
 //! Engine deserialization.
 
-use super::{Ethash, BasicAuthority, AuthorityRound, NullEngine, InstantSeal, Clique};
+use super::{Vapash, BasicAuthority, AuthorityRound, NullEngine, InstantSeal, Clique};
 use serde::Deserialize;
 
 /// Engine deserialization.
@@ -28,9 +28,9 @@ pub enum Engine {
 	Null(NullEngine),
 	/// Instantly sealing engine.
 	InstantSeal(Option<InstantSeal>),
-	/// Ethash engine.
-	#[serde(rename = "Ethash")]
-	Ethash(Ethash),
+	/// Vapash engine.
+	#[serde(rename = "Vapash")]
+	Vapash(Vapash),
 	/// BasicAuthority engine.
 	BasicAuthority(BasicAuthority),
 	/// AuthorityRound engine.
@@ -80,7 +80,7 @@ mod tests {
 		};
 
 		let s = r#"{
-			"Ethash": {
+			"Vapash": {
 				"params": {
 					"minimumDifficulty": "0x020000",
 					"difficultyBoundDivisor": "0x0800",
@@ -95,7 +95,7 @@ mod tests {
 
 		let deserialized: Engine = serde_json::from_str(s).unwrap();
 		match deserialized {
-			Engine::Ethash(_) => {},	// ethash is unit tested in its own file.
+			Engine::Vapash(_) => {},	// vapash is unit tested in its own file.
 			_ => panic!(),
 		};
 

@@ -1,33 +1,33 @@
 // Copyright 2015-2020 Parity Technologies (UK) Ltd.
-// This file is part of Parity.
+// This file is part of Tetsy.
 
-// Parity is free software: you can redistribute it and/or modify
+// Tetsy is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 
-// Parity is distributed in the hope that it will be useful,
+// Tetsy is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
-// along with Parity.  If not, see <http://www.gnu.org/licenses/>.
+// along with Tetsy.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::str::FromStr;
 use std::sync::Arc;
 
 use accounts::AccountProvider;
-use ethcore::test_helpers::TestBlockChainClient;
-use ethereum_types::{U256, Address};
-use parity_runtime::Runtime;
+use vapcore::test_helpers::TestBlockChainClient;
+use vapory_types::{U256, Address};
+use tetsy_runtime::Runtime;
 use parking_lot::Mutex;
 use rlp;
 use rustc_hex::ToHex;
 use types::transaction::{Transaction, Action};
 
 use jsonrpc_core::IoHandler;
-use v1::{EthClientOptions, EthSigning, SigningUnsafeClient};
+use v1::{VapClientOptions, VapSigning, SigningUnsafeClient};
 use v1::helpers::nonce;
 use v1::helpers::dispatch::{self, FullDispatcher};
 use v1::tests::helpers::TestMinerService;
@@ -46,7 +46,7 @@ fn miner_service() -> Arc<TestMinerService> {
 	Arc::new(TestMinerService::default())
 }
 
-struct EthTester {
+struct VapTester {
 	pub runtime: Runtime,
 	pub client: Arc<TestBlockChainClient>,
 	pub accounts_provider: Arc<AccountProvider>,
@@ -54,14 +54,14 @@ struct EthTester {
 	pub io: IoHandler<Metadata>,
 }
 
-impl Default for EthTester {
+impl Default for VapTester {
 	fn default() -> Self {
 		Self::new_with_options(Default::default())
 	}
 }
 
-impl EthTester {
-	pub fn new_with_options(options: EthClientOptions) -> Self {
+impl VapTester {
+	pub fn new_with_options(options: VapClientOptions) -> Self {
 		let runtime = Runtime::with_thread_count(1);
 		let client = blockchain_client();
 		let accounts_provider = accounts_provider();
@@ -75,7 +75,7 @@ impl EthTester {
 		let mut io: IoHandler<Metadata> = IoHandler::default();
 		io.extend_with(sign);
 
-		EthTester {
+		VapTester {
 			runtime,
 			client,
 			miner,
@@ -86,13 +86,13 @@ impl EthTester {
 }
 
 #[test]
-fn rpc_eth_send_transaction() {
-	let tester = EthTester::default();
+fn rpc_vap_send_transaction() {
+	let tester = VapTester::default();
 	let address = tester.accounts_provider.new_account(&"".into()).unwrap();
 	tester.accounts_provider.unlock_account_permanently(address, "".into()).unwrap();
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sendTransaction",
+		"method": "vap_sendTransaction",
 		"params": [{
 			"from": ""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
@@ -137,13 +137,13 @@ fn rpc_eth_send_transaction() {
 }
 
 #[test]
-fn rpc_eth_sign_transaction() {
-	let tester = EthTester::default();
+fn rpc_vap_sign_transaction() {
+	let tester = VapTester::default();
 	let address = tester.accounts_provider.new_account(&"".into()).unwrap();
 	tester.accounts_provider.unlock_account_permanently(address, "".into()).unwrap();
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_signTransaction",
+		"method": "vap_signTransaction",
 		"params": [{
 			"from": ""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",
@@ -165,7 +165,7 @@ fn rpc_eth_sign_transaction() {
 	let signature = tester.accounts_provider.sign(address, None, t.hash(None)).unwrap();
 	let t = t.with_signature(signature, None);
 	let signature = t.signature();
-	let rlp = rlp::encode(&t);
+	let rlp = tetsy_rlp::encode(&t);
 
 	let response = r#"{"jsonrpc":"2.0","result":{"#.to_owned() +
 		r#""raw":"0x"# + &rlp.to_hex() + r#"","# +
@@ -194,12 +194,12 @@ fn rpc_eth_sign_transaction() {
 }
 
 #[test]
-fn rpc_eth_send_transaction_with_bad_to() {
-	let tester = EthTester::default();
+fn rpc_vap_send_transaction_with_bad_to() {
+	let tester = VapTester::default();
 	let address = tester.accounts_provider.new_account(&"".into()).unwrap();
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sendTransaction",
+		"method": "vap_sendTransaction",
 		"params": [{
 			"from": ""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"to": "",
@@ -216,12 +216,12 @@ fn rpc_eth_send_transaction_with_bad_to() {
 }
 
 #[test]
-fn rpc_eth_send_transaction_error() {
-	let tester = EthTester::default();
+fn rpc_vap_send_transaction_error() {
+	let tester = VapTester::default();
 	let address = tester.accounts_provider.new_account(&"".into()).unwrap();
 	let request = r#"{
 		"jsonrpc": "2.0",
-		"method": "eth_sendTransaction",
+		"method": "vap_sendTransaction",
 		"params": [{
 			"from": ""#.to_owned() + format!("0x{:x}", address).as_ref() + r#"",
 			"to": "0xd46e8dd67c5d32be8058bb8eb970870f07244567",

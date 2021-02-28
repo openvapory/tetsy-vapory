@@ -27,19 +27,19 @@ ENV RUST_BACKTRACE 1
 # show tools
 RUN rustc -vV && cargo -V
 
-# build parity
-ADD . /build/parity
-RUN cd parity && \
+# build tetsy
+ADD . /build/tetsy
+RUN cd tetsy && \
         mkdir -p .cargo && \
         echo '[target.armv7-unknown-linux-gnueabihf]\n\
         linker = "arm-linux-gnueabihf-gcc"\n'\
         >>.cargo/config && \
         cat .cargo/config && \
         cargo build --target armv7-unknown-linux-gnueabihf --release --verbose && \
-        ls /build/parity/target/armv7-unknown-linux-gnueabihf/release/parity && \
-        /usr/bin/arm-linux-gnueabihf-strip /build/parity/target/armv7-unknown-linux-gnueabihf/release/parity
+        ls /build/tetsy/target/armv7-unknown-linux-gnueabihf/release/tetsy && \
+        /usr/bin/arm-linux-gnueabihf-strip /build/tetsy/target/armv7-unknown-linux-gnueabihf/release/tetsy
 
-RUN file /build/parity/target/armv7-unknown-linux-gnueabihf/release/parity
+RUN file /build/tetsy/target/armv7-unknown-linux-gnueabihf/release/tetsy
 
 EXPOSE 8080 8545 8180
-ENTRYPOINT ["/build/parity/target/armv7-unknown-linux-gnueabihf/release/parity"]
+ENTRYPOINT ["/build/tetsy/target/armv7-unknown-linux-gnueabihf/release/tetsy"]

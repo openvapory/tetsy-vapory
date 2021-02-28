@@ -19,7 +19,7 @@
 use std::fmt;
 use std::sync::Arc;
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use futures::sync::mpsc;
 use txpool::{self, VerifiedTransaction};
 
@@ -160,7 +160,7 @@ mod tests {
 	use types::transaction;
 	use txpool::Listener;
 	use futures::{Stream, Future};
-	use ethereum_types::Address;
+	use vapory_types::Address;
 
 	#[test]
 	fn should_notify_listeners() {

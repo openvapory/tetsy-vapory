@@ -22,14 +22,14 @@ use std::{
 	sync::Arc,
 };
 
-use ethereum_types::H256;
-use hash_db::{HashDB, Prefix};
-use keccak_hasher::KeccakHasher;
-use kvdb::{KeyValueDB, DBTransaction, DBValue};
+use vapory_types::H256;
+use tetsy_hash_db::{HashDB, Prefix};
+use tetsy_keccak_hasher::KeccakHasher;
+use tetsy_kvdb::{KeyValueDB, DBTransaction, DBValue};
 use log::trace;
-use rlp::{Rlp, RlpStream, Encodable, DecoderError, Decodable, encode, decode};
+use tetsy_rlp::{Rlp, RlpStream, Encodable, DecoderError, Decodable, encode, decode};
 
-use crate::{error_negatively_reference_hash, new_memory_db};
+use crate::{error_negatively_reference_hash, new_tetsy_memory_db};
 
 /// Implementation of the `HashDB` trait for a disk-backed database with a memory overlay.
 ///
@@ -83,7 +83,7 @@ impl OverlayDB {
 	/// Create a new instance of OverlayDB given a `backing` database.
 	pub fn new(backing: Arc<dyn KeyValueDB>, column: u32) -> OverlayDB {
 		OverlayDB {
-			overlay: new_memory_db(),
+			overlay: new_tetsy_memory_db(),
 			backing,
 			column,
 		}
@@ -92,7 +92,7 @@ impl OverlayDB {
 	/// Create a new instance of OverlayDB with an anonymous temporary database.
 	#[cfg(test)]
 	pub fn new_temp() -> OverlayDB {
-		let backing = Arc::new(::kvdb_memorydb::create(1));
+		let backing = Arc::new(::tetsy_kvdb_memorydb::create(1));
 		Self::new(backing, 0)
 	}
 
@@ -231,7 +231,7 @@ impl HashDB<KeccakHasher, DBValue> for OverlayDB {
 
 #[cfg(test)]
 mod tests {
-	use hash_db::EMPTY_PREFIX;
+	use tetsy_hash_db::EMPTY_PREFIX;
 	use super::*;
 
 	#[test]

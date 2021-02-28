@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use jsonrpc_tcp_server::PushMessageError;
 
 #[derive(Debug, Clone)]

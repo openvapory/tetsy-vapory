@@ -18,7 +18,7 @@ use std::sync::Arc;
 
 use crypto::DEFAULT_MAC;
 use accounts::AccountProvider;
-use ethereum_types::H256;
+use vapory_types::H256;
 use crypto::publickey::{KeyPair, Signature, verify_public};
 
 use serde_json;

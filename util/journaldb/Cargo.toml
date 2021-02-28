@@ -7,19 +7,26 @@ license = "GPL3"
 edition = "2018"
 
 [dependencies]
-parity-bytes = "0.1"
-ethereum-types = "0.8.0"
-hash-db = "0.15.0"
-malloc_size_of = { version = "0.3.0", package = "parity-util-mem" }
-keccak-hasher = { path = "../keccak-hasher" }
-kvdb = "0.3.1"
+tetsy-bytes = "0.1"
+vapory-types = "0.8.0"
+tetsy-hash-db = "0.15.2"
+tetsy-util-mem = "0.3.0"
+tetsy-keccak-hasher = { path = "../tetsy-keccak-hasher" }
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"
-memory-db = "0.18.0"
+tetsy-memory-db = "0.18.1"
+# tetsy-memory-db = { git = "https://github.com/tetcoin/trie.git", rev = "08fbb7824b2a07636d9942e0e2937d5d8b90e1bd" }
 parking_lot = "0.9"
 fastmap = { path = "../../util/fastmap" }
-rlp = "0.4.0"
+tetsy-rlp = "0.4.5"
+
+# [dependencies.tetsy-memory-db]
+# git = "https://github.com/tetcoin/trie"
+# rev = "193a225"
 
 [dev-dependencies]
 env_logger = "0.5"
-keccak-hash = "0.4.0"
-kvdb-memorydb = "0.3.1"
+tetsy-keccak-hash = "0.4.0"
+tetsy-kvdb-memorydb = "0.3.2"
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }

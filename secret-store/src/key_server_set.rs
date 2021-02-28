@@ -18,8 +18,8 @@ use std::sync::Arc;
 use std::net::SocketAddr;
 use std::collections::{BTreeMap, HashSet};
 use parking_lot::Mutex;
-use ethabi::FunctionOutputDecoder;
-use ethereum_types::{H256, Address};
+use vapabi::FunctionOutputDecoder;
+use vapory_types::{H256, Address};
 use crypto::publickey::public_to_address;
 use bytes::Bytes;
 use types::{Error, Public, NodeAddress, NodeId};
@@ -541,7 +541,7 @@ fn update_last_transaction_block(client: &dyn SecretStoreChain, migration_id: &H
 		// if we have sent the same type of transaction recently => do nothing (hope it will be mined eventually)
 		// if we have sent the same transaction some time ago =>
 		//   assume that our tx queue was full
-		//   or we didn't have enough eth fot this tx
+		//   or we didn't have enough vap fot this tx
 		//   or the transaction has been removed from the queue (and never reached any miner node)
 		// if we have restarted after sending tx => assume we have never sent it
 		Some(tx) => {
@@ -573,7 +573,7 @@ fn block_confirmations(client: &dyn SecretStoreChain, block: H256) -> Option<u64
 pub mod tests {
 	use std::collections::BTreeMap;
 	use std::net::SocketAddr;
-	use ethereum_types::{H256, H512};
+	use vapory_types::{H256, H512};
 	use crypto::publickey::Public;
 	use super::{update_future_set, update_number_of_confirmations, FutureNewSet,
 		KeyServerSet, KeyServerSetSnapshot, MIGRATION_CONFIRMATIONS_REQUIRED};

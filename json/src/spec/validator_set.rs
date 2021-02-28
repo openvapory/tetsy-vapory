@@ -39,7 +39,7 @@ pub enum ValidatorSet {
 mod tests {
 	use std::str::FromStr;
 	use super::{Address, Uint, ValidatorSet};
-	use ethereum_types::{H160, U256};
+	use vapory_types::{H160, U256};
 
 	#[test]
 	fn validator_set_deserialization() {

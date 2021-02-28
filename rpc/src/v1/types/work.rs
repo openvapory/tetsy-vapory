@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::{H256, U256};
+use vapory_types::{H256, U256};
 
 use serde::{Serialize, Serializer};
 
-/// The result of an `eth_getWork` call: it differs based on an option
+/// The result of an `vap_getWork` call: it differs based on an option
 /// whether to send the block number.
 #[derive(Debug, PartialEq, Eq)]
 pub struct Work {

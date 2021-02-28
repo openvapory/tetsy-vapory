@@ -17,7 +17,7 @@
 //! Request Provenance
 
 use std::fmt;
-use ethereum_types::H256;
+use vapory_types::H256;
 
 /// RPC request origin
 #[derive(Clone, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
@@ -67,7 +67,7 @@ impl fmt::Display for Origin {
 mod tests {
 	use serde_json;
 	use super::Origin;
-	use ethereum_types::H256;
+	use vapory_types::H256;
 
 	#[test]
 	fn should_serialize_origin() {

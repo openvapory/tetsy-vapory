@@ -18,9 +18,9 @@ use std::collections::BTreeMap;
 use std::sync::Arc;
 use serde_json;
 use tiny_keccak::Keccak;
-use ethereum_types::{H256, Address};
+use vapory_types::{H256, Address};
 use crypto::publickey::{Secret, Public};
-use kvdb::KeyValueDB;
+use tetsy_kvdb::KeyValueDB;
 use types::{Error, ServerKeyId, NodeId};
 use serialization::{SerializablePublic, SerializableSecret, SerializableH256, SerializableAddress};
 
@@ -271,7 +271,7 @@ pub mod tests {
 	use parking_lot::RwLock;
 	use tempdir::TempDir;
 	use crypto::publickey::{Random, Generator, Public};
-	use kvdb_rocksdb::{Database, DatabaseConfig};
+	use tetsy_kvdb_rocksdb::{Database, DatabaseConfig};
 	use types::{Error, ServerKeyId};
 	use super::{KeyStorage, PersistentKeyStorage, DocumentKeyShare, DocumentKeyShareVersion};
 

@@ -17,11 +17,11 @@
 //! Test implementation of SyncProvider.
 
 use std::collections::BTreeMap;
-use ethereum_types::{H256, H512};
+use vapory_types::{H256, H512};
 use parking_lot::RwLock;
 use network::client_version::ClientVersion;
 use futures::sync::mpsc;
-use sync::{SyncProvider, EthProtocolInfo, SyncStatus, PeerInfo, TransactionStats, SyncState};
+use sync::{SyncProvider, VapProtocolInfo, SyncStatus, PeerInfo, TransactionStats, SyncState};
 
 /// TestSyncProvider config.
 pub struct Config {
@@ -82,10 +82,10 @@ impl SyncProvider for TestSyncProvider {
 			PeerInfo {
 				id: Some("node1".to_owned()),
 				client_version: ClientVersion::from("Tetsy-Vapory/1/v2.4.0/linux/rustc"),
-				capabilities: vec!["eth/62".to_owned(), "eth/63".to_owned()],
+				capabilities: vec!["vap/62".to_owned(), "vap/63".to_owned()],
 				remote_address: "127.0.0.1:7777".to_owned(),
 				local_address: "127.0.0.1:8888".to_owned(),
-				eth_info: Some(EthProtocolInfo {
+				vap_info: Some(VapProtocolInfo {
 					version: 62,
 					difficulty: Some(40.into()),
 					head: H256::from_low_u64_be(50),
@@ -95,10 +95,10 @@ impl SyncProvider for TestSyncProvider {
 			PeerInfo {
 				id: None,
 				client_version: ClientVersion::from("Tetsy-Vapory/2/v2.4.0/linux/rustc"),
-				capabilities: vec!["eth/63".to_owned(), "eth/64".to_owned()],
+				capabilities: vec!["vap/63".to_owned(), "vap/64".to_owned()],
 				remote_address: "Handshake".to_owned(),
 				local_address: "127.0.0.1:3333".to_owned(),
-				eth_info: Some(EthProtocolInfo {
+				vap_info: Some(VapProtocolInfo {
 					version: 64,
 					difficulty: None,
 					head: H256::from_low_u64_be(60),

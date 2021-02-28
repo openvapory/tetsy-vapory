@@ -9,9 +9,9 @@ use v1::metadata::Metadata;
 use v1::traits::TransactionsPool;
 
 use miner::pool::TxStatus;
-use parity_runtime::Executor;
+use tetsy_runtime::Executor;
 use parking_lot::RwLock;
-use ethereum_types::H256;
+use vapory_types::H256;
 use futures::{Stream, sync::mpsc};
 
 type Client = Sink<(H256, TxStatus)>;

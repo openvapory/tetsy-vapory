@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 //! Web3 rpc implementation.
-use ethereum_types::H256;
+use vapory_types::H256;
 use hash::keccak;
 use jsonrpc_core::Result;
 use version::version;

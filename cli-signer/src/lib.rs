@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-extern crate ethereum_types;
+extern crate vapory_types;
 extern crate futures;
 extern crate rpassword;
 
-extern crate parity_rpc as rpc;
-extern crate parity_rpc_client as client;
+extern crate tetsy_rpc as rpc;
+extern crate tetsy_rpc_client as client;
 
-use ethereum_types::U256;
+use vapory_types::U256;
 use rpc::signer::ConfirmationRequest;
 use client::signer_client::SignerRpc;
 use std::io::{Write, BufRead, BufReader, stdout, stdin};

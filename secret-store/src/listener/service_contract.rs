@@ -16,12 +16,12 @@
 
 use std::sync::Arc;
 use parking_lot::RwLock;
-use ethabi::RawLog;
-use ethabi::FunctionOutputDecoder;
+use vapabi::RawLog;
+use vapabi::FunctionOutputDecoder;
 use crypto::publickey::{Public, public_to_address};
 use hash::keccak;
 use bytes::Bytes;
-use ethereum_types::{H256, U256, Address, H512};
+use vapory_types::{H256, U256, Address, H512};
 use listener::ApiMask;
 use listener::service_contract_listener::ServiceTask;
 use blockchain::{SecretStoreChain, Filter, SigningKeyPair, ContractAddress, BlockId};
@@ -725,7 +725,7 @@ pub mod tests {
 	use parking_lot::Mutex;
 	use bytes::Bytes;
 	use crypto::publickey::Public;
-	use ethereum_types::Address;
+	use vapory_types::Address;
 	use listener::service_contract_listener::ServiceTask;
 	use {ServerKeyId};
 	use super::ServiceContract;

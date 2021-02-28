@@ -26,8 +26,8 @@ use std::cmp;
 use std::sync::Arc;
 use std::sync::atomic::{self, AtomicUsize};
 
-use ethereum_types::{U256, H256};
-use rlp::Encodable;
+use vapory_types::{U256, H256};
+use tetsy_rlp::Encodable;
 use txpool;
 use types::transaction;
 

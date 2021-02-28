@@ -114,7 +114,7 @@ pub struct AuthorityRound {
 mod tests {
 	use std::str::FromStr;
 
-	use ethereum_types::{U256, H160};
+	use vapory_types::{U256, H160};
 	use serde_json;
 
 	use super::{Address, Uint, StepDuration};

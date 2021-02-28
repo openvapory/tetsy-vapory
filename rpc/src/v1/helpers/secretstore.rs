@@ -16,7 +16,7 @@
 
 use std::collections::BTreeSet;
 use rand::{RngCore, rngs::OsRng};
-use ethereum_types::{H256, H512};
+use vapory_types::{H256, H512};
 use crypto::publickey::{Public, Secret, Random, Generator, ec_math_utils};
 use crypto;
 use bytes::Bytes;

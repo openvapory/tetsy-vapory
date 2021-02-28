@@ -15,8 +15,8 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 //! Personal rpc interface.
-use eip_712::EIP712;
-use ethereum_types::{H160, H256, H520, U128};
+use vip_712::VIP712;
+use vapory_types::{H160, H256, H520, U128};
 use jsonrpc_core::types::Value;
 use jsonrpc_core::{BoxFuture, Result};
 use jsonrpc_derive::rpc;
@@ -49,7 +49,7 @@ pub trait Personal {
 	/// Produces an EIP-712 compliant signature with given account using the given password to unlock the
 	/// account during the request.
 	#[rpc(name = "personal_signTypedData")]
-	fn sign_typed_data(&self, _: EIP712, _: H160, _: String) -> BoxFuture<H520>;
+	fn sign_typed_data(&self, _: VIP712, _: H160, _: String) -> BoxFuture<H520>;
 
 	/// Signs an arbitrary message based on the version specified
 	#[rpc(name = "personal_sign191")]

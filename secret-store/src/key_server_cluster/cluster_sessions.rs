@@ -20,7 +20,7 @@ use std::sync::atomic::AtomicBool;
 use std::collections::{VecDeque, BTreeMap, BTreeSet};
 use futures::{oneshot, Oneshot, Complete, Future};
 use parking_lot::{Mutex, RwLock, Condvar};
-use ethereum_types::H256;
+use vapory_types::H256;
 use crypto::publickey::Secret;
 use blockchain::SigningKeyPair;
 use key_server_cluster::{Error, NodeId, SessionId};

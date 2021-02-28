@@ -16,7 +16,7 @@
 
 //! Return types for RPC calls
 
-use ethereum_types::{Public, Address, H160, H256, U256};
+use vapory_types::{Public, Address, H160, H256, U256};
 use v1::types::Bytes;
 
 /// Account information.
@@ -38,7 +38,7 @@ pub struct StorageProof {
 /// Account information.
 #[derive(Debug, Default, Clone, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub struct EthAccount {
+pub struct VapAccount {
 	pub address: H160,
 	pub balance: U256,
 	pub nonce: U256,
@@ -48,7 +48,7 @@ pub struct EthAccount {
 	pub storage_proof: Vec<StorageProof>,
 }
 
-/// Extended account information (used by `parity_allAccountInfo`).
+/// Extended account information (used by `tetsy_allAccountInfo`).
 #[derive(Debug, Default, Clone, PartialEq, Serialize)]
 pub struct ExtAccountInfo {
 	/// Account name

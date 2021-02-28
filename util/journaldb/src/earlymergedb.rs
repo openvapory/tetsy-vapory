@@ -22,19 +22,19 @@ use std::{
 	sync::Arc,
 };
 
-use ethereum_types::H256;
-use hash_db::{HashDB, Prefix};
-use keccak_hasher::KeccakHasher;
-use kvdb::{KeyValueDB, DBTransaction, DBValue};
+use vapory_types::H256;
+use tetsy_hash_db::{HashDB, Prefix};
+use tetsy_keccak_hasher::KeccakHasher;
+use tetsy_kvdb::{KeyValueDB, DBTransaction, DBValue};
 use log::{trace, warn};
-use malloc_size_of::{MallocSizeOf, allocators::new_malloc_size_ops};
-use parity_bytes::Bytes;
+use tetsy_util_mem::{MallocSizeOf, allocators::new_malloc_size_ops};
+use tetsy_bytes::Bytes;
 use parking_lot::RwLock;
-use rlp::{encode, decode};
+use tetsy_rlp::{encode, decode};
 
 use crate::{
 	DB_PREFIX_LEN, LATEST_ERA_KEY, error_negatively_reference_hash, error_key_already_exists,
-	JournalDB, new_memory_db,
+	JournalDB, new_tetsy_memory_db,
 	util::{DatabaseKey, DatabaseValueView, DatabaseValueRef},
 };
 
@@ -120,7 +120,7 @@ impl EarlyMergeDB {
 		let (latest_era, refs) = EarlyMergeDB::read_refs(&*backing, column);
 		let refs = Some(Arc::new(RwLock::new(refs)));
 		EarlyMergeDB {
-			overlay: new_memory_db(),
+			overlay: new_tetsy_memory_db(),
 			backing,
 			refs,
 			latest_era,
@@ -526,10 +526,10 @@ impl JournalDB for EarlyMergeDB {
 
 #[cfg(test)]
 mod tests {
-	use keccak_hash::keccak;
-	use hash_db::{HashDB, EMPTY_PREFIX};
+	use tetsy_keccak_hash::keccak;
+	use tetsy_hash_db::{HashDB, EMPTY_PREFIX};
 	use super::*;
-	use kvdb_memorydb;
+	use tetsy_kvdb_memorydb;
 	use crate::{inject_batch, commit_batch};
 
 	#[test]
@@ -788,13 +788,13 @@ mod tests {
 	}
 
 	fn new_db() -> EarlyMergeDB {
-		let backing = Arc::new(kvdb_memorydb::create(1));
+		let backing = Arc::new(tetsy_kvdb_memorydb::create(1));
 		EarlyMergeDB::new(backing, 0)
 	}
 
 	#[test]
 	fn reopen() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 		let bar = H256::random();
 
 		let foo = {
@@ -964,7 +964,7 @@ mod tests {
 	fn reopen_remove_three() {
 		let _ = ::env_logger::try_init();
 
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 		let foo = keccak(b"foo");
 
 		{
@@ -1017,7 +1017,7 @@ mod tests {
 
 	#[test]
 	fn reopen_fork() {
-		let shared_db = Arc::new(kvdb_memorydb::create(1));
+		let shared_db = Arc::new(tetsy_kvdb_memorydb::create(1));
 
 		let (foo, bar, baz) = {
 			let mut jdb = EarlyMergeDB::new(shared_db.clone(), 0);

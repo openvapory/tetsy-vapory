@@ -60,16 +60,16 @@ mod tests {
 	use super::{Address, Bytes, Genesis, H256, Uint};
 	use crate::{
 		hash::H64,
-		spec::{Ethereum, Seal}
+		spec::{Vapory, Seal}
 	};
-	use ethereum_types::{U256, H160, H64 as Eth64, H256 as Eth256};
+	use vapory_types::{U256, H160, H64 as Vap64, H256 as Vap256};
 
 	#[test]
 	fn genesis_deserialization() {
 		let s = r#"{
 			"difficulty": "0x400000000",
 			"seal": {
-				"ethereum": {
+				"vapory": {
 					"mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
 					"nonce": "0x00006d6f7264656e"
 				}
@@ -83,18 +83,18 @@ mod tests {
 		}"#;
 		let deserialized: Genesis = serde_json::from_str(s).unwrap();
 		assert_eq!(deserialized, Genesis {
-			seal: Seal::Ethereum(Ethereum {
-				nonce: H64(Eth64::from_str("00006d6f7264656e").unwrap()),
-				mix_hash: H256(Eth256::from_str("0000000000000000000000000000000000000000000000000000000000000000").unwrap())
+			seal: Seal::Vapory(Vapory {
+				nonce: H64(Vap64::from_str("00006d6f7264656e").unwrap()),
+				mix_hash: H256(Vap256::from_str("0000000000000000000000000000000000000000000000000000000000000000").unwrap())
 			}),
 			difficulty: Uint(U256::from(0x400000000u64)),
 			author: Some(Address(H160::from_str("1000000000000000000000000000000000000001").unwrap())),
 			timestamp: Some(Uint(U256::from(0x07))),
-			parent_hash: Some(H256(Eth256::from_str("9000000000000000000000000000000000000000000000000000000000000000").unwrap())),
+			parent_hash: Some(H256(Vap256::from_str("9000000000000000000000000000000000000000000000000000000000000000").unwrap())),
 			gas_limit: Uint(U256::from(0x1388)),
 			transactions_root: None,
 			receipts_root: None,
-			state_root: Some(H256(Eth256::from_str("d7f8974fb5ac78d9ac099b9ad5018bedc2ce0a72dad1827a1709da30580f0544").unwrap())),
+			state_root: Some(H256(Vap256::from_str("d7f8974fb5ac78d9ac099b9ad5018bedc2ce0a72dad1827a1709da30580f0544").unwrap())),
 			gas_used: None,
 			extra_data: Some(Bytes::from_str("11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa").unwrap()),
 		});

@@ -128,7 +128,7 @@ mod tests {
 	use super::{Address, Bytes, Call, Env, H256, MaybeEmpty, State, Transaction, Uint, Vm};
 
 	use crate::spec::{Account, HashOrMap};
-	use ethereum_types::{U256, H160 as Hash160, H256 as Hash256};
+	use vapory_types::{U256, H160 as Hash160, H256 as Hash256};
 	use macros::map;
 	use rustc_hex::FromHex;
 

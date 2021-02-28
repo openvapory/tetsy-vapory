@@ -1,4 +1,4 @@
-// Copyright 2015-2020 Parity Technologies (UK) Ltd.
+// Copyright 2015-2020 Tetsy Technologies (UK) Ltd.
 // This file is part of Tetsy Vapory.
 
 // Tetsy Vapory is free software: you can redistribute it and/or modify
@@ -18,14 +18,14 @@
 
 //! Dir utilities for platform-specific operations
 extern crate app_dirs;
-extern crate ethereum_types;
+extern crate vapory_types;
 extern crate journaldb;
 extern crate home;
 
 pub mod helpers;
 use std::fs;
 use std::path::{PathBuf, Path};
-use ethereum_types::{H64, H256};
+use vapory_types::{H64, H256};
 use journaldb::Algorithm;
 use helpers::{replace_home, replace_home_and_local};
 use app_dirs::{AppInfo, get_app_root, AppDataType};
@@ -53,7 +53,7 @@ pub use home::home_dir;
 const LEGACY_CLIENT_DB_VER_STR: &str = "5.3";
 
 #[derive(Debug, PartialEq)]
-/// Parity local data directories
+/// Tetsy local data directories
 pub struct Directories {
 	/// Base dir
 	pub base: String,
@@ -229,19 +229,19 @@ impl DatabaseDirectories {
 /// Default data path
 pub fn default_data_path() -> String {
 	let app_info = AppInfo { name: PRODUCT, author: AUTHOR };
-	get_app_root(AppDataType::UserData, &app_info).map(|p| p.to_string_lossy().into_owned()).unwrap_or_else(|_| "$HOME/.parity".to_owned())
+	get_app_root(AppDataType::UserData, &app_info).map(|p| p.to_string_lossy().into_owned()).unwrap_or_else(|_| "$HOME/.tetsy".to_owned())
 }
 
 /// Default local path
 pub fn default_local_path() -> String {
 	let app_info = AppInfo { name: PRODUCT, author: AUTHOR };
-	get_app_root(AppDataType::UserCache, &app_info).map(|p| p.to_string_lossy().into_owned()).unwrap_or_else(|_| "$HOME/.parity".to_owned())
+	get_app_root(AppDataType::UserCache, &app_info).map(|p| p.to_string_lossy().into_owned()).unwrap_or_else(|_| "$HOME/.tetsy".to_owned())
 }
 
 /// Default hypervisor path
 pub fn default_hypervisor_path() -> PathBuf {
 	let app_info = AppInfo { name: PRODUCT_HYPERVISOR, author: AUTHOR };
-	get_app_root(AppDataType::UserData, &app_info).unwrap_or_else(|_| "$HOME/.parity-hypervisor".into())
+	get_app_root(AppDataType::UserData, &app_info).unwrap_or_else(|_| "$HOME/.tetsy-hypervisor".into())
 }
 
 /// Get home directory.
@@ -249,9 +249,9 @@ fn home() -> PathBuf {
 	home_dir().expect("Failed to get home dir")
 }
 
-/// Geth path
-pub fn geth(testnet: bool) -> PathBuf {
-	let mut base = geth_base();
+/// Gvap path
+pub fn gvap(testnet: bool) -> PathBuf {
+	let mut base = gvap_base();
 	if testnet {
 		base.push("testnet");
 	}
@@ -259,9 +259,9 @@ pub fn geth(testnet: bool) -> PathBuf {
 	base
 }
 
-/// Parity path for specific chain
-pub fn parity(chain: &str) -> PathBuf {
-	let mut base = parity_base();
+/// Tetsy path for specific chain
+pub fn tetsy(chain: &str) -> PathBuf {
+	let mut base = tetsy_base();
 	base.push(chain);
 	base
 }
@@ -269,23 +269,23 @@ pub fn parity(chain: &str) -> PathBuf {
 #[cfg(target_os = "macos")]
 mod platform {
 	use std::path::PathBuf;
-	pub const AUTHOR: &str = "Parity";
-	pub const PRODUCT: &str = "io.parity.ethereum";
-	pub const PRODUCT_HYPERVISOR: &str = "io.parity.ethereum-updates";
+	pub const AUTHOR: &str = "Tetsy";
+	pub const PRODUCT: &str = "io.tetsy.vapory";
+	pub const PRODUCT_HYPERVISOR: &str = "io.tetsy.vapory-updates";
 
-	pub fn parity_base() -> PathBuf {
+	pub fn tetsy_base() -> PathBuf {
 		let mut home = super::home();
 		home.push("Library");
 		home.push("Application Support");
-		home.push("io.parity.ethereum");
+		home.push("io.tetsy.vapory");
 		home.push("keys");
 		home
 	}
 
-	pub fn geth_base() -> PathBuf {
+	pub fn gvap_base() -> PathBuf {
 		let mut home = super::home();
 		home.push("Library");
-		home.push("Ethereum");
+		home.push("Vapory");
 		home
 	}
 }
@@ -293,25 +293,25 @@ mod platform {
 #[cfg(windows)]
 mod platform {
 	use std::path::PathBuf;
-	pub const AUTHOR: &str = "Parity";
-	pub const PRODUCT: &str = "Ethereum";
-	pub const PRODUCT_HYPERVISOR: &str = "EthereumUpdates";
+	pub const AUTHOR: &str = "Tetsy";
+	pub const PRODUCT: &str = "Vapory";
+	pub const PRODUCT_HYPERVISOR: &str = "VaporyUpdates";
 
-	pub fn parity_base() -> PathBuf {
+	pub fn tetsy_base() -> PathBuf {
 		let mut home = super::home();
 		home.push("AppData");
 		home.push("Roaming");
-		home.push("Parity");
-		home.push("Ethereum");
+		home.push("Tetsy");
+		home.push("Vapory");
 		home.push("keys");
 		home
 	}
 
-	pub fn geth_base() -> PathBuf {
+	pub fn gvap_base() -> PathBuf {
 		let mut home = super::home();
 		home.push("AppData");
 		home.push("Roaming");
-		home.push("Ethereum");
+		home.push("Vapory");
 		home
 	}
 }
@@ -319,22 +319,22 @@ mod platform {
 #[cfg(not(any(target_os = "macos", windows)))]
 mod platform {
 	use std::path::PathBuf;
-	pub const AUTHOR: &str = "parity";
-	pub const PRODUCT: &str = "io.parity.ethereum";
-	pub const PRODUCT_HYPERVISOR: &str = "io.parity.ethereum-updates";
+	pub const AUTHOR: &str = "tetsy";
+	pub const PRODUCT: &str = "io.tetsy.vapory";
+	pub const PRODUCT_HYPERVISOR: &str = "io.tetsy.vapory-updates";
 
-	pub fn parity_base() -> PathBuf {
+	pub fn tetsy_base() -> PathBuf {
 		let mut home = super::home();
 		home.push(".local");
 		home.push("share");
-		home.push("io.parity.ethereum");
+		home.push("io.tetsy.vapory");
 		home.push("keys");
 		home
 	}
 
-	pub fn geth_base() -> PathBuf {
+	pub fn gvap_base() -> PathBuf {
 		let mut home = super::home();
-		home.push(".ethereum");
+		home.push(".vapory");
 		home
 	}
 }

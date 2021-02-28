@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::{H160, H256};
+use vapory_types::{H160, H256};
 use semver;
 use updater::{self, CapState};
 
@@ -110,7 +110,7 @@ impl Into<VersionInfo> for updater::VersionInfo {
 	}
 }
 
-/// Information regarding a particular release of Parity
+/// Information regarding a particular release of Tetsy
 #[derive(Debug, PartialEq, Serialize)]
 pub struct ReleaseInfo {
 	/// Information on the version.

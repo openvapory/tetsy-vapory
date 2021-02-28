@@ -17,16 +17,16 @@
 use std::collections::BTreeMap;
 
 use blockchain::ContractAddress;
-use {bytes, ethereum_types};
+use {bytes, vapory_types};
 
 /// Node id.
 pub type NodeId = crypto::publickey::Public;
 /// Server key id. When key is used to encrypt document, it could be document contents hash.
-pub type ServerKeyId = ethereum_types::H256;
+pub type ServerKeyId = vapory_types::H256;
 /// Encrypted document key type.
 pub type EncryptedDocumentKey = bytes::Bytes;
 /// Message hash.
-pub type MessageHash = ethereum_types::H256;
+pub type MessageHash = vapory_types::H256;
 /// Message signature.
 pub type EncryptedMessageSignature = bytes::Bytes;
 /// Request signature type.
@@ -104,7 +104,7 @@ pub enum Requester {
 	/// Requested with public key.
 	Public(crypto::publickey::Public),
 	/// Requested with verified address.
-	Address(ethereum_types::Address),
+	Address(vapory_types::Address),
 }
 
 impl Default for Requester {
@@ -135,14 +135,14 @@ impl From<crypto::publickey::Signature> for Requester {
 	}
 }
 
-impl From<ethereum_types::Public> for Requester {
-	fn from(public: ethereum_types::Public) -> Requester {
+impl From<vapory_types::Public> for Requester {
+	fn from(public: vapory_types::Public) -> Requester {
 		Requester::Public(public)
 	}
 }
 
-impl From<ethereum_types::Address> for Requester {
-	fn from(address: ethereum_types::Address) -> Requester {
+impl From<vapory_types::Address> for Requester {
+	fn from(address: vapory_types::Address) -> Requester {
 		Requester::Address(address)
 	}
 }

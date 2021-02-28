@@ -18,7 +18,7 @@ use std::collections::{BTreeSet, BTreeMap};
 use std::sync::Arc;
 use futures::Oneshot;
 use parking_lot::Mutex;
-use ethereum_types::{Address, H256};
+use vapory_types::{Address, H256};
 use crypto::publickey::Secret;
 use key_server_cluster::{Error, AclStorage, DocumentKeyShare, NodeId, SessionId, Requester,
 	EncryptedDocumentKeyShadow, SessionMeta};
@@ -822,7 +822,7 @@ impl JobTransport for DecryptionJobTransport {
 pub fn create_default_decryption_session() -> Arc<SessionImpl> {
 	use acl_storage::DummyAclStorage;
 	use key_server_cluster::cluster::tests::DummyCluster;
-	use ethereum_types::H512;
+	use vapory_types::H512;
 
 	Arc::new(SessionImpl::new(SessionParams {
 		meta: SessionMeta {
@@ -855,7 +855,7 @@ mod tests {
 	use key_server_cluster::message::{self, Message, DecryptionMessage};
 	use key_server_cluster::math;
 	use key_server_cluster::jobs::consensus_session::ConsensusSessionState;
-	use ethereum_types::{H512, Address};
+	use vapory_types::{H512, Address};
 	use std::str::FromStr;
 
 	const SECRET_PLAIN: &'static str = "d2b57ae7619e070af0af6bc8c703c0cd27814c54d5d6a999cacac0da34ede279ca0d9216e85991029e54e2f0c92ee0bd30237725fa765cbdbfc4529489864c5f";

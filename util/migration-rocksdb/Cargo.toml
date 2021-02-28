@@ -6,8 +6,10 @@ authors = ["Parity Technologies <admin@parity.io>"]
 [dependencies]
 log = "0.4"
 macros = { path = "../macros" }
-kvdb = "0.3.1"
-kvdb-rocksdb = "0.4.1"
+tetsy-kvdb = "0.3.2"
+tetsy-kvdb-rocksdb = "0.4.3"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+# tetsy-kvdb-rocksdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 
 [dev-dependencies]
 tempdir = "0.3"

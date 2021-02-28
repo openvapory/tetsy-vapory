@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use client::{Rpc, RpcError};
-use ethereum_types::U256;
+use vapory_types::U256;
 use rpc::signer::{ConfirmationRequest, TransactionModification, TransactionCondition};
 use serde;
 use serde_json::{Value as JsonValue, to_value};

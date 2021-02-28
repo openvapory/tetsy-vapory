@@ -76,9 +76,9 @@ use std::sync::Arc;
 
 use bytes::Bytes;
 use client_traits::BlockChainClient;
-use ethcore::miner::MinerService;
-use ethereum_types::{H520, H256, U256, Address};
-use ethkey::Password;
+use vapcore::miner::MinerService;
+use vapory_types::{H520, H256, U256, Address};
+use vapkey::Password;
 use crypto::publickey::Signature;
 use hash::keccak;
 use types::transaction::{SignedTransaction, PendingTransaction};
@@ -91,7 +91,7 @@ use v1::types::{
 	RichRawTransaction as RpcRichRawTransaction,
 	ConfirmationPayload as RpcConfirmationPayload,
 	ConfirmationResponse,
-	EthSignRequest as RpcEthSignRequest,
+	VapSignRequest as RpcVapSignRequest,
 	EIP191SignRequest as RpcSignRequest,
 	DecryptRequest as RpcDecryptRequest,
 };
@@ -128,7 +128,7 @@ pub trait Dispatcher: Send + Sync + Clone {
 
 /// Payload to sign
 pub enum SignMessage {
-	/// Eth-sign kind data (requires prefixing)
+	/// Vap-sign kind data (requires prefixing)
 	Data(Bytes),
 	/// Prefixed data hash
 	Hash(H256),
@@ -306,7 +306,7 @@ pub fn execute<D: Dispatcher + 'static>(
 					.map(ConfirmationResponse::SignTransaction)
 				))
 		},
-		ConfirmationPayload::EthSignMessage(address, data) => {
+		ConfirmationPayload::VapSignMessage(address, data) => {
 			let res = signer.sign_message(address, pass, SignMessage::Data(data))
 				.map(|result| result
 					.map(|s| H520(s.into_electrum()))
@@ -335,12 +335,12 @@ pub fn execute<D: Dispatcher + 'static>(
 	}
 }
 
-/// Returns a eth_sign-compatible hash of data to sign.
+/// Returns a vap_sign-compatible hash of data to sign.
 /// The data is prepended with special message to prevent
 /// malicious DApps from using the function to sign forged transactions.
-pub fn eth_data_hash(mut data: Bytes) -> H256 {
+pub fn vap_data_hash(mut data: Bytes) -> H256 {
 	let mut message_data =
-		format!("\x19Ethereum Signed Message:\n{}", data.len())
+		format!("\x19Vapory Signed Message:\n{}", data.len())
 		.into_bytes();
 	message_data.append(&mut data);
 	keccak(message_data)
@@ -371,8 +371,8 @@ pub fn from_rpc<D>(payload: RpcConfirmationPayload, default_account: Address, di
 		RpcConfirmationPayload::Decrypt(RpcDecryptRequest { address, msg }) => {
 			Box::new(future::ok(ConfirmationPayload::Decrypt(address, msg.into())))
 		},
-		RpcConfirmationPayload::EthSignMessage(RpcEthSignRequest { address, data }) => {
-			Box::new(future::ok(ConfirmationPayload::EthSignMessage(address, data.into())))
+		RpcConfirmationPayload::VapSignMessage(RpcVapSignRequest { address, data }) => {
+			Box::new(future::ok(ConfirmationPayload::VapSignMessage(address, data.into())))
 		},
 		RpcConfirmationPayload::EIP191SignMessage(RpcSignRequest { address, data }) => {
 			Box::new(future::ok(ConfirmationPayload::SignMessage(address, data)))

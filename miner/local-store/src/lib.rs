@@ -27,10 +27,10 @@ use common_types::{
 		Condition as TransactionCondition
 	}
 };
-use ethcore_io::{IoHandler, TimerToken, IoContext};
-use kvdb::KeyValueDB;
+use vapcore_io::{IoHandler, TimerToken, IoContext};
+use tetsy_kvdb::KeyValueDB;
 use log::{debug, trace, warn};
-use rlp::Rlp;
+use tetsy_rlp::Rlp;
 use serde_derive::{Serialize, Deserialize};
 use serde_json;
 
@@ -93,7 +93,7 @@ impl TransactionEntry {
 impl From<PendingTransaction> for TransactionEntry {
 	fn from(pending: PendingTransaction) -> Self {
 		TransactionEntry {
-			rlp_bytes: ::rlp::encode(&pending.transaction),
+			rlp_bytes: ::tetsy_rlp::encode(&pending.transaction),
 			condition: pending.condition.map(Into::into),
 		}
 	}
@@ -201,8 +201,8 @@ mod tests {
 
 	use std::sync::Arc;
 	use common_types::transaction::{Transaction, Condition, PendingTransaction};
-	use ethkey::Brain;
-	use parity_crypto::publickey::Generator;
+	use vapkey::Brain;
+	use tetsy_crypto::publickey::Generator;
 
 	// we want to test: round-trip of good transactions.
 	// failure to roundtrip bad transactions (but that it doesn't panic)
@@ -214,7 +214,7 @@ mod tests {
 
 	#[test]
 	fn twice_empty() {
-		let db = Arc::new(::kvdb_memorydb::create(1));
+		let db = Arc::new(::tetsy_kvdb_memorydb::create(1));
 
 		{
 			let store = super::create(db.clone(), 0, Dummy(vec![]));
@@ -243,7 +243,7 @@ mod tests {
 			PendingTransaction::new(signed, condition)
 		}).collect();
 
-		let db = Arc::new(::kvdb_memorydb::create(1));
+		let db = Arc::new(::tetsy_kvdb_memorydb::create(1));
 
 		{
 			// nothing written yet, will write pending.
@@ -282,7 +282,7 @@ mod tests {
 			PendingTransaction::new(signed, None)
 		});
 
-		let db = Arc::new(::kvdb_memorydb::create(1));
+		let db = Arc::new(::tetsy_kvdb_memorydb::create(1));
 		{
 			// nothing written, will write bad.
 			let store = super::create(db.clone(), 0, Dummy(transactions.clone()));

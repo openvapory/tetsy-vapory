@@ -18,10 +18,10 @@
 
 use std::sync::Arc;
 
-use ethereum_types::{U256, H520};
-use parity_runtime::Executor;
+use vapory_types::{U256, H520};
+use tetsy_runtime::Executor;
 use parking_lot::Mutex;
-use rlp::Rlp;
+use tetsy_rlp::Rlp;
 use types::transaction::{SignedTransaction, PendingTransaction};
 
 use jsonrpc_core::{Result, BoxFuture, Error};
@@ -29,7 +29,7 @@ use jsonrpc_core::futures::{future, Future, IntoFuture};
 use jsonrpc_core::futures::future::Either;
 use jsonrpc_pubsub::{SubscriptionId, typed::{Sink, Subscriber}};
 use v1::helpers::deprecated::{self, DeprecationNotice};
-use v1::helpers::dispatch::{self, Dispatcher, WithToken, eth_data_hash};
+use v1::helpers::dispatch::{self, Dispatcher, WithToken, vap_data_hash};
 use v1::helpers::{errors, ConfirmationPayload, FilledTransactionRequest, Subscribers};
 use v1::helpers::external_signer::{SigningQueue, SignerService};
 use v1::metadata::Metadata;
@@ -213,8 +213,8 @@ impl<D: Dispatcher + 'static> Signer for SignerClient<D> {
 						Ok(ConfirmationResponse::SignTransaction(rich))
 					})
 				},
-				ConfirmationPayload::EthSignMessage(address, data) => {
-					let expected_hash = eth_data_hash(data);
+				ConfirmationPayload::VapSignMessage(address, data) => {
+					let expected_hash = vap_data_hash(data);
 					let signature = crypto::publickey::Signature::from_electrum(&bytes.0);
 					match crypto::publickey::verify_address(&address, &signature, &expected_hash) {
 						Ok(true) => Ok(ConfirmationResponse::Signature(H520::from_slice(bytes.0.as_slice()))),

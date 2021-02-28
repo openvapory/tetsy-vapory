@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use ethereum_types::{U256, H256, Address};
+use vapory_types::{U256, H256, Address};
 use bytes::Bytes;
 
 use v1::types::{Origin, TransactionCondition};
@@ -115,8 +115,8 @@ pub enum ConfirmationPayload {
 	SendTransaction(FilledTransactionRequest),
 	/// Sign Transaction
 	SignTransaction(FilledTransactionRequest),
-	/// Sign a message with an Ethereum specific security prefix.
-	EthSignMessage(Address, Bytes),
+	/// Sign a message with an Vapory specific security prefix.
+	VapSignMessage(Address, Bytes),
 	/// Sign a message
 	SignMessage(Address, H256),
 	/// Decrypt request
@@ -128,7 +128,7 @@ impl ConfirmationPayload {
 		match *self {
 			ConfirmationPayload::SendTransaction(ref request) => request.from,
 			ConfirmationPayload::SignTransaction(ref request) => request.from,
-			ConfirmationPayload::EthSignMessage(ref address, _) => *address,
+			ConfirmationPayload::VapSignMessage(ref address, _) => *address,
 			ConfirmationPayload::SignMessage(ref address, _) => *address,
 			ConfirmationPayload::Decrypt(ref address, _) => *address,
 		}

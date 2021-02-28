@@ -21,16 +21,16 @@ extern crate log;
 #[macro_use]
 extern crate macros;
 
-extern crate kvdb;
-extern crate kvdb_rocksdb;
+extern crate tetsy_kvdb;
+extern crate tetsy_kvdb_rocksdb;
 
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::{fs, io, error};
 
-use kvdb::DBTransaction;
-use kvdb_rocksdb::{CompactionProfile, Database, DatabaseConfig};
+use tetsy_kvdb::DBTransaction;
+use tetsy_kvdb_rocksdb::{CompactionProfile, Database, DatabaseConfig};
 
 fn other_io_err<E>(e: E) -> io::Error where E: Into<Box<dyn error::Error + Send + Sync>> {
 	io::Error::new(io::ErrorKind::Other, e)

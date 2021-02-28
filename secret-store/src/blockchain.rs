@@ -16,16 +16,16 @@
 
 use std::sync::Arc;
 use bytes::Bytes;
-use ethereum_types::{H256, Address, Public};
-use ethabi::RawLog;
-use crypto::publickey::{Signature, Error as EthKeyError};
+use vapory_types::{H256, Address, Public};
+use vapabi::RawLog;
+use crypto::publickey::{Signature, Error as VapKeyError};
 
 /// Type for block number.
-/// Duplicated from ethcore types
+/// Duplicated from vapcore types
 pub type BlockNumber = u64;
 
 /// Uniquely identifies block.
-/// Duplicated from ethcore types
+/// Duplicated from vapcore types
 #[derive(Debug, PartialEq, Copy, Clone, Hash, Eq)]
 pub enum BlockId {
 	/// Block's sha3.
@@ -45,7 +45,7 @@ pub enum ContractAddress {
 	/// Address is read from registry.
 	Registry,
 	/// Address is specified.
-	Address(ethereum_types::Address),
+	Address(vapory_types::Address),
 }
 
 /// Key pair with signing ability.
@@ -55,7 +55,7 @@ pub trait SigningKeyPair: Send + Sync {
 	/// Address of key owner.
 	fn address(&self) -> Address;
 	/// Sign data with the key.
-	fn sign(&self, data: &H256) -> Result<Signature, EthKeyError>;
+	fn sign(&self, data: &H256) -> Result<Signature, VapKeyError>;
 }
 
 /// Wrapps client ChainNotify in order to send signal about new blocks
@@ -95,7 +95,7 @@ pub trait SecretStoreChain: Send + Sync + 'static {
 	fn is_trusted(&self) -> bool;
 
 	/// Transact contract.
-	fn transact_contract(&self, contract: Address, tx_data: Bytes) -> Result<(), EthKeyError>;
+	fn transact_contract(&self, contract: Address, tx_data: Bytes) -> Result<(), VapKeyError>;
 
 	/// Read contract address. If address source is registry, address only returned if current client state is
 	/// trusted. Address from registry is read from registry from block latest block with

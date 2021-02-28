@@ -19,15 +19,15 @@ use std::collections::HashMap;
 use std::net::SocketAddr;
 use std::time::{Duration, Instant};
 
-use ethereum_types::H256;
+use vapory_types::H256;
 use log::{debug, trace, warn};
 use mio::*;
 use mio::deprecated::{EventLoop, Handler};
 use mio::tcp::*;
-use parity_snappy as snappy;
-use rlp::{EMPTY_LIST_RLP, Rlp, RlpStream};
+use tetsy_snappy as snappy;
+use tetsy_rlp::{EMPTY_LIST_RLP, Rlp, RlpStream};
 
-use ethcore_io::{IoContext, StreamToken};
+use vapcore_io::{IoContext, StreamToken};
 use network::{DisconnectReason, Error, PeerCapabilityInfo, ProtocolId, SessionInfo};
 use network::client_version::ClientVersion;
 use network::SessionCapabilityInfo;

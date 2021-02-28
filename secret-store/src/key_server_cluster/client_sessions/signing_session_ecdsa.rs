@@ -20,7 +20,7 @@ use std::sync::Arc;
 use futures::Oneshot;
 use parking_lot::Mutex;
 use crypto::publickey::{Public, Secret, Signature, sign};
-use ethereum_types::H256;
+use vapory_types::H256;
 use key_server_cluster::{Error, NodeId, SessionId, SessionMeta, AclStorage, DocumentKeyShare, Requester};
 use key_server_cluster::cluster::{Cluster};
 use key_server_cluster::cluster_sessions::{SessionIdWithSubSession, ClusterSession, CompletionSignal};
@@ -1069,7 +1069,7 @@ impl JobTransport for SigningJobTransport {
 #[cfg(test)]
 mod tests {
 	use std::sync::Arc;
-	use ethereum_types::H256;
+	use vapory_types::H256;
 	use crypto::publickey::{Random, Generator, Public, verify_public, public_to_address};
 	use key_server_cluster::{SessionId, Error, KeyStorage};
 	use key_server_cluster::cluster::tests::{MessageLoop as ClusterMessageLoop};

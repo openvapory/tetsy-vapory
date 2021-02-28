@@ -15,10 +15,10 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 //! Impls of the `AsHashDB` upcast trait for all different variants of DB
-use hash_db::{HashDB, AsHashDB};
-use keccak_hasher::KeccakHasher;
+use tetsy_hash_db::{HashDB, AsHashDB};
+use tetsy_keccak_hasher::KeccakHasher;
 
-use kvdb::DBValue;
+use tetsy_kvdb::DBValue;
 
 use crate::{
 	archivedb::ArchiveDB,

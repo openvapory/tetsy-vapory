@@ -20,13 +20,13 @@ use std::fmt;
 use std::sync::Arc;
 use std::sync::atomic::{self, AtomicUsize};
 use std::time;
-use parity_runtime;
+use tetsy_runtime;
 use jsonrpc_core as core;
 use jsonrpc_core::futures::future::Either;
 use order_stat;
 use parking_lot::RwLock;
 
-pub use self::parity_runtime::Executor;
+pub use self::tetsy_runtime::Executor;
 
 const RATE_SECONDS: usize = 10;
 const STATS_SAMPLES: usize = 60;
@@ -234,7 +234,7 @@ impl<M: core::Metadata, T: ActivityNotifier> core::Middleware<M> for Middleware<
 /// Client Notifier
 pub struct ClientNotifier {
 	/// Client
-	pub client: Arc<::ethcore::client::Client>,
+	pub client: Arc<::vapcore::client::Client>,
 }
 
 impl ActivityNotifier for ClientNotifier {

@@ -16,7 +16,7 @@
 
 //! Trace filter deserialization.
 
-use ethereum_types::H160;
+use vapory_types::H160;
 use types::{
 	ids::BlockId,
 	trace_filter::Filter,
@@ -69,7 +69,7 @@ impl Into<Filter> for TraceFilter {
 #[cfg(test)]
 mod tests {
 	use serde_json;
-	use ethereum_types::Address;
+	use vapory_types::Address;
 	use v1::types::{BlockNumber, TraceFilter};
 
 	#[test]

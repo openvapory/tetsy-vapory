@@ -19,7 +19,7 @@ use std::fmt::{Debug, Formatter, Error as FmtError};
 use std::sync::Arc;
 use futures::Oneshot;
 use parking_lot::Mutex;
-use ethereum_types::Address;
+use vapory_types::Address;
 use crypto::publickey::Public;
 use key_server_cluster::{Error, NodeId, SessionId, Requester, KeyStorage,
 	DocumentKeyShare, ServerKeyId};

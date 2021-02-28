@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Ethereum Transaction Queue
+//! Vapory Transaction Queue
 
 use std::{cmp, fmt};
 use std::sync::Arc;
 use std::sync::atomic::{self, AtomicUsize};
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 
-use ethereum_types::{H256, U256, Address};
+use vapory_types::{H256, U256, Address};
 use futures::sync::mpsc;
 use parking_lot::RwLock;
 use txpool::{self, Verifier};
@@ -191,7 +191,7 @@ impl RecentlyRejected {
 /// Minimal size of rejection cache, by default it's equal to queue size.
 const MIN_REJECTED_CACHE_SIZE: usize = 2048;
 
-/// Ethereum Transaction Queue
+/// Vapory Transaction Queue
 ///
 /// Responsible for:
 /// - verifying incoming transactions
@@ -559,7 +559,7 @@ impl TransactionQueue {
 	/// that has been marked as local.
 	///
 	/// Local transactions are the ones from accounts managed by this node
-	/// and transactions submitted via local RPC (`eth_sendRawTransaction`)
+	/// and transactions submitted via local RPC (`vap_sendRawTransaction`)
 	pub fn has_local_pending_transactions(&self) -> bool {
 		self.pool.read().listener().0.has_pending()
 	}

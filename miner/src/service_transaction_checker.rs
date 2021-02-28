@@ -20,11 +20,11 @@ use std::collections::HashMap;
 use std::mem;
 use std::sync::Arc;
 use call_contract::CallContract;
-use registrar::RegistrarClient;
+use tetsy_registrar::RegistrarClient;
 use types::ids::BlockId;
 use types::transaction::SignedTransaction;
-use ethabi::FunctionOutputDecoder;
-use ethereum_types::Address;
+use vapabi::FunctionOutputDecoder;
+use vapory_types::Address;
 use parking_lot::RwLock;
 
 use_contract!(service_transaction, "res/contracts/service_transaction.json");

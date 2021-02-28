@@ -21,8 +21,8 @@ use rustc_hex::ToHex;
 use mime::{self, Mime};
 use mime_guess;
 
-use ethereum_types::{H256, Address};
-use registrar::RegistrarClient;
+use vapory_types::{H256, Address};
+use tetsy_registrar::RegistrarClient;
 use types::ids::BlockId;
 
 use_contract!(urlhint, "res/urlhint.json");
@@ -93,7 +93,7 @@ pub enum URLHintResult {
 
 /// URLHint Contract interface
 pub trait URLHint: Send + Sync {
-	/// Resolves given id to registrar entry.
+	/// Resolves given id to tetsy_registrar entry.
 	fn resolve(&self, id: H256) -> Result<Option<URLHintResult>, String>;
 }
 
@@ -213,7 +213,7 @@ pub mod tests {
 	use super::*;
 	use super::guess_mime_type;
 	use parking_lot::Mutex;
-	use ethereum_types::Address;
+	use vapory_types::Address;
 	use bytes::{Bytes, ToPretty};
 	use call_contract::CallContract;
 
@@ -270,7 +270,7 @@ pub mod tests {
 		// given
 		let registrar = FakeRegistrar::new();
 		let resolve_result = {
-			use ethabi::{encode, Token};
+			use vapabi::{encode, Token};
 			encode(&[Token::String(String::new()), Token::FixedBytes(vec![0; 20]), Token::Address([0; 20].into())])
 		};
 		registrar.responses.lock()[1] = Ok(resolve_result);
@@ -315,7 +315,7 @@ pub mod tests {
 
 		// then
 		assert_eq!(res, Some(URLHintResult::Dapp(GithubApp {
-			account: "ethcore".into(),
+			account: "vapcore".into(),
 			repo: "dao.claim".into(),
 			commit: GithubApp::commit(&"ec4c1fe06c808fe3739858c347109b1f5f1ed4b5".from_hex().unwrap()).unwrap(),
 			owner: Address::from_str("deadcafebeefbeefcafedeaddeedfeedffffffff").unwrap(),
@@ -339,7 +339,7 @@ pub mod tests {
 
 		// then
 		assert_eq!(res, Some(URLHintResult::Content(Content {
-			url: "https://tetcoin.org/assets/images/ethcore-black-horizontal.png".into(),
+			url: "https://tetcoin.org/assets/images/vapcore-black-horizontal.png".into(),
 			mime: mime::IMAGE_PNG,
 			owner: Address::from_str("deadcafebeefbeefcafedeaddeedfeedffffffff").unwrap(),
 		})))
@@ -364,11 +364,11 @@ pub mod tests {
 
 	#[test]
 	fn should_guess_mime_type_from_url() {
-		let url1 = "https://tetcoin.org/parity";
-		let url2 = "https://tetcoin.org/parity#content-type=image/png";
-		let url3 = "https://tetcoin.org/parity#something&content-type=image/png";
-		let url4 = "https://tetcoin.org/parity.png#content-type=image/jpeg";
-		let url5 = "https://tetcoin.org/parity.png";
+		let url1 = "https://tetcoin.org/tetsy";
+		let url2 = "https://tetcoin.org/tetsy#content-type=image/png";
+		let url3 = "https://tetcoin.org/tetsy#something&content-type=image/png";
+		let url4 = "https://tetcoin.org/tetsy.png#content-type=image/jpeg";
+		let url5 = "https://tetcoin.org/tetsy.png";
 
 		assert_eq!(guess_mime_type(url1), None);
 		assert_eq!(guess_mime_type(url2), Some(mime::IMAGE_PNG));

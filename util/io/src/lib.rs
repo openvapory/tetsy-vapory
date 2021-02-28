@@ -19,8 +19,8 @@
 //! Example usage for creating a network service and adding an IO handler:
 //!
 //! ```rust
-//! extern crate ethcore_io;
-//! use ethcore_io::*;
+//! extern crate vapcore_io;
+//! use vapcore_io::*;
 //! use std::sync::Arc;
 //! use std::time::Duration;
 //!

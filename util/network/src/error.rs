@@ -17,7 +17,7 @@
 use std::{error, io, net, fmt};
 use libc::{ENFILE, EMFILE};
 use io::IoError;
-use {rlp, crypto, snappy};
+use {tetsy_rlp, crypto, snappy};
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum DisconnectReason
@@ -89,7 +89,7 @@ pub enum Error {
 	/// Decompression error.
 	Decompression(snappy::InvalidInput),
 	/// Rlp decoder error.
-	Rlp(rlp::DecoderError),
+	Rlp(tetsy_rlp::DecoderError),
 	/// Error concerning the network address parsing subsystem.
 	#[display(fmt = "Failed to parse network address")]
 	AddressParse,
@@ -118,10 +118,10 @@ pub enum Error {
 	#[display(fmt = "Packet is too large")]
 	OversizedPacket,
 	/// Reached system resource limits for this process
-	#[display(fmt = "Too many open files in this process. Check your resource limits and restart parity")]
+	#[display(fmt = "Too many open files in this process. Check your resource limits and restart tetsy")]
 	ProcessTooManyFiles,
 	/// Reached system wide resource limits
-	#[display(fmt = "Too many open files on system. Consider closing some processes/release some file handlers or increas the system-wide resource limits and restart parity.")]
+	#[display(fmt = "Too many open files on system. Consider closing some processes/release some file handlers or increas the system-wide resource limits and restart tetsy.")]
 	SystemTooManyFiles,
 	/// An unknown IO error occurred.
 	#[display(fmt = "Unexpected IO error: {}", _0)]
@@ -166,8 +166,8 @@ impl From<snappy::InvalidInput> for Error {
 	}
 }
 
-impl From<rlp::DecoderError> for Error {
-	fn from(err: rlp::DecoderError) -> Self {
+impl From<tetsy_rlp::DecoderError> for Error {
+	fn from(err: tetsy_rlp::DecoderError) -> Self {
 		Error::Rlp(err)
 	}
 }
@@ -207,7 +207,7 @@ fn test_errors() {
 	}
 	assert_eq!(DisconnectReason::Unknown, r);
 
-	match <Error as From<rlp::DecoderError>>::from(rlp::DecoderError::RlpIsTooBig) {
+	match <Error as From<tetsy_rlp::DecoderError>>::from(tetsy_rlp::DecoderError::RlpIsTooBig) {
 		Error::Rlp(_) => {},
 		_ => panic!("Unexpected error"),
 	}

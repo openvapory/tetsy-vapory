@@ -1,10 +1,10 @@
-![Tetsy Vapory](docs/logo-parity-ethereum.svg)
+![Tetsy Vapory](docs/logo-tetsy-vapory.svg)
 
-<h2 align="center">The Fastest and most Advanced Ethereum Client.</h2>
+<h2 align="center">The Fastest and most Advanced Vapory Client.</h2>
 
 <p align="center"><strong><a href="https://github.com/openvapory/tetsy-vapory/releases/latest">» Download the latest release «</a></strong></p>
 
-<p align="center"><a href="https://gitlab.tetcoin.org/parity/parity-ethereum/commits/master" target="_blank"><img src="https://gitlab.tetcoin.org/parity/parity-ethereum/badges/master/build.svg" /></a>
+<p align="center"><a href="https://gitlab.tetcoin.org/parity/tetsy-vapory/commits/master" target="_blank"><img src="https://gitlab.tetcoin.org/parity/tetsy-vapory/badges/master/build.svg" /></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank"><img src="https://img.shields.io/badge/license-GPL%20v3-green.svg" /></a></p>
 
 ## Table of Contents
@@ -36,11 +36,11 @@
 
 ## 2. Technical Overview <a id="chapter-002"></a>
 
-Tetsy Vapory's goal is to be the fastest, lightest, and most secure Ethereum client. We are developing Tetsy Vapory using the sophisticated and cutting-edge **Rust programming language**. Tetsy Vapory is licensed under the GPLv3 and can be used for all your Ethereum needs.
+Tetsy Vapory's goal is to be the fastest, lightest, and most secure Vapory client. We are developing Tetsy Vapory using the sophisticated and cutting-edge **Rust programming language**. Tetsy Vapory is licensed under the GPLv3 and can be used for all your Vapory needs.
 
 By default, Tetsy Vapory runs a JSON-RPC HTTP server on port `:8545` and a Web-Sockets server on port `:8546`. This is fully configurable and supports a number of APIs.
 
-If you run into problems while using Tetsy Vapory, check out the [wiki for documentation](https://wiki.tetcoin.org/), feel free to [file an issue in this repository](https://github.com/openvapory/tetsy-vapory/issues/new), or hop on our [Gitter](https://gitter.im/paritytech/parity) or [Riot](https://riot.im/app/#/group/+parity:matrix.tetcoin.org) chat room to ask a question. We are glad to help! **For security-critical issues**, please refer to the security policy outlined in [SECURITY.md](SECURITY.md).
+If you run into problems while using Tetsy Vapory, check out the [wiki for documentation](https://wiki.tetcoin.org/), feel free to [file an issue in this repository](https://github.com/openvapory/tetsy-vapory/issues/new), or hop on our [Gitter](https://gitter.im/paritytech/parity) or [Riot](https://riot.im/app/#/group/+tetsy:matrix.tetcoin.org) chat room to ask a question. We are glad to help! **For security-critical issues**, please refer to the security policy outlined in [SECURITY.md](SECURITY.md).
 
 Tetsy Vapory's current beta-release is 2.6. You can download it at [the releases page](https://github.com/openvapory/tetsy-vapory/releases) or follow the instructions below to build from source. Please, mind the [CHANGELOG.md](CHANGELOG.md) for a list of all changes between different versions.
 
@@ -84,7 +84,7 @@ Make sure that these binaries are in your `PATH`. After that, you should be able
 ```bash
 # download Tetsy Vapory code
 $ git clone https://github.com/openvapory/tetsy-vapory
-$ cd parity-ethereum
+$ cd tetsy-vapory
 
 # build in release mode
 $ cargo build --release --features final
@@ -138,13 +138,13 @@ To start Tetsy Vapory manually, just run
 $ ./target/release/parity
 ```
 
-so Tetsy Vapory begins syncing the Ethereum blockchain.
+so Tetsy Vapory begins syncing the Vapory blockchain.
 
 #### Using `systemd` service file
 
 To start Tetsy Vapory as a regular user using `systemd` init:
 
-1. Copy `./scripts/parity.service` to your
+1. Copy `./scripts/tetsy.service` to your
 `systemd` user directory (usually `~/.config/systemd/user`).
 2. Copy release to bin folder, write `sudo install ./target/release/parity /usr/bin/parity`
 3. To configure Tetsy Vapory, write a `/etc/parity/config.toml` config file, see [Configuring Tetsy Vapory](https://paritytech.github.io/wiki/Configuring-Parity) for details.
@@ -163,9 +163,9 @@ Download the required test files: `git submodule update --init --recursive`. You
   cargo test --package <spec>
   ```
 
-Replace `<spec>` with one of the packages from the [package list](#package-list) (e.g. `cargo test --package evmbin`).
+Replace `<spec>` with one of the packages from the [package list](#package-list) (e.g. `cargo test --package vvmbin`).
 
-You can show your logs in the test output by passing `--nocapture` (i.e. `cargo test --package evmbin -- --nocapture`)
+You can show your logs in the test output by passing `--nocapture` (i.e. `cargo test --package vvmbin -- --nocapture`)
 
 ## 5. Documentation <a id="chapter-005"></a>
 
@@ -189,19 +189,19 @@ You can generate documentation for Tetsy Vapory Rust packages that automatically
 
 Use`--document-private-items` to also view private documentation and `--no-deps` to exclude building documentation for dependencies.
 
-Replacing `<spec>` with one of the following from the details section below (i.e. `cargo doc --package parity-ethereum --open`):
+Replacing `<spec>` with one of the following from the details section below (i.e. `cargo doc --package tetsy-vapory --open`):
 
 <a id="package-list"></a>
 **Package List**
 <details><p>
 
-* Tetsy Vapory (EthCore) Client Application
+* Tetsy Vapory (VapCore) Client Application
   ```bash
-  parity-ethereum
+  tetsy-vapory
   ```
 * Tetsy Vapory Account Management, Key Management Tool, and Keys Generator
   ```bash
-  ethcore-accounts, vapkey-cli, ethstore, ethstore-cli
+  vapcore-accounts, vapkey-cli, vapstore, vapstore-cli
   ```
 * Parity Chain Specification
   ```bash
@@ -209,36 +209,36 @@ Replacing `<spec>` with one of the following from the details section below (i.e
   ```
 * Parity CLI Signer Tool & RPC Client
   ```bash
-  cli-signer parity-rpc-client
+  cli-signer tetsy-rpc-client
   ```
-* Tetsy Vapory Ethash & ProgPoW Implementations
+* Tetsy Vapory Vapash & ProgPoW Implementations
   ```bash
-  ethash
+  vapash
   ```
-* Parity (EthCore) Library
+* Parity (VapCore) Library
   ```bash
-  ethcore
+  vapcore
   ```
   * Tetsy Vapory Blockchain Database, Test Generator, Configuration,
 Caching, Importing Blocks, and Block Information
     ```bash
-    ethcore-blockchain
+    vapcore-blockchain
     ```
-  * Tetsy Vapory (EthCore) Contract Calls and Blockchain Service & Registry Information
+  * Tetsy Vapory (VapCore) Contract Calls and Blockchain Service & Registry Information
     ```bash
-    ethcore-call-contract
+    vapcore-call-contract
     ```
-  * Tetsy Vapory (EthCore) Database Access & Utilities, Database Cache Manager
+  * Tetsy Vapory (VapCore) Database Access & Utilities, Database Cache Manager
     ```bash
-    ethcore-db
+    vapcore-db
     ```
-  * Tetsy Vapory Virtual Machine (EVM) Rust Implementation
+  * Tetsy Vapory Virtual Machine (VVM) Rust Implementation
     ```bash
-    evm
+    vvm
     ```
-  * Tetsy Vapory (EthCore) Light Client Implementation
+  * Tetsy Vapory (VapCore) Light Client Implementation
     ```bash
-    ethcore-light
+    vapcore-light
     ```
   * Parity Smart Contract based Node Filter, Manage Permissions of Network Connections
     ```bash
@@ -246,15 +246,15 @@ Caching, Importing Blocks, and Block Information
     ```
   * Parity Private Transactions
     ```bash
-    ethcore-private-tx
+    vapcore-private-tx
     ```
-  * Tetsy Vapory (EthCore) Client & Network Service Creation & Registration with the I/O Subsystem
+  * Tetsy Vapory (VapCore) Client & Network Service Creation & Registration with the I/O Subsystem
     ```bash
-    ethcore-service
+    vapcore-service
     ```
-  * Tetsy Vapory (EthCore) Blockchain Synchronization
+  * Tetsy Vapory (VapCore) Blockchain Synchronization
     ```bash
-    ethcore-sync
+    vapcore-sync
     ```
   * Tetsy Vapory Common Types
     ```bash
@@ -270,55 +270,55 @@ Caching, Importing Blocks, and Block Information
     ```
   * Tetsy Vapory WASM Test Runner
     ```bash
-    pwasm-run-test
+    twasm-run-test
     ```
-  * Parity EVM Implementation
+  * Parity VVM Implementation
     ```bash
-    evmbin
+    vvmbin
     ```
   * Tetsy Vapory IPFS-compatible API
     ```bash
-    parity-ipfs-api
+    tetsy-ipfs-api
     ```
   * Tetsy Vapory JSON Deserialization
     ```bash
-    ethjson
+    vapjson
     ```
   * Tetsy Vapory State Machine Generalization for Consensus Engines
     ```bash
-    parity-machine
+    tetsy-machine
     ```
-* Tetsy Vapory (EthCore) Miner Interface
+* Tetsy Vapory (VapCore) Miner Interface
   ```bash
-  ethcore-miner parity-local-store price-info ethcore-stratum using_queue
+  vapcore-miner tetsy-local-store price-info vapcore-stratum using_queue
   ```
-* Tetsy Vapory (EthCore) Logger Implementation
+* Tetsy Vapory (VapCore) Logger Implementation
   ```bash
-  ethcore-logger
+  vapcore-logger
   ```
 * C bindings library for the Tetsy Vapory client
   ```bash
-  parity-clib
+  tetsy-clib
   ```
 * Tetsy Vapory JSON-RPC Servers
   ```bash
-  parity-rpc
+  tetsy-rpc
   ```
-* Tetsy Vapory (EthCore) Secret Store
+* Tetsy Vapory (VapCore) Secret Store
   ```bash
-  ethcore-secretstore
+  vapcore-secretstore
   ```
 * Parity Updater Service
   ```bash
-  parity-updater parity-hash-fetch
+  tetsy-updater tetsy-hash-fetch
   ```
 * Parity Core Libraries (Parity Util)
   ```bash
-  ethcore-bloom-journal blooms-db dir eip-712 fake-fetch fastmap fetch ethcore-io
-  journaldb keccak-hasher len-caching-lock macros memory-cache memzero
-  migration-rocksdb ethcore-network ethcore-network-devp2p panic_hook
-  patricia-trie-ethereum registrar rlp_compress rlp_derive parity-runtime stats
-  time-utils triehash-ethereum unexpected parity-version
+  vapcore-bloom-journal blooms-db dir vip-712 fake-fetch fastmap fetch vapcore-io
+  journaldb tetsy-keccak-hasher len-caching-lock macros memory-cache memzero
+  migration-rocksdb vapcore-network vapcore-network-devp2p panic_hook
+  patricia-trie-vapory tetsy-registrar rlp_compress tetsy-rlp-derive tetsy-runtime stats
+  time-utils triehash-vapory unexpected tetsy-version
   ```
 
 </p></details>
@@ -353,30 +353,24 @@ Example (generic documentation comment):
 
 In addition to the Tetsy Vapory client, there are additional tools in this repository available:
 
-- [evmbin](./evmbin) - Tetsy Vapory EVM Implementation.
-- [ethstore](./accounts/ethstore) - Tetsy Vapory Key Management.
-- [ethkey](./accounts/ethkey) - Tetsy Vapory Keys Generator.
+- [vvmbin](./vvmbin) - Tetsy Vapory VVM Implementation.
+- [vapstore](./accounts/vapstore) - Tetsy Vapory Key Management.
+- [vapkey](./accounts/vapkey) - Tetsy Vapory Keys Generator.
 
 The following tool is available in a separate repository:
-- [ethabi](https://github.com/paritytech/ethabi) - Tetsy Vapory Encoding of Function Calls. [Docs here](https://crates.io/crates/ethabi)
+- [vapabi](https://github.com/paritytech/vapabi) - Tetsy Vapory Encoding of Function Calls. [Docs here](https://crates.io/crates/vapabi)
 - [whisper](https://github.com/paritytech/whisper) - Tetsy Vapory Whisper-v2 PoC Implementation.
 
 ## 7. Community <a id="chapter-007"></a>
 
 ### Join the chat!
 
-Questions? Get in touch with us on Gitter:
-[![Gitter: Parity](https://img.shields.io/badge/gitter-parity-4AB495.svg)](https://gitter.im/paritytech/parity)
-[![Gitter: Parity.js](https://img.shields.io/badge/gitter-parity.js-4AB495.svg)](https://gitter.im/paritytech/parity.js)
-[![Gitter: Parity/Miners](https://img.shields.io/badge/gitter-parity/miners-4AB495.svg)](https://gitter.im/paritytech/parity/miners)
-[![Gitter: Parity-PoA](https://img.shields.io/badge/gitter-parity--poa-4AB495.svg)](https://gitter.im/paritytech/parity-poa)
-
-Alternatively, join our community on Matrix:
-[![Riot: +Parity](https://img.shields.io/badge/riot-%2Bparity%3Amatrix.tetcoin.org-orange.svg)](https://riot.im/app/#/group/+parity:matrix.tetcoin.org)
+Questions? Get in touch with us on Twitter:
+[Twitter](https://twitter.com/tetcoin)
 
 ## 8. Contributing <a id="chapter-008"></a>
 
-An introduction has been provided in the ["So You Want to be a Core Developer" presentation slides by Hernando Castano](http://tiny.cc/contrib-to-parity-eth). Additional guidelines are provided in [CONTRIBUTING](./.github/CONTRIBUTING.md).
+An introduction has been provided in the ["So You Want to be a Core Developer" presentation slides by Hernando Castano](http://tiny.cc/contrib-to-tetsy-vap). Additional guidelines are provided in [CONTRIBUTING](./.github/CONTRIBUTING.md).
 
 ### Contributor Code of Conduct
 

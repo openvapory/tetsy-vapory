@@ -42,7 +42,7 @@ pub struct Params {
 	#[serde(rename = "chainID")]
 	pub chain_id: Option<Uint>,
 
-	/// Name of the main ("eth") subprotocol.
+	/// Name of the main ("vap") subprotocol.
 	pub subprotocol_name: Option<String>,
 
 	/// Option fork block number to check.
@@ -51,15 +51,15 @@ pub struct Params {
 	#[serde(rename = "forkCanonHash")]
 	pub fork_hash: Option<H256>,
 
-	/// See main EthashParams docs.
+	/// See main VapashParams docs.
 	pub eip150_transition: Option<Uint>,
 
-	/// See main EthashParams docs.
+	/// See main VapashParams docs.
 	pub eip160_transition: Option<Uint>,
 
-	/// See main EthashParams docs.
+	/// See main VapashParams docs.
 	pub eip161abc_transition: Option<Uint>,
-	/// See main EthashParams docs.
+	/// See main VapashParams docs.
 	pub eip161d_transition: Option<Uint>,
 
 	/// See `CommonParams` docs.
@@ -118,16 +118,16 @@ pub struct Params {
 	#[serde(deserialize_with="uint::validate_non_zero")]
 	pub gas_limit_bound_divisor: Uint,
 	/// See `CommonParams` docs.
-	pub registrar: Option<Address>,
+	pub tetsy_registrar: Option<Address>,
 	/// Apply reward flag
 	pub apply_reward: Option<bool>,
 	/// Node permission contract address.
 	pub node_permission_contract: Option<Address>,
-	/// See main EthashParams docs.
+	/// See main VapashParams docs.
 	pub max_code_size: Option<Uint>,
 	/// Maximum size of transaction RLP payload.
 	pub max_transaction_size: Option<Uint>,
-	/// See main EthashParams docs.
+	/// See main VapashParams docs.
 	pub max_code_size_transition: Option<Uint>,
 	/// Transaction permission contract address.
 	pub transaction_permission_contract: Option<Address>,
@@ -146,7 +146,7 @@ pub struct Params {
 #[cfg(test)]
 mod tests {
 	use super::{Params, Uint};
-	use ethereum_types::U256;
+	use vapory_types::U256;
 
 	#[test]
 	fn params_deserialization() {

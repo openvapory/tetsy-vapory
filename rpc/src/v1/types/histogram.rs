@@ -16,7 +16,7 @@
 
 //! Gas prices histogram.
 
-use ethereum_types::U256;
+use vapory_types::U256;
 use stats;
 
 /// Values of RPC settings.

@@ -16,7 +16,7 @@
 
 //! `TransactionRequest` type
 
-use ethereum_types::{H160, U256};
+use vapory_types::{H160, U256};
 use v1::types::{Bytes, TransactionCondition};
 use v1::helpers;
 use ansi_term::Colour;
@@ -46,7 +46,7 @@ pub struct TransactionRequest {
 	pub condition: Option<TransactionCondition>,
 }
 
-pub fn format_ether(i: U256) -> String {
+pub fn format_vapor(i: U256) -> String {
 	let mut string = format!("{}", i);
 	let idx = string.len() as isize - 18;
 	if idx <= 0 {
@@ -63,12 +63,12 @@ pub fn format_ether(i: U256) -> String {
 
 impl fmt::Display for TransactionRequest {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		let eth = self.value.unwrap_or_default();
+		let vap = self.value.unwrap_or_default();
 		match self.to {
 			Some(ref to) => write!(
 				f,
-				"{} ETH from {} to 0x{:?}",
-				Colour::White.bold().paint(format_ether(eth)),
+				"{} VAP from {} to 0x{:?}",
+				Colour::White.bold().paint(format_vapor(vap)),
 				Colour::White.bold().paint(
 					self.from.as_ref()
 						.map(|f| format!("0x{:?}", f))
@@ -77,8 +77,8 @@ impl fmt::Display for TransactionRequest {
 			),
 			None => write!(
 				f,
-				"{} ETH from {} for contract creation",
-				Colour::White.bold().paint(format_ether(eth)),
+				"{} VAP from {} for contract creation",
+				Colour::White.bold().paint(format_vapor(vap)),
 				Colour::White.bold().paint(
 					self.from.as_ref()
 						.map(|f| format!("0x{:?}", f))
@@ -139,7 +139,7 @@ mod tests {
 	use rustc_hex::FromHex;
 	use serde_json;
 	use v1::types::TransactionCondition;
-	use ethereum_types::{H160, U256};
+	use vapory_types::{H160, U256};
 	use super::*;
 
 	#[test]
@@ -249,13 +249,13 @@ mod tests {
 	}
 
 	#[test]
-	fn test_format_ether() {
-		assert_eq!(&format_ether(U256::from(1000000000000000000u64)), "1");
-		assert_eq!(&format_ether(U256::from(500000000000000000u64)), "0.5");
-		assert_eq!(&format_ether(U256::from(50000000000000000u64)), "0.05");
-		assert_eq!(&format_ether(U256::from(5000000000000000u64)), "0.005");
-		assert_eq!(&format_ether(U256::from(2000000000000000000u64)), "2");
-		assert_eq!(&format_ether(U256::from(2500000000000000000u64)), "2.5");
-		assert_eq!(&format_ether(U256::from(10000000000000000000u64)), "10");
+	fn test_format_vapor() {
+		assert_eq!(&format_vapor(U256::from(1000000000000000000u64)), "1");
+		assert_eq!(&format_vapor(U256::from(500000000000000000u64)), "0.5");
+		assert_eq!(&format_vapor(U256::from(50000000000000000u64)), "0.05");
+		assert_eq!(&format_vapor(U256::from(5000000000000000u64)), "0.005");
+		assert_eq!(&format_vapor(U256::from(2000000000000000000u64)), "2");
+		assert_eq!(&format_vapor(U256::from(2500000000000000000u64)), "2.5");
+		assert_eq!(&format_vapor(U256::from(10000000000000000000u64)), "10");
 	}
 }

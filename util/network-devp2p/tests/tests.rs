@@ -21,13 +21,13 @@ use std::sync::{
 use std::thread;
 use std::time::Duration;
 
-use parity_bytes::Bytes;
+use tetsy_bytes::Bytes;
 use parking_lot::Mutex;
 
 use network::{PeerId, NetworkContext, NetworkProtocolHandler, NetworkConfiguration};
-use ethcore_network_devp2p::NetworkService;
-use parity_crypto::publickey::{Generator, Random};
-use ethcore_io::TimerToken;
+use vapcore_network_devp2p::NetworkService;
+use tetsy_crypto::publickey::{Generator, Random};
+use vapcore_io::TimerToken;
 
 pub struct TestProtocol {
 	drop_session: bool,
@@ -76,7 +76,7 @@ impl NetworkProtocolHandler for TestProtocol {
 	}
 
 	fn connected(&self, io: &dyn NetworkContext, peer: &PeerId) {
-		assert!(io.peer_client_version(*peer).to_string().contains("Parity"));
+		assert!(io.peer_client_version(*peer).to_string().contains("Tetsy"));
 		if self.drop_session {
 			io.disconnect_peer(*peer)
 		} else {

@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Parity-specific metadata extractors.
+//! Tetsy-specific metadata extractors.
 
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
@@ -26,7 +26,7 @@ use jsonrpc_core as core;
 use jsonrpc_core::futures::future::Either;
 use jsonrpc_pubsub::Session;
 use ws;
-use ethereum_types::H256;
+use vapory_types::H256;
 
 use v1::{Metadata, Origin};
 use v1::informant::RpcStats;

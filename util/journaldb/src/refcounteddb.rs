@@ -22,14 +22,14 @@ use std::{
 	collections::HashMap,
 };
 
-use ethereum_types::H256;
-use hash_db::{HashDB, Prefix, EMPTY_PREFIX};
-use keccak_hasher::KeccakHasher;
-use kvdb::{KeyValueDB, DBTransaction, DBValue};
+use vapory_types::H256;
+use tetsy_hash_db::{HashDB, Prefix, EMPTY_PREFIX};
+use tetsy_keccak_hasher::KeccakHasher;
+use tetsy_kvdb::{KeyValueDB, DBTransaction, DBValue};
 use log::trace;
-use malloc_size_of::{MallocSizeOf, allocators::new_malloc_size_ops};
-use parity_bytes::Bytes;
-use rlp::{encode, decode};
+use tetsy_util_mem::{MallocSizeOf, allocators::new_malloc_size_ops};
+use tetsy_bytes::Bytes;
+use tetsy_rlp::{encode, decode};
 
 use crate::{
 	overlaydb::OverlayDB,
@@ -222,14 +222,14 @@ impl JournalDB for RefCountedDB {
 
 #[cfg(test)]
 mod tests {
-	use keccak_hash::keccak;
-	use hash_db::{HashDB, EMPTY_PREFIX};
+	use tetsy_keccak_hash::keccak;
+	use tetsy_hash_db::{HashDB, EMPTY_PREFIX};
 	use super::*;
-	use kvdb_memorydb;
+	use tetsy_kvdb_memorydb;
 	use crate::{JournalDB, inject_batch, commit_batch};
 
 	fn new_db() -> RefCountedDB {
-		let backing = Arc::new(kvdb_memorydb::create(1));
+		let backing = Arc::new(tetsy_kvdb_memorydb::create(1));
 		RefCountedDB::new(backing, 0)
 	}
 

@@ -21,7 +21,7 @@ use std::sync::Arc;
 
 use accounts::AccountProvider;
 use crypto::DEFAULT_MAC;
-use ethereum_types::{H160, H256, H512};
+use vapory_types::{H160, H256, H512};
 use crypto::publickey::Secret;
 
 use jsonrpc_core::Result;
@@ -30,9 +30,9 @@ use v1::helpers::secretstore::{generate_document_key, encrypt_document,
 	decrypt_document, decrypt_document_with_shadow, ordered_servers_keccak};
 use v1::traits::SecretStore;
 use v1::types::{Bytes, EncryptedDocumentKey};
-use ethkey::Password;
+use vapkey::Password;
 
-/// Parity implementation.
+/// Tetsy implementation.
 pub struct SecretStoreClient {
 	accounts: Arc<AccountProvider>,
 }

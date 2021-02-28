@@ -16,14 +16,14 @@
 
 use std::sync::Arc;
 use std::str::FromStr;
-use ethereum_types::{H520, U256, Address};
+use vapory_types::{H520, U256, Address};
 use bytes::ToPretty;
 
 use accounts::AccountProvider;
-use ethcore::test_helpers::TestBlockChainClient;
-use parity_runtime::Runtime;
+use vapcore::test_helpers::TestBlockChainClient;
+use tetsy_runtime::Runtime;
 use parking_lot::Mutex;
-use rlp::encode;
+use tetsy_rlp::encode;
 use types::transaction::{Transaction, Action, SignedTransaction};
 
 use serde_json;
@@ -34,7 +34,7 @@ use v1::tests::helpers::TestMinerService;
 use v1::types::Bytes as RpcBytes;
 use v1::helpers::{nonce, FilledTransactionRequest, ConfirmationPayload};
 use v1::helpers::external_signer::{SigningQueue, SignerService};
-use v1::helpers::dispatch::{self, FullDispatcher, eth_data_hash};
+use v1::helpers::dispatch::{self, FullDispatcher, vap_data_hash};
 
 struct SignerTester {
 	_runtime: Runtime,
@@ -94,7 +94,7 @@ fn should_return_list_of_items_to_confirm() {
 		nonce: None,
 		condition: None,
 	}), Origin::Unknown).unwrap();
-	let _sign_future = tester.signer.add_request(ConfirmationPayload::EthSignMessage(Address::from_low_u64_be(1), vec![5].into()), Origin::Unknown).unwrap();
+	let _sign_future = tester.signer.add_request(ConfirmationPayload::VapSignMessage(Address::from_low_u64_be(1), vec![5].into()), Origin::Unknown).unwrap();
 
 	// when
 	let request = r#"{"jsonrpc":"2.0","method":"signer_requestsToConfirm","params":[],"id":1}"#;
@@ -166,7 +166,7 @@ fn should_not_remove_transaction_if_password_is_invalid() {
 fn should_not_remove_sign_if_password_is_invalid() {
 	// given
 	let tester = signer_tester();
-	let _confirmation_future = tester.signer.add_request(ConfirmationPayload::EthSignMessage(Address::zero(), vec![5].into()), Origin::Unknown).unwrap();
+	let _confirmation_future = tester.signer.add_request(ConfirmationPayload::VapSignMessage(Address::zero(), vec![5].into()), Origin::Unknown).unwrap();
 	assert_eq!(tester.signer.requests().len(), 1);
 
 	// when
@@ -487,13 +487,13 @@ fn should_confirm_data_sign_with_signature() {
 	// given
 	let tester = signer_tester();
 	let address = tester.accounts.new_account(&"test".into()).unwrap();
-	let _confirmation_future = tester.signer.add_request(ConfirmationPayload::EthSignMessage(
+	let _confirmation_future = tester.signer.add_request(ConfirmationPayload::VapSignMessage(
 		address,
 		vec![1, 2, 3, 4].into(),
 	), Origin::Unknown).unwrap();
 	assert_eq!(tester.signer.requests().len(), 1);
 
-	let data_hash = eth_data_hash(vec![1, 2, 3, 4].into());
+	let data_hash = vap_data_hash(vec![1, 2, 3, 4].into());
 	let signature = H520(tester.accounts.sign(address, Some("test".into()), data_hash).unwrap().into_electrum());
 	let signature = format!("{:?}", signature);
 

@@ -35,7 +35,7 @@ pub struct BasicAuthorityParams {
 #[derive(Debug, PartialEq, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct BasicAuthority {
-	/// Ethash params.
+	/// Vapash params.
 	pub params: BasicAuthorityParams,
 }
 
@@ -43,7 +43,7 @@ pub struct BasicAuthority {
 mod tests {
 	use std::str::FromStr;
 	use super::{BasicAuthority, Uint};
-	use ethereum_types::{U256, H160};
+	use vapory_types::{U256, H160};
 	use crate::{hash::Address, spec::validator_set::ValidatorSet};
 
 	#[test]

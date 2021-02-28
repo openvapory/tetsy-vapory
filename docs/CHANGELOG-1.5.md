@@ -1,6 +1,6 @@
-Note: Parity 1.5 reached End-of-Life on 2017-07-28 (EOL).
+Note: Tetsy 1.5 reached End-of-Life on 2017-07-28 (EOL).
 
-## Parity [v1.5.12](https://github.com/tetcoin/tetsy/releases/tag/v1.5.12) (2017-03-27)
+## Tetsy [v1.5.12](https://github.com/tetcoin/tetsy/releases/tag/v1.5.12) (2017-03-27)
 
 Stable release that adds support for a new warp sync snapshot format.
 
@@ -8,16 +8,16 @@ Stable release that adds support for a new warp sync snapshot format.
   - Bump to v1.5.12
   - Fine grained snapshot chunking
 
-## Parity [v1.5.11](https://github.com/tetcoin/tetsy/releases/tag/v1.5.11) (2017-03-14)
+## Tetsy [v1.5.11](https://github.com/tetcoin/tetsy/releases/tag/v1.5.11) (2017-03-14)
 
-Parity 1.5.11 Includes a patch for a more comprehensive block verification.
+Tetsy 1.5.11 Includes a patch for a more comprehensive block verification.
 
 - Bump to v1.5.11
 - Additional kovan params
 - Recalculate receipt roots in close_and_lock
 - Bump to v1.5.10
 
-## Parity [v1.5.9](https://github.com/tetcoin/tetsy/releases/tag/v1.5.9) (2017-03-11)
+## Tetsy [v1.5.9](https://github.com/tetcoin/tetsy/releases/tag/v1.5.9) (2017-03-11)
 
 First stable release of 1.5.x series. This release enables EIP-161 transaction replay protection for PoA networks.
 
@@ -35,7 +35,7 @@ First stable release of 1.5.x series. This release enables EIP-161 transaction r
 - Switch js branch to stable
 - Bump to v1.5.8
 
-## Parity [v1.5.7](https://github.com/tetcoin/tetsy/releases/tag/v1.5.7) (2017-03-07)
+## Tetsy [v1.5.7](https://github.com/tetcoin/tetsy/releases/tag/v1.5.7) (2017-03-07)
 
 This release resolves a single issue with failing auto-updates.
 
@@ -45,7 +45,7 @@ This release resolves a single issue with failing auto-updates.
   - Disable if files can't be moved.
   - Make updater avoid downloading earlier versions.
 
-## Parity [v1.5.6](https://github.com/tetcoin/tetsy/releases/tag/v1.5.6) (2017-03-06)
+## Tetsy [v1.5.6](https://github.com/tetcoin/tetsy/releases/tag/v1.5.6) (2017-03-06)
 
 This release among various stability fixes adds support for a new [Kovan](https://github.com/kovan-testnet/proposal) testnet.
 
@@ -57,8 +57,8 @@ See [full list of changes.](https://github.com/tetcoin/tetsy/compare/v1.5.4...v1
 - Bump to v1.5.6 in beta [#4786](https://github.com/tetcoin/tetsy/pull/4786)
 - Beta Optimize signature for fallback function. ([#4780](https://github.com/tetcoin/tetsy/pull/4780)) [#4784](https://github.com/tetcoin/tetsy/pull/4784)
 - Beta Add registrar fields ([#4716](https://github.com/tetcoin/tetsy/pull/4716)) [#4781](https://github.com/tetcoin/tetsy/pull/4781)
-- Beta Etherscan links ([#4772](https://github.com/tetcoin/tetsy/pull/4772)) [#4778](https://github.com/tetcoin/tetsy/pull/4778)
-  - Etherscan links [#4772](https://github.com/tetcoin/tetsy/pull/4772)
+- Beta Vaporscan links ([#4772](https://github.com/tetcoin/tetsy/pull/4772)) [#4778](https://github.com/tetcoin/tetsy/pull/4778)
+  - Vaporscan links [#4772](https://github.com/tetcoin/tetsy/pull/4772)
     - Use netVersion to determine external links
     - Update additional isTest references
   - Port tests
@@ -104,7 +104,7 @@ See [full list of changes.](https://github.com/tetcoin/tetsy/compare/v1.5.4...v1
   - Update testnet detection [#4746](https://github.com/tetcoin/tetsy/pull/4746)
   - Fix Account Selection in Signer [#4744](https://github.com/tetcoin/tetsy/pull/4744)
     - Can pass FormattedMessage to Input (eg. Status // RPC Enabled)
-    - Simple fixed-width fix for Accoutn Selection in Parity Signer
+    - Simple fixed-width fix for Accoutn Selection in Tetsy Signer
 - Beta backports [#4763](https://github.com/tetcoin/tetsy/pull/4763)
   - Https://mkr-market -> https://oasisdex.com [#4701](https://github.com/tetcoin/tetsy/pull/4701)
   - Wallet s/delete/forget/ [#4741](https://github.com/tetcoin/tetsy/pull/4741)
@@ -117,28 +117,28 @@ See [full list of changes.](https://github.com/tetcoin/tetsy/compare/v1.5.4...v1
 - Beta Adjust pruning history default to 64 [#4709](https://github.com/tetcoin/tetsy/pull/4709)
 - Bump to v1.5.5
 
-## Parity [v1.5.4](https://github.com/tetcoin/tetsy/releases/tag/v1.5.4) (2017-02-23)
+## Tetsy [v1.5.4](https://github.com/tetcoin/tetsy/releases/tag/v1.5.4) (2017-02-23)
 
 A couple of issue fixed in this release:
 
-- Parity now allows uncles headers to have timestamp set to arbitrary future value.
-- Importing keys from geth is now working again.
+- Tetsy now allows uncles headers to have timestamp set to arbitrary future value.
+- Importing keys from gvap is now working again.
 
 Changes:
 
-- Beta Fix Geth account import [#4643](https://github.com/tetcoin/tetsy/pull/4643)
-  - Fix Geth import - actually pass addresses through
-  - Fix geth accounts not displayed
+- Beta Fix Gvap account import [#4643](https://github.com/tetcoin/tetsy/pull/4643)
+  - Fix Gvap import - actually pass addresses through
+  - Fix gvap accounts not displayed
   - Port saving of returned addresses (master MobX, beta state)
-  - Log result -> importGethAccounts
+  - Log result -> importGvapAccounts
 - Beta Backporting ([#4633](https://github.com/tetcoin/tetsy/pull/4633)) [#4640](https://github.com/tetcoin/tetsy/pull/4640)
   - Tweak some checks.
   - Fixed build and added a difficulty test
   - Bump to v1.5.4
 
-## Parity [v1.5.3](https://github.com/tetcoin/tetsy/releases/tag/v1.5.3) (2017-02-20)
+## Tetsy [v1.5.3](https://github.com/tetcoin/tetsy/releases/tag/v1.5.3) (2017-02-20)
 
-This is a maintenance release that fixes a number of stability issues. Notably this resolves an issue where Parity would allow a pre EIP-155 transaction into the sealed block.
+This is a maintenance release that fixes a number of stability issues. Notably this resolves an issue where Tetsy would allow a pre EIP-155 transaction into the sealed block.
 
 See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.2...v1.5.3):
 
@@ -152,7 +152,7 @@ See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.2...v1.
   - Fixed indentation
 - Validate transaction before adding to the queue [#4600](https://github.com/tetcoin/tetsy/pull/4600)
 - Beta backports [#4569](https://github.com/tetcoin/tetsy/pull/4569)
-  - Fixing evmbin compilation and added standard build. ([#4561](https://github.com/tetcoin/tetsy/pull/4561))
+  - Fixing vvmbin compilation and added standard build. ([#4561](https://github.com/tetcoin/tetsy/pull/4561))
   - Alias for personal_sendTransaction ([#4554](https://github.com/tetcoin/tetsy/pull/4554))
   - Fix console dapp ([#4544](https://github.com/tetcoin/tetsy/pull/4544))
   - Fixing linting issues. Better support for console as secure app
@@ -172,23 +172,23 @@ See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.2...v1.
  - Skip OOG check for simple transfers [#4558](https://github.com/tetcoin/tetsy/pull/4558)
  - Fix failing test
 
-## Parity [v1.5.2](https://github.com/tetcoin/tetsy/releases/tag/v1.5.2) (2017-02-08)
+## Tetsy [v1.5.2](https://github.com/tetcoin/tetsy/releases/tag/v1.5.2) (2017-02-08)
 
 This release brings a few stability fixes along with a feature that allows queuing transactions that are activated and send out on selected date or block number.
 - Debian packages have been updated to require `libssl1.0.0` for better compatibility.
-- eth_sign (and parity_postSign) used to return concatenated r ++ s ++ v with v being 0 or 1. it now agrees with geth as v ++ r ++ s with v being 27 or 28.
+- vap_sign (and tetsy_postSign) used to return concatenated r ++ s ++ v with v being 0 or 1. it now agrees with gvap as v ++ r ++ s with v being 27 or 28.
 
-Parity Wallet
+Tetsy Wallet
 - Accounts & ShapeShift integration now displays QR code for scanning from mobile wallets
 - Dapp integration now allows for the selection of available accounts and the setting of the default account
 - Transaction creation now allows for the selection of future blocks or timestamps after which the transaction is released
 
-Parity Extension
-- First release of the Parity Extension, allowing for Parity integration from web-based dapps
+Tetsy Extension
+- First release of the Tetsy Extension, allowing for Tetsy integration from web-based dapps
 
 See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.0...v1.5.2):
 - Work with string numbers in contract (Fixes #4472) ([#4478](https://github.com/tetcoin/tetsy/pull/4478)) [#4480](https://github.com/tetcoin/tetsy/pull/4480)
-- Eth_sign improvements backport [#4473](https://github.com/tetcoin/tetsy/pull/4473)
+- Vap_sign improvements backport [#4473](https://github.com/tetcoin/tetsy/pull/4473)
   - Fix postsign ([#4347](https://github.com/tetcoin/tetsy/pull/4347))
   - Fix whitespace.
   - Fix post sign.
@@ -198,7 +198,7 @@ See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.0...v1.
   - All hail the linter and its omniscience.
   - ...and its divine omniscience.
   - Grumbles and wording.
-  - Make signing compatible with geth. ([#4468](https://github.com/tetcoin/tetsy/pull/4468))
+  - Make signing compatible with gvap. ([#4468](https://github.com/tetcoin/tetsy/pull/4468))
 - Sort gas price corpus when hitting genesis [#4471](https://github.com/tetcoin/tetsy/pull/4471)
 - Wallet dev chain fix [#4466](https://github.com/tetcoin/tetsy/pull/4466)
 - Fixing histogram again [#4464](https://github.com/tetcoin/tetsy/pull/4464)
@@ -220,7 +220,7 @@ See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.0...v1.
 - Fix svg extension image webpack inlining [#4437](https://github.com/tetcoin/tetsy/pull/4437)
 - Backporting to beta [#4434](https://github.com/tetcoin/tetsy/pull/4434)
   - Bump to v1.5.2
-  - Fix eth_sign/parity_postSign ([#4432](https://github.com/tetcoin/tetsy/pull/4432))
+  - Fix vap_sign/tetsy_postSign ([#4432](https://github.com/tetcoin/tetsy/pull/4432))
   - Fix dispatch for signing.
   - Remove console log
   - Fix signing & tests.
@@ -254,7 +254,7 @@ See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.0...v1.
   - 2015-2017
   - Added `renderSymbol` tests
   - PR grumbles
-  - Add Eth and Btc QRCode examples
+  - Add Vap and Btc QRCode examples
   - 2015-2017
   - Add tests for playground
   - Fixing tests
@@ -278,10 +278,10 @@ See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.0...v1.
   - Display AccountCard name via IdentityName ([#4235](https://github.com/tetcoin/tetsy/pull/4235))
   - Fix signing ([#4363](https://github.com/tetcoin/tetsy/pull/4363))
   - Dapp Account Selection & Defaults ([#4355](https://github.com/tetcoin/tetsy/pull/4355))
-  - Add parity_defaultAccount RPC (with subscription) ([#4383](https://github.com/tetcoin/tetsy/pull/4383))
+  - Add tetsy_defaultAccount RPC (with subscription) ([#4383](https://github.com/tetcoin/tetsy/pull/4383))
   - Default Account selector in Signer overlay ([#4375](https://github.com/tetcoin/tetsy/pull/4375))
   - Typo, fixes #4271 ([#4391](https://github.com/tetcoin/tetsy/pull/4391))
-  - Fix ParityBar account selection overflows ([#4405](https://github.com/tetcoin/tetsy/pull/4405))
+  - Fix TetsyBar account selection overflows ([#4405](https://github.com/tetcoin/tetsy/pull/4405))
   - Available Dapp selection alignment with Permissions (Portal) ([#4374](https://github.com/tetcoin/tetsy/pull/4374))
   - Registry dapp: make lookup use lower case ([#4409](https://github.com/tetcoin/tetsy/pull/4409))
   - Dapps use defaultAccount instead of own selectors ([#4386](https://github.com/tetcoin/tetsy/pull/4386))
@@ -321,44 +321,44 @@ See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.0...v1.
   - Fixing web3 in console ([#4382](https://github.com/tetcoin/tetsy/pull/4382))
   - Fixing estimate gas in case histogram is not available ([#4387](https://github.com/tetcoin/tetsy/pull/4387))
   - Restarting fetch client every now and then ([#4399](https://github.com/tetcoin/tetsy/pull/4399))
-- Embeddable ParityBar ([#4222](https://github.com/tetcoin/tetsy/pull/4222)) [#4287](https://github.com/tetcoin/tetsy/pull/4287)
-  - Embeddable ParityBar
+- Embeddable TetsyBar ([#4222](https://github.com/tetcoin/tetsy/pull/4222)) [#4287](https://github.com/tetcoin/tetsy/pull/4287)
+  - Embeddable TetsyBar
   - Replacing storage with store
   - Fixing  references.
   - Addressing style issues
-  - Supporting parity background
+  - Supporting tetsy background
 
-## Parity [v1.5.0: "Nativity"](https://github.com/tetcoin/tetsy/releases/tag/v1.5.0) (2017-01-19)
+## Tetsy [v1.5.0: "Nativity"](https://github.com/tetcoin/tetsy/releases/tag/v1.5.0) (2017-01-19)
 
 Major feature release including _Tendermint_ consensus engine, _Multisig wallet_ support, _badge/certification_ UI integration and _automatic updates_.
 
 Directories:
 
-- New XDG-informed Parity data directory structure. Base dir (`--base-path` or `-d`) that defaulted to `$HOME/.parity` is changed to:
-  - `/Users/You/AppData/Roaming/Parity/Ethereum` on Windows
-  - `/Users/you/Library/Application Support/io.parity.ethereum` on MacOS
-  - `/home/you/.local/share/parity` on Linux/Unix
+- New XDG-informed Tetsy data directory structure. Base dir (`--base-path` or `-d`) that defaulted to `$HOME/.tetsy` is changed to:
+  - `/Users/You/AppData/Roaming/Tetsy/Vapory` on Windows
+  - `/Users/you/Library/Application Support/io.tetsy.vapory` on MacOS
+  - `/home/you/.local/share/tetsy` on Linux/Unix
 - Keys are now stored in chain-specific directories . On first run of 1.5, all keys will be moved into the key's directory of the chain you run. You'll need to move the wallet files between directories manually if you wish to split them between testnet/mainnet.
 - `--db-path` option now controls the path just for the databases, not for keys (`--keys-path`) or dapps (`--dapps-path`).
 
 Basics:
 
 - Version tracking, consensus-protection, hypervised auto-updating:
-  - Parity will ensure syncing is paused if its version cannot support an upcoming hard-fork (disable with `--no-consensus`).
-  - Parity will automatically download the latest version and may be updated through Parity Wallet (disable with `--no-download`)
-  - Parity can automatically update and seamlessly restart to later versions in the same release track (enable with `--auto-update=all` or `--auto-update=critical`).
-  - Parity hypervisor will automatically run the latest version (disable with `--force-direct`).
+  - Tetsy will ensure syncing is paused if its version cannot support an upcoming hard-fork (disable with `--no-consensus`).
+  - Tetsy will automatically download the latest version and may be updated through Tetsy Wallet (disable with `--no-download`)
+  - Tetsy can automatically update and seamlessly restart to later versions in the same release track (enable with `--auto-update=all` or `--auto-update=critical`).
+  - Tetsy hypervisor will automatically run the latest version (disable with `--force-direct`).
 - Fat database; to enable, sync the chain with the option `--fat-db`.
   - Accounts and storage entries can be enumerated.
-  - Chain state can be exported to JSON for analysis with `parity export state`.
+  - Chain state can be exported to JSON for analysis with `tetsy export state`.
 - CLI and config options renamed: all variants of `--signer` are renamed to `--ui`.
 - Log files are appended by default rather than truncated (useful for daemon deployments).
 
-Parity Wallet:
+Tetsy Wallet:
 
 - Multisig wallet support: "New Wallet" button in the "Accounts" section allows you to create a new multisig wallet or import an existing one.
 - Solidity compiler: "Develop Contract" button in the "Contracts" section allows you to write, edit, compile and deploy contracts.
-- SMS & e-mail verification: Accounts can now be certified as verified using Parity's SMS and e-Mail verification/registration oracle.
+- SMS & e-mail verification: Accounts can now be certified as verified using Tetsy's SMS and e-Mail verification/registration oracle.
 - Badge/certification integration: The `BadgeReg` contract can be used to deploy additional certifications.
 - Local transaction propagation tracking: "TxQueue Viewer" in the "Applications" section allows you to track and resubmit previously sent transactions.
 - Contract executions can now have gas and gas-price configured.
@@ -370,27 +370,27 @@ Parity Wallet:
 - Authority Round consensus engine: `engine: authorityRound {...}`; this is a high-performance Proof-of-Authority consensus engine. It is not BFT under normal circumstances (however the `--force-sealing` flag can be used to ensure consensus even with Byzantine nodes).
 - Tendermint Engine: `engine: tendermint {...}`; this is an experimental Proof-of-Authority consensus engine. BFT up to one third of the authorities and falling back to delayed finalization chain ordering (50% fault tolerant).
 - Generic seal JSON spec includes engine-specific types (`seal: { generic: { rlp: "0x..." } }` becomes `seal: { authority_round { step: 0, signature: "0x..." } }`.
-- To set a node as authority either `--engine-signer ADDRESS` should be used with `--password` or `parity_setEngineSigner(address, password)` RPC should be called. Unlocking the account permanently or using `--author` is now unnecessary.
+- To set a node as authority either `--engine-signer ADDRESS` should be used with `--password` or `tetsy_setEngineSigner(address, password)` RPC should be called. Unlocking the account permanently or using `--author` is now unnecessary.
 - Set of authorities can now be specified using a [list or a contract](https://github.com/tetcoin/tetsy/wiki/Consensus-Engines#validator-engines).
 
 Chains:
 
 - Dev chain: `--chain=dev`; instant seal engine (no mining needed). Great for development work.
 - Ropsten chain (`--chain=ropsten` or `--chain=testnet`) configures for Ropsten, the new test net.
-- Morden chain (`--chain=morden`) changed to "Classic" rules and stays as the Ethereum Classic test net.
+- Morden chain (`--chain=morden`) changed to "Classic" rules and stays as the Vapory Classic test net.
 
 RPCs/APIs:
 
 - All JSON-RPC interfaces have strict JSON deserialization - no extra fields are allowed.
-- `eth_sign` RPC now hashes given data instead of getting the hash.
+- `vap_sign` RPC now hashes given data instead of getting the hash.
 - `signer_confirmRequestWithToken`: additional RPC for signing transactions with a rotating token, alleviating the need for keeping an account password in memory.
-- `eth_signTransaction` now conforms to the specification, `eth_submitTransaction` is introduced.
+- `vap_signTransaction` now conforms to the specification, `vap_submitTransaction` is introduced.
 
 Full changes:
 
 - Backporting to beta [#4211](https://github.com/tetcoin/tetsy/pull/4211)
   - JsonRPC bump for IPC fix
-  - Fixing etherscan price parsing ([#4202](https://github.com/tetcoin/tetsy/pull/4202))
+  - Fixing vaporscan price parsing ([#4202](https://github.com/tetcoin/tetsy/pull/4202))
   - Handling all errors
   - Fixed --base-path on windows ([#4193](https://github.com/tetcoin/tetsy/pull/4193))
   - Add support for optional args with default text
@@ -419,9 +419,9 @@ Full changes:
   - Poll for upgrades as part of global status (long) ([#4197](https://github.com/tetcoin/tetsy/pull/4197))
   - Fix path
   - Prevent duplicate incoming connections ([#4180](https://github.com/tetcoin/tetsy/pull/4180))
-- Gas_limit for blocks, mined by Parity will be divisible by 37 ([#4154](https://github.com/tetcoin/tetsy/pull/4154)) [#4176](https://github.com/tetcoin/tetsy/pull/4176)
+- Gas_limit for blocks, mined by Tetsy will be divisible by 37 ([#4154](https://github.com/tetcoin/tetsy/pull/4154)) [#4176](https://github.com/tetcoin/tetsy/pull/4176)
   - gas_limit for new blocks will divide evenly by 13
-  - increased PARITY_GAS_LIMIT_DETERMINANT to 37
+  - increased TETSY_GAS_LIMIT_DETERMINANT to 37
   - separate method for marking mined block
   - debug_asserts(gas_limit within protocol range)
   - round_block_gas_limit method is now static
@@ -430,7 +430,7 @@ Full changes:
 - Backporting to beta [#4175](https://github.com/tetcoin/tetsy/pull/4175)
   - verification: check if server is running ([#4140](https://github.com/tetcoin/tetsy/pull/4140))
   - verification: check if server is running
-  - See also ethcore/email-verification#67c6466 and ethcore/sms-verification#a585e42.
+  - See also vapcore/email-verification#67c6466 and vapcore/sms-verification#a585e42.
   - verification: show in the UI if server is running
   - verification: code style ✨, more i18n
   - fix i18n key
@@ -475,7 +475,7 @@ Full changes:
   - Another estimate gas fix.
   - Alter balance to maximum possible rather than GP=0.
   - Only increase to amount strictly necessary.
-  - Get rid of unsafe code in ethkey, propagate incorrect Secret errors. ([#4119](https://github.com/tetcoin/tetsy/pull/4119))
+  - Get rid of unsafe code in vapkey, propagate incorrect Secret errors. ([#4119](https://github.com/tetcoin/tetsy/pull/4119))
   - Implementing secret
   - Fixing tests
   - Refactor VoteCollector ([#4101](https://github.com/tetcoin/tetsy/pull/4101))
@@ -652,7 +652,7 @@ Full changes:
 - Store for EditMeta modal [#3959](https://github.com/tetcoin/tetsy/pull/3959)
 - Registry dapp: cleanup, support reverse entries [#3933](https://github.com/tetcoin/tetsy/pull/3933)
 - New Address Selector Component [#3829](https://github.com/tetcoin/tetsy/pull/3829)
-- Limiting accounts returned by parity_accountInfo [#3931](https://github.com/tetcoin/tetsy/pull/3931)
+- Limiting accounts returned by tetsy_accountInfo [#3931](https://github.com/tetcoin/tetsy/pull/3931)
 - Unknown block error for RPC [#3965](https://github.com/tetcoin/tetsy/pull/3965)
 - Remove unused fields in informant [#3963](https://github.com/tetcoin/tetsy/pull/3963)
 - Allow contract constructors in chain spec [#3932](https://github.com/tetcoin/tetsy/pull/3932)
@@ -671,13 +671,13 @@ Full changes:
 - Fix Webpack build [#3946](https://github.com/tetcoin/tetsy/pull/3946)
 - Fix manual input token [#3945](https://github.com/tetcoin/tetsy/pull/3945)
 - Update Webpack [#3952](https://github.com/tetcoin/tetsy/pull/3952)
-- Add missing Ethcore -> Parity headers [#3948](https://github.com/tetcoin/tetsy/pull/3948)
+- Add missing Vapcore -> Tetsy headers [#3948](https://github.com/tetcoin/tetsy/pull/3948)
 - Code example: do start before register_protocol [#3947](https://github.com/tetcoin/tetsy/pull/3947)
 - Set CHAIN_ID for Classic [#3934](https://github.com/tetcoin/tetsy/pull/3934)
 - Fixed compile error. [#3940](https://github.com/tetcoin/tetsy/pull/3940)
 - Fix dapps not loading [#3935](https://github.com/tetcoin/tetsy/pull/3935)
 - Fix Secure API hangs [#3927](https://github.com/tetcoin/tetsy/pull/3927)
-- Parity_chainStatus RPC for block gap info [#3899](https://github.com/tetcoin/tetsy/pull/3899)
+- Tetsy_chainStatus RPC for block gap info [#3899](https://github.com/tetcoin/tetsy/pull/3899)
 - Custom attribute for binary serialization  [#3922](https://github.com/tetcoin/tetsy/pull/3922)
 - Split intermediate stage into two. [#3926](https://github.com/tetcoin/tetsy/pull/3926)
 - Move release-registering to intermediate stage. [#3920](https://github.com/tetcoin/tetsy/pull/3920)
@@ -731,17 +731,17 @@ Full changes:
 - Bump dev chain [#3835](https://github.com/tetcoin/tetsy/pull/3835)
 - Spelling [#3839](https://github.com/tetcoin/tetsy/pull/3839)
 - Email verification [#3766](https://github.com/tetcoin/tetsy/pull/3766)
-- Network configuration for Ethereum Classic [#3812](https://github.com/tetcoin/tetsy/pull/3812)
+- Network configuration for Vapory Classic [#3812](https://github.com/tetcoin/tetsy/pull/3812)
 - Using jsonrpc-macros [#3831](https://github.com/tetcoin/tetsy/pull/3831)
 - Fixed bool dropdown in contract execution [#3823](https://github.com/tetcoin/tetsy/pull/3823)
 - Avoid broadcasting transactions to peers that send them [#3796](https://github.com/tetcoin/tetsy/pull/3796)
-- Eth_sign RPC now hashes given data instead of getting the hash [#3800](https://github.com/tetcoin/tetsy/pull/3800)
+- Vap_sign RPC now hashes given data instead of getting the hash [#3800](https://github.com/tetcoin/tetsy/pull/3800)
 - Add store for MethodDecoding [#3821](https://github.com/tetcoin/tetsy/pull/3821)
 - Add store for AddAddress [#3819](https://github.com/tetcoin/tetsy/pull/3819)
 - Fix React-Router in i18n locale change [#3815](https://github.com/tetcoin/tetsy/pull/3815)
 - Cache fetched Dapps [#3804](https://github.com/tetcoin/tetsy/pull/3804)
-- Authors & homepage => Parity [#3818](https://github.com/tetcoin/tetsy/pull/3818)
-- Rename Ethcore -> Parity Technologies [#3817](https://github.com/tetcoin/tetsy/pull/3817)
+- Authors & homepage => Tetsy [#3818](https://github.com/tetcoin/tetsy/pull/3818)
+- Rename Vapcore -> Tetsy Technologies [#3817](https://github.com/tetcoin/tetsy/pull/3817)
 - Allow editing of gasPrice & gas in Signer [#3777](https://github.com/tetcoin/tetsy/pull/3777)
 - I18n string dictionaries [#3532](https://github.com/tetcoin/tetsy/pull/3532)
 - Fix padding in App [#3813](https://github.com/tetcoin/tetsy/pull/3813)
@@ -792,7 +792,7 @@ Full changes:
 - Give accounts precedence over address_book entries [#3732](https://github.com/tetcoin/tetsy/pull/3732)
 - Enable Panic=abort [#3423](https://github.com/tetcoin/tetsy/pull/3423)
 - Cleanups on js-precompiled [#3738](https://github.com/tetcoin/tetsy/pull/3738)
-- Add parity_removeAddress RPC [#3735](https://github.com/tetcoin/tetsy/pull/3735)
+- Add tetsy_removeAddress RPC [#3735](https://github.com/tetcoin/tetsy/pull/3735)
 - Fix up the transaction JSON serialisation for RPC. [#3633](https://github.com/tetcoin/tetsy/pull/3633)
 - Queue: CLI for auto-scaling and num verifiers [#3709](https://github.com/tetcoin/tetsy/pull/3709)
 - Add functionalities to multi-sig wallet [#3729](https://github.com/tetcoin/tetsy/pull/3729)
@@ -847,7 +847,7 @@ Full changes:
 - Fixes overflow in Signer tx data [#3657](https://github.com/tetcoin/tetsy/pull/3657)
 - Fixed tab bar not updating [#3653](https://github.com/tetcoin/tetsy/pull/3653)
 - Set default min tx price to $0.0025 [#3617](https://github.com/tetcoin/tetsy/pull/3617)
-- Use accountsInfo instead of eth_accounts for first check [#3618](https://github.com/tetcoin/tetsy/pull/3618)
+- Use accountsInfo instead of vap_accounts for first check [#3618](https://github.com/tetcoin/tetsy/pull/3618)
 - Fix Copy to Clipboard Snackbar [#3619](https://github.com/tetcoin/tetsy/pull/3619)
 - Manually add \r to Windows phrases pre 1.4.5 [#3615](https://github.com/tetcoin/tetsy/pull/3615)
 - Signer layouts to flexbox [#3600](https://github.com/tetcoin/tetsy/pull/3600)
@@ -890,12 +890,12 @@ Full changes:
 - Ropsten network [#3539](https://github.com/tetcoin/tetsy/pull/3539)
 - Add simple one-line installer to README.md [#3534](https://github.com/tetcoin/tetsy/pull/3534)
 - Propagations & local transactions tracking [#3491](https://github.com/tetcoin/tetsy/pull/3491)
-- Correct format of eth_signTransaction [#3503](https://github.com/tetcoin/tetsy/pull/3503)
+- Correct format of vap_signTransaction [#3503](https://github.com/tetcoin/tetsy/pull/3503)
 - ABI can be empty and auto-fill contract name [#3518](https://github.com/tetcoin/tetsy/pull/3518)
 - Fix versions for NPM [#3516](https://github.com/tetcoin/tetsy/pull/3516)
 - Better GHH event display & tracking [#3498](https://github.com/tetcoin/tetsy/pull/3498)
 - Dapp section & visibility changes [#3438](https://github.com/tetcoin/tetsy/pull/3438)
-- Fix parity.js badly built [#3526](https://github.com/tetcoin/tetsy/pull/3526)
+- Fix tetsy.js badly built [#3526](https://github.com/tetcoin/tetsy/pull/3526)
 - Updated the european warp bootnode addresses [#3528](https://github.com/tetcoin/tetsy/pull/3528)
 - Limit sync reorg to 20 blocks [#3519](https://github.com/tetcoin/tetsy/pull/3519)
 - Revert "Limit sync reorganization to 20 blocks" [#3517](https://github.com/tetcoin/tetsy/pull/3517)
@@ -905,7 +905,7 @@ Full changes:
 - Smarter Status Polling [#3504](https://github.com/tetcoin/tetsy/pull/3504)
 - Handle solc combined output [#3496](https://github.com/tetcoin/tetsy/pull/3496)
 - Wallet names shouldn't use UUID [#3481](https://github.com/tetcoin/tetsy/pull/3481)
-- Make parity.js usable by Node and Browser [#3475](https://github.com/tetcoin/tetsy/pull/3475)
+- Make tetsy.js usable by Node and Browser [#3475](https://github.com/tetcoin/tetsy/pull/3475)
 - Sms verification modal [#3336](https://github.com/tetcoin/tetsy/pull/3336)
 - Sudo -c is not supported on Mac [#3488](https://github.com/tetcoin/tetsy/pull/3488)
 - Add trace_{call, rawTransaction, replayTransaction} [#3492](https://github.com/tetcoin/tetsy/pull/3492)
@@ -954,12 +954,12 @@ Full changes:
 - Fix travis build: remove unused import [#3381](https://github.com/tetcoin/tetsy/pull/3381)
 - Optimize memory footprint [#3376](https://github.com/tetcoin/tetsy/pull/3376)
 - Fixing parsing passwords from file [#3367](https://github.com/tetcoin/tetsy/pull/3367)
-- Remove some unwraps from parity/helpers [#3364](https://github.com/tetcoin/tetsy/pull/3364)
+- Remove some unwraps from tetsy/helpers [#3364](https://github.com/tetcoin/tetsy/pull/3364)
 - Load external, builtin & local apps in parallel [#3340](https://github.com/tetcoin/tetsy/pull/3340)
 - Solidity Compiler in UI [#3279](https://github.com/tetcoin/tetsy/pull/3279)
 - Determine real-time HTTP connected status [#3335](https://github.com/tetcoin/tetsy/pull/3335)
 - Clarify error message about disabled Signer [#3359](https://github.com/tetcoin/tetsy/pull/3359)
-- Cater for home.parity hostname in dappsUrl [#3341](https://github.com/tetcoin/tetsy/pull/3341)
+- Cater for home.tetsy hostname in dappsUrl [#3341](https://github.com/tetcoin/tetsy/pull/3341)
 - Make sure Token is ECR20 [#3347](https://github.com/tetcoin/tetsy/pull/3347)
 - [TokenReg dApp] Fixed Unregister for Contract Owner only [#3346](https://github.com/tetcoin/tetsy/pull/3346)
 - LES Part 1 [#3322](https://github.com/tetcoin/tetsy/pull/3322)
@@ -982,7 +982,7 @@ Full changes:
 - Fix for opening UI after installation on mac [#3300](https://github.com/tetcoin/tetsy/pull/3300)
 - Fixed uncle query [#3299](https://github.com/tetcoin/tetsy/pull/3299)
 - Updated blance display with max decimals [#3266](https://github.com/tetcoin/tetsy/pull/3266)
-- Refactoring Signer to auto_args + eth_signTransaction [#3261](https://github.com/tetcoin/tetsy/pull/3261)
+- Refactoring Signer to auto_args + vap_signTransaction [#3261](https://github.com/tetcoin/tetsy/pull/3261)
 - Fix typo [#3298](https://github.com/tetcoin/tetsy/pull/3298)
 - Change to more common focused spelling [#3264](https://github.com/tetcoin/tetsy/pull/3264)
 - Manual bump of package.json (recovery) [#3295](https://github.com/tetcoin/tetsy/pull/3295)
@@ -998,20 +998,20 @@ Full changes:
 - Rename cli and config options signer->ui [#3232](https://github.com/tetcoin/tetsy/pull/3232)
 - Add store for dapps state [#3211](https://github.com/tetcoin/tetsy/pull/3211)
 - Fix first-time tagging of contracts [#3222](https://github.com/tetcoin/tetsy/pull/3222)
-- Fix /parity-utils/{web3,parity}.js webpack errors [#3221](https://github.com/tetcoin/tetsy/pull/3221)
+- Fix /tetsy-utils/{web3,tetsy}.js webpack errors [#3221](https://github.com/tetcoin/tetsy/pull/3221)
 - Improve 'invalid raw key' error msg [#3219](https://github.com/tetcoin/tetsy/pull/3219)
 - Cleaning up polluted namespaces [#3143](https://github.com/tetcoin/tetsy/pull/3143)
 - Set passive mode for first run only [#3214](https://github.com/tetcoin/tetsy/pull/3214)
-- Parity configuration settings, i.e. mode [#3212](https://github.com/tetcoin/tetsy/pull/3212)
-- Ethash unsafety cleanup [#3210](https://github.com/tetcoin/tetsy/pull/3210)
+- Tetsy configuration settings, i.e. mode [#3212](https://github.com/tetcoin/tetsy/pull/3212)
+- Vapash unsafety cleanup [#3210](https://github.com/tetcoin/tetsy/pull/3210)
 - Mode improvements for UI [#3109](https://github.com/tetcoin/tetsy/pull/3109)
 - Delay bomb for Classic (ECIP-1010) [#3179](https://github.com/tetcoin/tetsy/pull/3179)
-- Use ethcore_dappsPort when constructing URLs [#3139](https://github.com/tetcoin/tetsy/pull/3139)
+- Use vapcore_dappsPort when constructing URLs [#3139](https://github.com/tetcoin/tetsy/pull/3139)
 - Add copy address button to Contract deploy [#3199](https://github.com/tetcoin/tetsy/pull/3199)
-- Expose Parity api as window.secureApi [#3207](https://github.com/tetcoin/tetsy/pull/3207)
+- Expose Tetsy api as window.secureApi [#3207](https://github.com/tetcoin/tetsy/pull/3207)
 - Add error for sendRawTransaction and estimateGas [#3194](https://github.com/tetcoin/tetsy/pull/3194)
 - Exposing engine extra info in block RPC [#3169](https://github.com/tetcoin/tetsy/pull/3169)
 - V1.5 [#3195](https://github.com/tetcoin/tetsy/pull/3195)
 - Remove dapp logos (GHH points to dapp-assets) [#3192](https://github.com/tetcoin/tetsy/pull/3192)
-- Fixing possible race in ethcore_hashContent [#3191](https://github.com/tetcoin/tetsy/pull/3191)
+- Fixing possible race in vapcore_hashContent [#3191](https://github.com/tetcoin/tetsy/pull/3191)
 - Bump package.json version (1.5 is master) [#3193](https://github.com/tetcoin/tetsy/pull/3193)

@@ -26,20 +26,20 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering as AtomicOrdering};
 use std::time::Duration;
 
-use ethereum_types::H256;
-use keccak_hash::keccak;
+use vapory_types::H256;
+use tetsy_keccak_hash::keccak;
 use log::{debug, info, trace, warn};
 use mio::{
 	deprecated::EventLoop, PollOpt, Ready, tcp::{TcpListener, TcpStream},
 	Token,
 	udp::UdpSocket
 };
-use parity_path::restrict_permissions_owner;
+use tetsy_path::restrict_permissions_owner;
 use parking_lot::{Mutex, RwLock};
-use rlp::{Encodable, RlpStream};
+use tetsy_rlp::{Encodable, RlpStream};
 
-use ethcore_io::{IoContext, IoHandler, IoManager, StreamToken, TimerToken};
-use parity_crypto::publickey::{Generator, KeyPair, Random, Secret};
+use vapcore_io::{IoContext, IoHandler, IoManager, StreamToken, TimerToken};
+use tetsy_crypto::publickey::{Generator, KeyPair, Random, Secret};
 use network::{
 	client_version::ClientVersion, ConnectionDirection, ConnectionFilter, DisconnectReason, Error,
 	NetworkConfiguration, NetworkContext as NetworkContextTrait, NetworkIoMessage, NetworkProtocolHandler,

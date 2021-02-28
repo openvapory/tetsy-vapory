@@ -339,12 +339,12 @@ fn search_upnp(local: &NodeEndpoint) -> Option<NodeEndpoint> {
 							debug!("IP request error: {}", err);
 						},
 						Ok(external_addr) => {
-							match gateway.add_any_port(PortMappingProtocol::TCP, SocketAddrV4::new(local_ip, local_port), 0, "Parity Node/TCP") {
+							match gateway.add_any_port(PortMappingProtocol::TCP, SocketAddrV4::new(local_ip, local_port), 0, "Tetsy Node/TCP") {
 								Err(ref err) => {
 									debug!("Port mapping error: {}", err);
 								},
 								Ok(tcp_port) => {
-									match gateway.add_any_port(PortMappingProtocol::UDP, SocketAddrV4::new(local_ip, local_udp_port), 0, "Parity Node/UDP") {
+									match gateway.add_any_port(PortMappingProtocol::UDP, SocketAddrV4::new(local_ip, local_udp_port), 0, "Tetsy Node/UDP") {
 										Err(ref err) => {
 											debug!("Port mapping error: {}", err);
 										},
@@ -422,7 +422,7 @@ fn search_natpmp(local: &NodeEndpoint) -> Option<NodeEndpoint> {
 	None
 }
 
-/// Port mapping using ether UPnP or Nat-PMP.
+/// Port mapping using vapor UPnP or Nat-PMP.
 /// NAT PMP has higher priority than UPnP.
 pub fn map_external_address(local: &NodeEndpoint, nat_type: &NatType) -> Option<NodeEndpoint> {
 	match *nat_type {

@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Parity Signer-related rpc interface.
+//! Tetsy Signer-related rpc interface.
 
-use ethereum_types::U256;
+use vapory_types::U256;
 use jsonrpc_core::{BoxFuture, Result};
 use jsonrpc_pubsub::{typed::Subscriber, SubscriptionId};
 use jsonrpc_derive::rpc;
