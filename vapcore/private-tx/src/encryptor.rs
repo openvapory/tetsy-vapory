@@ -29,7 +29,7 @@ use vapjson;
 use crypto::publickey::{Signature, Public};
 use crypto;
 use futures::Future;
-use fetch::{Fetch, Client as FetchClient, Method, BodyReader, Request};
+use tetsy_fetch::{Fetch, Client as FetchClient, Method, BodyReader, Request};
 use bytes::{Bytes, ToPretty};
 use error::Error;
 use url::Url;

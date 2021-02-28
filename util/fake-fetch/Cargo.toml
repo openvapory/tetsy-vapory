@@ -9,17 +9,6 @@ homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
+tetsy-fetch = { version = "0.1.0", path = "../tetsy-fetch" }
 futures = "0.1"
 hyper = "0.12"
-
-[target.'cfg(windows)'.dependencies]
-fetch = { path = "../fetch" }
-
-[target.'cfg(unix)'.dependencies]
-fetch = { path = "../fetch" }
-
-[target.'cfg(target_arch = "x86")'.dependencies]
-fetch = { path = "../fetch" }
-
-[target.'cfg(target_arch = "x86_64")'.dependencies]
-fetch = { path = "../fetch" }

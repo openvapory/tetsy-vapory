@@ -8,7 +8,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
 
 [dependencies]
-fetch = { path = "../../util/fetch" }
+tetsy-fetch = { version = "0.1.0", path = "../../util/fetch" }
 futures = "0.1"
 log = "0.4"
 tetsy-runtime = { path = "../../util/runtime" }

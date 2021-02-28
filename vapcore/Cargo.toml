@@ -80,7 +80,7 @@ vapcore-accounts = { path = "../accounts" }
 vapcore-builtin = { path = "./builtin" }
 vapjson = { path = "../json", features = ["test-helpers"] }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
-fetch = { path = "../util/fetch" }
+tetsy-fetch = { version = "0.1.0", path = "../util/fetch" }
 tetsy-kvdb-memorydb = "0.3.2"
 # tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 tetsy-kvdb-rocksdb = "0.4.3"

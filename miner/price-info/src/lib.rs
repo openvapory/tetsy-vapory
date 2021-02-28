@@ -19,7 +19,7 @@
 //! A simple client to get the current VAP price using an external API.
 
 use std::{cmp, fmt, io, str};
-use fetch::{Client as FetchClient, Fetch};
+use tetsy_fetch::{Client as FetchClient, Fetch};
 use futures::{Future, Stream};
 use log::warn;
 use tetsy_runtime::Executor;
@@ -56,14 +56,14 @@ impl<F> cmp::PartialEq for Client<F> {
 }
 
 impl<F: Fetch> Client<F> {
-	/// Creates a new instance of the `Client` given a `fetch::Client`.
+	/// Creates a new instance of the `Client` given a `tetsy_fetch::Client`.
 	pub fn new(fetch: F, pool: Executor, api_endpoint: String) -> Client<F> {
 		Client { pool, api_endpoint, fetch }
 	}
 
 	/// Gets the current VAP price and calls `set_price` with the result.
 	pub fn get<G: FnOnce(PriceInfo) + Sync + Send + 'static>(&self, set_price: G) {
-		let future = self.fetch.get(&self.api_endpoint, fetch::Abort::default())
+		let future = self.fetch.get(&self.api_endpoint, tetsy_fetch::Abort::default())
 			.and_then(|response| response.concat2())
 			.and_then(move |body| {
 				let body_str = str::from_utf8(&body).ok();
@@ -83,7 +83,7 @@ impl<F: Fetch> Client<F> {
 					None => {
 						let msg = format!("Unexpected response: {}", body_str.unwrap_or_default());
 						let err = io::Error::new(io::ErrorKind::Other, msg);
-						Err(fetch::Error::Io(err))
+						Err(tetsy_fetch::Error::Io(err))
 					}
 				}
 			})

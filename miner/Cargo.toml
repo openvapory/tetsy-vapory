@@ -9,7 +9,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 [dependencies]
 # Only work_notify, consider a separate crate
 vapash = { path = "../vapash", optional = true }
-fetch = { path = "../util/fetch", optional = true }
+tetsy-fetch = { path = "../util/fetch", optional = true }
 hyper = { version = "0.12", optional = true }
 url = { version = "2", optional = true }
 

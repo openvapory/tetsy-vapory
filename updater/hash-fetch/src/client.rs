@@ -22,7 +22,7 @@ use std::sync::{Arc, Weak};
 use std::path::PathBuf;
 
 use hash::keccak_buffer;
-use fetch::{self, Fetch};
+use tetsy_fetch::{self, Fetch};
 use futures::{Future, IntoFuture};
 use tetsy_runtime::Executor;
 use urlhint::{URLHintContract, URLHint, URLHintResult};
@@ -37,7 +37,7 @@ pub trait HashFetch: Send + Sync + 'static {
 	/// 2. `on_done` - callback function invoked when the content is ready (or there was error during fetch)
 	///
 	/// This function may fail immediately when fetch cannot be initialized or content cannot be resolved.
-	fn fetch(&self, hash: H256, abort: fetch::Abort, on_done: Box<dyn Fn(Result<PathBuf, Error>) + Send>);
+	fn fetch(&self, hash: H256, abort: tetsy_fetch::Abort, on_done: Box<dyn Fn(Result<PathBuf, Error>) + Send>);
 }
 
 /// Hash-fetching error.
@@ -57,7 +57,7 @@ pub enum Error {
 	/// IO Error while validating hash.
 	IO(io::Error),
 	/// Error during fetch.
-	Fetch(fetch::Error),
+	Fetch(tetsy_fetch::Error),
 }
 
 #[cfg(test)]
@@ -77,8 +77,8 @@ impl PartialEq for Error {
 	}
 }
 
-impl From<fetch::Error> for Error {
-	fn from(error: fetch::Error) -> Self {
+impl From<tetsy_fetch::Error> for Error {
+	fn from(error: tetsy_fetch::Error) -> Self {
 		Error::Fetch(error)
 	}
 }
@@ -89,7 +89,7 @@ impl From<io::Error> for Error {
 	}
 }
 
-fn validate_hash(path: PathBuf, hash: H256, body: fetch::BodyReader) -> Result<PathBuf, Error> {
+fn validate_hash(path: PathBuf, hash: H256, body: tetsy_fetch::BodyReader) -> Result<PathBuf, Error> {
 	// Read the response
 	let mut reader = io::BufReader::new(body);
 	let mut writer = io::BufWriter::new(fs::File::create(&path)?);
@@ -107,7 +107,7 @@ fn validate_hash(path: PathBuf, hash: H256, body: fetch::BodyReader) -> Result<P
 }
 
 /// Default Hash-fetching client using on-chain contract to resolve hashes to URLs.
-pub struct Client<F: Fetch + 'static = fetch::Client> {
+pub struct Client<F: Fetch + 'static = tetsy_fetch::Client> {
 	contract: URLHintContract,
 	fetch: F,
 	executor: Executor,
@@ -127,7 +127,7 @@ impl<F: Fetch + 'static> Client<F> {
 }
 
 impl<F: Fetch + 'static> HashFetch for Client<F> {
-	fn fetch(&self, hash: H256, abort: fetch::Abort, on_done: Box<dyn Fn(Result<PathBuf, Error>) + Send>) {
+	fn fetch(&self, hash: H256, abort: tetsy_fetch::Abort, on_done: Box<dyn Fn(Result<PathBuf, Error>) + Send>) {
 		debug!(target: "fetch", "Fetching: {:?}", hash);
 
 		let random_path = self.random_path.clone();
@@ -162,7 +162,7 @@ impl<F: Fetch + 'static> HashFetch for Client<F> {
 			.and_then(move |response| {
 				debug!(target: "fetch", "Content fetched, validating hash ({:?})", hash);
 				let path = random_path();
-				let res = validate_hash(path.clone(), hash, fetch::BodyReader::new(response));
+				let res = validate_hash(path.clone(), hash, tetsy_fetch::BodyReader::new(response));
 				if let Err(ref err) = res {
 					trace!(target: "fetch", "Error: {:?}", err);
 					// Remove temporary file in case of error

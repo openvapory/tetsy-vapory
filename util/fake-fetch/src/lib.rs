@@ -14,13 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-extern crate fetch;
+extern crate tetsy_fetch;
 extern crate hyper;
 extern crate futures;
 
 use hyper::{StatusCode, Body};
 use futures::{future, future::FutureResult};
-use fetch::{Fetch, Url, Request};
+use tetsy_fetch::{Fetch, Url, Request};
 
 #[derive(Clone, Default)]
 pub struct FakeFetch<T> where T: Clone + Send + Sync {
@@ -34,22 +34,22 @@ impl<T> FakeFetch<T> where T: Clone + Send + Sync {
 }
 
 impl<T: 'static> Fetch for FakeFetch<T> where T: Clone + Send+ Sync {
-	type Result = FutureResult<fetch::Response, fetch::Error>;
+	type Result = FutureResult<tetsy_fetch::Response, tetsy_fetch::Error>;
 
-	fn fetch(&self, request: Request, abort: fetch::Abort) -> Self::Result {
+	fn fetch(&self, request: Request, abort: tetsy_fetch::Abort) -> Self::Result {
 		let u = request.url().clone();
 		future::ok(if self.val.is_some() {
 			let r = hyper::Response::new("Some content".into());
-			fetch::client::Response::new(u, r, abort)
+			tetsy_fetch::client::Response::new(u, r, abort)
 		} else {
 			let r = hyper::Response::builder()
 				.status(StatusCode::NOT_FOUND)
 				.body(Body::empty()).expect("Nothing to parse, can not fail; qed");
-			fetch::client::Response::new(u, r, abort)
+			tetsy_fetch::client::Response::new(u, r, abort)
 		})
 	}
 
-	fn get(&self, url: &str, abort: fetch::Abort) -> Self::Result {
+	fn get(&self, url: &str, abort: tetsy_fetch::Abort) -> Self::Result {
 		let url: Url = match url.parse() {
 			Ok(u) => u,
 			Err(e) => return future::err(e.into())
@@ -57,7 +57,7 @@ impl<T: 'static> Fetch for FakeFetch<T> where T: Clone + Send+ Sync {
 		self.fetch(Request::get(url), abort)
 	}
 
-	fn post(&self, url: &str, abort: fetch::Abort) -> Self::Result {
+	fn post(&self, url: &str, abort: tetsy_fetch::Abort) -> Self::Result {
 		let url: Url = match url.parse() {
 			Ok(u) => u,
 			Err(e) => return future::err(e.into())

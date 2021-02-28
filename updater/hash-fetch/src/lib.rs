@@ -51,4 +51,4 @@ mod client;
 pub mod urlhint;
 
 pub use client::{HashFetch, Client, Error};
-pub use fetch::Abort;
+pub use tetsy_fetch::Abort;

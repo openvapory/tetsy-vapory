@@ -57,7 +57,7 @@ vip-712 = { path = "../util/vip-712" }
 vapjson = { path = "../json" }
 vapkey = { path = "../accounts/vapkey" }
 vapstore = { path = "../accounts/vapstore" }
-fetch = { path = "../util/fetch" }
+tetsy-fetch = { version = "0.1.0", path = "../util/fetch" }
 tetsy-keccak-hash = "0.4.0"
 tetsy-runtime = { path = "../util/runtime" }
 tetsy-updater = { path = "../updater" }

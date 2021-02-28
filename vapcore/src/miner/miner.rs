@@ -1891,7 +1891,7 @@ mod tests {
 	#[cfg(feature = "price-info")]
 	fn dynamic_gas_pricer() -> GasPricer {
 		use tetsy_runtime::Executor;
-		use fetch::Client as FetchClient;
+		use tetsy_fetch::Client as FetchClient;
 		use vapcore_miner::gas_price_calibrator::{GasPriceCalibrator, GasPriceCalibratorOptions};
 
 		// Don't really care about any of these settings since

@@ -1,11 +1,12 @@
 [package]
 description = "HTTP/HTTPS fetching library"
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
-name = "fetch"
+name = "tetsyh-fetch"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
-publish = false
+documentation = "https://docs.rs/fake-fetch"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 futures = "0.1"

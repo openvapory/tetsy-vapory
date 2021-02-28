@@ -14,7 +14,7 @@ mime = "0.3"
 mime_guess = "2.0.0-alpha.2"
 rand = "0.7"
 rustc-hex = "1.0"
-fetch = { path = "../../util/fetch" }
+tetsy-fetch = { version = "0.1.0", path = "../../util/fetch" }
 tetsy-bytes = "0.1"
 vapory-types = "0.8.0"
 tetsy-runtime = { path = "../../util/runtime" }

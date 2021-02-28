@@ -21,7 +21,7 @@ use std::io;
 use std::sync::Arc;
 
 use vapory_types::{H160, H256, U256};
-use fetch::{self, Fetch};
+use tetsy_fetch::{self, Fetch};
 use hash::keccak_buffer;
 use light::client::LightChainClient;
 use sync::ManageNetwork;
@@ -134,7 +134,7 @@ impl<F: Fetch> TetsySet for TetsySetClient<F> {
 			result
 				.map_err(errors::fetch)
 				.and_then(move |response| {
-					let mut reader = io::BufReader::new(fetch::BodyReader::new(response));
+					let mut reader = io::BufReader::new(tetsy_fetch::BodyReader::new(response));
 					keccak_buffer(&mut reader).map_err(errors::fetch)
 				})
 				.map(Into::into)

@@ -24,7 +24,7 @@ use types::client_types::Mode;
 use vapcore::miner::{self, MinerService};
 use vapory_types::{H160, H256, U256};
 use crypto::publickey::KeyPair;
-use fetch::{self, Fetch};
+use tetsy_fetch::{self, Fetch};
 use hash::keccak_buffer;
 use sync::ManageNetwork;
 use updater::{Service as UpdateService};

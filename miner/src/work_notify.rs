@@ -17,12 +17,12 @@
 //! Sends HTTP notifications to a list of URLs every time new work is available.
 
 extern crate vapash;
-extern crate fetch;
+extern crate tetsy_fetch;
 extern crate tetsy_runtime;
 extern crate url;
 extern crate hyper;
 
-use self::fetch::{Fetch, Request, Client as FetchClient, Method};
+use self::tetsy_fetch::{Fetch, Request, Client as FetchClient, Method};
 use self::tetsy_runtime::Executor;
 use self::vapash::SeedHashCompute;
 use self::url::Url;
