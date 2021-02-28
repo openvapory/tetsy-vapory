@@ -150,7 +150,7 @@ mod test {
 	use common_types::account_diff::*;
 	use super::{PodAccount, diff_pod};
 	use vapory_types::H256;
-	use macros::map;
+	use tetsy_macros::map;
 
 	#[test]
 	fn existence() {

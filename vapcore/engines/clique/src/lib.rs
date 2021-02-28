@@ -80,7 +80,7 @@ use machine::{
 	ExecutedBlock,
 	Machine,
 };
-use macros::map;
+use tetsy_macros::map;
 use parking_lot::RwLock;
 use rand::Rng;
 use tetsy_unexpected::{Mismatch, OutOfBounds};

@@ -49,7 +49,7 @@ use light::net::{
 	Capabilities, Handler as LightHandler, EventContext, SampleStore,
 };
 use log::{trace, warn};
-use macros::hash_map;
+use tetsy_macros::hash_map;
 use network::{
 	client_version::ClientVersion,
 	NetworkProtocolHandler, NetworkContext, PeerId, ProtocolId,

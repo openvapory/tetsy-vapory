@@ -129,7 +129,7 @@ mod tests {
 
 	use crate::spec::{Account, HashOrMap};
 	use vapory_types::{U256, H160 as Hash160, H256 as Hash256};
-	use macros::map;
+	use tetsy_macros::map;
 	use rustc_hex::FromHex;
 
 	const TEST_CODE: &str = "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01600055";

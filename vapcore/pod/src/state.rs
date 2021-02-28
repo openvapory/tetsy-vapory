@@ -82,7 +82,7 @@ mod test {
 	use vapory_types::Address;
 	use crate::account::PodAccount;
 	use super::PodState;
-	use macros::map;
+	use tetsy_macros::map;
 
 	#[test]
 	fn create_delete() {

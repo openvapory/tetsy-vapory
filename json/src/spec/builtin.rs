@@ -140,7 +140,7 @@ pub struct PricingAt {
 #[cfg(test)]
 mod tests {
 	use super::{Builtin, BuiltinCompat, BTreeMap, Pricing, PricingAt, Linear, Modexp, AltBn128ConstOperations};
-	use macros::map;
+	use tetsy_macros::map;
 
 	#[test]
 	fn builtin_deserialization() {
@@ -218,7 +218,7 @@ mod tests {
 		assert_eq!(builtin.pricing, map![
 			100500 => PricingAt {
 				info: None,
-				price: Pricing::AltBn128ConstOperations(AltBn128ConstOperations { 
+				price: Pricing::AltBn128ConstOperations(AltBn128ConstOperations {
 					price: 123,
 				}),
 			}

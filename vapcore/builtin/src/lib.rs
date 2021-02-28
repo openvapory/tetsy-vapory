@@ -759,7 +759,7 @@ mod tests {
 		PricingAt, AltBn128Pairing as JsonAltBn128PairingPricing, Pricing as JsonPricing,
 	};
 	use hex_literal::hex;
-	use macros::map;
+	use tetsy_macros::map;
 	use num::{BigUint, Zero, One};
 	use tetsy_bytes::BytesRef;
 	use super::{

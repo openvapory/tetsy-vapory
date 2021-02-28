@@ -37,7 +37,7 @@ use vapjson;
 use vapash::{self, quick_get_difficulty, slow_hash_block_number, VapashManager};
 use tetsy_keccak_hash::{KECCAK_EMPTY_LIST_RLP};
 use log::trace;
-use macros::map;
+use tetsy_macros::map;
 use machine::{
 	ExecutedBlock,
 	Machine,

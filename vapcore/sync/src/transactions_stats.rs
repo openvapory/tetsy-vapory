@@ -93,7 +93,7 @@ impl TransactionsStats {
 mod tests {
 	use std::collections::{HashMap, HashSet};
 	use super::{Stats, TransactionsStats, NodeId, H256};
-	use macros::hash_map;
+	use tetsy_macros::hash_map;
 
 	#[test]
 	fn should_keep_track_of_propagations() {

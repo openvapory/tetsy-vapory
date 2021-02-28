@@ -1235,7 +1235,7 @@ mod tests {
 	};
 	use tetsy_crypto::publickey::{Generator, Random};
 	use vvm::{Factory, vvm_test, vvm_test_ignore};
-	use macros::vec_into;
+	use tetsy_macros::vec_into;
 	use vm::{ActionParams, ActionValue, EnvInfo, CreateContractAddress};
 	use ::trace::{
 		trace,

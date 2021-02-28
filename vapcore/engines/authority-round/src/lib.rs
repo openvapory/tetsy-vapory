@@ -49,7 +49,7 @@ use machine::{
 	ExecutedBlock,
 	Machine,
 };
-use macros::map;
+use tetsy_macros::map;
 use tetsy_keccak_hash::keccak;
 use log::{info, debug, error, trace, warn};
 use lru_cache::LruCache;
