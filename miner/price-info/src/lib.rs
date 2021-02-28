@@ -25,7 +25,7 @@ use log::warn;
 use tetsy_runtime::Executor;
 use serde_json::Value;
 
-pub use fetch;
+pub use tetsy_fetch;
 
 /// Current VAP price information.
 #[derive(Debug)]
