@@ -5,6 +5,7 @@ license = "GPL-3.0"
 name = "fetch"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+publish = false
 
 [dependencies]
 futures = "0.1"
