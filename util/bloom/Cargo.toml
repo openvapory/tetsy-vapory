@@ -2,9 +2,12 @@
 name = "vapcore-bloom-journal"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
-description = "Journaling bloom filter"
-license = "GPL3"
+description = "Vapory Journaling bloom filter"
+license = "GPL-3.0"
 edition = "2018"
+documentation = "https://docs.rs/vapcore-bloom-journal"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [lib]
 path = "src/lib.rs"
