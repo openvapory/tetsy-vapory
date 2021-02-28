@@ -9,6 +9,7 @@ homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
+fetch = "0.4.0"
 futures = "0.1"
 hyper = "0.12"
 
