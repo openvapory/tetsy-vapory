@@ -1,7 +1,7 @@
 [package]
 description = "HTTP/HTTPS fetching library"
 license = "GPL-3.0"
-name = "tetsyh-fetch"
+name = "tetsy-fetch"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 documentation = "https://docs.rs/fake-fetch"
