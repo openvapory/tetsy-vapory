@@ -286,7 +286,7 @@ where
 			.map(move |prices| {
 				// produce a corpus from the vector and cache it.
 				// It's later used to get a percentile for default gas price.
-				let corpus: ::stats::Corpus<_> = prices.into();
+				let corpus: ::tetsy_stats::Corpus<_> = prices.into();
 				cache.lock().set_gas_price_corpus(corpus.clone());
 				corpus
 			})
