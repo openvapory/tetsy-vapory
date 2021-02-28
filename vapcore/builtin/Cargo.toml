@@ -20,4 +20,4 @@ tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 
 [dev-dependencies]
 hex-literal = "0.2.1"
-tetsy-macros = { path = "../../util/macros" }
+tetsy-macros = { version = "0.1.0", path = "../../util/macros" }

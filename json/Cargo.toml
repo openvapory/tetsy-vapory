@@ -16,7 +16,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 [dev-dependencies]
-tetsy-macros = { path = "../util/macros" }
+tetsy-macros = { version = "0.1.0", path = "../util/macros" }
 
 [features]
 test-helpers = []
