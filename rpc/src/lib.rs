@@ -77,7 +77,7 @@ extern crate vapcore_sync as sync;
 extern crate vapory_types;
 extern crate vapkey;
 extern crate vapstore;
-extern crate fetch;
+extern crate tetsy_fetch;
 extern crate tetsy_keccak_hash as hash;
 extern crate tetsy_runtime;
 extern crate tetsy_updater as updater;
