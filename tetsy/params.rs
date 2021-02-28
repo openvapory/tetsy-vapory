@@ -21,7 +21,7 @@ use std::{str, fs, fmt};
 use spec::{Spec, SpecParams, self};
 use vapory_types::{U256, Address};
 use tetsy_runtime::Executor;
-use hash_fetch::fetch::Client as FetchClient;
+use hash_fetch::tetsy_fetch::Client as FetchClient;
 use journaldb::Algorithm;
 use miner::gas_pricer::GasPricer;
 use miner::gas_price_calibrator::{GasPriceCalibratorOptions, GasPriceCalibrator};

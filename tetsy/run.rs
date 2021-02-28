@@ -29,7 +29,7 @@ use verification::queue::VerifierSettings;
 use vapcore_logger::{Config as LogConfig, RotatingLogger};
 use vapcore_service::ClientService;
 use futures::Stream;
-use hash_fetch::{self, fetch};
+use hash_fetch::{self, tetsy_fetch};
 use informant::{Informant, LightNodeInformantData, FullNodeInformantData};
 use journaldb::Algorithm;
 use light::Cache as LightDataCache;
