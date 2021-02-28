@@ -4,6 +4,10 @@ name = "vapjson"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
+license = "GPL-3.0"
+documentation = "https://docs.rs/macros"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 vapory-types = "0.8.0"
@@ -12,7 +16,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 [dev-dependencies]
-macros = { path = "../util/macros" }
+macros = { version = "0.1.0", path = "../util/macros" }
 
 [features]
 test-helpers = []
