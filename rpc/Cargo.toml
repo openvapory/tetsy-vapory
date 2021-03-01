@@ -28,12 +28,12 @@ tokio-timer = "0.1"
 transient-hashmap = "0.4"
 itertools = "0.5"
 
-tetsy-jsonrpc-core = "14.2.0"
-tetsy-jsonrpc-derive = "14.2.0"
-tetsy-jsonrpc-http-server = "14.2.0"
-tetsy-jsonrpc-ws-server = "14.2.0"
-tetsy-jsonrpc-ipc-server = "14.2.0"
-tetsy-jsonrpc-pubsub = "14.2.0"
+tetsy-jsonrpc-core = "14.2.1"
+tetsy-jsonrpc-derive = "14.2.1"
+tetsy-jsonrpc-http-server = "14.2.1"
+tetsy-jsonrpc-ws-server = "14.2.1"
+tetsy-jsonrpc-ipc-server = "14.2.1"
+tetsy-jsonrpc-pubsub = "14.2.1"
 
 client-traits = { path = "../vapcore/client-traits" }
 common-types = { path = "../vapcore/types" }

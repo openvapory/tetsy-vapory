@@ -35,7 +35,7 @@ tokio = "0.1.22"
 tokio-io = "0.1"
 tokio-service = "0.1"
 url = "2.1.0"
-tetsy-jsonrpc-server-utils = "14.2.0"
+tetsy-jsonrpc-server-utils = "14.2.1"
 
 [dev-dependencies]
 env_logger = "0.5"
