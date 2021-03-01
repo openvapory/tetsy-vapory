@@ -26,12 +26,12 @@
 use block::Block as FullBlock;
 use vapory_types::{H256, Bloom, U256, Address};
 use hash::keccak;
-use header::Header as FullHeader;
+use crate::header::Header as FullHeader;
 use tetsy_util_mem::MallocSizeOf;
 use tetsy_rlp::{self, Rlp, RlpStream};
-use transaction::UnverifiedTransaction;
-use views::{self, BlockView, HeaderView, BodyView};
-use BlockNumber;
+use crate::transaction::UnverifiedTransaction;
+use crate::views::{self, BlockView, HeaderView, BodyView};
+use crate::BlockNumber;
 
 /// Owning header view.
 #[derive(Debug, Clone, PartialEq, Eq, MallocSizeOf)]

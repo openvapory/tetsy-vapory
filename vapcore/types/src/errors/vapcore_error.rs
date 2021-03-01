@@ -23,8 +23,8 @@ use vaptrie::TrieError;
 use tetsy_snappy::InvalidInput;
 use tetsy_crypto::publickey::Error as VapPublicKeyCryptoError;
 
-use errors::{BlockError, EngineError, ImportError, SnapshotError};
-use transaction::Error as TransactionError;
+use crate::errors::{BlockError, EngineError, ImportError, SnapshotError};
+use crate::transaction::Error as TransactionError;
 
 /// Vapcore Result
 pub type VapcoreResult<T> = Result<T, VapcoreError>;

@@ -24,7 +24,7 @@ use vapbloom::Bloom;
 use vapory_types::{H256, U256, Address};
 use tetsy_unexpected::{Mismatch, OutOfBounds};
 
-use BlockNumber;
+use crate::BlockNumber;
 
 /// Errors concerning block processing.
 #[derive(Debug, Display, PartialEq, Clone, Eq)]

@@ -21,7 +21,7 @@ use bytes::Bytes;
 use vapjson;
 
 use crate::BlockNumber;
-use engines::DEFAULT_BLOCKHASH_CONTRACT;
+use crate::engines::DEFAULT_BLOCKHASH_CONTRACT;
 
 const MAX_TRANSACTION_SIZE: usize = 300 * 1024;
 
