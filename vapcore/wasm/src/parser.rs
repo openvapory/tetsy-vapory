@@ -21,7 +21,7 @@ use wasm_utils::{self, rules};
 use tetsy_wasm::elements::{self, Deserialize};
 use tetsy_wasm::peek_size;
 
-fn gas_rules(wasm_costs: &vm::WasmCosts) -> rules::Set {
+fn gas_rules(wasm_costs: &tetsy_vm::WasmCosts) -> rules::Set {
 	rules::Set::new(
 		wasm_costs.regular,
 		{
@@ -39,23 +39,23 @@ fn gas_rules(wasm_costs: &vm::WasmCosts) -> rules::Set {
 /// Splits payload to code and data according to params.params_type, also
 /// loads the module instance from payload and injects gas counter according
 /// to schedule.
-pub fn payload<'a>(params: &'a vm::ActionParams, wasm_costs: &vm::WasmCosts)
-	-> Result<(elements::Module, &'a [u8]), vm::Error>
+pub fn payload<'a>(params: &'a tetsy_vm::ActionParams, wasm_costs: &tetsy_vm::WasmCosts)
+	-> Result<(elements::Module, &'a [u8]), tetsy_vm::Error>
 {
 	let code = match params.code {
 		Some(ref code) => &code[..],
-		None => { return Err(vm::Error::Wasm("Invalid wasm call".to_owned())); }
+		None => { return Err(tetsy_vm::Error::Wasm("Invalid wasm call".to_owned())); }
 	};
 
 	let (mut cursor, data_position) = match params.params_type {
-		vm::ParamsType::Embedded => {
+		tetsy_vm::ParamsType::Embedded => {
 			let module_size = peek_size(&*code);
 			(
 				::std::io::Cursor::new(&code[..module_size]),
 				module_size
 			)
 		},
-		vm::ParamsType::Separate => {
+		tetsy_vm::ParamsType::Separate => {
 			(::std::io::Cursor::new(&code[..]), 0)
 		},
 	};
@@ -63,30 +63,30 @@ pub fn payload<'a>(params: &'a vm::ActionParams, wasm_costs: &vm::WasmCosts)
 	let deserialized_module = elements::Module::deserialize(
 			&mut cursor
 		).map_err(|err| {
-			vm::Error::Wasm(format!("Error deserializing contract code ({:?})", err))
+			tetsy_vm::Error::Wasm(format!("Error deserializing contract code ({:?})", err))
 		})?;
 
 	if deserialized_module.memory_section().map_or(false, |ms| ms.entries().len() > 0) {
 		// According to WebAssembly spec, internal memory is hidden from embedder and should not
 		// be interacted with. So we disable this kind of modules at decoding level.
-		return Err(vm::Error::Wasm(format!("Malformed wasm module: internal memory")));
+		return Err(tetsy_vm::Error::Wasm(format!("Malformed wasm module: internal memory")));
 	}
 
 	let contract_module = wasm_utils::inject_gas_counter(
 		deserialized_module,
 		&gas_rules(wasm_costs),
-	).map_err(|_| vm::Error::Wasm(format!("Wasm contract error: bytecode invalid")))?;
+	).map_err(|_| tetsy_vm::Error::Wasm(format!("Wasm contract error: bytecode invalid")))?;
 
 	let contract_module = wasm_utils::stack_height::inject_limiter(
 		contract_module,
 		wasm_costs.max_stack_height,
-	).map_err(|_| vm::Error::Wasm(format!("Wasm contract error: stack limiter failure")))?;
+	).map_err(|_| tetsy_vm::Error::Wasm(format!("Wasm contract error: stack limiter failure")))?;
 
 	let data = match params.params_type {
-		vm::ParamsType::Embedded => {
+		tetsy_vm::ParamsType::Embedded => {
 			if data_position < code.len() { &code[data_position..] } else { &[] }
 		},
-		vm::ParamsType::Separate => {
+		tetsy_vm::ParamsType::Separate => {
 			match params.data {
 				Some(ref s) => &s[..],
 				None => &[]

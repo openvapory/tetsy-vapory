@@ -20,7 +20,7 @@ extern crate bit_set;
 extern crate vapory_types;
 extern crate parking_lot;
 extern crate tetsy_util_mem;
-extern crate vm;
+extern crate tetsy_vm;
 extern crate tetsy_keccak_hash as hash;
 extern crate memory_cache;
 extern crate tetsy_bytes as bytes;
