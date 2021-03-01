@@ -146,7 +146,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 
 	fn set_storage(&mut self, key: H256, value: H256) -> tetsy_vm::Result<()> {
 		if self.static_flag {
-			Err(vm::Error::MutableCallInStaticContext)
+			Err(tetsy_vm::Error::MutableCallInStaticContext)
 		} else {
 			self.state.set_storage(&self.origin_info.address, key, value).map_err(Into::into)
 		}
@@ -352,7 +352,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 
 	fn log(&mut self, topics: Vec<H256>, data: &[u8]) -> tetsy_vm::Result<()> {
 		if self.static_flag {
-			return Err(vm::Error::MutableCallInStaticContext);
+			return Err(tetsy_vm::Error::MutableCallInStaticContext);
 		}
 
 		let address = self.origin_info.address.clone();
@@ -375,7 +375,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 				let return_cost = U256::from(data.len()) * U256::from(self.schedule.create_data_gas);
 				if return_cost > *gas || data.len() > self.schedule.create_data_limit {
 					return match self.schedule.exceptional_failed_code_deposit {
-						true => Err(vm::Error::OutOfGas),
+						true => Err(tetsy_vm::Error::OutOfGas),
 						false => Ok(*gas)
 					}
 				}
@@ -390,7 +390,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 
 	fn suicide(&mut self, refund_address: &Address) -> tetsy_vm::Result<()> {
 		if self.static_flag {
-			return Err(vm::Error::MutableCallInStaticContext);
+			return Err(tetsy_vm::Error::MutableCallInStaticContext);
 		}
 
 		let address = self.origin_info.address.clone();
