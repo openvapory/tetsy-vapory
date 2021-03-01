@@ -85,7 +85,7 @@ impl WasmInterpreter {
 
 impl From<runtime::Error> for tetsy_vm::Error {
 	fn from(e: runtime::Error) -> Self {
-		vm::Error::Wasm(format!("Wasm runtime error: {:?}", e))
+		tetsy_vm::Error::Wasm(format!("Wasm runtime error: {:?}", e))
 	}
 }
 
@@ -113,7 +113,7 @@ impl WasmInterpreter {
 
 		if adjusted_gas > ::std::u64::MAX.into()
 		{
-			return Err(vm::Error::Wasm("Wasm interpreter cannot run contracts with gas (wasm adjusted) >= 2^64".to_owned()));
+			return Err(tetsy_vm::Error::Wasm("Wasm interpreter cannot run contracts with gas (wasm adjusted) >= 2^64".to_owned()));
 		}
 
 		let initial_memory = instantiation_resolver.memory_size().map_err(Error::Interpreter)?;
@@ -164,7 +164,7 @@ impl WasmInterpreter {
 
 			if let (ExecutionOutcome::NotSpecial, Err(e)) = (execution_outcome, invoke_result) {
 				trace!(target: "wasm", "Error executing contract: {:?}", e);
-				return Err(vm::Error::from(Error::from(e)));
+				return Err(tetsy_vm::Error::from(Error::from(e)));
 			}
 
 			(

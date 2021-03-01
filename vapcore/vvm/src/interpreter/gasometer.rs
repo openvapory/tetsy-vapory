@@ -18,7 +18,7 @@ use std::cmp;
 use vapory_types::{BigEndianHash, U256};
 use super::u256_to_address;
 
-use {vvm, vm};
+use {vvm, tetsy_vm};
 use instructions::{self, Instruction, InstructionInfo};
 use interpreter::stack::Stack;
 use tetsy_vm::Schedule;
@@ -26,7 +26,7 @@ use tetsy_vm::Schedule;
 macro_rules! overflowing {
 	($x: expr) => {{
 		let (v, overflow) = $x;
-		if overflow { return Err(vm::Error::OutOfGas); }
+		if overflow { return Err(tetsy_vm::Error::OutOfGas); }
 		v
 	}}
 }
@@ -61,7 +61,7 @@ impl<Gas: vvm::CostType> Gasometer<Gas> {
 
 	pub fn verify_gas(&self, gas_cost: &Gas) -> tetsy_vm::Result<()> {
 		match &self.current_gas < gas_cost {
-			true => Err(vm::Error::OutOfGas),
+			true => Err(tetsy_vm::Error::OutOfGas),
 			false => Ok(())
 		}
 	}
@@ -122,7 +122,7 @@ impl<Gas: vvm::CostType> Gasometer<Gas> {
 			},
 			instructions::SSTORE => {
 				if schedule.eip1706 && self.current_gas <= Gas::from(schedule.call_stipend) {
-					return Err(vm::Error::OutOfGas);
+					return Err(tetsy_vm::Error::OutOfGas);
 				}
 
 				let address = BigEndianHash::from_uint(stack.peek(0));

@@ -163,7 +163,7 @@ pub enum InterpreterResult {
 	/// The VM has already stopped.
 	Stopped,
 	/// The VM has just finished execution in the current step.
-	Done(vm::Result<GasLeft>),
+	Done(tetsy_vm::Result<GasLeft>),
 	/// The VM can continue to run.
 	Continue,
 	Trap(TrapKind),
@@ -299,7 +299,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 		}
 
 		let result = if self.gasometer.is_none() {
-			InterpreterResult::Done(Err(vm::Error::OutOfGas))
+			InterpreterResult::Done(Err(tetsy_vm::Error::OutOfGas))
 		} else if self.reader.len() == 0 {
 			let current_gas = self.gasometer
 				.as_ref()
@@ -335,7 +335,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 
 				let instruction = match instruction {
 					Some(i) => i,
-					None => return InterpreterResult::Done(Err(vm::Error::BadInstruction {
+					None => return InterpreterResult::Done(Err(tetsy_vm::Error::BadInstruction {
 						instruction: opcode
 					})),
 				};
@@ -447,19 +447,19 @@ impl<Cost: CostType> Interpreter<Cost> {
 			(instruction == instructions::CHAINID && !schedule.have_chain_id) ||
 			(instruction == instructions::SELFBALANCE && !schedule.have_selfbalance)
 		{
-			return Err(vm::Error::BadInstruction {
+			return Err(tetsy_vm::Error::BadInstruction {
 				instruction: instruction as u8
 			});
 		}
 
 		if !self.stack.has(info.args) {
-			Err(vm::Error::StackUnderflow {
+			Err(tetsy_vm::Error::StackUnderflow {
 				instruction: info.name,
 				wanted: info.args,
 				on_stack: self.stack.size()
 			})
 		} else if self.stack.size() - info.args + info.ret > schedule.stack_limit {
-			Err(vm::Error::OutOfStack {
+			Err(tetsy_vm::Error::OutOfStack {
 				instruction: info.name,
 				wanted: info.ret - info.args,
 				limit: schedule.stack_limit
@@ -541,7 +541,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 				let create_gas = provided.expect("`provided` comes through Self::exec from `Gasometer::get_gas_cost_mem`; `gas_gas_mem_cost` guarantees `Some` when instruction is `CALL`/`CALLCODE`/`DELEGATECALL`/`CREATE`; this is `CREATE`; qed");
 
 				if ext.is_static() {
-					return Err(vm::Error::MutableCallInStaticContext);
+					return Err(tetsy_vm::Error::MutableCallInStaticContext);
 				}
 
 				// clear return data buffer before creating new call frame.
@@ -613,7 +613,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 				let (sender_address, receive_address, has_balance, call_type) = match instruction {
 					instructions::CALL => {
 						if ext.is_static() && value.map_or(false, |v| !v.is_zero()) {
-							return Err(vm::Error::MutableCallInStaticContext);
+							return Err(tetsy_vm::Error::MutableCallInStaticContext);
 						}
 						let has_balance = ext.balance(&self.params.address)? >= value.expect("value set for all but delegate call; qed");
 						(&self.params.address, &code_address, has_balance, ActionType::Call)
@@ -829,7 +829,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 					let size = self.stack.peek(2);
 					let return_data_len = U256::from(self.return_data.len());
 					if source_offset.saturating_add(*size) > return_data_len {
-						return Err(vm::Error::OutOfBounds);
+						return Err(tetsy_vm::Error::OutOfBounds);
 					}
 				}
 				Self::copy_data_to_memory(&mut self.mem, &mut self.stack, &*self.return_data);
@@ -1178,7 +1178,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 		if valid_jump_destinations.contains(jump) && U256::from(jump) == jump_u {
 			Ok(jump)
 		} else {
-			Err(vm::Error::BadJumpDestination {
+			Err(tetsy_vm::Error::BadJumpDestination {
 				destination: jump
 			})
 		}
