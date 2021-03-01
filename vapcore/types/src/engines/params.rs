@@ -20,7 +20,7 @@ use vapory_types::{Address, U256, H256};
 use bytes::Bytes;
 use vapjson;
 
-use BlockNumber;
+use crate::BlockNumber;
 use engines::DEFAULT_BLOCKHASH_CONTRACT;
 
 const MAX_TRANSACTION_SIZE: usize = 300 * 1024;

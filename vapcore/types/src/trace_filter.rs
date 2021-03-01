@@ -18,7 +18,7 @@
 
 use std::ops::Range;
 use vapory_types::Address;
-use ids::BlockId;
+use crate::ids::BlockId;
 
 /// Easy to use trace filter.
 pub struct Filter {

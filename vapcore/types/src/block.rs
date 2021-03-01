@@ -24,10 +24,10 @@ use bytes::Bytes;
 use vapory_types::{H256, U256};
 use tetsy_util_mem::MallocSizeOf;
 
-use BlockNumber;
-use header::Header;
+use crate::BlockNumber;
+use crate::header::Header;
 use tetsy_rlp::{Rlp, RlpStream, Decodable, DecoderError};
-use transaction::{UnverifiedTransaction, SignedTransaction};
+use crate::transaction::{UnverifiedTransaction, SignedTransaction};
 
 /// A block, encoded as it is on the block chain.
 #[derive(Default, Debug, Clone, PartialEq)]
