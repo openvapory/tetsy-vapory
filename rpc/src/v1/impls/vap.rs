@@ -993,7 +993,7 @@ impl<C, SN: ?Sized, S: ?Sized, M, EM, T: StateInfo + 'static> Vap for VapClient<
 			.map_err(errors::call)
 			.and_then(|executed| {
 				match executed.exception {
-					Some(ref exception) => Err(errors::tetsy_vm(exception, &executed.output)),
+					Some(ref exception) => Err(errors::vm(exception, &executed.output)),
 					None => Ok(executed)
 				}
 			})
