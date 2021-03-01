@@ -278,8 +278,8 @@ impl Header {
 	}
 
 	/// Encode the header, getting a type-safe wrapper around the RLP.
-	pub fn encoded(&self) -> ::encoded::Header {
-		::encoded::Header::new(self.rlp(Seal::With))
+	pub fn encoded(&self) -> crate::encoded::Header {
+		crate::encoded::Header::new(self.rlp(Seal::With))
 	}
 
 	/// Get the RLP representation of this Header.
