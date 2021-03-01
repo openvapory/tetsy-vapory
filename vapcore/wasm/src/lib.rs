@@ -21,7 +21,7 @@ extern crate vapory_types;
 #[macro_use] extern crate log;
 extern crate libc;
 extern crate tetsy_wasm;
-extern crate vm;
+extern crate tetsy_vm;
 extern crate twasm_utils as wasm_utils;
 extern crate twasmi;
 
@@ -63,11 +63,11 @@ impl From<Trap> for Error {
 	}
 }
 
-impl From<Error> for vm::Error {
+impl From<Error> for tetsy_vm::Error {
 	fn from(e: Error) -> Self {
 		match e {
-			Error::Interpreter(e) => vm::Error::Wasm(format!("Wasm runtime error: {:?}", e)),
-			Error::Trap(e) => vm::Error::Wasm(format!("Wasm contract trap: {:?}", e)),
+			Error::Interpreter(e) => tetsy_vm::Error::Wasm(format!("Wasm runtime error: {:?}", e)),
+			Error::Trap(e) => tetsy_vm::Error::Wasm(format!("Wasm contract trap: {:?}", e)),
 		}
 	}
 }
@@ -83,7 +83,7 @@ impl WasmInterpreter {
 	}
 }
 
-impl From<runtime::Error> for vm::Error {
+impl From<runtime::Error> for tetsy_vm::Error {
 	fn from(e: runtime::Error) -> Self {
 		vm::Error::Wasm(format!("Wasm runtime error: {:?}", e))
 	}
@@ -96,7 +96,7 @@ enum ExecutionOutcome {
 }
 
 impl WasmInterpreter {
-	pub fn run(self: Box<WasmInterpreter>, ext: &mut dyn vm::Ext) -> vm::Result<GasLeft> {
+	pub fn run(self: Box<WasmInterpreter>, ext: &mut dyn tetsy_vm::Ext) -> tetsy_vm::Result<GasLeft> {
 		let (module, data) = parser::payload(&self.params, ext.schedule().wasm())?;
 
 		let loaded_module = twasmi::Module::from_tetsy_wasm_module(module).map_err(Error::Interpreter)?;
@@ -195,8 +195,8 @@ impl WasmInterpreter {
 	}
 }
 
-impl vm::Exec for WasmInterpreter {
-	fn exec(self: Box<WasmInterpreter>, ext: &mut dyn vm::Ext) -> vm::ExecTrapResult<GasLeft> {
+impl tetsy_vm::Exec for WasmInterpreter {
+	fn exec(self: Box<WasmInterpreter>, ext: &mut dyn tetsy_vm::Ext) -> tetsy_vm::ExecTrapResult<GasLeft> {
 		Ok(self.run(ext))
 	}
 }
