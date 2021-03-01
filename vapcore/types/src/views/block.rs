@@ -19,9 +19,9 @@
 use bytes::Bytes;
 use vapory_types::H256;
 use hash::keccak;
-use header::Header;
-use transaction::{UnverifiedTransaction, LocalizedTransaction};
-use views::{TransactionView, HeaderView};
+use common_types::header::Header;
+use common_types::transaction::{UnverifiedTransaction, LocalizedTransaction};
+use common_types::views::{TransactionView, HeaderView};
 use super::ViewRlp;
 
 /// View onto block rlp.
