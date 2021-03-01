@@ -19,7 +19,7 @@ use std::collections::{HashMap, HashSet};
 
 use vapory_types::{U256, H256, Address};
 use bytes::Bytes;
-use {
+use crate::{
 	ActionType, Schedule, EnvInfo,
 	ReturnData, Ext, ContractCreateResult, MessageCallResult,
 	CreateContractAddress, Result, GasLeft,

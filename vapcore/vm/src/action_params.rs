@@ -115,8 +115,8 @@ impl Default for ActionParams {
 	}
 }
 
-impl From<vapjson::tetsy_vm::Transaction> for ActionParams {
-	fn from(t: vapjson::tetsy_vm::Transaction) -> Self {
+impl From<vapjson::vm::Transaction> for ActionParams {
+	fn from(t: vapjson::vm::Transaction) -> Self {
 		let address: Address = t.address.into();
 		ActionParams {
 			code_address: Address::zero(),

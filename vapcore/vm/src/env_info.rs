@@ -61,8 +61,8 @@ impl Default for EnvInfo {
 	}
 }
 
-impl From<vapjson::tetsy_vm::Env> for EnvInfo {
-	fn from(e: vapjson::tetsy_vm::Env) -> Self {
+impl From<vapjson::vm::Env> for EnvInfo {
+	fn from(e: vapjson::vm::Env) -> Self {
 		let number = e.number.into();
 		EnvInfo {
 			number,
