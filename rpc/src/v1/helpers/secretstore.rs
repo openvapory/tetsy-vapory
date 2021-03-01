@@ -20,7 +20,7 @@ use vapory_types::{H256, H512};
 use crypto::publickey::{Public, Secret, Random, Generator, ec_math_utils};
 use crypto;
 use bytes::Bytes;
-use jsonrpc_core::Error;
+use tetsy_jsonrpc_core::Error;
 use v1::helpers::errors;
 use v1::types::EncryptedDocumentKey;
 use tiny_keccak::Keccak;

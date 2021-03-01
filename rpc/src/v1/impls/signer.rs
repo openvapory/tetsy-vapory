@@ -24,10 +24,10 @@ use parking_lot::Mutex;
 use tetsy_rlp::Rlp;
 use types::transaction::{SignedTransaction, PendingTransaction};
 
-use jsonrpc_core::{Result, BoxFuture, Error};
-use jsonrpc_core::futures::{future, Future, IntoFuture};
-use jsonrpc_core::futures::future::Either;
-use jsonrpc_pubsub::{SubscriptionId, typed::{Sink, Subscriber}};
+use tetsy_jsonrpc_core::{Result, BoxFuture, Error};
+use tetsy_jsonrpc_core::futures::{future, Future, IntoFuture};
+use tetsy_jsonrpc_core::futures::future::Either;
+use tetsy_jsonrpc_pubsub::{SubscriptionId, typed::{Sink, Subscriber}};
 use v1::helpers::deprecated::{self, DeprecationNotice};
 use v1::helpers::dispatch::{self, Dispatcher, WithToken, vap_data_hash};
 use v1::helpers::{errors, ConfirmationPayload, FilledTransactionRequest, Subscribers};

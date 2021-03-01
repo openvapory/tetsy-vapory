@@ -17,8 +17,8 @@
 use std::sync::Arc;
 
 use vapory_types::U256;
-use jsonrpc_core::{Result, Error};
-use jsonrpc_core::futures::{Future, Poll, Async, IntoFuture};
+use tetsy_jsonrpc_core::{Result, Error};
+use tetsy_jsonrpc_core::futures::{Future, Poll, Async, IntoFuture};
 use types::transaction::SignedTransaction;
 
 use v1::helpers::{errors, nonce, FilledTransactionRequest};

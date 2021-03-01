@@ -23,7 +23,7 @@ use vapstore::VapStore;
 use vapstore::accounts_dir::RootDiskDirectory;
 use tempdir::TempDir;
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::{TetsyAccounts, TetsyAccountsInfo, TetsyAccountsClient};
 
 struct TetsyAccountsTester {

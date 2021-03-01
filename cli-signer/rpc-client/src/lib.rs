@@ -19,8 +19,8 @@ pub mod signer_client;
 
 extern crate vapory_types;
 extern crate futures;
-extern crate jsonrpc_core;
-extern crate jsonrpc_ws_server as ws;
+extern crate tetsy_jsonrpc_core;
+extern crate tetsy_jsonrpc_ws_server as ws;
 extern crate tetsy_rpc as rpc;
 extern crate parking_lot;
 extern crate serde;

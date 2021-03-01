@@ -18,8 +18,8 @@
 
 use std::collections::BTreeSet;
 
-use jsonrpc_core::Result;
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::Result;
+use tetsy_jsonrpc_derive::rpc;
 use vapory_types::{H160, H256, H512};
 use vapkey::Password;
 use v1::types::{Bytes, EncryptedDocumentKey};

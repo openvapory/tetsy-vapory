@@ -16,8 +16,8 @@
 
 //! Stratum protocol implementation for parity vapory/bitcoin clients
 
-extern crate jsonrpc_tcp_server;
-extern crate jsonrpc_core;
+extern crate tetsy_jsonrpc_tcp_server;
+extern crate tetsy_jsonrpc_core;
 extern crate vapory_types;
 extern crate tetsy_keccak_hash as hash;
 extern crate parking_lot;
@@ -34,11 +34,11 @@ pub use traits::{
 	JobDispatcher, PushWorkHandler, Error, ServiceConfiguration,
 };
 
-use jsonrpc_tcp_server::{
+use tetsy_jsonrpc_tcp_server::{
 	Server as JsonRpcServer, ServerBuilder as JsonRpcServerBuilder,
 	RequestContext, MetaExtractor, Dispatcher, PushMessageError,
 };
-use jsonrpc_core::{MetaIoHandler, Params, to_value, Value, Metadata, Compatibility, IoDelegate};
+use tetsy_jsonrpc_core::{MetaIoHandler, Params, to_value, Value, Metadata, Compatibility, IoDelegate};
 use std::sync::Arc;
 
 use std::net::SocketAddr;
@@ -47,7 +47,7 @@ use hash::keccak;
 use vapory_types::H256;
 use parking_lot::RwLock;
 
-type RpcResult = Result<jsonrpc_core::Value, jsonrpc_core::Error>;
+type RpcResult = Result<tetsy_jsonrpc_core::Value, tetsy_jsonrpc_core::Error>;
 
 const NOTIFY_COUNTER_INITIAL: u32 = 16;
 
@@ -143,7 +143,7 @@ impl StratumImpl {
 		trace!(target: "stratum", "Subscription request from {:?}", meta.addr());
 
 		Ok(match self.dispatcher.initial() {
-			Some(initial) => match jsonrpc_core::Value::from_str(&initial) {
+			Some(initial) => match tetsy_jsonrpc_core::Value::from_str(&initial) {
 				Ok(val) => Ok(val),
 				Err(e) => {
 					warn!(target: "stratum", "Invalid payload: '{}' ({:?})", &initial, e);
@@ -248,7 +248,7 @@ impl StratumImpl {
 #[derive(Clone)]
 pub struct SocketMetadata {
 	addr: SocketAddr,
-	// with the new version of jsonrpc-core, SocketMetadata
+	// with the new version of tetsy-jsonrpc-core, SocketMetadata
 	// won't have to implement default, so this field will not
 	// have to be an Option
 	tcp_dispatcher: Option<Dispatcher>,
@@ -299,7 +299,7 @@ mod tests {
 	use std::sync::Arc;
 
 	use tokio::{io, runtime::Runtime, timer::timeout::{self, Timeout}, net::TcpStream};
-	use jsonrpc_core::futures::{Future, future};
+	use tetsy_jsonrpc_core::futures::{Future, future};
 
 	pub struct VoidManager;
 

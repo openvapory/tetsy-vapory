@@ -16,8 +16,8 @@
 
 //! Vap rpc interface.
 
-use jsonrpc_core::BoxFuture;
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::BoxFuture;
+use tetsy_jsonrpc_derive::rpc;
 
 use vapory_types::{H160, H256, H520};
 use v1::types::{Bytes, TransactionRequest, RichRawTransaction};

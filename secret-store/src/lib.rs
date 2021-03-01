@@ -34,7 +34,7 @@ extern crate tokio;
 extern crate tokio_io;
 extern crate tokio_service;
 extern crate url;
-extern crate jsonrpc_server_utils;
+extern crate tetsy_jsonrpc_server_utils;
 
 extern crate vapabi_derive;
 #[macro_use]

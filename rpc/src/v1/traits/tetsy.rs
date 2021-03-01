@@ -20,8 +20,8 @@ use std::collections::BTreeMap;
 
 use vapory_types::{H64, H160, H256, H512, U64, U256};
 use vapcore::miner::FilterOptions;
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_derive::rpc;
 use v1::types::{
 	Bytes, CallRequest,
 	Peers, Transaction, RpcSettings, Histogram, RecoveredAccount,

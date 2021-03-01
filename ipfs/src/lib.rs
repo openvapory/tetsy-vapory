@@ -21,8 +21,8 @@ use std::thread;
 use std::sync::{mpsc, Arc};
 use std::net::{SocketAddr, IpAddr};
 
-use jsonrpc_core::futures::future::{self, FutureResult};
-use jsonrpc_core::futures::{self, Future};
+use tetsy_jsonrpc_core::futures::future::{self, FutureResult};
+use tetsy_jsonrpc_core::futures::{self, Future};
 use client_traits::BlockChainClient;
 use http::hyper::{self, server, Method, StatusCode, Body,
 	header::{self, HeaderValue},

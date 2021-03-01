@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use jsonrpc_core::MetaIoHandler;
+use tetsy_jsonrpc_core::MetaIoHandler;
 use http::{self, hyper};
 
 use {HttpServer};
@@ -51,7 +51,7 @@ fn request(server: Server<HttpServer>, request: &str) -> http_client::Response {
 
 #[cfg(test)]
 mod tests {
-	use jsonrpc_core::{MetaIoHandler, Value};
+	use tetsy_jsonrpc_core::{MetaIoHandler, Value};
 	use v1::Metadata;
 	use super::{request, Server};
 

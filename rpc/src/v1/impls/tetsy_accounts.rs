@@ -26,7 +26,7 @@ use vapkey::{Brain, Password};
 use crypto::publickey::{Generator, Secret};
 use vapstore::KeyFile;
 use accounts::AccountProvider;
-use jsonrpc_core::Result;
+use tetsy_jsonrpc_core::Result;
 use v1::helpers::deprecated::{self, DeprecationNotice};
 use v1::helpers::errors;
 use v1::traits::{TetsyAccounts, TetsyAccountsInfo};

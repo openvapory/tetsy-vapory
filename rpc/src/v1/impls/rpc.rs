@@ -16,7 +16,7 @@
 
 //! RPC generic methods implementation.
 use std::collections::BTreeMap;
-use jsonrpc_core::Result;
+use tetsy_jsonrpc_core::Result;
 use v1::traits::Rpc;
 
 /// RPC generic methods implementation.

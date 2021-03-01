@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use version::version;
 use v1::{Web3, Web3Client};
 

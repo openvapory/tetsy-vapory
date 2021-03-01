@@ -1,8 +1,8 @@
 use std::sync::{Arc, Weak};
 
-use jsonrpc_core::Result;
-use jsonrpc_core::futures::Future;
-use jsonrpc_pubsub::{SubscriptionId, typed::{Sink, Subscriber}};
+use tetsy_jsonrpc_core::Result;
+use tetsy_jsonrpc_core::futures::Future;
+use tetsy_jsonrpc_pubsub::{SubscriptionId, typed::{Sink, Subscriber}};
 
 use v1::helpers::Subscribers;
 use v1::metadata::Metadata;

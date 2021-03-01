@@ -19,7 +19,7 @@ use v1::types::{EIP191Version, Bytes, PresignedTransaction};
 use vip_712::{hash_structured_data, VIP712};
 use serde_json::{Value, from_value};
 use v1::helpers::errors;
-use jsonrpc_core::Error;
+use tetsy_jsonrpc_core::Error;
 use v1::helpers::dispatch::vap_data_hash;
 use hash::keccak;
 use std::fmt::Display;

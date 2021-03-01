@@ -44,8 +44,8 @@ use types::{
 	snapshot::RestorationStatus,
 };
 
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_core::futures::future;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_core::futures::future;
 
 use v1::helpers::{self, errors, limit_logs, fake_sign};
 use v1::helpers::deprecated::{self, DeprecationNotice};

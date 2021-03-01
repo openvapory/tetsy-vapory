@@ -37,7 +37,7 @@ use types::{
 	verification::Unverified,
 };
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::helpers::dispatch::{self, FullDispatcher};
 use v1::helpers::nonce;
 use v1::impls::{VapClient, VapClientOptions, SigningUnsafeClient};

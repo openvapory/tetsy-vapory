@@ -31,7 +31,7 @@ use vapcore_logger::RotatingLogger;
 use vapcore_private_tx::Provider as PrivateTransactionManager;
 use vapcore_service::PrivateTxService;
 use hash_fetch::tetsy_fetch::Client as FetchClient;
-use jsonrpc_core::{self as core, MetaIoHandler};
+use tetsy_jsonrpc_core::{self as core, MetaIoHandler};
 use light::client::LightChainClient;
 use light::{Cache as LightDataCache, TransactionQueue as LightTransactionQueue};
 use miner::external::ExternalMiner;

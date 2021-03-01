@@ -15,8 +15,8 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 //! Vap rpc interface.
-use jsonrpc_core::{Result, BoxFuture};
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::{Result, BoxFuture};
+use tetsy_jsonrpc_derive::rpc;
 use vapory_types::{H64, H160, H256, U64, U256};
 
 use v1::types::{RichBlock, BlockNumber, Bytes, CallRequest, Filter, FilterChanges, Index, VapAccount};

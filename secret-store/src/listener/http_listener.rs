@@ -35,7 +35,7 @@ use traits::KeyServer;
 use serialization::{SerializableEncryptedDocumentKeyShadow, SerializableBytes, SerializablePublic};
 use types::{Error, Public, MessageHash, NodeAddress, RequestSignature, ServerKeyId,
 	EncryptedDocumentKey, EncryptedDocumentKeyShadow, NodeId};
-use jsonrpc_server_utils::cors::{self, AllowCors, AccessControlAllowOrigin};
+use tetsy_jsonrpc_server_utils::cors::{self, AllowCors, AccessControlAllowOrigin};
 
 /// Key server http-requests listener. Available requests:
 /// To generate server key:							POST		/shadow/{server_key_id}/{signature}/{threshold}

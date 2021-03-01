@@ -22,7 +22,7 @@ use client_traits::BlockChainClient;
 use types::header::Header;
 use types::transaction::LocalizedTransaction;
 
-use jsonrpc_core::Result;
+use tetsy_jsonrpc_core::Result;
 use v1::traits::Debug;
 use v1::types::{Block, Bytes, RichBlock, BlockTransactions, Transaction};
 

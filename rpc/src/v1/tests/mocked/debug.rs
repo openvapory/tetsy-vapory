@@ -18,7 +18,7 @@ use std::sync::Arc;
 
 use vapcore::test_helpers::TestBlockChainClient;
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::{Debug, DebugClient};
 
 fn io() -> IoHandler {

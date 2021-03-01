@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use jsonrpc_core::Error;
-use jsonrpc_core::futures::{self, Future};
-use jsonrpc_core::futures::sync::oneshot;
+use tetsy_jsonrpc_core::Error;
+use tetsy_jsonrpc_core::futures::{self, Future};
+use tetsy_jsonrpc_core::futures::sync::oneshot;
 use v1::helpers::errors;
 
 pub type Res<T> = Result<T, Error>;

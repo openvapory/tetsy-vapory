@@ -55,11 +55,11 @@ extern crate serde_json;
 extern crate tokio_timer;
 extern crate transient_hashmap;
 
-extern crate jsonrpc_core;
-extern crate jsonrpc_derive;
-extern crate jsonrpc_http_server as http;
-extern crate jsonrpc_ipc_server as ipc;
-extern crate jsonrpc_pubsub;
+extern crate tetsy_jsonrpc_core;
+extern crate tetsy_jsonrpc_derive;
+extern crate tetsy_jsonrpc_http_server as http;
+extern crate tetsy_jsonrpc_ipc_server as ipc;
+extern crate tetsy_jsonrpc_pubsub;
 
 extern crate client_traits;
 extern crate common_types as types;
@@ -133,7 +133,7 @@ extern crate spec;
 #[cfg(test)]
 extern crate verification;
 
-pub extern crate jsonrpc_ws_server as ws;
+pub extern crate tetsy_jsonrpc_ws_server as ws;
 
 mod authcodes;
 mod http_common;
@@ -141,8 +141,8 @@ pub mod v1;
 
 pub mod tests;
 
-pub use jsonrpc_core::{FutureOutput, FutureResult, FutureResponse, FutureRpcResult};
-pub use jsonrpc_pubsub::Session as PubSubSession;
+pub use tetsy_jsonrpc_core::{FutureOutput, FutureResult, FutureResponse, FutureRpcResult};
+pub use tetsy_jsonrpc_pubsub::Session as PubSubSession;
 pub use ipc::{
 	MetaExtractor as IpcMetaExtractor,
 	RequestContext as IpcRequestContext,
@@ -178,9 +178,9 @@ pub fn start_http<M, S, H, T>(
 	max_payload: usize,
 	keep_alive: bool,
 ) -> ::std::io::Result<HttpServer> where
-	M: jsonrpc_core::Metadata,
-	S: jsonrpc_core::Middleware<M>,
-	H: Into<jsonrpc_core::MetaIoHandler<M, S>>,
+	M: tetsy_jsonrpc_core::Metadata,
+	S: tetsy_jsonrpc_core::Middleware<M>,
+	H: Into<tetsy_jsonrpc_core::MetaIoHandler<M, S>>,
 	T: HttpMetaExtractor<Metadata=M>,
 {
 	let extractor = http_common::MetaExtractor::new(extractor);
@@ -208,9 +208,9 @@ pub fn start_http_with_middleware<M, S, H, T, R>(
 	max_payload: usize,
 	keep_alive: bool,
 ) -> ::std::io::Result<HttpServer> where
-	M: jsonrpc_core::Metadata,
-	S: jsonrpc_core::Middleware<M>,
-	H: Into<jsonrpc_core::MetaIoHandler<M, S>>,
+	M: tetsy_jsonrpc_core::Metadata,
+	S: tetsy_jsonrpc_core::Middleware<M>,
+	H: Into<tetsy_jsonrpc_core::MetaIoHandler<M, S>>,
 	T: HttpMetaExtractor<Metadata=M>,
 	R: RequestMiddleware,
 {
@@ -233,9 +233,9 @@ pub fn start_ipc<M, S, H, T>(
 	extractor: T,
 	chmod: u16
 ) -> ::std::io::Result<ipc::Server> where
-	M: jsonrpc_core::Metadata,
-	S: jsonrpc_core::Middleware<M>,
-	H: Into<jsonrpc_core::MetaIoHandler<M, S>>,
+	M: tetsy_jsonrpc_core::Metadata,
+	S: tetsy_jsonrpc_core::Middleware<M>,
+	H: Into<tetsy_jsonrpc_core::MetaIoHandler<M, S>>,
 	T: IpcMetaExtractor<M>,
 {
 	let attr = SecurityAttributes::empty()
@@ -257,9 +257,9 @@ pub fn start_ws<M, S, H, T, U, V>(
 	middleware: V,
 	stats: U,
 ) -> Result<ws::Server, ws::Error> where
-	M: jsonrpc_core::Metadata,
-	S: jsonrpc_core::Middleware<M>,
-	H: Into<jsonrpc_core::MetaIoHandler<M, S>>,
+	M: tetsy_jsonrpc_core::Metadata,
+	S: tetsy_jsonrpc_core::Middleware<M>,
+	H: Into<tetsy_jsonrpc_core::MetaIoHandler<M, S>>,
 	T: ws::MetaExtractor<M>,
 	U: ws::SessionStats,
 	V: ws::RequestMiddleware,

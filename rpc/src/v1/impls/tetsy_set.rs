@@ -29,8 +29,8 @@ use hash::keccak_buffer;
 use sync::ManageNetwork;
 use updater::{Service as UpdateService};
 
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_core::futures::Future;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_core::futures::Future;
 use v1::helpers::errors;
 use v1::traits::TetsySet;
 use v1::types::{Bytes, ReleaseInfo, Transaction};

@@ -23,7 +23,7 @@ use vapcore::miner::MinerService;
 use vapcore::test_helpers::TestBlockChainClient;
 use sync::ManageNetwork;
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::{TetsySet, TetsySetClient};
 use v1::tests::helpers::{TestMinerService, TestUpdater};
 use super::manage_network::TestManageNetwork;

@@ -16,14 +16,14 @@
 
 //! Transport-specific metadata extractors.
 
-use jsonrpc_core;
+use tetsy_jsonrpc_core;
 use http;
 use hyper;
 
 /// HTTP RPC server impl-independent metadata extractor
 pub trait HttpMetaExtractor: Send + Sync + 'static {
 	/// Type of Metadata
-	type Metadata: jsonrpc_core::Metadata;
+	type Metadata: tetsy_jsonrpc_core::Metadata;
 	/// Extracts metadata from given params.
 	fn read_metadata(&self, origin: Option<String>, user_agent: Option<String>) -> Self::Metadata;
 }
@@ -40,7 +40,7 @@ impl<T> MetaExtractor<T> {
 
 impl<M, T> http::MetaExtractor<M> for MetaExtractor<T> where
 	T: HttpMetaExtractor<Metadata = M>,
-	M: jsonrpc_core::Metadata,
+	M: tetsy_jsonrpc_core::Metadata,
 {
 	fn read_metadata(&self, req: &hyper::Request<hyper::Body>) -> M {
 		let as_string = |header: Option<&hyper::header::HeaderValue>| {

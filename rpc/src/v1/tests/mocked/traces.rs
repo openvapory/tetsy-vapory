@@ -25,7 +25,7 @@ use vapory_types::{Address, H256};
 use types::transaction::CallError;
 use trace::trace::CallType;
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::tests::helpers::{TestMinerService};
 use v1::{Metadata, Traces, TracesClient};
 

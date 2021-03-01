@@ -24,7 +24,7 @@ use vapcore_private_tx::Provider as PrivateTransactionManager;
 use vapory_types::{Address, H160, H256, U256};
 use types::transaction::SignedTransaction;
 
-use jsonrpc_core::{Error};
+use tetsy_jsonrpc_core::{Error};
 use v1::types::{Bytes, PrivateTransactionReceipt, TransactionRequest,
 	BlockNumber, PrivateTransactionReceiptAndTransaction, CallRequest,
 	block_number_to_id, PrivateTransactionLog};

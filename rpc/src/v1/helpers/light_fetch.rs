@@ -30,9 +30,9 @@ use types::{
 	receipt::Receipt,
 };
 
-use jsonrpc_core::{Result, Error};
-use jsonrpc_core::futures::{future, Future};
-use jsonrpc_core::futures::future::Either;
+use tetsy_jsonrpc_core::{Result, Error};
+use tetsy_jsonrpc_core::futures::{future, Future};
+use tetsy_jsonrpc_core::futures::future::Either;
 
 use light::cache::Cache;
 use light::client::LightChainClient;
@@ -370,7 +370,7 @@ where
 	}
 
 	pub fn logs_no_tx_hash(&self, filter: VapcoreFilter) -> impl Future<Item = Vec<Log>, Error = Error> + Send {
-		use jsonrpc_core::futures::stream::{self, Stream};
+		use tetsy_jsonrpc_core::futures::stream::{self, Stream};
 
 		const MAX_BLOCK_RANGE: u64 = 1000;
 
@@ -437,7 +437,7 @@ where
 
 	/// Get transaction logs
 	pub fn logs(&self, filter: VapcoreFilter) -> impl Future<Item = Vec<Log>, Error = Error> + Send {
-		use jsonrpc_core::futures::stream::{self, Stream};
+		use tetsy_jsonrpc_core::futures::stream::{self, Stream};
 		let fetcher_block = self.clone();
 		self.logs_no_tx_hash(filter)
 			// retrieve transaction hash.

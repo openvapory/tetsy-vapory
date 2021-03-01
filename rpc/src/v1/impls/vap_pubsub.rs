@@ -19,10 +19,10 @@
 use std::sync::{Arc, Weak};
 use std::collections::BTreeMap;
 
-use jsonrpc_core::{BoxFuture, Result, Error};
-use jsonrpc_core::futures::{self, Future, IntoFuture, Stream, sync::mpsc};
-use jsonrpc_pubsub::typed::{Sink, Subscriber};
-use jsonrpc_pubsub::SubscriptionId;
+use tetsy_jsonrpc_core::{BoxFuture, Result, Error};
+use tetsy_jsonrpc_core::futures::{self, Future, IntoFuture, Stream, sync::mpsc};
+use tetsy_jsonrpc_pubsub::typed::{Sink, Subscriber};
+use tetsy_jsonrpc_pubsub::SubscriptionId;
 
 use v1::helpers::{errors, limit_logs, Subscribers, };
 use v1::helpers::light_fetch::LightFetch;

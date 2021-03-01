@@ -23,7 +23,7 @@ use vapory_types::{H256, U256, Address};
 use crypto::publickey::Signature;
 use types::transaction::{Transaction, Action, SignedTransaction};
 
-use jsonrpc_core::Result;
+use tetsy_jsonrpc_core::Result;
 use v1::helpers::{errors, FilledTransactionRequest};
 
 use super::{vap_data_hash, WithToken, SignWith, SignMessage};

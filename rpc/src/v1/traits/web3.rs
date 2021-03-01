@@ -16,8 +16,8 @@
 
 //! Web3 rpc interface.
 use vapory_types::H256;
-use jsonrpc_core::Result;
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::Result;
+use tetsy_jsonrpc_derive::rpc;
 
 use v1::types::Bytes;
 

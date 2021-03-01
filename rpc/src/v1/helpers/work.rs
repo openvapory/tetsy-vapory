@@ -21,7 +21,7 @@ use std::sync::Arc;
 use tetsy_rlp;
 use vapcore::miner::{BlockChainClient, MinerService};
 use vapory_types::{H64, H256};
-use jsonrpc_core::Error;
+use tetsy_jsonrpc_core::Error;
 use v1::helpers::errors;
 
 // Submit a POW work and return the block's hash

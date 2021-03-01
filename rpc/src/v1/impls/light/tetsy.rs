@@ -30,8 +30,8 @@ use vapory_types::{H64, H160, H256, H512, U64, U256};
 use vapcore::miner::FilterOptions;
 use vapcore_logger::RotatingLogger;
 
-use jsonrpc_core::{Result, BoxFuture};
-use jsonrpc_core::futures::{future, Future};
+use tetsy_jsonrpc_core::{Result, BoxFuture};
+use tetsy_jsonrpc_core::futures::{future, Future};
 use light::on_demand::OnDemandRequester;
 use v1::helpers::{self, errors, ipfs, NetworkSettings, verify_signature};
 use v1::helpers::external_signer::{SignerService, SigningQueue};

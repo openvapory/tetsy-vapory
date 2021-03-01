@@ -22,9 +22,9 @@ use parking_lot::Mutex;
 
 use vapory_types::{H160, H256, H520, U256};
 
-use jsonrpc_core::{BoxFuture, Result, Error};
-use jsonrpc_core::futures::{future, Future, Poll, Async};
-use jsonrpc_core::futures::future::Either;
+use tetsy_jsonrpc_core::{BoxFuture, Result, Error};
+use tetsy_jsonrpc_core::futures::{future, Future, Poll, Async};
+use tetsy_jsonrpc_core::futures::future::Either;
 
 use v1::helpers::deprecated::{self, DeprecationNotice};
 use v1::helpers::dispatch::{self, Dispatcher};

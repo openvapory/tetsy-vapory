@@ -22,7 +22,7 @@ use vapory_types::H256;
 use crypto::publickey::{KeyPair, Signature, verify_public};
 
 use serde_json;
-use jsonrpc_core::{IoHandler, Success};
+use tetsy_jsonrpc_core::{IoHandler, Success};
 use v1::metadata::Metadata;
 use v1::SecretStoreClient;
 use v1::traits::secretstore::SecretStore;

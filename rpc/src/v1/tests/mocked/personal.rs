@@ -21,7 +21,7 @@ use bytes::ToPretty;
 use accounts::AccountProvider;
 use vapory_types::{Address, H520, U256};
 use vapcore::test_helpers::TestBlockChainClient;
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use parking_lot::Mutex;
 use types::transaction::{Action, Transaction};
 use tetsy_runtime::Runtime;

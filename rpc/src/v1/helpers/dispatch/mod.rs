@@ -83,8 +83,8 @@ use crypto::publickey::Signature;
 use hash::keccak;
 use types::transaction::{SignedTransaction, PendingTransaction};
 
-use jsonrpc_core::{BoxFuture, Result, Error};
-use jsonrpc_core::futures::{future, Future, IntoFuture};
+use tetsy_jsonrpc_core::{BoxFuture, Result, Error};
+use tetsy_jsonrpc_core::futures::{future, Future, IntoFuture};
 use v1::helpers::{TransactionRequest, FilledTransactionRequest, ConfirmationPayload};
 use v1::types::{
 	Bytes as RpcBytes,

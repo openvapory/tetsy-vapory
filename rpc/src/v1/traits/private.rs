@@ -17,8 +17,8 @@
 //! SecretStore-specific rpc interface.
 
 use vapory_types::{H160, H256, U256};
-use jsonrpc_core::Error;
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::Error;
+use tetsy_jsonrpc_derive::rpc;
 
 use v1::types::{Bytes, PrivateTransactionReceipt, BlockNumber,
 	PrivateTransactionReceiptAndTransaction, CallRequest, PrivateTransactionLog};

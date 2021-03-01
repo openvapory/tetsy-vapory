@@ -19,9 +19,9 @@
 use std::collections::BTreeSet;
 use std::sync::Arc;
 
-use jsonrpc_core::{Result, BoxFuture};
-use jsonrpc_core::futures::{future, Future};
-use jsonrpc_core::futures::future::Either;
+use tetsy_jsonrpc_core::{Result, BoxFuture};
+use tetsy_jsonrpc_core::futures::{future, Future};
+use tetsy_jsonrpc_core::futures::future::Either;
 
 use light::cache::Cache as LightDataCache;
 use light::client::LightChainClient;

@@ -17,7 +17,7 @@
 //! Web3 rpc implementation.
 use vapory_types::H256;
 use hash::keccak;
-use jsonrpc_core::Result;
+use tetsy_jsonrpc_core::Result;
 use version::version;
 use v1::traits::Web3;
 use v1::types::Bytes;

@@ -26,8 +26,8 @@ use hash::keccak_buffer;
 use light::client::LightChainClient;
 use sync::ManageNetwork;
 
-use jsonrpc_core::{Result, BoxFuture};
-use jsonrpc_core::futures::Future;
+use tetsy_jsonrpc_core::{Result, BoxFuture};
+use tetsy_jsonrpc_core::futures::Future;
 use v1::helpers::errors;
 use v1::traits::TetsySet;
 use v1::types::{Bytes, ReleaseInfo, Transaction};

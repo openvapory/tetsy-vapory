@@ -17,8 +17,8 @@
 //! Tetsy RPC requests Metadata.
 use std::sync::Arc;
 
-use jsonrpc_core;
-use jsonrpc_pubsub::{Session, PubSubMetadata};
+use tetsy_jsonrpc_core;
+use tetsy_jsonrpc_pubsub::{Session, PubSubMetadata};
 
 use v1::types::Origin;
 
@@ -31,7 +31,7 @@ pub struct Metadata {
 	pub session: Option<Arc<Session>>,
 }
 
-impl jsonrpc_core::Metadata for Metadata {}
+impl tetsy_jsonrpc_core::Metadata for Metadata {}
 impl PubSubMetadata for Metadata {
 	fn session(&self) -> Option<Arc<Session>> {
 		self.session.clone()

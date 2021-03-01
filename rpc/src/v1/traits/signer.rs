@@ -17,9 +17,9 @@
 //! Tetsy Signer-related rpc interface.
 
 use vapory_types::U256;
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_pubsub::{typed::Subscriber, SubscriptionId};
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_pubsub::{typed::Subscriber, SubscriptionId};
+use tetsy_jsonrpc_derive::rpc;
 
 use v1::types::{Bytes, TransactionModification, ConfirmationRequest, ConfirmationResponse, ConfirmationResponseWithToken};
 

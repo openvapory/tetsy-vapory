@@ -49,9 +49,9 @@ use serde_json::{
 
 use futures::{Canceled, Complete, Future, oneshot, done};
 
-use jsonrpc_core::{Id, Version, Params, Error as JsonRpcError};
-use jsonrpc_core::request::MethodCall;
-use jsonrpc_core::response::{Output, Success, Failure};
+use tetsy_jsonrpc_core::{Id, Version, Params, Error as JsonRpcError};
+use tetsy_jsonrpc_core::request::MethodCall;
+use tetsy_jsonrpc_core::response::{Output, Success, Failure};
 
 use BoxFuture;
 

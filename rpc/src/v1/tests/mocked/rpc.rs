@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::collections::BTreeMap;
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::{Rpc, RpcClient};
 
 fn rpc_client() -> RpcClient {

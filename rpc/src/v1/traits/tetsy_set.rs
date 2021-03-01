@@ -17,8 +17,8 @@
 //! Tetsy-specific rpc interface for operations altering the settings.
 
 use vapory_types::{H160, H256, U256};
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_derive::rpc;
 
 use v1::types::{Bytes, ReleaseInfo, Transaction};
 

@@ -28,9 +28,9 @@ use types::basic_account::BasicAccount;
 use types::ids::BlockId;
 use types::transaction::{SignedTransaction, PendingTransaction, Error as TransactionError};
 
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_core::futures::{future, Future, IntoFuture};
-use jsonrpc_core::futures::future::Either;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_core::futures::{future, Future, IntoFuture};
+use tetsy_jsonrpc_core::futures::future::Either;
 use v1::helpers::{errors, nonce, TransactionRequest, FilledTransactionRequest};
 use v1::types::{RichRawTransaction as RpcRichRawTransaction,};
 

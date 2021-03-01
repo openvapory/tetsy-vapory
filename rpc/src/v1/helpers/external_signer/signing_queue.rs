@@ -23,7 +23,7 @@ use v1::helpers::errors;
 use v1::helpers::requests::{ConfirmationRequest, ConfirmationPayload};
 use v1::types::{ConfirmationResponse, Origin};
 
-use jsonrpc_core::Error;
+use tetsy_jsonrpc_core::Error;
 
 /// Result that can be returned from JSON RPC.
 pub type ConfirmationResult = Result<ConfirmationResponse, Error>;
@@ -215,7 +215,7 @@ mod test {
 	use std::sync::Arc;
 	use vapory_types::{U256, Address, H256};
 	use parking_lot::Mutex;
-	use jsonrpc_core::futures::Future;
+	use tetsy_jsonrpc_core::futures::Future;
 	use v1::helpers::external_signer::{SigningQueue, ConfirmationsQueue, QueueEvent};
 	use v1::helpers::{FilledTransactionRequest, ConfirmationPayload};
 	use v1::types::ConfirmationResponse;

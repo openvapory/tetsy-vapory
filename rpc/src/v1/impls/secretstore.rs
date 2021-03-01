@@ -24,7 +24,7 @@ use crypto::DEFAULT_MAC;
 use vapory_types::{H160, H256, H512};
 use crypto::publickey::Secret;
 
-use jsonrpc_core::Result;
+use tetsy_jsonrpc_core::Result;
 use v1::helpers::errors;
 use v1::helpers::secretstore::{generate_document_key, encrypt_document,
 	decrypt_document, decrypt_document_with_shadow, ordered_servers_keccak};

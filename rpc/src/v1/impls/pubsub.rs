@@ -20,10 +20,10 @@ use std::sync::Arc;
 use std::time::Duration;
 use parking_lot::RwLock;
 
-use jsonrpc_core::{self as core, Result, MetaIoHandler};
-use jsonrpc_core::futures::{future, Future, Stream, Sink};
-use jsonrpc_pubsub::typed::Subscriber;
-use jsonrpc_pubsub::SubscriptionId;
+use tetsy_jsonrpc_core::{self as core, Result, MetaIoHandler};
+use tetsy_jsonrpc_core::futures::{future, Future, Stream, Sink};
+use tetsy_jsonrpc_pubsub::typed::Subscriber;
+use tetsy_jsonrpc_pubsub::SubscriptionId;
 use tokio_timer;
 
 use tetsy_runtime::Executor;

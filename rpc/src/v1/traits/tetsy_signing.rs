@@ -15,8 +15,8 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 //! TetsySigning rpc interface.
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_derive::rpc;
 
 use vapory_types::{H160, U256};
 use v1::types::{Bytes, ConfirmationResponse, TransactionRequest, Either};

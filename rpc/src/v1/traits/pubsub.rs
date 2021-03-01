@@ -16,9 +16,9 @@
 
 //! Tetsy-specific PUB-SUB rpc interface.
 
-use jsonrpc_core::{Result, Value, Params};
-use jsonrpc_pubsub::{typed::Subscriber, SubscriptionId};
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::{Result, Value, Params};
+use tetsy_jsonrpc_pubsub::{typed::Subscriber, SubscriptionId};
+use tetsy_jsonrpc_derive::rpc;
 
 /// Tetsy-specific PUB-SUB rpc interface.
 #[rpc(server)]

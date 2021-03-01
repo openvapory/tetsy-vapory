@@ -16,9 +16,9 @@
 
 use std::sync::{atomic, Arc};
 
-use jsonrpc_core::{self as core, MetaIoHandler};
-use jsonrpc_core::futures::{self, Stream, Future};
-use jsonrpc_pubsub::Session;
+use tetsy_jsonrpc_core::{self as core, MetaIoHandler};
+use tetsy_jsonrpc_core::futures::{self, Stream, Future};
+use tetsy_jsonrpc_pubsub::Session;
 
 use tetsy_runtime::Runtime;
 use v1::{PubSub, PubSubClient, Metadata};

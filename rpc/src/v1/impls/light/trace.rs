@@ -17,7 +17,7 @@
 //! Traces api implementation.
 
 use vapory_types::H256;
-use jsonrpc_core::Result;
+use tetsy_jsonrpc_core::Result;
 use v1::Metadata;
 use v1::traits::Traces;
 use v1::helpers::errors;

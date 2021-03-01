@@ -20,8 +20,8 @@ use std::sync::Arc;
 use std::time::Duration;
 use rlp;
 
-use jsonrpc_core::{IoHandler, Success};
-use jsonrpc_core::futures::Future;
+use tetsy_jsonrpc_core::{IoHandler, Success};
+use tetsy_jsonrpc_core::futures::Future;
 use v1::impls::SigningQueueClient;
 use v1::metadata::Metadata;
 use v1::traits::{VapSigning, TetsySigning, Tetsy};

@@ -8,8 +8,8 @@ authors = ["Parity Technologies <admin@parity.io>"]
 [dependencies]
 vapory-types = "0.8.0"
 tetsy-keccak-hash = "0.4.0"
-jsonrpc-core = "14.0.3"
-jsonrpc-tcp-server = "14.0.3"
+tetsy-jsonrpc-core = "14.2.0"
+tetsy-jsonrpc-tcp-server = "14.2.0"
 log = "0.4"
 parking_lot = "0.9"
 

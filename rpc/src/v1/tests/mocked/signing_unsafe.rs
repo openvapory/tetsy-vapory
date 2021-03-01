@@ -26,7 +26,7 @@ use rlp;
 use rustc_hex::ToHex;
 use types::transaction::{Transaction, Action};
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::{VapClientOptions, VapSigning, SigningUnsafeClient};
 use v1::helpers::nonce;
 use v1::helpers::dispatch::{self, FullDispatcher};

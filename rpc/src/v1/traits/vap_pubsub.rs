@@ -16,9 +16,9 @@
 
 //! Vap PUB-SUB rpc interface.
 
-use jsonrpc_core::Result;
-use jsonrpc_derive::rpc;
-use jsonrpc_pubsub::{typed, SubscriptionId};
+use tetsy_jsonrpc_core::Result;
+use tetsy_jsonrpc_derive::rpc;
+use tetsy_jsonrpc_pubsub::{typed, SubscriptionId};
 
 use v1::types::pubsub;
 

@@ -17,9 +17,9 @@
 //! Personal rpc interface.
 use vip_712::VIP712;
 use vapory_types::{H160, H256, H520, U128};
-use jsonrpc_core::types::Value;
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::types::Value;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_derive::rpc;
 use v1::types::{Bytes, TransactionRequest, RichRawTransaction as RpcRichRawTransaction, EIP191Version};
 
 /// Personal rpc interface. Safe (read-only) functions.

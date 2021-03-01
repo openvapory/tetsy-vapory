@@ -16,7 +16,7 @@
 
 use crypto::publickey::{recover, public_to_address, Signature};
 use vapory_types::{H256, U64};
-use jsonrpc_core::Result;
+use tetsy_jsonrpc_core::Result;
 use v1::types::{Bytes, RecoveredAccount};
 use v1::helpers::errors;
 use v1::helpers::dispatch::vap_data_hash;

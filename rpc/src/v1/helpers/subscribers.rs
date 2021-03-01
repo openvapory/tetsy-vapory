@@ -19,7 +19,7 @@
 use std::{ops, str};
 use std::collections::HashMap;
 
-use jsonrpc_pubsub::{typed::{Subscriber, Sink}, SubscriptionId};
+use tetsy_jsonrpc_pubsub::{typed::{Subscriber, Sink}, SubscriptionId};
 use vapory_types::H64;
 
 #[derive(Debug, Clone, Hash, Eq, PartialEq)]

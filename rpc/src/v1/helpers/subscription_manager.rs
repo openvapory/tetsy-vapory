@@ -20,11 +20,11 @@ use std::sync::Arc;
 use std::sync::atomic::{self, AtomicBool};
 use parking_lot::Mutex;
 
-use jsonrpc_core::futures::future::{self, Either};
-use jsonrpc_core::futures::sync::mpsc;
-use jsonrpc_core::futures::{Sink, Future};
-use jsonrpc_core::{self as core, MetaIoHandler};
-use jsonrpc_pubsub::SubscriptionId;
+use tetsy_jsonrpc_core::futures::future::{self, Either};
+use tetsy_jsonrpc_core::futures::sync::mpsc;
+use tetsy_jsonrpc_core::futures::{Sink, Future};
+use tetsy_jsonrpc_core::{self as core, MetaIoHandler};
+use tetsy_jsonrpc_pubsub::SubscriptionId;
 
 use v1::helpers::Subscribers;
 use v1::metadata::Metadata;
@@ -138,9 +138,9 @@ impl<S: core::Middleware<Metadata>> GenericPollManager<S> {
 mod tests {
 	use std::sync::atomic::{self, AtomicBool};
 
-	use jsonrpc_core::{MetaIoHandler, NoopMiddleware, Value, Params};
-	use jsonrpc_core::futures::{Future, Stream};
-	use jsonrpc_pubsub::SubscriptionId;
+	use tetsy_jsonrpc_core::{MetaIoHandler, NoopMiddleware, Value, Params};
+	use tetsy_jsonrpc_core::futures::{Future, Stream};
+	use tetsy_jsonrpc_pubsub::SubscriptionId;
 	use http::tokio::runtime::Runtime;
 
 	use super::GenericPollManager;

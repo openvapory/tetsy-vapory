@@ -29,8 +29,8 @@ use vapcore_logger::RotatingLogger;
 use vapkey::Brain;
 use crypto::publickey::{ecies, Generator};
 use vapstore::random_phrase;
-use jsonrpc_core::futures::future;
-use jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_core::futures::future;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
 use sync::{SyncProvider, ManageNetwork};
 use types::{
 	ids::BlockId,

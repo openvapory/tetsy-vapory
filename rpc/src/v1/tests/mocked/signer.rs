@@ -27,7 +27,7 @@ use tetsy_rlp::encode;
 use types::transaction::{Transaction, Action, SignedTransaction};
 
 use serde_json;
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::{SignerClient, Signer, Origin};
 use v1::metadata::Metadata;
 use v1::tests::helpers::TestMinerService;

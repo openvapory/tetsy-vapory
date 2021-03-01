@@ -22,8 +22,8 @@ use vapory_types::{H256, U256, Address};
 use types::transaction::{SignedTransaction, PendingTransaction};
 use parking_lot::Mutex;
 
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_core::futures::{future, Future, IntoFuture};
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_core::futures::{future, Future, IntoFuture};
 use v1::helpers::{errors, nonce, TransactionRequest, FilledTransactionRequest};
 use v1::types::{RichRawTransaction as RpcRichRawTransaction};
 

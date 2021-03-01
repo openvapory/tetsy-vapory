@@ -59,7 +59,7 @@ use dir::{Directories, DatabaseDirectories};
 use cache::CacheConfig;
 use user_defaults::UserDefaults;
 use ipfs;
-use jsonrpc_core;
+use tetsy_jsonrpc_core;
 use modules;
 use rpc;
 use rpc_apis;
@@ -832,13 +832,13 @@ pub struct RunningClient {
 
 enum RunningClientInner {
 	Light {
-		rpc: jsonrpc_core::MetaIoHandler<Metadata, informant::Middleware<rpc_apis::LightClientNotifier>>,
+		rpc: tetsy_jsonrpc_core::MetaIoHandler<Metadata, informant::Middleware<rpc_apis::LightClientNotifier>>,
 		informant: Arc<Informant<LightNodeInformantData>>,
 		client: Arc<LightClient>,
 		keep_alive: Box<dyn Any>,
 	},
 	Full {
-		rpc: jsonrpc_core::MetaIoHandler<Metadata, informant::Middleware<informant::ClientNotifier>>,
+		rpc: tetsy_jsonrpc_core::MetaIoHandler<Metadata, informant::Middleware<informant::ClientNotifier>>,
 		informant: Arc<Informant<FullNodeInformantData>>,
 		client: Arc<Client>,
 		client_service: Arc<ClientService>,

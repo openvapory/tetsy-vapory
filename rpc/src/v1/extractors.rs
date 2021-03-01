@@ -22,9 +22,9 @@ use std::sync::Arc;
 use authcodes;
 use http_common::HttpMetaExtractor;
 use ipc;
-use jsonrpc_core as core;
-use jsonrpc_core::futures::future::Either;
-use jsonrpc_pubsub::Session;
+use tetsy_jsonrpc_core as core;
+use tetsy_jsonrpc_core::futures::future::Either;
+use tetsy_jsonrpc_pubsub::Session;
 use ws;
 use vapory_types::H256;
 

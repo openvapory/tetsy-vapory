@@ -40,7 +40,7 @@ vapstore = { version = "0.2.1", path = "accounts/vapstore" }
 fdlimit = "0.1"
 futures = "0.1"
 journaldb = { version = "0.2.0", path = "util/journaldb" }
-jsonrpc-core = "14.0.3"
+tetsy-jsonrpc-core = "14.2.0"
 tetsy-keccak-hash = "0.4.0"
 tetsy-kvdb = "0.3.2"
 tetsy-kvdb-rocksdb = "0.4.3"

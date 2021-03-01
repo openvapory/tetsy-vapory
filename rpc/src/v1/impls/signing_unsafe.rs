@@ -19,8 +19,8 @@
 use std::sync::Arc;
 
 use vapory_types::{Address, H160, H256, H520, U256};
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_core::futures::{future, Future};
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_core::futures::{future, Future};
 use v1::helpers::{errors};
 use v1::helpers::deprecated::{self, DeprecationNotice};
 use v1::helpers::dispatch::{self, Dispatcher};

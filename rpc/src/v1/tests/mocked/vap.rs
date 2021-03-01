@@ -39,7 +39,7 @@ use types::{
 	snapshot::RestorationStatus,
 };
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::{Vap, VapClient, VapClientOptions, VapFilter, VapFilterClient};
 use v1::tests::helpers::{TestSyncProvider, Config, TestMinerService, TestSnapshotService};
 use v1::metadata::Metadata;

@@ -22,7 +22,7 @@ use std::collections::HashSet;
 use dir::default_data_path;
 use dir::helpers::replace_home;
 use helpers::tetsy_ipc_path;
-use jsonrpc_core::MetaIoHandler;
+use tetsy_jsonrpc_core::MetaIoHandler;
 use tetsy_runtime::Executor;
 use tetsy_rpc::informant::{RpcStats, Middleware};
 use tetsy_rpc::{self as rpc, Metadata, DomainsValidation};

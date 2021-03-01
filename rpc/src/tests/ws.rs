@@ -18,7 +18,7 @@
 
 use std::sync::Arc;
 
-use jsonrpc_core::MetaIoHandler;
+use tetsy_jsonrpc_core::MetaIoHandler;
 use ws;
 
 use v1::{extractors, informant};

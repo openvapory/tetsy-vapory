@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use vapory_types::H256;
-use jsonrpc_tcp_server::PushMessageError;
+use tetsy_jsonrpc_tcp_server::PushMessageError;
 
 #[derive(Debug, Clone)]
 pub enum Error {

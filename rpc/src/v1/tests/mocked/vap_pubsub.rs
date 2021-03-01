@@ -16,9 +16,9 @@
 
 use std::sync::Arc;
 
-use jsonrpc_core::MetaIoHandler;
-use jsonrpc_core::futures::{self, Stream, Future, sync::mpsc};
-use jsonrpc_pubsub::Session;
+use tetsy_jsonrpc_core::MetaIoHandler;
+use tetsy_jsonrpc_core::futures::{self, Stream, Future, sync::mpsc};
+use tetsy_jsonrpc_pubsub::Session;
 
 use std::time::Duration;
 

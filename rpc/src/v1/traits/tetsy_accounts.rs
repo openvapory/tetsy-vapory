@@ -17,8 +17,8 @@
 //! Tetsy Accounts-related rpc interface.
 use std::collections::BTreeMap;
 
-use jsonrpc_core::Result;
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::Result;
+use tetsy_jsonrpc_derive::rpc;
 use vapory_types::{H160, H256, H520};
 use vapkey::Password;
 use vapstore::KeyFile;

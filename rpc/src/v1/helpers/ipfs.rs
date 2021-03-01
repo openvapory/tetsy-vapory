@@ -19,7 +19,7 @@
 use multihash;
 use cid::{Cid, Codec, Version};
 use crypto::digest;
-use jsonrpc_core::Error;
+use tetsy_jsonrpc_core::Error;
 use v1::types::Bytes;
 use super::errors;
 

@@ -18,7 +18,7 @@ use types::transaction::{Transaction, SignedTransaction, Action};
 use std::cmp::min;
 
 use vapory_types::U256;
-use jsonrpc_core::Error;
+use tetsy_jsonrpc_core::Error;
 use v1::helpers::CallRequest;
 
 pub fn sign_call(request: CallRequest) -> Result<SignedTransaction, Error> {

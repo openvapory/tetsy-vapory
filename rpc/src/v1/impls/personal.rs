@@ -25,9 +25,9 @@ use vapory_types::{H160, H256, H520, U128, Address};
 use crypto::publickey::{public_to_address, recover, Signature};
 use types::transaction::{PendingTransaction, SignedTransaction};
 
-use jsonrpc_core::futures::{future, Future};
-use jsonrpc_core::types::Value;
-use jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_core::futures::{future, Future};
+use tetsy_jsonrpc_core::types::Value;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
 use v1::helpers::deprecated::{self, DeprecationNotice};
 use v1::helpers::dispatch::{self, vap_data_hash, Dispatcher, SignWith, PostSign, WithToken};
 use v1::helpers::{errors, eip191};

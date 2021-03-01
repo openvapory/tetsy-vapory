@@ -27,7 +27,7 @@ use types::{
 	receipt::{LocalizedReceipt, TransactionOutcome},
 };
 
-use jsonrpc_core::IoHandler;
+use tetsy_jsonrpc_core::IoHandler;
 use v1::{Tetsy, TetsyClient};
 use v1::metadata::Metadata;
 use v1::helpers::NetworkSettings;

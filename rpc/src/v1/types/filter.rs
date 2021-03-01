@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use vapory_types::{H160, H256};
-use jsonrpc_core::{Error as RpcError};
+use tetsy_jsonrpc_core::{Error as RpcError};
 use serde::de::{Error, DeserializeOwned};
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use serde_json::{Value, from_value};

@@ -28,9 +28,9 @@ use types::{
 	filter::Filter as VapcoreFilter
 };
 
-use jsonrpc_core::{BoxFuture, Result};
-use jsonrpc_core::futures::{future, Future};
-use jsonrpc_core::futures::future::Either;
+use tetsy_jsonrpc_core::{BoxFuture, Result};
+use tetsy_jsonrpc_core::futures::{future, Future};
+use tetsy_jsonrpc_core::futures::future::Either;
 use v1::traits::VapFilter;
 use v1::types::{BlockNumber, Index, Filter, FilterChanges, Log};
 use v1::helpers::{errors, SyncPollFilter, PollFilter, PollManager, limit_logs};

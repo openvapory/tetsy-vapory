@@ -15,8 +15,8 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 //! Net rpc interface.
-use jsonrpc_core::Result;
-use jsonrpc_derive::rpc;
+use tetsy_jsonrpc_core::Result;
+use tetsy_jsonrpc_derive::rpc;
 
 /// Net rpc interface.
 #[rpc(server)]

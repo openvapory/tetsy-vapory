@@ -21,8 +21,8 @@ use std::sync::Arc;
 use std::sync::atomic::{self, AtomicUsize};
 use std::time;
 use tetsy_runtime;
-use jsonrpc_core as core;
-use jsonrpc_core::futures::future::Either;
+use tetsy_jsonrpc_core as core;
+use tetsy_jsonrpc_core::futures::future::Either;
 use order_stat;
 use parking_lot::RwLock;
 
