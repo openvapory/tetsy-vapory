@@ -21,7 +21,7 @@ use tetsy_crypto::publickey::{Error as VapPublicKeyCryptoError};
 use tetsy_rlp;
 use tetsy_unexpected::OutOfBounds;
 
-use errors::ExecutionError;
+use crate::errors::ExecutionError;
 
 #[derive(Debug, PartialEq, Clone)]
 /// Errors concerning transaction processing.

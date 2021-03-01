@@ -21,7 +21,7 @@ use tetsy_util_mem::MallocSizeOf;
 use bytes::Bytes;
 use vapory_types::{H256, Address, Bloom, BloomInput};
 
-use {BlockNumber};
+use crate::{BlockNumber};
 use vapjson;
 
 /// A record of execution for a `LOG` operation.

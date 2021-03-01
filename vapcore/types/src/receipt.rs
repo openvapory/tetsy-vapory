@@ -20,8 +20,8 @@ use vapory_types::{H160, H256, U256, Address, Bloom};
 use tetsy_util_mem::MallocSizeOf;
 use tetsy_rlp::{Rlp, RlpStream, Encodable, Decodable, DecoderError};
 
-use BlockNumber;
-use log_entry::{LogEntry, LocalizedLogEntry};
+use crate::BlockNumber;
+use crate::log_entry::{LogEntry, LocalizedLogEntry};
 
 /// Transaction outcome store in the receipt.
 #[derive(Debug, Clone, PartialEq, Eq, MallocSizeOf)]

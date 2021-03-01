@@ -21,7 +21,7 @@ use tetsy_util_mem::MallocSizeOf;
 use vapory_types::{H256, U256, Address, Bloom};
 use bytes::Bytes;
 use tetsy_rlp::{Rlp, RlpStream, Encodable, DecoderError, Decodable};
-use BlockNumber;
+use crate::BlockNumber;
 
 /// Semantic boolean for when a seal/signature is included.
 #[derive(Debug, Clone, Copy)]
