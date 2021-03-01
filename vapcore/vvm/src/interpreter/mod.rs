@@ -188,8 +188,8 @@ pub struct Interpreter<Cost: CostType> {
 	_type: PhantomData<Cost>,
 }
 
-impl<Cost: 'static + CostType> vm::Exec for Interpreter<Cost> {
-	fn exec(mut self: Box<Self>, ext: &mut dyn vm::Ext) -> vm::ExecTrapResult<GasLeft> {
+impl<Cost: 'static + CostType> tetsy_vm::Exec for Interpreter<Cost> {
+	fn exec(mut self: Box<Self>, ext: &mut dyn tetsy_vm::Ext) -> tetsy_vm::ExecTrapResult<GasLeft> {
 		loop {
 			let result = self.step(ext);
 			match result {
@@ -209,8 +209,8 @@ impl<Cost: 'static + CostType> vm::Exec for Interpreter<Cost> {
 	}
 }
 
-impl<Cost: 'static + CostType> vm::ResumeCall for Interpreter<Cost> {
-	fn resume_call(mut self: Box<Self>, result: MessageCallResult) -> Box<dyn vm::Exec> {
+impl<Cost: 'static + CostType> tetsy_vm::ResumeCall for Interpreter<Cost> {
+	fn resume_call(mut self: Box<Self>, result: MessageCallResult) -> Box<dyn tetsy_vm::Exec> {
 		{
 			let this = &mut *self;
 			let (out_off, out_size) = this.resume_output_range.take().expect("Box<ResumeCall> is obtained from a call opcode; resume_output_range is always set after those opcodes are executed; qed");
@@ -244,8 +244,8 @@ impl<Cost: 'static + CostType> vm::ResumeCall for Interpreter<Cost> {
 	}
 }
 
-impl<Cost: 'static + CostType> vm::ResumeCreate for Interpreter<Cost> {
-	fn resume_create(mut self: Box<Self>, result: ContractCreateResult) -> Box<dyn vm::Exec> {
+impl<Cost: 'static + CostType> tetsy_vm::ResumeCreate for Interpreter<Cost> {
+	fn resume_create(mut self: Box<Self>, result: ContractCreateResult) -> Box<dyn tetsy_vm::Exec> {
 		match result {
 			ContractCreateResult::Created(address, gas_left) => {
 				self.stack.push(address_to_u256(address));
@@ -293,7 +293,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 
 	/// Execute a single step on the VM.
 	#[inline(always)]
-	pub fn step(&mut self, ext: &mut dyn vm::Ext) -> InterpreterResult {
+	pub fn step(&mut self, ext: &mut dyn tetsy_vm::Ext) -> InterpreterResult {
 		if self.done {
 			return InterpreterResult::Stopped;
 		}
@@ -320,7 +320,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 
 	/// Inner helper function for step.
 	#[inline(always)]
-	fn step_inner(&mut self, ext: &mut dyn vm::Ext) -> InterpreterResult {
+	fn step_inner(&mut self, ext: &mut dyn tetsy_vm::Ext) -> InterpreterResult {
 		let result = match self.resume_result.take() {
 			Some(result) => result,
 			None => {
@@ -434,7 +434,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 		InterpreterResult::Continue
 	}
 
-	fn verify_instruction(&self, ext: &dyn vm::Ext, instruction: Instruction, info: &InstructionInfo) -> vm::Result<()> {
+	fn verify_instruction(&self, ext: &dyn tetsy_vm::Ext, instruction: Instruction, info: &InstructionInfo) -> tetsy_vm::Result<()> {
 		let schedule = ext.schedule();
 
 		if (instruction == instructions::DELEGATECALL && !schedule.have_delegate_call) ||
@@ -503,10 +503,10 @@ impl<Cost: CostType> Interpreter<Cost> {
 	fn exec_instruction(
 		&mut self,
 		gas: Cost,
-		ext: &mut dyn vm::Ext,
+		ext: &mut dyn tetsy_vm::Ext,
 		instruction: Instruction,
 		provided: Option<Cost>
-	) -> vm::Result<InstructionResult<Cost>> {
+	) -> tetsy_vm::Result<InstructionResult<Cost>> {
 		match instruction {
 			instructions::JUMP => {
 				let jump = self.stack.pop_back();
@@ -1172,7 +1172,7 @@ impl<Cost: CostType> Interpreter<Cost> {
 		}
 	}
 
-	fn verify_jump(&self, jump_u: U256, valid_jump_destinations: &BitSet) -> vm::Result<usize> {
+	fn verify_jump(&self, jump_u: U256, valid_jump_destinations: &BitSet) -> tetsy_vm::Result<usize> {
 		let jump = jump_u.low_u64() as usize;
 
 		if valid_jump_destinations.contains(jump) && U256::from(jump) == jump_u {
@@ -1227,7 +1227,7 @@ mod tests {
 	use tetsy_vm::tests::{FakeExt, test_finalize};
 	use vapory_types::Address;
 
-	fn interpreter(params: ActionParams, ext: &dyn vm::Ext) -> Box<dyn Exec> {
+	fn interpreter(params: ActionParams, ext: &dyn tetsy_vm::Ext) -> Box<dyn Exec> {
 		Factory::new(1).create(params, ext.schedule(), ext.depth())
 	}
 

@@ -59,7 +59,7 @@ impl<Gas: vvm::CostType> Gasometer<Gas> {
 		}
 	}
 
-	pub fn verify_gas(&self, gas_cost: &Gas) -> vm::Result<()> {
+	pub fn verify_gas(&self, gas_cost: &Gas) -> tetsy_vm::Result<()> {
 		match &self.current_gas < gas_cost {
 			true => Err(vm::Error::OutOfGas),
 			false => Ok(())
@@ -68,7 +68,7 @@ impl<Gas: vvm::CostType> Gasometer<Gas> {
 
 	/// How much gas is provided to a CALL/CREATE, given that we need to deduct `needed` for this operation
 	/// and that we `requested` some.
-	pub fn gas_provided(&self, schedule: &Schedule, needed: Gas, requested: Option<U256>) -> vm::Result<Gas> {
+	pub fn gas_provided(&self, schedule: &Schedule, needed: Gas, requested: Option<U256>) -> tetsy_vm::Result<Gas> {
 		// Try converting requested gas to `Gas` (`U256/u64`)
 		// but in EIP150 even if we request more we should never fail from OOG
 		let requested = requested.map(Gas::from_u256);
@@ -106,12 +106,12 @@ impl<Gas: vvm::CostType> Gasometer<Gas> {
 	/// it will be the amount of gas that the current context provides to the child context.
 	pub fn requirements(
 		&mut self,
-		ext: &dyn vm::Ext,
+		ext: &dyn tetsy_vm::Ext,
 		instruction: Instruction,
 		info: &InstructionInfo,
 		stack: &dyn Stack<U256>,
 		current_mem_size: usize,
-	) -> vm::Result<InstructionRequirements<Gas>> {
+	) -> tetsy_vm::Result<InstructionRequirements<Gas>> {
 		let schedule = ext.schedule();
 		let tier = info.tier.idx();
 		let default_gas = Gas::from(schedule.tier_step_gas[tier]);
@@ -316,7 +316,7 @@ impl<Gas: vvm::CostType> Gasometer<Gas> {
 		})
 	}
 
-	fn mem_gas_cost(&self, schedule: &Schedule, current_mem_size: usize, mem_size: &Gas) -> vm::Result<(Gas, Gas, usize)> {
+	fn mem_gas_cost(&self, schedule: &Schedule, current_mem_size: usize, mem_size: &Gas) -> tetsy_vm::Result<(Gas, Gas, usize)> {
 		let gas_for_mem = |mem_size: Gas| {
 			let s = mem_size >> 5;
 			// s * memory_gas + s * s / quad_coeff_div
@@ -343,12 +343,12 @@ impl<Gas: vvm::CostType> Gasometer<Gas> {
 }
 
 #[inline]
-fn mem_needed_const<Gas: vvm::CostType>(mem: &U256, add: usize) -> vm::Result<Gas> {
+fn mem_needed_const<Gas: vvm::CostType>(mem: &U256, add: usize) -> tetsy_vm::Result<Gas> {
 	Gas::from_u256(overflowing!(mem.overflowing_add(U256::from(add))))
 }
 
 #[inline]
-fn mem_needed<Gas: vvm::CostType>(offset: &U256, size: &U256) -> vm::Result<Gas> {
+fn mem_needed<Gas: vvm::CostType>(offset: &U256, size: &U256) -> tetsy_vm::Result<Gas> {
 	if size.is_zero() {
 		return Ok(Gas::from(0));
 	}
@@ -414,7 +414,7 @@ fn calculate_eip1283_sstore_gas<Gas: vvm::CostType>(schedule: &Schedule, origina
 	)
 }
 
-pub fn handle_eip1283_sstore_clears_refund(ext: &mut dyn vm::Ext, original: &U256, current: &U256, new: &U256) {
+pub fn handle_eip1283_sstore_clears_refund(ext: &mut dyn tetsy_vm::Ext, original: &U256, current: &U256, new: &U256) {
 	let sstore_clears_schedule = ext.schedule().sstore_refund_gas;
 
 	if current == new {

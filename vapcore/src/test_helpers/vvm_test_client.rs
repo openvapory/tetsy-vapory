@@ -215,7 +215,7 @@ impl<'a> VvmTestClient<'a> {
 	) -> Result<FinalizationResult, VvmTestError>
 	{
 		let genesis = self.spec.genesis_header();
-		let info = vm::EnvInfo {
+		let info = tetsy_vm::EnvInfo {
 			number: genesis.number(),
 			author: *genesis.author(),
 			timestamp: genesis.timestamp(),
@@ -234,7 +234,7 @@ impl<'a> VvmTestClient<'a> {
 		params: ActionParams,
 		tracer: &mut T,
 		vm_tracer: &mut V,
-		info: vm::EnvInfo,
+		info: tetsy_vm::EnvInfo,
 	) -> Result<FinalizationResult, VvmTestError>
 	{
 		let mut substate = Substate::new();
@@ -253,7 +253,7 @@ impl<'a> VvmTestClient<'a> {
 	/// Returns the state root, gas left and the output.
 	pub fn transact<T: trace::Tracer, V: trace::VMTracer>(
 		&mut self,
-		env_info: &vm::EnvInfo,
+		env_info: &tetsy_vm::EnvInfo,
 		transaction: transaction::SignedTransaction,
 		tracer: T,
 		vm_tracer: V,

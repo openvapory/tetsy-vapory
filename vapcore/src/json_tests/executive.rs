@@ -113,31 +113,31 @@ impl<'a, T: 'a, V: 'a, B: 'a> TestExt<'a, T, V, B>
 impl<'a, T: 'a, V: 'a, B: 'a> Ext for TestExt<'a, T, V, B>
 	where T: Tracer, V: VMTracer, B: StateBackend
 {
-	fn storage_at(&self, key: &H256) -> vm::Result<H256> {
+	fn storage_at(&self, key: &H256) -> tetsy_vm::Result<H256> {
 		self.ext.storage_at(key)
 	}
 
-	fn initial_storage_at(&self, key: &H256) -> vm::Result<H256> {
+	fn initial_storage_at(&self, key: &H256) -> tetsy_vm::Result<H256> {
 		self.ext.initial_storage_at(key)
 	}
 
-	fn set_storage(&mut self, key: H256, value: H256) -> vm::Result<()> {
+	fn set_storage(&mut self, key: H256, value: H256) -> tetsy_vm::Result<()> {
 		self.ext.set_storage(key, value)
 	}
 
-	fn exists(&self, address: &Address) -> vm::Result<bool> {
+	fn exists(&self, address: &Address) -> tetsy_vm::Result<bool> {
 		self.ext.exists(address)
 	}
 
-	fn exists_and_not_null(&self, address: &Address) -> vm::Result<bool> {
+	fn exists_and_not_null(&self, address: &Address) -> tetsy_vm::Result<bool> {
 		self.ext.exists_and_not_null(address)
 	}
 
-	fn balance(&self, address: &Address) -> vm::Result<U256> {
+	fn balance(&self, address: &Address) -> tetsy_vm::Result<U256> {
 		self.ext.balance(address)
 	}
 
-	fn origin_balance(&self) -> vm::Result<U256> {
+	fn origin_balance(&self) -> tetsy_vm::Result<U256> {
 		self.ext.origin_balance()
 	}
 
@@ -153,7 +153,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for TestExt<'a, T, V, B>
 		_code_version: &U256,
 		address: CreateContractAddress,
 		_trap: bool
-	) -> Result<ContractCreateResult, vm::TrapKind> {
+	) -> Result<ContractCreateResult, tetsy_vm::TrapKind> {
 		self.callcreates.push(CallCreate {
 			data: code.to_vec(),
 			destination: None,
@@ -174,7 +174,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for TestExt<'a, T, V, B>
 		_code_address: &Address,
 		_call_type: ActionType,
 		_trap: bool
-	) -> Result<MessageCallResult, vm::TrapKind> {
+	) -> Result<MessageCallResult, tetsy_vm::TrapKind> {
 		self.callcreates.push(CallCreate {
 			data: data.to_vec(),
 			destination: Some(receive_address.clone()),
@@ -184,27 +184,27 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for TestExt<'a, T, V, B>
 		Ok(MessageCallResult::Success(*gas, ReturnData::empty()))
 	}
 
-	fn extcode(&self, address: &Address) -> vm::Result<Option<Arc<Bytes>>>  {
+	fn extcode(&self, address: &Address) -> tetsy_vm::Result<Option<Arc<Bytes>>>  {
 		self.ext.extcode(address)
 	}
 
-	fn extcodesize(&self, address: &Address) -> vm::Result<Option<usize>> {
+	fn extcodesize(&self, address: &Address) -> tetsy_vm::Result<Option<usize>> {
 		self.ext.extcodesize(address)
 	}
 
-	fn extcodehash(&self, address: &Address) -> vm::Result<Option<H256>> {
+	fn extcodehash(&self, address: &Address) -> tetsy_vm::Result<Option<H256>> {
 		self.ext.extcodehash(address)
 	}
 
-	fn log(&mut self, topics: Vec<H256>, data: &[u8]) -> vm::Result<()> {
+	fn log(&mut self, topics: Vec<H256>, data: &[u8]) -> tetsy_vm::Result<()> {
 		self.ext.log(topics, data)
 	}
 
-	fn ret(self, gas: &U256, data: &ReturnData, apply_state: bool) -> Result<U256, vm::Error> {
+	fn ret(self, gas: &U256, data: &ReturnData, apply_state: bool) -> Result<U256, tetsy_vm::Error> {
 		self.ext.ret(gas, data, apply_state)
 	}
 
-	fn suicide(&mut self, refund_address: &Address) -> vm::Result<()> {
+	fn suicide(&mut self, refund_address: &Address) -> tetsy_vm::Result<()> {
 		self.ext.suicide(refund_address)
 	}
 

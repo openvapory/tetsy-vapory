@@ -849,7 +849,7 @@ fn test_create_in_staticcall(factory: super::Factory) {
 		test_finalize(vm.exec(&mut ext).ok().unwrap()).unwrap_err()
 	};
 
-	assert_eq!(err, vm::Error::MutableCallInStaticContext);
+	assert_eq!(err, tetsy_vm::Error::MutableCallInStaticContext);
 	assert_eq!(ext.calls.len(), 0);
 }
 

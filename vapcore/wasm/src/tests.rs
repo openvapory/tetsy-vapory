@@ -32,7 +32,7 @@ macro_rules! load_sample {
 
 macro_rules! reqrep_test {
 	($name: expr, $input: expr) => {
-		reqrep_test!($name, $input, vm::EnvInfo::default(), HashMap::new())
+		reqrep_test!($name, $input, tetsy_vm::EnvInfo::default(), HashMap::new())
 	};
 	($name: expr, $input: expr, $info: expr, $block_hashes: expr) => {
 		{
@@ -58,7 +58,7 @@ macro_rules! reqrep_test {
 	};
 }
 
-fn test_finalize(res: Result<GasLeft, vm::Error>) -> Result<U256, vm::Error> {
+fn test_finalize(res: Result<GasLeft, tetsy_vm::Error>) -> Result<U256, tetsy_vm::Error> {
 	match res {
 		Ok(GasLeft::Known(gas)) => Ok(gas),
 		Ok(GasLeft::NeedsReturn{..}) => unimplemented!(), // since ret is unimplemented.
@@ -924,7 +924,7 @@ fn embedded_keccak() {
 	let mut params = ActionParams::default();
 	params.gas = U256::from(100_000);
 	params.code = Some(Arc::new(code));
-	params.params_type = vm::ParamsType::Embedded;
+	params.params_type = tetsy_vm::ParamsType::Embedded;
 
 	let mut ext = FakeExt::new().with_wasm();
 

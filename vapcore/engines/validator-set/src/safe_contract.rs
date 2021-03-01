@@ -108,7 +108,7 @@ fn check_first_proof(machine: &Machine, contract_address: Address, old_header: H
 	// TODO: match client contract_call_tx more cleanly without duplication.
 	const PROVIDED_GAS: u64 = 50_000_000;
 
-	let env_info = vm::EnvInfo {
+	let env_info = tetsy_vm::EnvInfo {
 		number: old_header.number(),
 		author: *old_header.author(),
 		difficulty: *old_header.difficulty(),

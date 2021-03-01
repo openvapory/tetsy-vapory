@@ -52,7 +52,7 @@ pub enum Fail {
 }
 
 impl Fail {
-	fn runtime(err: vm::Error) -> Vec<Fail> {
+	fn runtime(err: tetsy_vm::Error) -> Vec<Fail> {
 		vec![Fail::Runtime(format!("{}", err))]
 	}
 
@@ -115,12 +115,12 @@ impl fmt::Display for Fail {
 }
 
 pub fn construct(
-	ext: &mut dyn vm::Ext,
+	ext: &mut dyn tetsy_vm::Ext,
 	source: Vec<u8>,
 	arguments: Vec<u8>,
 	sender: H160,
 	at: H160,
-) -> Result<Vec<u8>, vm::Error> {
+) -> Result<Vec<u8>, tetsy_vm::Error> {
 
 	let mut params = ActionParams::default();
 	params.sender = sender;

@@ -174,7 +174,7 @@ impl<Trace: Writer, Out: Writer> Informant<Trace, Out> {
 
 }
 
-impl<Trace: Writer, Out: Writer> vm::Informant for Informant<Trace, Out> {
+impl<Trace: Writer, Out: Writer> tetsy_vm::Informant for Informant<Trace, Out> {
 
 	type Sink = (Trace, Out);
 
@@ -196,7 +196,7 @@ impl<Trace: Writer, Out: Writer> vm::Informant for Informant<Trace, Out> {
 		(self.trace_sink.clone(), self.out_sink.clone())
 	}
 
-	fn finish(result: vm::RunResult<<Self as trace::VMTracer>::Output>, (ref mut trace_sink, ref mut out_sink): &mut Self::Sink) {
+	fn finish(result: tetsy_vm::RunResult<<Self as trace::VMTracer>::Output>, (ref mut trace_sink, ref mut out_sink): &mut Self::Sink) {
 
 		match result {
 			Ok(success) => {

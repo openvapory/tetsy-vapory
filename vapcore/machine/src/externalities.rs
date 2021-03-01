@@ -131,7 +131,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Externalities<'a, T, V, B>
 impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 	where T: Tracer, V: VMTracer, B: StateBackend
 {
-	fn initial_storage_at(&self, key: &H256) -> vm::Result<H256> {
+	fn initial_storage_at(&self, key: &H256) -> tetsy_vm::Result<H256> {
 		if self.state.is_base_storage_root_unchanged(&self.origin_info.address)? {
 			self.state.checkpoint_storage_at(0, &self.origin_info.address, key).map(|v| v.unwrap_or_default()).map_err(Into::into)
 		} else {
@@ -140,11 +140,11 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 		}
 	}
 
-	fn storage_at(&self, key: &H256) -> vm::Result<H256> {
+	fn storage_at(&self, key: &H256) -> tetsy_vm::Result<H256> {
 		self.state.storage_at(&self.origin_info.address, key).map_err(Into::into)
 	}
 
-	fn set_storage(&mut self, key: H256, value: H256) -> vm::Result<()> {
+	fn set_storage(&mut self, key: H256, value: H256) -> tetsy_vm::Result<()> {
 		if self.static_flag {
 			Err(vm::Error::MutableCallInStaticContext)
 		} else {
@@ -152,19 +152,19 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 		}
 	}
 
-	fn exists(&self, address: &Address) -> vm::Result<bool> {
+	fn exists(&self, address: &Address) -> tetsy_vm::Result<bool> {
 		self.state.exists(address).map_err(Into::into)
 	}
 
-	fn exists_and_not_null(&self, address: &Address) -> vm::Result<bool> {
+	fn exists_and_not_null(&self, address: &Address) -> tetsy_vm::Result<bool> {
 		self.state.exists_and_not_null(address).map_err(Into::into)
 	}
 
-	fn origin_balance(&self) -> vm::Result<U256> {
+	fn origin_balance(&self) -> tetsy_vm::Result<U256> {
 		self.balance(&self.origin_info.address).map_err(Into::into)
 	}
 
-	fn balance(&self, address: &Address) -> vm::Result<U256> {
+	fn balance(&self, address: &Address) -> tetsy_vm::Result<U256> {
 		self.state.balance(address).map_err(Into::into)
 	}
 
@@ -194,7 +194,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 				code_version,
 				data: Some(data.as_bytes().to_vec()),
 				action_type: ActionType::Call,
-				params_type: vm::ParamsType::Separate,
+				params_type: tetsy_vm::ParamsType::Separate,
 			};
 
 			let mut ex = Executive::new(self.state, self.env_info, self.machine, self.schedule);
@@ -261,7 +261,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 			code_version: *parent_version,
 			data: None,
 			action_type: create_type,
-			params_type: vm::ParamsType::Embedded,
+			params_type: tetsy_vm::ParamsType::Embedded,
 		};
 
 		if !self.static_flag {
@@ -318,7 +318,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 			code_version,
 			data: Some(data.to_vec()),
 			action_type: call_type,
-			params_type: vm::ParamsType::Separate,
+			params_type: tetsy_vm::ParamsType::Separate,
 		};
 
 		if let Some(value) = value {
@@ -334,11 +334,11 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 		Ok(into_message_call_result(out))
 	}
 
-	fn extcode(&self, address: &Address) -> vm::Result<Option<Arc<Bytes>>> {
+	fn extcode(&self, address: &Address) -> tetsy_vm::Result<Option<Arc<Bytes>>> {
 		Ok(self.state.code(address)?)
 	}
 
-	fn extcodehash(&self, address: &Address) -> vm::Result<Option<H256>> {
+	fn extcodehash(&self, address: &Address) -> tetsy_vm::Result<Option<H256>> {
 		if self.state.exists_and_not_null(address)? {
 			Ok(self.state.code_hash(address)?)
 		} else {
@@ -346,11 +346,11 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 		}
 	}
 
-	fn extcodesize(&self, address: &Address) -> vm::Result<Option<usize>> {
+	fn extcodesize(&self, address: &Address) -> tetsy_vm::Result<Option<usize>> {
 		Ok(self.state.code_size(address)?)
 	}
 
-	fn log(&mut self, topics: Vec<H256>, data: &[u8]) -> vm::Result<()> {
+	fn log(&mut self, topics: Vec<H256>, data: &[u8]) -> tetsy_vm::Result<()> {
 		if self.static_flag {
 			return Err(vm::Error::MutableCallInStaticContext);
 		}
@@ -365,7 +365,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 		Ok(())
 	}
 
-	fn ret(self, gas: &U256, data: &ReturnData, apply_state: bool) -> vm::Result<U256>
+	fn ret(self, gas: &U256, data: &ReturnData, apply_state: bool) -> tetsy_vm::Result<U256>
 		where Self: Sized {
 		match self.output {
 			OutputPolicy::Return => {
@@ -388,7 +388,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> Ext for Externalities<'a, T, V, B>
 		}
 	}
 
-	fn suicide(&mut self, refund_address: &Address) -> vm::Result<()> {
+	fn suicide(&mut self, refund_address: &Address) -> tetsy_vm::Result<()> {
 		if self.static_flag {
 			return Err(vm::Error::MutableCallInStaticContext);
 		}

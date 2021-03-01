@@ -91,16 +91,16 @@ pub fn contract_address(address_scheme: CreateContractAddress, sender: &Address,
 }
 
 /// Convert a finalization result into a VM message call result.
-pub fn into_message_call_result(result: vm::Result<FinalizationResult>) -> vm::MessageCallResult {
+pub fn into_message_call_result(result: tetsy_vm::Result<FinalizationResult>) -> tetsy_vm::MessageCallResult {
 	match result {
-		Ok(FinalizationResult { gas_left, return_data, apply_state: true }) => vm::MessageCallResult::Success(gas_left, return_data),
-		Ok(FinalizationResult { gas_left, return_data, apply_state: false }) => vm::MessageCallResult::Reverted(gas_left, return_data),
-		_ => vm::MessageCallResult::Failed
+		Ok(FinalizationResult { gas_left, return_data, apply_state: true }) => tetsy_vm::MessageCallResult::Success(gas_left, return_data),
+		Ok(FinalizationResult { gas_left, return_data, apply_state: false }) => tetsy_vm::MessageCallResult::Reverted(gas_left, return_data),
+		_ => tetsy_vm::MessageCallResult::Failed
 	}
 }
 
 /// Convert a finalization result into a VM contract create result.
-pub fn into_contract_create_result(result: vm::Result<FinalizationResult>, address: &Address, substate: &mut Substate) -> vm::ContractCreateResult {
+pub fn into_contract_create_result(result: tetsy_vm::Result<FinalizationResult>, address: &Address, substate: &mut Substate) -> tetsy_vm::ContractCreateResult {
 	match result {
 		Ok(FinalizationResult { gas_left, apply_state: true, .. }) => {
 			substate.contracts_created.push(address.clone());
@@ -109,7 +109,7 @@ pub fn into_contract_create_result(result: vm::Result<FinalizationResult>, addre
 		Ok(FinalizationResult { gas_left, apply_state: false, return_data }) => {
 			vm::ContractCreateResult::Reverted(gas_left, return_data)
 		},
-		_ => vm::ContractCreateResult::Failed,
+		_ => tetsy_vm::ContractCreateResult::Failed,
 	}
 }
 
@@ -208,9 +208,9 @@ impl TransactOptions<trace::NoopTracer, trace::NoopVMTracer> {
 }
 
 /// Trap result returned by executive.
-pub type ExecutiveTrapResult<'a, T> = vm::TrapResult<T, CallCreateExecutive<'a>, CallCreateExecutive<'a>>;
+pub type ExecutiveTrapResult<'a, T> = tetsy_vm::TrapResult<T, CallCreateExecutive<'a>, CallCreateExecutive<'a>>;
 /// Trap error for executive.
-pub type ExecutiveTrapError<'a> = vm::TrapError<CallCreateExecutive<'a>, CallCreateExecutive<'a>>;
+pub type ExecutiveTrapError<'a> = tetsy_vm::TrapError<CallCreateExecutive<'a>, CallCreateExecutive<'a>>;
 
 enum CallCreateExecutiveKind {
 	Transfer(ActionParams),
@@ -291,7 +291,7 @@ impl<'a> CallCreateExecutive<'a> {
 		}
 	}
 
-	fn check_static_flag(params: &ActionParams, static_flag: bool, is_create: bool) -> vm::Result<()> {
+	fn check_static_flag(params: &ActionParams, static_flag: bool, is_create: bool) -> tetsy_vm::Result<()> {
 		if is_create {
 			if static_flag {
 				return Err(vm::Error::MutableCallInStaticContext);
@@ -308,7 +308,7 @@ impl<'a> CallCreateExecutive<'a> {
 		Ok(())
 	}
 
-	fn check_eip684<B: 'a + StateBackend>(params: &ActionParams, state: &State<B>) -> vm::Result<()> {
+	fn check_eip684<B: 'a + StateBackend>(params: &ActionParams, state: &State<B>) -> tetsy_vm::Result<()> {
 		if state.exists_and_has_code_or_nonce(&params.address)? {
 			return Err(vm::Error::OutOfGas);
 		}
@@ -316,7 +316,7 @@ impl<'a> CallCreateExecutive<'a> {
 		Ok(())
 	}
 
-	fn transfer_exec_balance<B: 'a + StateBackend>(params: &ActionParams, schedule: &Schedule, state: &mut State<B>, substate: &mut Substate) -> vm::Result<()> {
+	fn transfer_exec_balance<B: 'a + StateBackend>(params: &ActionParams, schedule: &Schedule, state: &mut State<B>, substate: &mut Substate) -> tetsy_vm::Result<()> {
 		if let ActionValue::Transfer(val) = params.value {
 			state.transfer_balance(&params.sender, &params.address, &val, cleanup_mode(substate, &schedule))?;
 		}
@@ -324,7 +324,7 @@ impl<'a> CallCreateExecutive<'a> {
 		Ok(())
 	}
 
-	fn transfer_exec_balance_and_init_contract<B: 'a + StateBackend>(params: &ActionParams, schedule: &Schedule, state: &mut State<B>, substate: &mut Substate) -> vm::Result<()> {
+	fn transfer_exec_balance_and_init_contract<B: 'a + StateBackend>(params: &ActionParams, schedule: &Schedule, state: &mut State<B>, substate: &mut Substate) -> tetsy_vm::Result<()> {
 		let nonce_offset = if schedule.no_empty { 1 } else { 0 }.into();
 		let prev_bal = state.balance(&params.address)?;
 		if let ActionValue::Transfer(val) = params.value {
@@ -337,7 +337,7 @@ impl<'a> CallCreateExecutive<'a> {
 		Ok(())
 	}
 
-	fn enact_result<B: 'a + StateBackend>(result: &vm::Result<FinalizationResult>, state: &mut State<B>, substate: &mut Substate, un_substate: Substate) {
+	fn enact_result<B: 'a + StateBackend>(result: &tetsy_vm::Result<FinalizationResult>, state: &mut State<B>, substate: &mut Substate, un_substate: Substate) {
 		match *result {
 			Err(vm::Error::OutOfGas)
 				| Err(vm::Error::BadJumpDestination {..})
@@ -552,7 +552,7 @@ impl<'a> CallCreateExecutive<'a> {
 	/// Resume execution from a call trap previsouly trapped by `exec`.
 	///
 	/// Current-level tracing is expected to be handled by caller.
-	pub fn resume_call<B: 'a + StateBackend, T: Tracer, V: VMTracer>(mut self, result: vm::MessageCallResult, state: &mut State<B>, substate: &mut Substate, tracer: &mut T, vm_tracer: &mut V) -> ExecutiveTrapResult<'a, FinalizationResult> {
+	pub fn resume_call<B: 'a + StateBackend, T: Tracer, V: VMTracer>(mut self, result: tetsy_vm::MessageCallResult, state: &mut State<B>, substate: &mut Substate, tracer: &mut T, vm_tracer: &mut V) -> ExecutiveTrapResult<'a, FinalizationResult> {
 		match self.kind {
 			CallCreateExecutiveKind::ResumeCall(origin_info, resume, mut unconfirmed_substate) => {
 				let out = {
@@ -591,7 +591,7 @@ impl<'a> CallCreateExecutive<'a> {
 	/// Resume execution from a create trap previsouly trapped by `exec`.
 	///
 	/// Current-level tracing is expected to be handled by caller.
-	pub fn resume_create<B: 'a + StateBackend, T: Tracer, V: VMTracer>(mut self, result: vm::ContractCreateResult, state: &mut State<B>, substate: &mut Substate, tracer: &mut T, vm_tracer: &mut V) -> ExecutiveTrapResult<'a, FinalizationResult> {
+	pub fn resume_create<B: 'a + StateBackend, T: Tracer, V: VMTracer>(mut self, result: tetsy_vm::ContractCreateResult, state: &mut State<B>, substate: &mut Substate, tracer: &mut T, vm_tracer: &mut V) -> ExecutiveTrapResult<'a, FinalizationResult> {
 		match self.kind {
 			CallCreateExecutiveKind::ResumeCreate(origin_info, resume, mut unconfirmed_substate) => {
 				let out = {
@@ -628,7 +628,7 @@ impl<'a> CallCreateExecutive<'a> {
 	}
 
 	/// Execute and consume the current executive. This function handles resume traps and sub-level tracing. The caller is expected to handle current-level tracing.
-	pub fn consume<B: 'a + StateBackend, T: Tracer, V: VMTracer>(self, state: &mut State<B>, top_substate: &mut Substate, tracer: &mut T, vm_tracer: &mut V) -> vm::Result<FinalizationResult> {
+	pub fn consume<B: 'a + StateBackend, T: Tracer, V: VMTracer>(self, state: &mut State<B>, top_substate: &mut Substate, tracer: &mut T, vm_tracer: &mut V) -> tetsy_vm::Result<FinalizationResult> {
 		let mut last_res = Some((false, self.gas, self.exec(state, top_substate, tracer, vm_tracer)));
 
 		let mut callstack: Vec<(Option<Address>, CallCreateExecutive<'a>)> = Vec::new();
@@ -665,7 +665,7 @@ impl<'a> CallCreateExecutive<'a> {
 										);
 									},
 									Ok(_) => {
-										tracer.done_trace_failed(&vm::Error::Reverted);
+										tracer.done_trace_failed(&tetsy_vm::Error::Reverted);
 									},
 									Err(ref err) => {
 										tracer.done_trace_failed(err);
@@ -697,7 +697,7 @@ impl<'a> CallCreateExecutive<'a> {
 										);
 									},
 									Ok(_) => {
-										tracer.done_trace_failed(&vm::Error::Reverted);
+										tracer.done_trace_failed(&tetsy_vm::Error::Reverted);
 									},
 									Err(ref err) => {
 										tracer.done_trace_failed(err);
@@ -910,7 +910,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 					code_version: schedule.latest_version,
 					data: None,
 					action_type: ActionType::Create,
-					params_type: vm::ParamsType::Embedded,
+					params_type: tetsy_vm::ParamsType::Embedded,
 				};
 				let res = self.create(params, &mut substate, &mut tracer, &mut vm_tracer);
 				let out = match &res {
@@ -933,7 +933,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 					code_version: self.state.code_version(address)?,
 					data: Some(t.data.clone()),
 					action_type: ActionType::Call,
-					params_type: vm::ParamsType::Separate,
+					params_type: tetsy_vm::ParamsType::Separate,
 				};
 				let res = self.call(params, &mut substate, &mut tracer, &mut vm_tracer);
 				let out = match &res {
@@ -959,7 +959,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		stack_depth: usize,
 		tracer: &mut T,
 		vm_tracer: &mut V
-	) -> vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
+	) -> tetsy_vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
 		tracer.prepare_trace_call(&params, self.depth, self.machine.builtin(&params.address, self.info.number).is_some());
 		vm_tracer.prepare_subtrace(params.code.as_ref().map_or_else(|| &[] as &[u8], |d| &*d as &[u8]));
 
@@ -985,7 +985,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 				);
 			},
 			Ok(_) => {
-				tracer.done_trace_failed(&vm::Error::Reverted);
+				tracer.done_trace_failed(&tetsy_vm::Error::Reverted);
 			},
 			Err(ref err) => {
 				tracer.done_trace_failed(err);
@@ -1005,7 +1005,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		stack_depth: usize,
 		tracer: &mut T,
 		vm_tracer: &mut V
-	) -> vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
+	) -> tetsy_vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
 		let local_stack_size = vapcore_io::LOCAL_STACK_SIZE.with(|sz| sz.get());
 		let depth_threshold = local_stack_size.saturating_sub(STACK_SIZE_ENTRY_OVERHEAD) / STACK_SIZE_PER_DEPTH;
 
@@ -1034,7 +1034,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		substate: &mut Substate,
 		tracer: &mut T,
 		vm_tracer: &mut V
-	) -> vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
+	) -> tetsy_vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
 		self.call_with_stack_depth(params, substate, 0, tracer, vm_tracer)
 	}
 
@@ -1048,7 +1048,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		stack_depth: usize,
 		tracer: &mut T,
 		vm_tracer: &mut V,
-	) -> vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
+	) -> tetsy_vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
 		tracer.prepare_trace_create(&params);
 		vm_tracer.prepare_subtrace(params.code.as_ref().map_or_else(|| &[] as &[u8], |d| &*d as &[u8]));
 
@@ -1076,7 +1076,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 				);
 			},
 			Ok(_) => {
-				tracer.done_trace_failed(&vm::Error::Reverted);
+				tracer.done_trace_failed(&tetsy_vm::Error::Reverted);
 			},
 			Err(ref err) => {
 				tracer.done_trace_failed(err);
@@ -1096,7 +1096,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		stack_depth: usize,
 		tracer: &mut T,
 		vm_tracer: &mut V,
-	) -> vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
+	) -> tetsy_vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
 		let local_stack_size = vapcore_io::LOCAL_STACK_SIZE.with(|sz| sz.get());
 		let depth_threshold = local_stack_size.saturating_sub(STACK_SIZE_ENTRY_OVERHEAD) / STACK_SIZE_PER_DEPTH;
 
@@ -1125,7 +1125,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		substate: &mut Substate,
 		tracer: &mut T,
 		vm_tracer: &mut V,
-	) -> vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
+	) -> tetsy_vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
 		self.create_with_stack_depth(params, substate, 0, tracer, vm_tracer)
 	}
 
@@ -1134,7 +1134,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		&mut self,
 		t: &SignedTransaction,
 		mut substate: Substate,
-		result: vm::Result<FinalizationResult>,
+		result: tetsy_vm::Result<FinalizationResult>,
 		output: Bytes,
 		trace: Vec<T>,
 		vm_trace: Option<V>

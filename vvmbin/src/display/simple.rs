@@ -28,7 +28,7 @@ use crate::{
 #[derive(Default)]
 pub struct Informant;
 
-impl vm::Informant for Informant {
+impl tetsy_vm::Informant for Informant {
 
 	type Sink = ();
 
@@ -38,7 +38,7 @@ impl vm::Informant for Informant {
 
 	fn clone_sink(&self) -> Self::Sink { () }
 
-	fn finish(result: vm::RunResult<Self::Output>, _sink: &mut Self::Sink) {
+	fn finish(result: tetsy_vm::RunResult<Self::Output>, _sink: &mut Self::Sink) {
 		match result {
 			Ok(success) => {
 				println!("Output: 0x{}", success.output.to_hex());

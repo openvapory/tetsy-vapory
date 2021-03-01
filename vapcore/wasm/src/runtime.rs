@@ -32,7 +32,7 @@ pub struct RuntimeContext {
 pub struct Runtime<'a> {
 	gas_counter: u64,
 	gas_limit: u64,
-	ext: &'a mut dyn vm::Ext,
+	ext: &'a mut dyn tetsy_vm::Ext,
 	context: RuntimeContext,
 	memory: MemoryRef,
 	args: Vec<u8>,
@@ -147,7 +147,7 @@ impl<'a> Runtime<'a> {
 
 	/// New runtime for wasm contract with specified params
 	pub fn with_params(
-		ext: &mut dyn vm::Ext,
+		ext: &mut dyn tetsy_vm::Ext,
 		memory: MemoryRef,
 		gas_limit: u64,
 		args: Vec<u8>,
@@ -207,7 +207,7 @@ impl<'a> Runtime<'a> {
 
 	/// Charge gas according to closure
 	pub fn charge<F>(&mut self, f: F) -> Result<()>
-		where F: FnOnce(&vm::Schedule) -> u64
+		where F: FnOnce(&tetsy_vm::Schedule) -> u64
 	{
 		let amount = f(self.ext.schedule());
 		if !self.charge_gas(amount as u64) {
@@ -219,7 +219,7 @@ impl<'a> Runtime<'a> {
 
 	/// Adjusted charge of gas which scales actual charge according to the wasm opcode counting coefficient
 	pub fn adjusted_charge<F>(&mut self, f: F) -> Result<()>
-		where F: FnOnce(&vm::Schedule) -> u64
+		where F: FnOnce(&tetsy_vm::Schedule) -> u64
 	{
 		self.charge(|schedule| f(schedule) * schedule.wasm().opcodes_div as u64 / schedule.wasm().opcodes_mul as u64)
 	}
@@ -228,7 +228,7 @@ impl<'a> Runtime<'a> {
 	///
 	/// Closure also can return overflowing flag as None in gas cost.
 	pub fn overflow_charge<F>(&mut self, f: F) -> Result<()>
-		where F: FnOnce(&vm::Schedule) -> Option<u64>
+		where F: FnOnce(&tetsy_vm::Schedule) -> Option<u64>
 	{
 		let amount = match f(self.ext.schedule()) {
 			Some(amount) => amount,
@@ -244,7 +244,7 @@ impl<'a> Runtime<'a> {
 
 	/// Same as overflow_charge, but with amount adjusted by wasm opcodes coeff
 	pub fn adjusted_overflow_charge<F>(&mut self, f: F) -> Result<()>
-		where F: FnOnce(&vm::Schedule) -> Option<u64>
+		where F: FnOnce(&tetsy_vm::Schedule) -> Option<u64>
 	{
 		self.overflow_charge(|schedule|
 			f(schedule)
@@ -294,7 +294,7 @@ impl<'a> Runtime<'a> {
 	}
 
 	/// Return currently used schedule
-	pub fn schedule(&self) -> &vm::Schedule {
+	pub fn schedule(&self) -> &tetsy_vm::Schedule {
 		self.ext.schedule()
 	}
 
@@ -520,7 +520,7 @@ impl<'a> Runtime<'a> {
 		self.return_u256_ptr(args.nth_checked(0)?, val)
 	}
 
-	fn do_create(&mut self, endowment: U256, code_ptr: u32, code_len: u32, result_ptr: u32, scheme: vm::CreateContractAddress) -> Result<RuntimeValue> {
+	fn do_create(&mut self, endowment: U256, code_ptr: u32, code_len: u32, result_ptr: u32, scheme: tetsy_vm::CreateContractAddress) -> Result<RuntimeValue> {
 		let code = self.memory.get(code_ptr, code_len as usize)?;
 
 		self.adjusted_charge(|schedule| schedule.create_gas as u64)?;
@@ -580,7 +580,7 @@ impl<'a> Runtime<'a> {
 		let result_ptr: u32 = args.nth_checked(3)?;
 		trace!(target: "wasm", "result_ptr: {:?}", result_ptr);
 
-		self.do_create(endowment, code_ptr, code_len, result_ptr, vm::CreateContractAddress::FromSenderAndCodeHash)
+		self.do_create(endowment, code_ptr, code_len, result_ptr, tetsy_vm::CreateContractAddress::FromSenderAndCodeHash)
 	}
 
 	/// Creates a new contract using FromSenderSaltAndCodeHash scheme
@@ -608,7 +608,7 @@ impl<'a> Runtime<'a> {
 		let result_ptr: u32 = args.nth_checked(4)?;
 		trace!(target: "wasm", "result_ptr: {:?}", result_ptr);
 
-		self.do_create(endowment, code_ptr, code_len, result_ptr, vm::CreateContractAddress::FromSenderSaltAndCodeHash(salt))
+		self.do_create(endowment, code_ptr, code_len, result_ptr, tetsy_vm::CreateContractAddress::FromSenderSaltAndCodeHash(salt))
 	}
 
 	fn debug(&mut self, args: RuntimeArgs) -> Result<()>
