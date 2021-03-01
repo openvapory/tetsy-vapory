@@ -455,7 +455,7 @@ impl<'a> Runtime<'a> {
 		).ok().expect("Trap is false; trap error will not happen; qed");
 
 		match call_result {
-			vm::MessageCallResult::Success(gas_left, data) => {
+			tetsy_vm::MessageCallResult::Success(gas_left, data) => {
 				let len = cmp::min(result.len(), data.len());
 				(&mut result[..len]).copy_from_slice(&data[..len]);
 
@@ -467,7 +467,7 @@ impl<'a> Runtime<'a> {
 				self.memory.set(result_ptr, &result)?;
 				Ok(0i32.into())
 			},
-			vm::MessageCallResult::Reverted(gas_left, data) => {
+			tetsy_vm::MessageCallResult::Reverted(gas_left, data) => {
 				let len = cmp::min(result.len(), data.len());
 				(&mut result[..len]).copy_from_slice(&data[..len]);
 
@@ -479,7 +479,7 @@ impl<'a> Runtime<'a> {
 				self.memory.set(result_ptr, &result)?;
 				Ok((-1i32).into())
 			},
-			vm::MessageCallResult::Failed  => {
+			tetsy_vm::MessageCallResult::Failed  => {
 				Ok((-1i32).into())
 			}
 		}
@@ -531,7 +531,7 @@ impl<'a> Runtime<'a> {
 			/ U256::from(self.ext.schedule().wasm().opcodes_div);
 
 		match self.ext.create(&gas_left, &endowment, &code, &self.context.code_version, scheme, false).ok().expect("Trap is false; trap error will not happen; qed") {
-			vm::ContractCreateResult::Created(address, gas_left) => {
+			tetsy_vm::ContractCreateResult::Created(address, gas_left) => {
 				self.memory.set(result_ptr, address.as_bytes())?;
 				self.gas_counter = self.gas_limit -
 					// this cannot overflow, since initial gas is in [0..u64::max) range,
@@ -541,11 +541,11 @@ impl<'a> Runtime<'a> {
 				trace!(target: "wasm", "runtime: create contract success (@{:?})", address);
 				Ok(0i32.into())
 			},
-			vm::ContractCreateResult::Failed => {
+			tetsy_vm::ContractCreateResult::Failed => {
 				trace!(target: "wasm", "runtime: create contract fail");
 				Ok((-1i32).into())
 			},
-			vm::ContractCreateResult::Reverted(gas_left, _) => {
+			tetsy_vm::ContractCreateResult::Reverted(gas_left, _) => {
 				trace!(target: "wasm", "runtime: create contract reverted");
 				self.gas_counter = self.gas_limit -
 					// this cannot overflow, since initial gas is in [0..u64::max) range,
