@@ -25,7 +25,7 @@ use {
 	CreateContractAddress, Result, GasLeft,
 };
 use hash::keccak;
-use error::TrapKind;
+use crate::error::TrapKind;
 
 pub struct FakeLogEntry {
 	pub topics: Vec<H256>,

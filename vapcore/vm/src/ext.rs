@@ -19,11 +19,11 @@
 use std::sync::Arc;
 use vapory_types::{U256, H256, Address};
 use bytes::Bytes;
-use action_type::ActionType;
-use env_info::EnvInfo;
-use schedule::Schedule;
-use return_data::ReturnData;
-use error::{Result, TrapKind};
+use crate::action_type::ActionType;
+use crate::env_info::EnvInfo;
+use crate::schedule::Schedule;
+use crate::return_data::ReturnData;
+use crate::error::{Result, TrapKind};
 
 #[derive(Debug)]
 /// Result of externalities create function.

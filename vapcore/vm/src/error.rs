@@ -16,9 +16,9 @@
 
 //! VM errors module
 
-use tetsy_vm::{ResumeCall, ResumeCreate};
+use crate::{ResumeCall, ResumeCreate};
 use vapory_types::Address;
-use action_params::ActionParams;
+use crate::action_params::ActionParams;
 use std::fmt;
 use vaptrie;
 
