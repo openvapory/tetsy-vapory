@@ -20,7 +20,7 @@ use bytes::Bytes;
 use hash::{keccak, KECCAK_EMPTY};
 use vapjson;
 
-use action_type::ActionType;
+use tetsy_vm::action_type::ActionType;
 
 use std::sync::Arc;
 
