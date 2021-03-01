@@ -20,7 +20,7 @@ extern crate serde_json;
 extern crate vapory_types;
 extern crate vapjson;
 extern crate wasm;
-extern crate vm;
+extern crate tetsy_vm;
 extern crate clap;
 extern crate rustc_hex;
 extern crate env_logger;

@@ -57,7 +57,7 @@ extern crate triehash_vapory as triehash;
 extern crate tetsy_unexpected;
 extern crate using_queue;
 extern crate verification;
-extern crate vm;
+extern crate tetsy_vm;
 
 #[cfg(test)]
 extern crate account_db;

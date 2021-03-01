@@ -85,7 +85,7 @@ extern crate serde;
 extern crate spec;
 extern crate smallvec;
 extern crate tetsy_stats;
-extern crate vm;
+extern crate tetsy_vm;
 extern crate tetsy_keccak_hash as hash;
 extern crate triehash_vapory as triehash;
 extern crate tetsy_kvdb;

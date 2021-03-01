@@ -69,7 +69,7 @@ extern crate vapabi_contract;
 extern crate derive_more;
 #[macro_use]
 extern crate tetsy_rlp_derive;
-extern crate vm;
+extern crate tetsy_vm;
 
 #[cfg(not(time_checked_add))]
 extern crate time_utils;

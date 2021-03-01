@@ -26,7 +26,7 @@ extern crate vapcore;
 extern crate vvm;
 extern crate vapory_types;
 extern crate rustc_hex;
-extern crate vm;
+extern crate tetsy_vm;
 
 use std::sync::Arc;
 use criterion::{Criterion, black_box};
