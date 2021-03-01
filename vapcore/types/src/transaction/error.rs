@@ -149,7 +149,7 @@ pub enum CallError {
 	/// Couldn't find requested block's state in the chain.
 	StatePruned,
 	/// Couldn't find an amount of gas that didn't result in an exception.
-	Exceptional(vm::Error),
+	Exceptional(tetsy_vm::Error),
 	/// Corrupt state.
 	StateCorrupt,
 	/// Error executing.
