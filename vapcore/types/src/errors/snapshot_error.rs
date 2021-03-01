@@ -23,7 +23,7 @@ use vapory_types::H256;
 use vaptrie::TrieError;
 use tetsy_rlp::DecoderError;
 
-use ids::BlockId;
+use crate::ids::BlockId;
 
 /// Snapshot-related errors.
 #[derive(Debug)]

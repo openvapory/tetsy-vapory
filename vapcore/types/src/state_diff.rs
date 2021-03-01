@@ -17,7 +17,7 @@
 //! State diff module.
 
 use std::collections::BTreeMap;
-use account_diff::AccountDiff;
+use crate::account_diff::AccountDiff;
 use vapory_types::Address;
 
 /// Expression for the delta between two system states. Encoded the

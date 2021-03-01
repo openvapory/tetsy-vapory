@@ -17,7 +17,7 @@
 //! Unique identifiers.
 
 use vapory_types::H256;
-use BlockNumber;
+use crate::BlockNumber;
 
 /// Uniquely identifies block.
 #[derive(Debug, PartialEq, Copy, Clone, Hash, Eq)]

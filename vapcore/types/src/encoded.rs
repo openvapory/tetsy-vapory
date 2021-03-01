@@ -23,7 +23,7 @@
 //! When the entirety of the object is needed, it's better to upgrade it to a fully
 //! decoded object where parts like the hash can be saved.
 
-use block::Block as FullBlock;
+use crate::block::Block as FullBlock;
 use vapory_types::{H256, Bloom, U256, Address};
 use hash::keccak;
 use crate::header::Header as FullHeader;

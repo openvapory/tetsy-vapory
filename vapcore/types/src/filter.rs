@@ -17,8 +17,8 @@
 //! Blockchain filter
 
 use vapory_types::{H256, Address, Bloom, BloomInput};
-use ids::BlockId;
-use log_entry::LogEntry;
+use crate::ids::BlockId;
+use crate::log_entry::LogEntry;
 
 /// Blockchain Filter.
 #[derive(Debug, PartialEq)]
