@@ -16,8 +16,8 @@
 
 use fixture::{Fixture, Assert, CallLocator, Source};
 use wasm::WasmInterpreter;
-use vm::{self, Exec, GasLeft, ActionParams, ActionValue, ParamsType};
-use vm::tests::FakeExt;
+use tetsy_vm::{self, Exec, GasLeft, ActionParams, ActionValue, ParamsType};
+use tetsy_vm::tests::FakeExt;
 use std::io::{self, Read};
 use std::{fs, path, fmt};
 use std::sync::Arc;

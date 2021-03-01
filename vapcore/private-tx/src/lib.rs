@@ -117,7 +117,7 @@ use call_contract::CallContract;
 use tetsy_kvdb::KeyValueDB;
 use rustc_hex::FromHex;
 use vapabi::FunctionOutputDecoder;
-use vm::CreateContractAddress;
+use tetsy_vm::CreateContractAddress;
 
 // Source avaiable at https://github.com/tetsy-contracts/private-tx/blob/master/contracts/PrivateContract.sol
 const DEFAULT_STUB_CONTRACT: &str = include_str!("../res/private.vvm");

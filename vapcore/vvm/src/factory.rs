@@ -17,9 +17,9 @@
 //! Vvm factory.
 //!
 use std::sync::Arc;
-use vm::{Exec, Schedule};
+use tetsy_vm::{Exec, Schedule};
 use vapory_types::U256;
-use super::vm::ActionParams;
+use super::tetsy_vm::ActionParams;
 use super::interpreter::SharedCache;
 
 /// Vvm factory. Creates appropriate Vvm.
@@ -63,8 +63,8 @@ impl Default for Factory {
 
 #[test]
 fn test_create_vm() {
-	use vm::Ext;
-	use vm::tests::FakeExt;
+	use tetsy_vm::Ext;
+	use tetsy_vm::tests::FakeExt;
 	use bytes::Bytes;
 
 	let mut params = ActionParams::default();

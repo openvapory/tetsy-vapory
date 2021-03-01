@@ -40,7 +40,7 @@ use common_types::{
 	verification::VerificationQueueInfo as BlockQueueInfo,
 };
 use tetsy_kvdb::KeyValueDB;
-use vm::EnvInfo;
+use tetsy_vm::EnvInfo;
 
 use self::fetch::ChainDataFetcher;
 use self::header_chain::{AncestryIter, HeaderChain, HardcodedSync};

@@ -28,7 +28,7 @@ use common_types::{
 	log_entry::LogEntry,
 };
 use trace::{Tracer, VMTracer};
-use vm::{
+use tetsy_vm::{
 	self, ActionParams, ActionValue, EnvInfo, ActionType, Schedule,
 	Ext, ContractCreateResult, MessageCallResult, CreateContractAddress,
 	ReturnData, TrapKind

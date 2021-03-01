@@ -740,7 +740,7 @@ where
 	from: Address,
 	tx: VapTransaction,
 	hdr: encoded::Header,
-	env_info: ::vm::EnvInfo,
+	env_info: ::tetsy_vm::EnvInfo,
 	engine: Arc<dyn engine::Engine>,
 	on_demand: Arc<OD>,
 	sync: Arc<S>,
@@ -777,7 +777,7 @@ where
 				match res {
 					Ok(executed) => {
 						// `OutOfGas` exception, try double the gas
-						if let Some(::vm::Error::OutOfGas) = executed.exception {
+						if let Some(::tetsy_vm::Error::OutOfGas) = executed.exception {
 							// block gas limit already tried, regard as an error and don't retry
 							if params.tx.gas >= params.hdr.gas_limit() {
 								trace!(target: "light_fetch", "OutOutGas exception received, gas increase: failed");

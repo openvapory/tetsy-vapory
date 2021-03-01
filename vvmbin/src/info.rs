@@ -25,7 +25,7 @@ use vapjson;
 use pod::PodState;
 use spec;
 use trace;
-use vm::ActionParams;
+use tetsy_vm::ActionParams;
 
 /// VVM execution informant.
 pub trait Informant: trace::VMTracer {

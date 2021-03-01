@@ -136,7 +136,7 @@ use types::{
 use types::data_format::DataFormat;
 use verification::{self, BlockQueue};
 use verification::queue::kind::BlockLike;
-use vm::{CreateContractAddress, EnvInfo, LastHashes};
+use tetsy_vm::{CreateContractAddress, EnvInfo, LastHashes};
 
 const MAX_ANCIENT_BLOCKS_QUEUE_SIZE: usize = 4096;
 // Max number of blocks imported at once.

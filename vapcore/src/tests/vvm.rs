@@ -18,7 +18,7 @@
 
 use std::sync::Arc;
 use hash::keccak;
-use vm::{EnvInfo, ActionParams, ActionValue, ActionType, ParamsType};
+use tetsy_vm::{EnvInfo, ActionParams, ActionValue, ActionType, ParamsType};
 use vvm::Factory;
 use machine::{
 	executive::Executive,

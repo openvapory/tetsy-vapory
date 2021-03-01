@@ -15,7 +15,7 @@ common-types = { path = "../types" }
 vapory-types = "0.8.0"
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 machine = { path = "../machine" }
-vm = { path = "../vm" }
+tetsy-vm = { version = "0.1.0", path = "../vm" }
 
 # used from test-helpers
 accounts = { package = "vapcore-accounts", path = "../../accounts", optional = true }

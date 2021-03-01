@@ -52,7 +52,7 @@ use pod::PodState;
 use tetsy_rlp::{Rlp, RlpStream};
 use trace::{NoopTracer, NoopVMTracer};
 use trie_vm_factories::Factories;
-use vm::{EnvInfo, ActionType, ActionValue, ActionParams, ParamsType};
+use tetsy_vm::{EnvInfo, ActionType, ActionValue, ActionParams, ParamsType};
 
 use crate::{
 	Genesis,

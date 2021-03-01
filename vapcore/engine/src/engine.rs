@@ -42,7 +42,7 @@ use machine::{
 	Machine,
 	executed_block::ExecutedBlock,
 };
-use vm::{EnvInfo, Schedule, ActionType, ActionValue};
+use tetsy_vm::{EnvInfo, Schedule, ActionType, ActionValue};
 
 use crate::signer::EngineSigner;
 

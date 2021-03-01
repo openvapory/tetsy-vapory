@@ -29,7 +29,7 @@ parking_lot = "0.9"
 tetsy-rlp = "0.4.5"
 triehash = { package = "triehash-vapory", version = "0.2",  path = "../../../util/triehash-vapory" }
 tetsy-unexpected = { path = "../../../util/tetsy-unexpected" }
-vm = { path = "../../vm" }
+tetsy-vm = { version = "0.1.0", path = "../../vm" }
 
 [dev-dependencies]
 accounts = { package = "vapcore-accounts", path = "../../../accounts" }

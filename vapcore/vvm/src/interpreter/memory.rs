@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use vapory_types::U256;
-use vm::ReturnData;
+use tetsy_vm::ReturnData;
 
 const MAX_RETURN_WASTE_BYTES: usize = 16384;
 

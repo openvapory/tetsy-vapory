@@ -32,7 +32,7 @@ use bytes::Bytes;
 use vapory_types::{U256, U512, H256, Address, BigEndianHash};
 
 
-use vm::{
+use tetsy_vm::{
 	self, ActionParams, ParamsType, ActionValue, ActionType, MessageCallResult,
 	ContractCreateResult, CreateContractAddress, ReturnData, GasLeft, Schedule,
 	TrapKind, TrapError
@@ -556,11 +556,11 @@ impl<Cost: CostType> Interpreter<Cost> {
 				let contract_code = self.mem.read_slice(init_off, init_size);
 
 				let create_result = ext.create(
-					&create_gas.as_u256(), 
-					&endowment, 
-					contract_code, 
-					&self.params.code_version, 
-					address_scheme, 
+					&create_gas.as_u256(),
+					&endowment,
+					contract_code,
+					&self.params.code_version,
+					address_scheme,
 					true,
 				);
 				return match create_result {
@@ -1223,8 +1223,8 @@ mod tests {
 	use std::sync::Arc;
 	use rustc_hex::FromHex;
 	use factory::Factory;
-	use vm::{self, Exec, ActionParams, ActionValue};
-	use vm::tests::{FakeExt, test_finalize};
+	use tetsy_vm::{self, Exec, ActionParams, ActionValue};
+	use tetsy_vm::tests::{FakeExt, test_finalize};
 	use vapory_types::Address;
 
 	fn interpreter(params: ActionParams, ext: &dyn vm::Ext) -> Box<dyn Exec> {
@@ -1272,6 +1272,6 @@ mod tests {
 			test_finalize(vm.exec(&mut ext).ok().unwrap()).err().unwrap()
 		};
 
-		assert_eq!(err, ::vm::Error::OutOfBounds);
+		assert_eq!(err, ::tetsy_vm::Error::OutOfBounds);
 	}
 }

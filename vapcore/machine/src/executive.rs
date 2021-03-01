@@ -27,7 +27,7 @@ use log::trace;
 
 use account_state::{Backend as StateBackend, State, CleanupMode};
 use vvm::{ActionType, Finalize, FinalizationResult};
-use vm::{
+use tetsy_vm::{
 	self, EnvInfo, CreateContractAddress, ReturnData, CleanDustMode, ActionParams,
 	ActionValue, Schedule, TrapError, ResumeCall, ResumeCreate
 };
@@ -1236,7 +1236,7 @@ mod tests {
 	use tetsy_crypto::publickey::{Generator, Random};
 	use vvm::{Factory, vvm_test, vvm_test_ignore};
 	use tetsy_macros::vec_into;
-	use vm::{ActionParams, ActionValue, EnvInfo, CreateContractAddress};
+	use tetsy_vm::{ActionParams, ActionValue, EnvInfo, CreateContractAddress};
 	use ::trace::{
 		trace,
 		FlatTrace, Tracer, NoopTracer, ExecutiveTracer,

@@ -27,7 +27,7 @@ use vapory_types::{U256, Address, Bloom, BloomInput};
 use tetsy_bytes::Bytes;
 use tetsy_rlp::{Rlp, RlpStream, Encodable, DecoderError, Decodable};
 use tetsy_rlp_derive::{RlpEncodable, RlpDecodable};
-use vm::ActionParams;
+use tetsy_vm::ActionParams;
 use vvm::ActionType;
 use super::error::Error;
 

@@ -21,7 +21,7 @@ use trace;
 use vapjson;
 use test_helpers::{VvmTestClient, VvmTestError, TransactErr, TransactSuccess};
 use types::transaction::SignedTransaction;
-use vm::EnvInfo;
+use tetsy_vm::EnvInfo;
 use super::SKIP_TESTS;
 use super::HookType;
 

@@ -18,7 +18,7 @@
 
 use vapory_types::{U256, Address};
 use tetsy_kvdb::DBTransaction;
-use vm::{Error as VmError, ActionParams};
+use tetsy_vm::{Error as VmError, ActionParams};
 // The MallocSizeOf derive looks for this in the root
 use tetsy_util_mem as malloc_size_of;
 

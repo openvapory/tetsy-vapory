@@ -18,7 +18,7 @@
 
 use std::{ops, cmp, fmt};
 use vapory_types::{U128, U256, U512};
-use vm::{Ext, Result, ReturnData, GasLeft, Error};
+use tetsy_vm::{Ext, Result, ReturnData, GasLeft, Error};
 
 /// Finalization result. Gas Left: either it is a known value, or it needs to be computed by processing
 /// a return instruction.

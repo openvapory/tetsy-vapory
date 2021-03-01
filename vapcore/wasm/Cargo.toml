@@ -11,7 +11,7 @@ log = "0.4"
 tetsy-wasm = "0.31.1"
 libc = "0.2"
 twasm-utils = "0.6.1"
-vm = { path = "../vm" }
+tetsy-vm = { version = "0.1.0", path = "../vm" }
 twasmi = "0.3.0"
 
 [dev-dependencies]

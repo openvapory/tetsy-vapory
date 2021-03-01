@@ -19,7 +19,7 @@ use std::sync::Arc;
 use super::test_common::*;
 use account_state::{Backend as StateBackend, State};
 use vvm::Finalize;
-use vm::{
+use tetsy_vm::{
 	self, ActionParams, ActionType, Schedule, Ext,
 	ContractCreateResult, EnvInfo, MessageCallResult,
 	CreateContractAddress, ReturnData,
@@ -61,8 +61,8 @@ struct CallCreate {
 	value: U256
 }
 
-impl From<vapjson::vm::Call> for CallCreate {
-	fn from(c: vapjson::vm::Call) -> Self {
+impl From<vapjson::tetsy_vm::Call> for CallCreate {
+	fn from(c: vapjson::tetsy_vm::Call) -> Self {
 		let dst: Option<vapjson::hash::Address> = c.destination.into();
 		CallCreate {
 			data: c.data.into(),
@@ -240,7 +240,7 @@ fn do_json_test<H: FnMut(&str, HookType)>(
 	json_data: &[u8],
 	start_stop_hook: &mut H
 ) -> Vec<String> {
-	let tests = vapjson::test_helpers::vm::Test::load(json_data)
+	let tests = vapjson::test_helpers::tetsy_vm::Test::load(json_data)
 		.expect(&format!("Could not parse JSON executive test data from {}", path.display()));
 	let mut failed = Vec::new();
 

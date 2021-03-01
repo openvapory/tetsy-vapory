@@ -44,7 +44,7 @@ use account_state::State;
 use trace::Tracing;
 use triehash::ordered_trie_root;
 use tetsy_unexpected::{Mismatch, OutOfBounds};
-use vm::LastHashes;
+use tetsy_vm::LastHashes;
 
 use hash::keccak;
 use tetsy_rlp::{RlpStream, Encodable, encode_list};
@@ -486,7 +486,7 @@ mod tests {
 	use test_helpers::get_temp_state_db;
 	use super::*;
 	use engine::Engine;
-	use vm::LastHashes;
+	use tetsy_vm::LastHashes;
 	use trie_vm_factories::Factories;
 	use state_db::StateDB;
 	use vapory_types::Address;

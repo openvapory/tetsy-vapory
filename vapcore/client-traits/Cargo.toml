@@ -20,4 +20,4 @@ tetsy-kvdb = "0.3.2"
 tetsy-registrar = { path = "../../util/tetsy-registrar" }
 tetsy-stats = { version = "0.1.0", path = "../../util/stats" }
 trace = { path = "../trace" }
-vm = { path = "../vm" }
+tetsy-vm = { version = "0.1.0", path = "../vm" }

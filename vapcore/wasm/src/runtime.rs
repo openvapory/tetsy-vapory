@@ -16,7 +16,7 @@
 
 use std::cmp;
 use vapory_types::{BigEndianHash, U256, H256, Address};
-use vm::{self, ActionType};
+use tetsy_vm::{self, ActionType};
 use twasmi::{self, MemoryRef, RuntimeArgs, RuntimeValue, Error as InterpreterError, Trap, TrapKind};
 use super::panic_payload;
 

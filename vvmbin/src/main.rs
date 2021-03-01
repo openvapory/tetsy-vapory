@@ -45,7 +45,7 @@ use vapory_types::{U256, Address};
 use vapcore::{json_tests, test_helpers::TrieSpec};
 use spec;
 use serde::Deserialize;
-use vm::{ActionParams, ActionType};
+use tetsy_vm::{ActionParams, ActionType};
 
 mod info;
 mod display;

@@ -28,7 +28,7 @@ use machine::executive::CallCreateExecutive;
 use machine::substate::Substate;
 use trace::{NoopTracer, NoopVMTracer};
 use trie_vm_factories::VmFactory;
-use vm::{ActionParams, EnvInfo, Schedule};
+use tetsy_vm::{ActionParams, EnvInfo, Schedule};
 
 const ECRECOVER: &str = "0000000000000000000000000000000000000001";
 const SHA256: &str = "0000000000000000000000000000000000000002";

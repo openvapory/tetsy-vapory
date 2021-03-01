@@ -21,7 +21,7 @@ use super::u256_to_address;
 use {vvm, vm};
 use instructions::{self, Instruction, InstructionInfo};
 use interpreter::stack::Stack;
-use vm::Schedule;
+use tetsy_vm::Schedule;
 
 macro_rules! overflowing {
 	($x: expr) => {{

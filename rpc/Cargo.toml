@@ -67,7 +67,7 @@ account-state = { path = "../vapcore/account-state" }
 snapshot = { path = "../vapcore/snapshot" }
 tetsy-stats = { version = "0.1.0", path = "../util/stats" }
 trace = { path = "../vapcore/trace" }
-vm = { path = "../vapcore/vm" }
+tetsy-vm = { version = "0.1.0", path = "../vapcore/vm" }
 
 [dev-dependencies]
 client-traits = { path = "../vapcore/client-traits" }

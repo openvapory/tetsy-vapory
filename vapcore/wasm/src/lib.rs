@@ -37,7 +37,7 @@ mod runtime;
 mod tests;
 
 
-use vm::{GasLeft, ReturnData, ActionParams};
+use tetsy_vm::{GasLeft, ReturnData, ActionParams};
 use twasmi::{Error as InterpreterError, Trap};
 
 use runtime::{Runtime, RuntimeContext};

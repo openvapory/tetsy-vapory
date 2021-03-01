@@ -7,19 +7,19 @@ authors = ["Parity Technologies <admin@parity.io>"]
 [dependencies]
 derive_more = "0.15.0"
 vapbloom = "0.8.0"
-vapcore-io = { path = "../../util/io" }
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapory-types = "0.8.0"
-vapjson = { path = "../../json" }
+vapjson = { version = "0.1.0", path = "../../json" }
 tetsy-keccak-hash = "0.4.0"
 tetsy-bytes = "0.1"
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 tetsy-util-mem = "0.3.0"
 tetsy-snappy = "0.1"
-patricia-trie-vapory = { path = "../../util/patricia-trie-vapory" }
+patricia-trie-vapory = { version = "0.1.0", path = "../../util/patricia-trie-vapory" }
 tetsy-rlp = "0.4.5"
 tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
-tetsy-unexpected = { path = "../../util/tetsy-unexpected" }
-vm = { path = "../vm"}
+tetsy-unexpected = { version = "0.1.0", path = "../../util/tetsy-unexpected" }
+tetsy-vm = { version = "0.1.0", path = "../vm"}
 
 [dev-dependencies]
 rustc-hex = "2.0"

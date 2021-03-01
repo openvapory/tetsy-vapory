@@ -33,7 +33,7 @@ use common_types::{
 };
 use state_db::StateDB;
 use trace::Tracing;
-use vm::{EnvInfo, LastHashes};
+use tetsy_vm::{EnvInfo, LastHashes};
 
 /// An internal type for a block's common elements.
 #[derive(Clone)]

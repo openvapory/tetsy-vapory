@@ -16,7 +16,7 @@
 
 //! ActionParams parser for wasm
 
-use vm;
+use tetsy_vm;
 use wasm_utils::{self, rules};
 use tetsy_wasm::elements::{self, Deserialize};
 use tetsy_wasm::peek_size;

@@ -18,7 +18,7 @@
 
 use std::cmp::min;
 use vapory_types::{U256, Address};
-use vm::{Error as VmError, ActionParams};
+use tetsy_vm::{Error as VmError, ActionParams};
 use log::{debug, warn};
 use crate::{
 	Tracer, VMTracer, FlatTrace,

@@ -41,7 +41,7 @@ use machine::{
 };
 use trace::{FlatTrace, VMTrace};
 use trie_vm_factories::Factories;
-use vm::EnvInfo;
+use tetsy_vm::EnvInfo;
 
 /// Return type of proof validity check.
 #[derive(Debug, Clone)]
@@ -282,7 +282,7 @@ mod tests {
 	use spec;
 	use ::trace::{FlatTrace, TraceError, trace};
 	use tetsy_trie_db::{TrieFactory, TrieSpec};
-	use vm::EnvInfo;
+	use tetsy_vm::EnvInfo;
 
 	fn secret() -> Secret {
 		keccak("").into()

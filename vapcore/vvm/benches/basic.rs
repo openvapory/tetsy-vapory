@@ -34,8 +34,8 @@ use std::str::FromStr;
 use std::sync::Arc;
 use bytes::Bytes;
 use vapory_types::{U256, Address};
-use vm::{ActionParams, Result, GasLeft, Ext};
-use vm::tests::FakeExt;
+use tetsy_vm::{ActionParams, Result, GasLeft, Ext};
+use tetsy_vm::tests::FakeExt;
 use vvm::Factory;
 use rustc_hex::FromHex;
 

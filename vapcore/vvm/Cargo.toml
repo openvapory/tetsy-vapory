@@ -11,7 +11,7 @@ vapory-types = "0.8.0"
 tetsy-util-mem = "0.3.0"
 lazy_static = "1.0"
 log = "0.4"
-vm = { path = "../vm" }
+tetsy-vm = { version = "0.1.0", path = "../vm" }
 tetsy-keccak-hash = "0.4.0"
 parking_lot = "0.9"
 memory-cache = { path = "../../util/memory-cache" }

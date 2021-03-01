@@ -18,7 +18,7 @@
 
 use std::fmt;
 use tetsy_rlp::{Encodable, RlpStream, Decodable, DecoderError, Rlp};
-use vm::Error as VmError;
+use tetsy_vm::Error as VmError;
 
 /// Trace vvm errors.
 #[derive(Debug, PartialEq, Clone)]

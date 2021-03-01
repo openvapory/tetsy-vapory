@@ -21,8 +21,8 @@ use byteorder::{LittleEndian, ByteOrder};
 use vapory_types::{H256, U256, Address, BigEndianHash as _};
 
 use super::WasmInterpreter;
-use vm::{self, Exec, GasLeft, ActionParams, ActionValue, CreateContractAddress};
-use vm::tests::{FakeCall, FakeExt, FakeCallType};
+use tetsy_vm::{self, Exec, GasLeft, ActionParams, ActionValue, CreateContractAddress};
+use tetsy_vm::tests::{FakeCall, FakeExt, FakeCallType};
 
 macro_rules! load_sample {
 	($name: expr) => {

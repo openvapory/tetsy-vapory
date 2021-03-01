@@ -35,7 +35,7 @@ use parking_lot::Mutex;
 use request::{self as net_request, IncompleteRequest, CompleteRequest, Output, OutputKind, Field};
 use tetsy_rlp::RlpStream;
 use trie::Trie;
-use vm::EnvInfo;
+use tetsy_vm::EnvInfo;
 
 const SUPPLIED_MATCHES: &str = "supplied responses always match produced requests; enforced by `check_response`; qed";
 

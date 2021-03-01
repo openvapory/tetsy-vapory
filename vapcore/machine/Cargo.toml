@@ -35,7 +35,7 @@ tetsy-rlp = "0.4.5"
 state-db = { path = "../state-db" }
 trace = { path = "../trace" }
 trie-vm-factories = { path = "../trie-vm-factories" }
-vm = { path = "../vm" }
+tetsy-vm = { version = "0.1.0", path = "../vm" }
 
 [dev-dependencies]
 common-types = { path = "../types", features = ["test-helpers"] }

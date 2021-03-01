@@ -34,8 +34,8 @@ use criterion::{Criterion, black_box};
 use vapory_types::U256;
 use vvm::Factory;
 use rustc_hex::FromHex;
-use vm::tests::FakeExt;
-use vm::{ActionParams, Ext};
+use tetsy_vm::tests::FakeExt;
+use tetsy_vm::{ActionParams, Ext};
 
 criterion_group!(
 	vvmbin,

@@ -46,7 +46,7 @@ mod instructions;
 #[cfg(test)]
 mod tests;
 
-pub use vm::{
+pub use tetsy_vm::{
     Schedule, CleanDustMode, EnvInfo, ActionType, ActionParams, Ext,
     ContractCreateResult, MessageCallResult, CreateContractAddress,
     GasLeft, ReturnData

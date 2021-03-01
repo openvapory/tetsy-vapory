@@ -34,8 +34,8 @@ use common_types::{
 	errors::{EngineError, VapcoreError as Error},
 	transaction::{self, SYSTEM_ADDRESS, UNSIGNED_SENDER, UnverifiedTransaction, SignedTransaction},
 };
-use vm::{ActionType, ActionParams, ActionValue, ParamsType};
-use vm::{EnvInfo, Schedule};
+use tetsy_vm::{ActionType, ActionParams, ActionValue, ParamsType};
+use tetsy_vm::{EnvInfo, Schedule};
 
 use account_state::CleanupMode;
 use client_traits::BlockInfo;

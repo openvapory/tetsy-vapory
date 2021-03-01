@@ -17,7 +17,7 @@
 //! Env module glue for twasmi interpreter
 
 use std::cell::RefCell;
-use vm::WasmCosts;
+use tetsy_vm::WasmCosts;
 use twasmi::{
 	self, Signature, Error, FuncRef, FuncInstance, MemoryDescriptor,
 	MemoryRef, MemoryInstance, memory_units,

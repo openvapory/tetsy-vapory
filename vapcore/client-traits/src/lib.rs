@@ -60,7 +60,7 @@ use common_types::{
 	data_format::DataFormat,
 	client_types::StateResult
 };
-use vm::{LastHashes, Schedule};
+use tetsy_vm::{LastHashes, Schedule};
 
 /// State information to be used during client query
 pub enum StateOrBlock {

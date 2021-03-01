@@ -17,7 +17,7 @@
 //! Nonoperative tracer.
 
 use vapory_types::{U256, Address};
-use vm::{Error as VmError, ActionParams};
+use tetsy_vm::{Error as VmError, ActionParams};
 use crate::{
 	Tracer, VMTracer, FlatTrace,
 	trace::{VMTrace, RewardType}

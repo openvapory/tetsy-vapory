@@ -63,7 +63,7 @@ use engine::{Engine, signer::EngineSigner};
 use machine::executive::contract_address;
 use spec::Spec;
 use account_state::State;
-use vm::CreateContractAddress;
+use tetsy_vm::CreateContractAddress;
 
 /// Different possible definitions for pending transaction set.
 #[derive(Debug, PartialEq)]

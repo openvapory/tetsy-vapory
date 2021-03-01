@@ -60,7 +60,7 @@ use types::{
 	block_status::BlockStatus,
 	verification::VerificationQueueInfo as BlockQueueInfo,
 };
-use vm::{Schedule, LastHashes};
+use tetsy_vm::{Schedule, LastHashes};
 
 use block::{OpenBlock, SealedBlock, ClosedBlock};
 use call_contract::CallContract;

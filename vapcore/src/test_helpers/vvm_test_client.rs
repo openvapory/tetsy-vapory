@@ -32,7 +32,7 @@ use types::{
 use vapjson::spec::ForkSpec;
 use trie_vm_factories::Factories;
 use vvm::FinalizationResult;
-use vm::{self, ActionParams, CreateContractAddress};
+use tetsy_vm::{self, ActionParams, CreateContractAddress};
 use vaptrie;
 use account_state::{CleanupMode, State};
 use machine::{

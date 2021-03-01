@@ -20,8 +20,8 @@ use std::hash::Hash;
 use std::sync::Arc;
 use std::collections::{HashMap, HashSet};
 use vapory_types::{U256, H256, Address};
-use vm::{self, ActionParams, ActionValue, Ext};
-use vm::tests::{FakeExt, FakeCall, FakeCallType, test_finalize};
+use tetsy_vm::{self, ActionParams, ActionValue, Ext};
+use tetsy_vm::tests::{FakeExt, FakeCall, FakeCallType, test_finalize};
 use factory::Factory;
 use hex_literal::hex;
 
