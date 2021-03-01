@@ -55,7 +55,7 @@ pub struct AuxiliaryData<'a> {
 #[derive(Debug, PartialEq, Clone)]
 pub struct Executed<T, V> {
 	/// True if the outer call/create resulted in an exceptional exit.
-	pub exception: Option<vm::Error>,
+	pub exception: Option<tetsy_vm::Error>,
 
 	/// Gas paid up front for execution of transaction.
 	pub gas: U256,

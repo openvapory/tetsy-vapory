@@ -137,12 +137,12 @@ pub struct CommonParams {
 
 impl CommonParams {
 	/// Schedule for an VVM in the post-EIP-150-era of the Vapory main net.
-	pub fn schedule(&self, block_number: u64) -> vm::Schedule {
+	pub fn schedule(&self, block_number: u64) ->  tetsy_vm::Schedule {
 		if block_number < self.eip150_transition {
-			vm::Schedule::new_homestead()
+			 tetsy_vm::Schedule::new_homestead()
 		} else {
 			let max_code_size = self.max_code_size(block_number);
-			let mut schedule = vm::Schedule::new_post_eip150(
+			let mut schedule =  tetsy_vm::Schedule::new_post_eip150(
 				max_code_size as _,
 				block_number >= self.eip160_transition,
 				block_number >= self.eip161abc_transition,
@@ -164,7 +164,7 @@ impl CommonParams {
 	}
 
 	/// Apply common spec config parameters to the schedule.
-	pub fn update_schedule(&self, block_number: u64, schedule: &mut vm::Schedule) {
+	pub fn update_schedule(&self, block_number: u64, schedule: &mut  tetsy_vm::Schedule) {
 		schedule.have_create2 = block_number >= self.eip1014_transition;
 		schedule.have_revert = block_number >= self.eip140_transition;
 		schedule.have_static_call = block_number >= self.eip214_transition;
@@ -195,12 +195,12 @@ impl CommonParams {
 		}
 		if block_number >= self.dust_protection_transition {
 			schedule.kill_dust = match self.remove_dust_contracts {
-				true => vm::CleanDustMode::WithCodeAndStorage,
-				false => vm::CleanDustMode::BasicOnly,
+				true =>  tetsy_vm::CleanDustMode::WithCodeAndStorage,
+				false =>  tetsy_vm::CleanDustMode::BasicOnly,
 			};
 		}
 		if block_number >= self.wasm_activation_transition {
-			let mut wasm = vm::WasmCosts::default();
+			let mut wasm =  tetsy_vm::WasmCosts::default();
 			if block_number >= self.kip4_transition {
 				wasm.have_create2 = true;
 			}
@@ -209,7 +209,7 @@ impl CommonParams {
 			}
 			schedule.wasm = Some(wasm);
 			if let Some(version) = self.wasm_version {
-				schedule.versions.insert(version, vm::VersionedSchedule::TWasm);
+				schedule.versions.insert(version,  tetsy_vm::VersionedSchedule::TWasm);
 			}
 		}
 	}
