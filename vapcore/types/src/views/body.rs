@@ -23,7 +23,7 @@ use crate::header::Header;
 use crate::transaction::{LocalizedTransaction, UnverifiedTransaction};
 use crate::views::{TransactionView, HeaderView};
 use super::ViewRlp;
-use BlockNumber;
+use crate::BlockNumber;
 
 /// View onto block rlp.
 pub struct BodyView<'a> {

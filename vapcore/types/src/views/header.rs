@@ -21,7 +21,7 @@ use vapory_types::{H256, Bloom, U256, Address};
 use hash::keccak;
 use tetsy_rlp::{self};
 use super::ViewRlp;
-use BlockNumber;
+use crate::BlockNumber;
 
 /// View onto block header rlp.
 pub struct HeaderView<'a> {
