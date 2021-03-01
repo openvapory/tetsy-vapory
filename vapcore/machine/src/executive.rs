@@ -104,10 +104,10 @@ pub fn into_contract_create_result(result: tetsy_vm::Result<FinalizationResult>,
 	match result {
 		Ok(FinalizationResult { gas_left, apply_state: true, .. }) => {
 			substate.contracts_created.push(address.clone());
-			vm::ContractCreateResult::Created(address.clone(), gas_left)
+			tetsy_vm::ContractCreateResult::Created(address.clone(), gas_left)
 		},
 		Ok(FinalizationResult { gas_left, apply_state: false, return_data }) => {
-			vm::ContractCreateResult::Reverted(gas_left, return_data)
+			tetsy_vm::ContractCreateResult::Reverted(gas_left, return_data)
 		},
 		_ => tetsy_vm::ContractCreateResult::Failed,
 	}
@@ -294,14 +294,14 @@ impl<'a> CallCreateExecutive<'a> {
 	fn check_static_flag(params: &ActionParams, static_flag: bool, is_create: bool) -> tetsy_vm::Result<()> {
 		if is_create {
 			if static_flag {
-				return Err(vm::Error::MutableCallInStaticContext);
+				return Err(tetsy_vm::Error::MutableCallInStaticContext);
 			}
 		} else {
 			if (static_flag &&
 				(params.action_type == ActionType::StaticCall || params.action_type == ActionType::Call)) &&
 				params.value.value() > U256::zero()
 			{
-				return Err(vm::Error::MutableCallInStaticContext);
+				return Err(tetsy_vm::Error::MutableCallInStaticContext);
 			}
 		}
 
@@ -310,7 +310,7 @@ impl<'a> CallCreateExecutive<'a> {
 
 	fn check_eip684<B: 'a + StateBackend>(params: &ActionParams, state: &State<B>) -> tetsy_vm::Result<()> {
 		if state.exists_and_has_code_or_nonce(&params.address)? {
-			return Err(vm::Error::OutOfGas);
+			return Err(tetsy_vm::Error::OutOfGas);
 		}
 
 		Ok(())
@@ -339,20 +339,20 @@ impl<'a> CallCreateExecutive<'a> {
 
 	fn enact_result<B: 'a + StateBackend>(result: &tetsy_vm::Result<FinalizationResult>, state: &mut State<B>, substate: &mut Substate, un_substate: Substate) {
 		match *result {
-			Err(vm::Error::OutOfGas)
-				| Err(vm::Error::BadJumpDestination {..})
-				| Err(vm::Error::BadInstruction {.. })
-				| Err(vm::Error::StackUnderflow {..})
-				| Err(vm::Error::BuiltIn {..})
-				| Err(vm::Error::Wasm {..})
-				| Err(vm::Error::OutOfStack {..})
-				| Err(vm::Error::MutableCallInStaticContext)
-				| Err(vm::Error::OutOfBounds)
-				| Err(vm::Error::Reverted)
+			Err(tetsy_vm::Error::OutOfGas)
+				| Err(tetsy_vm::Error::BadJumpDestination {..})
+				| Err(tetsy_vm::Error::BadInstruction {.. })
+				| Err(tetsy_vm::Error::StackUnderflow {..})
+				| Err(tetsy_vm::Error::BuiltIn {..})
+				| Err(tetsy_vm::Error::Wasm {..})
+				| Err(tetsy_vm::Error::OutOfStack {..})
+				| Err(tetsy_vm::Error::MutableCallInStaticContext)
+				| Err(tetsy_vm::Error::OutOfBounds)
+				| Err(tetsy_vm::Error::Reverted)
 				| Ok(FinalizationResult { apply_state: false, .. }) => {
 					state.revert_to_checkpoint();
 			},
-			Ok(_) | Err(vm::Error::Internal(_)) => {
+			Ok(_) | Err(tetsy_vm::Error::Internal(_)) => {
 				state.discard_checkpoint();
 				substate.accrue(un_substate);
 			}
@@ -423,7 +423,7 @@ impl<'a> CallCreateExecutive<'a> {
 						if let Err(e) = result {
 							state.revert_to_checkpoint();
 
-							Err(vm::Error::BuiltIn(e))
+							Err(tetsy_vm::Error::BuiltIn(e))
 						} else {
 							state.discard_checkpoint();
 
@@ -438,7 +438,7 @@ impl<'a> CallCreateExecutive<'a> {
 						// just drain the whole gas
 						state.revert_to_checkpoint();
 
-						Err(vm::Error::OutOfGas)
+						Err(tetsy_vm::Error::OutOfGas)
 					}
 				};
 
@@ -476,7 +476,7 @@ impl<'a> CallCreateExecutive<'a> {
 							Err(err) => Err(err),
 						}
 					},
-					None => Ok(Err(vm::Error::OutOfGas)),
+					None => Ok(Err(tetsy_vm::Error::OutOfGas)),
 				};
 
 				let res = match out {
@@ -527,7 +527,7 @@ impl<'a> CallCreateExecutive<'a> {
 							Err(err) => Err(err),
 						}
 					},
-					None => Ok(Err(vm::Error::OutOfGas)),
+					None => Ok(Err(tetsy_vm::Error::OutOfGas)),
 				};
 
 				let res = match out {
@@ -951,7 +951,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 	/// Calls contract function with given contract params and stack depth.
 	/// NOTE. It does not finalize the transaction (doesn't do refunds, nor suicides).
 	/// Modifies the substate and the output.
-	/// Returns either gas_left or `vm::Error`.
+	/// Returns either gas_left or `tetsy_vm::Error`.
 	pub fn call_with_stack_depth<T, V>(
 		&mut self,
 		params: ActionParams,
@@ -1181,7 +1181,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		self.state.kill_garbage(&substate.touched, schedule.kill_empty, &min_balance, schedule.kill_dust == CleanDustMode::WithCodeAndStorage)?;
 
 		match result {
-			Err(vm::Error::Internal(msg)) => Err(ExecutionError::Internal(msg)),
+			Err(tetsy_vm::Error::Internal(msg)) => Err(ExecutionError::Internal(msg)),
 			Err(exception) => {
 				Ok(Executed {
 					exception: Some(exception),
@@ -1199,7 +1199,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 			},
 			Ok(r) => {
 				Ok(Executed {
-					exception: if r.apply_state { None } else { Some(vm::Error::Reverted) },
+					exception: if r.apply_state { None } else { Some(tetsy_vm::Error::Reverted) },
 					gas: t.gas,
 					gas_used: gas_used,
 					refunded: refunded,
@@ -1657,7 +1657,7 @@ mod tests {
 				init: vec![0x60, 0x01, 0x60, 0x00, 0xfd],
 				creation_method: Some(trace::CreationMethod::Create),
 			}),
-			result: trace::Res::FailedCreate(vm::Error::Reverted.into()),
+			result: trace::Res::FailedCreate(tetsy_vm::Error::Reverted.into()),
 		}];
 
 		assert_eq!(tracer.drain(), expected_trace);
