@@ -1,6 +1,6 @@
 [package]
 name = "patricia-trie-vapory"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Parity Technologies <admin@parity.io>"]
 description = "Merkle-Patricia Trie (Vapory Style)"
 license = "GPL-3.0"
@@ -9,7 +9,7 @@ homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
-tetsy-trie-db = "0.20.0"
+tetsy-trie-db = "0.19.2"
 tetsy-keccak-hasher = { version = "0.1.1", path = "../tetsy-keccak-hasher" }
 tetsy-hash-db = "0.15.2"
 tetsy-rlp = "0.4.5"

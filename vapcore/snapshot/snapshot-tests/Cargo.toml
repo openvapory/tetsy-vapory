@@ -18,7 +18,7 @@ vapcore = { path = "../..", features = ["test-helpers"] }
 vapcore-db = { path = "../../db" }
 vapcore-io = { path = "../../../util/io" }
 vapory-types = "0.8.0"
-vaptrie  = { package = "patricia-trie-vapory", path = "../../../util/patricia-trie-vapory" }
+vaptrie  = { package = "patricia-trie-vapory", path = "../../../util/patricia-trie-vapory", version = "0.1.1" }
 tetsy-hash-db = "0.15.2"
 journaldb = { path = "../../../util/journaldb" }
 tetsy-keccak-hash = "0.4.0"
@@ -37,7 +37,7 @@ snappy = { package = "tetsy-snappy", version ="0.1.0" }
 snapshot = { path = "../../snapshot", features = ["test-helpers"] }
 spec = { path = "../../spec" }
 tempdir = "0.3"
-tetsy-trie-db = "0.20.0"
+tetsy-trie-db = "0.19.2"
 tetsy-trie-standardmap = "0.15.2"
 vapabi = "9.0.1"
 vapabi-contract = "9.0.0"

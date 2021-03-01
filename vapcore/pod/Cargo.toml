@@ -10,7 +10,7 @@ edition = "2018"
 common-types = { path = "../types" }
 vapory-types = "0.8.0"
 vapjson = { path = "../../json" }
-vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory" }
+vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }
 tetsy-hash-db = "0.15.2"
 itertools = "0.8"
 tetsy-keccak-hash = "0.4.0"
@@ -22,7 +22,7 @@ tetsy-bytes = "0.1.0"
 tetsy-rlp = "0.4.5"
 rustc-hex = "1"
 serde = { version = "1.0", features = ["derive"] }
-tetsy-trie-db = "0.20.0"
+tetsy-trie-db = "0.19.2"
 triehash = { package = "triehash-vapory", version = "0.2",  path = "../../util/triehash-vapory" }
 
 [dev-dependencies]

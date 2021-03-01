@@ -31,5 +31,5 @@ tetsy-keccak-hash = "0.4.0"
 pod = { path = "../pod" }
 rustc-hex = "1.0"
 spec = { path = "../spec" }
-tetsy-trie-db = "0.20.0"
-vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory" }
+tetsy-trie-db = "0.19.2"
+vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }

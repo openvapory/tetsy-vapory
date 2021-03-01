@@ -15,7 +15,7 @@ tetsy-bytes = "0.1"
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 tetsy-util-mem = "0.3.0"
 tetsy-snappy = "0.1"
-patricia-trie-vapory = { version = "0.1.0", path = "../../util/patricia-trie-vapory" }
+patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }
 tetsy-rlp = "0.4.5"
 tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
 tetsy-unexpected = { version = "0.1.0", path = "../../util/tetsy-unexpected" }

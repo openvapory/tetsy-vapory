@@ -19,8 +19,8 @@ vapory-types = "0.8.0"
 executive-state = { path = "../executive-state" }
 machine = { path = "../machine" }
 tetsy-memory-db = "0.18.1"
-tetsy-trie-db = "0.20.0"
-patricia-trie-vapory = { path = "../../util/patricia-trie-vapory" }
+tetsy-trie-db = "0.19.2"
+patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }
 vapcore-network = { path = "../../util/network" }
 vapcore-miner = { path = "../../miner" }
 vapcore-io = { path = "../../util/io" }

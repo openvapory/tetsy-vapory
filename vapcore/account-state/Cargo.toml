@@ -10,7 +10,7 @@ edition = "2018"
 common-types = { path = "../types"}
 derive_more = "0.15.0"
 vapory-types = "0.8.0"
-vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory" }
+vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }
 trie-vm-factories = { path = "../trie-vm-factories" }
 tetsy-hash-db = "0.15.2"
 journaldb = { path = "../../util/journaldb" }
@@ -27,7 +27,7 @@ parking_lot = "0.9"
 pod = { path = "../pod" }
 tetsy-rlp = "0.4.5"
 serde = { version = "1.0", features = ["derive"] }
-tetsy-trie-db = "0.20.0"
+tetsy-trie-db = "0.19.2"
 
 # [dependencies.tetsy-memory-db]
 # git = "https://github.com/tetcoin/trie"

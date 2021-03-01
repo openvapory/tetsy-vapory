@@ -6,8 +6,8 @@ authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
 
 [dependencies]
-tetsy-trie-db = "0.20.0"
-vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory" }
+tetsy-trie-db = "0.19.2"
+vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }
 account-db = { path = "../account-db" }
 vvm = { path = "../vvm" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }

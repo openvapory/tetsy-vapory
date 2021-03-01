@@ -12,7 +12,7 @@ repository = "https://github.com/openvapory/tetsy-vapory"
 [dependencies]
 tetsy-bytes = "0.1"
 vapory-types = "0.8.0"
-patricia-trie-vapory = { version = "0.1.0", path = "../../util/patricia-trie-vapory" }
+patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }
 vapjson = { version = "0.1.0", path = "../../json" }
 tetsy-rlp = "0.4.5"
 tetsy-keccak-hash = "0.4.0"
