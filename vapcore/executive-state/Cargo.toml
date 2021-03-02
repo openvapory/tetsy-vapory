@@ -26,7 +26,7 @@ tetsy-vm = { version = "0.1.0", path = "../vm" }
 env_logger = "0.5"
 vapcore = { path = "..", features = ["test-helpers"] }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
-vvm = { path = "../vvm" }
+vvm = { version = "0.1.0", path = "../vvm" }
 tetsy-keccak-hash = "0.4.0"
 vapcore-pod = { version = "0.1.0", path = "../pod" }
 rustc-hex = "1.0"

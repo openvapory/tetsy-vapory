@@ -17,7 +17,7 @@ env_logger = "0.5"
 vapcore = { path = "../vapcore", features = ["test-helpers", "json-tests"] }
 vapory-types = "0.8.0"
 vapjson = { path = "../json", features = ["test-helpers"] }
-vvm = { path = "../vapcore/vvm" }
+vvm = { version = "0.1.0", path = "../vapcore/vvm" }
 panic-hook = { path = "../util/panic-hook" }
 tetsy-bytes = "0.1"
 vapcore-pod = { version = "0.1.0", path = "../vapcore/pod" }

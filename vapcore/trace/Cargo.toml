@@ -10,7 +10,7 @@ edition = "2018"
 vapcore-blockchain = { path = "../blockchain" }
 vapcore-db = { version = "0.1.0", path = "../db" }
 vapory-types = "0.8.0"
-vvm = { path = "../vvm" }
+vvm = { version = "0.1.0", path = "../vvm" }
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"

@@ -19,7 +19,7 @@ vapash = { path = "../../vapash" }
 vapash-engine = { path = "../engines/vapash" }
 vapory-types = "0.8.0"
 vapjson = { path = "../../json" }
-vvm = { path = "../vvm" }
+vvm = { version = "0.1.0", path = "../vvm" }
 executive-state = { path = "../executive-state" }
 tetsy-hash-db = "0.15.2"
 instant-seal = { path = "../engines/instant-seal" }

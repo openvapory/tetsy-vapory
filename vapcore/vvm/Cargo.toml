@@ -1,8 +1,13 @@
 [package]
-description = "Tetsy Vapory Virtual Machine (VVM) Rust Implementation"
+description = "Vapcore Vapory Virtual Machine (VVM) Rust Implementation"
 name = "vvm"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0"
+edition = "2018"
+documentation = "https://docs.rs/vvvm"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 bit-set = "0.4"
@@ -14,7 +19,7 @@ log = "0.4"
 tetsy-vm = { version = "0.1.0", path = "../vm" }
 tetsy-keccak-hash = "0.4.0"
 parking_lot = "0.9"
-memory-cache = { path = "../../util/memory-cache" }
+memory-cache = { version = "0.1.0", path = "../../util/memory-cache" }
 
 [dev-dependencies]
 rustc-hex = "1.0"

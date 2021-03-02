@@ -25,7 +25,7 @@ vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapory-types = "0.8.0"
 # Used for tests in other crates through the `test-helpers` feature
 vapjson = { path = "../../json", optional = true }
-vvm = { path = "../vvm" }
+vvm = { version = "0.1.0", path = "../vvm" }
 tetsy-keccak-hash = "0.4.0"
 log = "0.4"
 lru-cache = "0.1.2"

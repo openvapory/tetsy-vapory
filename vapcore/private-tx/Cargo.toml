@@ -1,9 +1,13 @@
 [package]
-description = "Tetsy Private Transactions"
+description = "Vapcore Private Transactions"
 name = "vapcore-private-tx"
 version = "1.0.0"
 license = "GPL-3.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+documentation = "https://docs.rs/vapcore-private-tx"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 account-state = { path = "../account-state" }

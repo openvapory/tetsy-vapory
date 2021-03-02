@@ -9,7 +9,7 @@ edition = "2018"
 tetsy-trie-db = "0.19.2"
 vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }
 account-db = { path = "../account-db" }
-vvm = { path = "../vvm" }
+vvm = { version = "0.1.0", path = "../vvm" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }
 wasm = { path = "../wasm" }
 tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }

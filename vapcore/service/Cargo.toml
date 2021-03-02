@@ -1,8 +1,13 @@
 [package]
-description = "Tetsy Vapory (VapCore) Client & Network Service Creation & Registration with the I/O Subsystem"
+description = "VapCore Client & Network Service Creation & Registration with the I/O Subsystem"
 name = "vapcore-service"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0"
+edition = "2018"
+documentation = "https://docs.rs/vapcore-service"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 ansi_term = "0.11"
