@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use crate::shared;
-use keccak::{keccak_256, H256};
+use crate::keccak::{keccak_256, H256};
 
 use std::cell::Cell;
 
