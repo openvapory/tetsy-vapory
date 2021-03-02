@@ -7,7 +7,7 @@ edition = "2018"
 [dependencies]
 accounts = { package = "vapcore-accounts", path = "../../../accounts" }
 account-db = { path = "../../account-db" }
-account-state = { path = "../../account-state" }
+account-state = { version = "0.1.0", path = "../../account-state" }
 blockchain = { package = "vapcore-blockchain", path = "../../blockchain" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 client-traits = { path = "../../client-traits" }

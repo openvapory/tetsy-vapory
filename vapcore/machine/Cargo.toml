@@ -12,7 +12,7 @@ harness = false
 required-features = ["test-helpers"]
 
 [dependencies]
-account-state = { path = "../account-state" }
+account-state = { version = "0.1.0", path = "../account-state" }
 client-traits = { path = "../client-traits" }
 common-types = { path = "../types" }
 crossbeam-utils = "0.6"

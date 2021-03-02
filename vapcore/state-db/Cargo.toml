@@ -7,7 +7,7 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
-account-state = { path = "../account-state" }
+account-state = { version = "0.1.0", path = "../account-state" }
 bloom_journal = { package = "vapcore-bloom-journal", path = "../../util/bloom" }
 common-types = { path = "../types"}
 vapcore-db = { version = "0.1.0", path = "../db" }

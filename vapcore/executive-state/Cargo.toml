@@ -8,7 +8,7 @@ license = "GPL-3.0"
 
 [dependencies]
 account-db = { path = "../account-db" }
-account-state = { path = "../account-state" }
+account-state = { version = "0.1.0", path = "../account-state" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 common-types = { path = "../types" }
 vapory-types = "0.8.0"

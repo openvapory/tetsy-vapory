@@ -12,7 +12,7 @@ harness = false
 
 [dependencies]
 account-db = { path = "../account-db" }
-account-state = { path = "../account-state" }
+account-state = { version = "0.1.0", path = "../account-state" }
 blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
 bloom-journal = { package = "vapcore-bloom-journal", path = "../../util/bloom" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
