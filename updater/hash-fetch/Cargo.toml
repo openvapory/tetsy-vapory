@@ -19,7 +19,7 @@ tetsy-bytes = "0.1"
 vapory-types = "0.8.0"
 tetsy-runtime = { path = "../../util/runtime" }
 tetsy-keccak-hash = "0.4.0"
-tetsy-registrar = { path = "../../util/tetsy-registrar" }
+tetsy-registrar = { version = "0.0.1", path = "../../util/tetsy-registrar" }
 types = { path = "../../vapcore/types", package = "common-types" }
 
 vapabi = "9.0.1"

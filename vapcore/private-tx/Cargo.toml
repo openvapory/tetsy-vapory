@@ -40,7 +40,7 @@ tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 parking_lot = "0.9"
 tetsy-trie-db = "0.19.2"
 patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }
-tetsy-registrar = { path = "../../util/tetsy-registrar" }
+tetsy-registrar = { version = "0.0.1", path = "../../util/tetsy-registrar" }
 tetsy-rlp = "0.4.5"
 tetsy-rlp-derive = { path = "../../util/tetsy-rlp-derive" }
 rustc-hex = "1.0"
