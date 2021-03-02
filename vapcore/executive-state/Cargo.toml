@@ -19,7 +19,7 @@ tetsy-kvdb = "0.3.2"
 log = "0.4.8"
 machine = { path = "../machine" }
 trace = { path = "../trace" }
-trie-vm-factories = { version = "0.1.0", , path = "../trie-vm-factories" }
+trie-vm-factories = { version = "0.1.0", path = "../trie-vm-factories" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }
 
 [dev-dependencies]
