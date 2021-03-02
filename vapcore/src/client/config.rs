@@ -19,7 +19,7 @@ use std::str::FromStr;
 use blockchain::Config as BlockChainConfig;
 use journaldb;
 use snapshot::SnapshotConfiguration;
-use trace::Config as TraceConfig;
+use vapcore_trace::Config as TraceConfig;
 use types::client_types::Mode;
 use verification::{VerifierType, QueueConfig};
 

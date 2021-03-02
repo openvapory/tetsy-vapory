@@ -100,7 +100,7 @@ use tetsy_registrar::RegistrarClient;
 use snapshot::{self, SnapshotClient, SnapshotWriter};
 use spec::Spec;
 use state_db::StateDB;
-use trace::{self, Database as TraceDatabase, ImportRequest as TraceImportRequest, LocalizedTrace, TraceDB};
+use vapcore_trace::{self, Database as TraceDatabase, ImportRequest as TraceImportRequest, LocalizedTrace, TraceDB};
 use trie_vm_factories::{Factories, VmFactory};
 use types::{
 	ancestry_action::AncestryAction,
@@ -1219,8 +1219,8 @@ impl Client {
 			transaction: &SignedTransaction,
 			options: TransactOptions<T, V>,
 		) -> Result<RawExecuted<T::Output, V::Output>, CallError> where
-			T: trace::Tracer,
-			V: trace::VMTracer,
+			T: vapcore_trace::Tracer,
+			V: vapcore_trace::VMTracer,
 		{
 			let options = options
 				.dont_check_nonce()
@@ -2057,7 +2057,7 @@ impl BlockChainClient for Client {
 		let start = self.block_number(filter.range.start)?;
 		let end = self.block_number(filter.range.end)?;
 
-		let db_filter = trace::Filter {
+		let db_filter = vapcore_trace::Filter {
 			range: start as usize..end as usize,
 			from_address: filter.from_address.into(),
 			to_address: filter.to_address.into(),
