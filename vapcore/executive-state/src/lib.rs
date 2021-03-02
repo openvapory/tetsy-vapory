@@ -39,7 +39,7 @@ use machine::{
 	executive::{Executive, TransactOptions},
 	executed::Executed,
 };
-use trace::{FlatTrace, VMTrace};
+use vapcore_trace::{FlatTrace, VMTrace};
 use trie_vm_factories::Factories;
 use tetsy_vm::EnvInfo;
 
@@ -163,8 +163,8 @@ pub trait ExecutiveState {
 		vm_tracer: V,
 	) -> ApplyResult<T::Output, V::Output>
 		where
-			T: trace::Tracer,
-			V: trace::VMTracer;
+			T: vapcore_trace::Tracer,
+			V: vapcore_trace::VMTracer;
 }
 
 impl<B: Backend> ExecutiveState for State<B> {
@@ -197,8 +197,8 @@ impl<B: Backend> ExecutiveState for State<B> {
 		vm_tracer: V,
 	) -> ApplyResult<T::Output, V::Output>
 		where
-			T: trace::Tracer,
-			V: trace::VMTracer,
+			T: vapcore_trace::Tracer,
+			V: vapcore_trace::VMTracer,
 	{
 		let options = TransactOptions::new(tracer, vm_tracer);
 		let e = execute(self, env_info, machine, t, options, false)?;
@@ -247,8 +247,8 @@ fn execute<B, T, V>(
 ) -> Result<RawExecuted<T::Output, V::Output>, ExecutionError>
 	where
 		B: Backend,
-		T: trace::Tracer,
-		V: trace::VMTracer,
+		T: vapcore_trace::Tracer,
+		V: vapcore_trace::VMTracer,
 {
 	let schedule = machine.schedule(env_info.number);
 	let mut e = Executive::new(state, env_info, machine, &schedule);
@@ -280,7 +280,7 @@ mod tests {
 	use vapcore_pod::{self, PodAccount, PodState};
 	use rustc_hex::FromHex;
 	use spec;
-	use ::trace::{FlatTrace, TraceError, trace};
+	use ::vapcore_trace::{FlatTrace, TraceError, trace};
 	use tetsy_trie_db::{TrieFactory, TrieSpec};
 	use tetsy_vm::EnvInfo;
 
@@ -318,14 +318,14 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 0,
-			action: trace::Action::Create(trace::Create {
+			action: vapcore_trace::Action::Create(vapcore_trace::Create {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				value: 100.into(),
 				gas: 77412.into(),
 				init: vec![96, 16, 128, 96, 12, 96, 0, 57, 96, 0, 243, 0, 96, 0, 53, 84, 21, 96, 9, 87, 0, 91, 96, 32, 53, 96, 0, 53, 85],
-				creation_method: Some(trace::CreationMethod::Create),
+				creation_method: Some(vapcore_trace::CreationMethod::Create),
 			}),
-			result: trace::Res::Create(trace::CreateResult {
+			result: vapcore_trace::Res::Create(vapcore_trace::CreateResult {
 				gas_used: U256::from(3224),
 				address: Address::from_str("8988167e088c87cd314df6d3c2b83da5acb93ace").unwrap(),
 				code: vec![96, 0, 53, 84, 21, 96, 9, 87, 0, 91, 96, 32, 53, 96, 0, 53]
@@ -376,14 +376,14 @@ mod tests {
 		let result = state.apply(&info, &machine, &t, true).unwrap();
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
-			action: trace::Action::Create(trace::Create {
+			action: vapcore_trace::Action::Create(vapcore_trace::Create {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				value: 100.into(),
 				gas: 78792.into(),
 				init: vec![91, 96, 0, 86],
-				creation_method: Some(trace::CreationMethod::Create),
+				creation_method: Some(vapcore_trace::CreationMethod::Create),
 			}),
-			result: trace::Res::FailedCreate(TraceError::OutOfGas),
+			result: vapcore_trace::Res::FailedCreate(TraceError::OutOfGas),
 			subtraces: 0
 		}];
 
@@ -414,15 +414,15 @@ mod tests {
 		let result = state.apply(&info, &machine, &t, true).unwrap();
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(3),
 				output: vec![]
 			}),
@@ -455,15 +455,15 @@ mod tests {
 		let result = state.apply(&info, &machine, &t, true).unwrap();
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(0),
 				output: vec![]
 			}),
@@ -496,15 +496,15 @@ mod tests {
 
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_str("0000000000000000000000000000000000000001").unwrap(),
 				value: 0.into(),
 				gas: 79_000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(3000),
 				output: vec![]
 			}),
@@ -538,15 +538,15 @@ mod tests {
 
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 0.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(3_721), // in post-eip150
 				output: vec![]
 			}),
@@ -582,30 +582,30 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 0.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: 724.into(), // in post-eip150
 				output: vec![]
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 0,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xa),
 				to: Address::from_low_u64_be(0xb),
 				value: 0.into(),
 				gas: 4096.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::CallCode).into(),
+				call_type: Some(vapcore_trace::CallType::CallCode).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: 3.into(),
 				output: vec![],
 			}),
@@ -641,30 +641,30 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 0.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(736), // in post-eip150
 				output: vec![]
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 0,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xa),
 				to: Address::from_low_u64_be(0xb),
 				value: 0.into(),
 				gas: 32768.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::DelegateCall).into(),
+				call_type: Some(vapcore_trace::CallType::DelegateCall).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: 18.into(),
 				output: vec![5],
 			}),
@@ -697,15 +697,15 @@ mod tests {
 		let result = state.apply(&info, &machine, &t, true).unwrap();
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::FailedCall(TraceError::OutOfGas),
+			result: vapcore_trace::Res::FailedCall(TraceError::OutOfGas),
 			subtraces: 0,
 		}];
 
@@ -739,30 +739,30 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(69),
 				output: vec![]
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 0,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xa),
 				to: Address::from_low_u64_be(0xb),
 				value: 0.into(),
 				gas: 78934.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(3),
 				output: vec![]
 			}),
@@ -796,30 +796,30 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(31761),
 				output: vec![]
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 0,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xa),
 				to: Address::from_low_u64_be(0xb),
 				value: 69.into(),
 				gas: 2300.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult::default()),
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult::default()),
 		}];
 
 		assert_eq!(result.trace, expected_trace);
@@ -850,15 +850,15 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 0,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(31761),
 				output: vec![]
 			}),
@@ -893,30 +893,30 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(79_000),
 				output: vec![]
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 0,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xa),
 				to: Address::from_low_u64_be(0xb),
 				value: 0.into(),
 				gas: 78934.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::FailedCall(TraceError::OutOfGas),
+			result: vapcore_trace::Res::FailedCall(TraceError::OutOfGas),
 		}];
 
 		assert_eq!(result.trace, expected_trace);
@@ -949,45 +949,45 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(135),
 				output: vec![]
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xa),
 				to: Address::from_low_u64_be(0xb),
 				value: 0.into(),
 				gas: 78934.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(69),
 				output: vec![]
 			}),
 		}, FlatTrace {
 			trace_address: vec![0, 0].into_iter().collect(),
 			subtraces: 0,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xb),
 				to: Address::from_low_u64_be(0xc),
 				value: 0.into(),
 				gas: 78868.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(3),
 				output: vec![]
 			}),
@@ -1024,42 +1024,42 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(79_000),
 				output: vec![]
 			})
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xa),
 				to: Address::from_low_u64_be(0xb),
 				value: 0.into(),
 				gas: 78934.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::FailedCall(TraceError::OutOfGas),
+			result: vapcore_trace::Res::FailedCall(TraceError::OutOfGas),
 		}, FlatTrace {
 			trace_address: vec![0, 0].into_iter().collect(),
 			subtraces: 0,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_low_u64_be(0xb),
 				to: Address::from_low_u64_be(0xc),
 				value: 0.into(),
 				gas: 78868.into(),
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 				input: vec![],
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: U256::from(3),
 				output: vec![]
 			}),
@@ -1094,27 +1094,27 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: trace::Action::Call(trace::Call {
+			action: vapcore_trace::Action::Call(vapcore_trace::Call {
 				from: Address::from_str("9cce34f7ab185c7aba1b7c8140d620b4bda941d6").unwrap(),
 				to: Address::from_low_u64_be(0xa),
 				value: 100.into(),
 				gas: 79000.into(),
 				input: vec![],
-				call_type: Some(trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::CallType::Call).into(),
 			}),
-			result: trace::Res::Call(trace::CallResult {
+			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
 				gas_used: 3.into(),
 				output: vec![]
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 0,
-			action: trace::Action::Suicide(trace::Suicide {
+			action: vapcore_trace::Action::Suicide(vapcore_trace::Suicide {
 				address: Address::from_low_u64_be(0xa),
 				refund_address: Address::from_low_u64_be(0xb),
 				balance: 150.into(),
 			}),
-			result: trace::Res::None,
+			result: vapcore_trace::Res::None,
 		}];
 
 		assert_eq!(result.trace, expected_trace);
