@@ -58,7 +58,7 @@ extern crate serde;
 extern crate serde_json;
 extern crate rustc_hex;
 extern crate state_db;
-extern crate trace;
+extern crate vapcore_trace;
 extern crate transaction_pool as txpool;
 extern crate url;
 #[macro_use]
