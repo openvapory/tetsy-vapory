@@ -7,7 +7,7 @@ version = "1.12.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 
 [dependencies]
-call-contract = { package = "vapcore-call-contract", path = "../../vapcore/call-contract" }
+call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../../vapcore/call-contract" }
 futures = "0.1"
 log = "0.4"
 mime = "0.3"

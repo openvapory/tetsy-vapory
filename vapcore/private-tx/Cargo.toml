@@ -15,7 +15,7 @@ vapabi-contract = "9.0.0"
 vapabi-derive = "9.0.1"
 vapcore = { path = ".." }
 vapcore-db = { path = "../db" }
-vapcore-call-contract = { path = "../call-contract" }
+vapcore-call-contract = { version = "0.1.0", path = "../call-contract" }
 vapcore-io = { path = "../../util/io" }
 vapcore-miner = { path = "../../miner" }
 vapory-types = "0.8.0"

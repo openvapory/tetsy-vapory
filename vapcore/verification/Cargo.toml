@@ -13,7 +13,7 @@ required-features = ['bench']
 
 [dependencies]
 blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
-call-contract = { package = "vapcore-call-contract", path = "../call-contract" }
+call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../call-contract" }
 client-traits = { path = "../client-traits" }
 common-types = { path = "../types" }
 engine = { path = "../engine" }

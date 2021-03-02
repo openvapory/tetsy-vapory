@@ -9,7 +9,7 @@ homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
-call-contract = { package = "vapcore-call-contract", path = "../../vapcore/call-contract" }
+call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../../vapcore/call-contract" }
 vapabi = "9.0.1"
 vapabi-derive = "9.0.1"
 vapabi-contract = "9.0.0"

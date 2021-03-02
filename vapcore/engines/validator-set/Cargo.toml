@@ -33,7 +33,7 @@ tetsy-vm = { version = "0.1.0", path = "../../vm" }
 
 [dev-dependencies]
 accounts = { package = "vapcore-accounts", path = "../../../accounts" }
-call-contract = { package = "vapcore-call-contract", path = "../../call-contract" }
+call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../../call-contract" }
 engine = { path = "../../engine", features = ["test-helpers"] }
 env_logger = "0.6.2"
 vapcore = { path = "../..", features = ["test-helpers"] }

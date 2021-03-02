@@ -19,7 +19,7 @@ common-types = { path = "../vapcore/types" }
 vapabi = "9.0.1"
 vapabi-derive = "9.0.1"
 vapabi-contract = "9.0.0"
-vapcore-call-contract = { path = "../vapcore/call-contract" }
+vapcore-call-contract = { version = "0.1.0", path = "../vapcore/call-contract" }
 vapory-types = "0.8.0"
 futures = "0.1"
 tetsy-util-mem = "0.3.0"

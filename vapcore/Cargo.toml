@@ -18,7 +18,7 @@ env_logger = { version = "0.5", optional = true }
 vapash = { path = "../vapash", optional = true }
 vapjson = { path = "../json", optional = true }
 vapcore-blockchain = { path = "./blockchain" }
-vapcore-call-contract = { path = "./call-contract" }
+vapcore-call-contract = { version = "0.1.0", path = "./call-contract" }
 vapcore-db = { path = "./db" }
 vapcore-io = { path = "../util/io" }
 vapcore-miner = { path = "../miner" }
