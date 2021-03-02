@@ -133,7 +133,7 @@ test-helpers = [
     "tetsy-kvdb-memorydb",
     "tetsy-kvdb-rocksdb",
     "tetsy-macros",
-    "pod",
+    "vapcore-pod",
     "tempdir",
     "basic-authority/test-helpers"
  ]
