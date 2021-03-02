@@ -15,7 +15,7 @@ client-traits = { path = "./client-traits" }
 common-types = { path = "./types" }
 engine = { path = "./engine" }
 env_logger = { version = "0.5", optional = true }
-vapash = { path = "../vapash", optional = true }
+vapash = { version = "1.12.0", path = "../vapash", optional = true }
 vapjson = { path = "../json", optional = true }
 vapcore-blockchain = { path = "./blockchain" }
 vapcore-call-contract = { version = "0.1.0", path = "./call-contract" }

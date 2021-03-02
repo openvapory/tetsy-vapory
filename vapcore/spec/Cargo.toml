@@ -15,7 +15,7 @@ bytes = { package = "tetsy-bytes", version = "0.1.0" }
 clique = { path = "../engines/clique" }
 common-types = { path = "../types" }
 engine = { path = "../engine" }
-vapash = { path = "../../vapash" }
+vapash = { version = "1.12.0", path = "../../vapash" }
 vapash-engine = { path = "../engines/vapash" }
 vapory-types = "0.8.0"
 vapjson = { path = "../../json" }
