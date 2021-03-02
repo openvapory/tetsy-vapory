@@ -17,8 +17,8 @@
 use std::collections::BTreeMap;
 
 use machine::executed::Executed;
-use trace as et;
-use trace::{FlatTrace, LocalizedTrace as VapLocalizedTrace, trace, TraceError};
+use vapcore_trace as et;
+use vapcore_trace::{FlatTrace, LocalizedTrace as VapLocalizedTrace, trace, TraceError};
 use vapory_types::{H160, H256, U256};
 use serde::ser::SerializeStruct;
 use serde::{Serialize, Serializer};
