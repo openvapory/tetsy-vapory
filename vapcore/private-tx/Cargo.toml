@@ -21,7 +21,7 @@ vapcore = { path = ".." }
 vapcore-db = { version = "0.1.0", path = "../db" }
 vapcore-call-contract = { version = "0.1.0", path = "../call-contract" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
-vapcore-miner = { path = "../../miner" }
+vapcore-miner = { version = "1.12.0", path = "../../miner" }
 vapory-types = "0.8.0"
 vapjson = { path = "../../json" }
 tetsy-fetch = { version = "0.1.0", path = "../../util/fetch" }

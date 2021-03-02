@@ -43,7 +43,7 @@ vapcore = { path = "../vapcore" }
 vapcore-accounts = { path = "../accounts", optional = true }
 vapcore-light = { path = "../vapcore/light" }
 vapcore-logger = { path = "../tetsy/logger" }
-vapcore-miner = { path = "../miner" }
+vapcore-miner = { version = "1.12.0", path = "../miner" }
 vapcore-network = { path = "../util/network" }
 vapcore-private-tx = { path = "../vapcore/private-tx" }
 vapcore-sync = { path = "../vapcore/sync" }
