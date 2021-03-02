@@ -32,7 +32,7 @@ use common_types::{
 	transaction::SignedTransaction,
 };
 use state_db::StateDB;
-use trace::Tracing;
+use vapcore_trace::Tracing;
 use tetsy_vm::{EnvInfo, LastHashes};
 
 /// An internal type for a block's common elements.

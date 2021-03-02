@@ -16,7 +16,7 @@
 
 //! Transaction execution format module.
 
-use trace::{VMTrace, FlatTrace};
+use vapcore_trace::{VMTrace, FlatTrace};
 use common_types::{
 	engines::machine,
 	errors::ExecutionError,

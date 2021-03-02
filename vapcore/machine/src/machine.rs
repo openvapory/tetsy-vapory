@@ -41,7 +41,7 @@ use account_state::CleanupMode;
 use client_traits::BlockInfo;
 use vapcore_builtin::Builtin;
 use vapcore_call_contract::CallContract;
-use trace::{NoopTracer, NoopVMTracer};
+use vapcore_trace::{NoopTracer, NoopVMTracer};
 
 use crate::{
 	executed_block::ExecutedBlock,

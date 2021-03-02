@@ -32,7 +32,7 @@ use tetsy_vm::{
 	ActionValue, Schedule, TrapError, ResumeCall, ResumeCreate
 };
 use trie_vm_factories::VmFactory;
-use trace::{self, Tracer, VMTracer};
+use vapcore_trace::{self, Tracer, VMTracer};
 use common_types::{
 	errors::ExecutionError,
 	transaction::{Action, SignedTransaction},
