@@ -50,7 +50,7 @@ use machine::{executive::Executive, Machine, substate::Substate};
 use null_engine::NullEngine;
 use vapcore_pod::PodState;
 use tetsy_rlp::{Rlp, RlpStream};
-use trace::{NoopTracer, NoopVMTracer};
+use vapcore_trace::{NoopTracer, NoopVMTracer};
 use trie_vm_factories::Factories;
 use tetsy_vm::{EnvInfo, ActionType, ActionValue, ActionParams, ParamsType};
 
