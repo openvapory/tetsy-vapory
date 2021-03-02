@@ -4,7 +4,6 @@
 
 <p align="center"><strong><a href="https://github.com/openvapory/tetsy-vapory/releases/latest">» Download the latest release «</a></strong></p>
 
-<p align="center"><a href="https://gitlab.tetcoin.org/parity/tetsy-vapory/commits/master" target="_blank"><img src="https://gitlab.tetcoin.org/parity/tetsy-vapory/badges/master/build.svg" /></a>
 <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank"><img src="https://img.shields.io/badge/license-GPL%20v3-green.svg" /></a></p>
 
 ## Table of Contents
