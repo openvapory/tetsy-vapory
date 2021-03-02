@@ -14,7 +14,7 @@ common-types = { version = "0.1.0", path = "../types"}
 derive_more = "0.15.0"
 vapory-types = "0.8.0"
 vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }
-trie-vm-factories = { path = "../trie-vm-factories" }
+trie-vm-factories = { version = "0.1.0", path = "../trie-vm-factories" }
 tetsy-hash-db = "0.15.2"
 journaldb = { version = "0.2.0", path = "../../util/journaldb" }
 tetsy-keccak-hash = "0.4.0"
