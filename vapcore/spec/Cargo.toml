@@ -32,7 +32,7 @@ machine = { path = "../machine" }
 null-engine = { path = "../engines/null-engine" }
 vapcore-pod = { version = "0.1.0", path = "../pod" }
 tetsy-rlp = "0.4.5"
-trace = { path = "../trace" }
+vapcore-trace = { version = "0.1.0", path = "../trace" }
 trie-vm-factories = { version = "0.1.0", path = "../trie-vm-factories" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }
 

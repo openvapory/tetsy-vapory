@@ -51,7 +51,7 @@ spec = { path = "../spec" }
 state-db = { path = "../state-db" }
 time-utils = { path = "../../util/time-utils" }
 tiny-keccak = "1.4"
-trace = { path = "../trace" }
+vapcore-trace = { version = "0.1.0", path = "../trace" }
 transaction-pool = "2.0.1"
 url = "2"
 tetsy-vm = { version = "0.1.0", path = "../vm" }

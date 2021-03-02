@@ -1,10 +1,13 @@
 [package]
-name = "trace"
-description = "Transaction tracing"
+name = "vapcore-trace"
+description = "Vapcore Transaction tracing"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 license = "GPL-3.0"
 edition = "2018"
+documentation = "https://docs.rs/vapcore-trace"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
@@ -12,7 +15,6 @@ vapcore-db = { version = "0.1.0", path = "../db" }
 vapory-types = "0.8.0"
 vvm = { version = "0.1.0", path = "../vvm" }
 tetsy-kvdb = "0.3.2"
-# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"
 tetsy-bytes = "0.1.0"
 tetsy-util-mem = "0.3.0"

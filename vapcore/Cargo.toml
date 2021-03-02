@@ -61,7 +61,7 @@ snapshot = { path = "snapshot" }
 spec = { path = "spec" }
 state-db = { path = "state-db" }
 tempdir = { version = "0.3", optional = true }
-trace = { path = "trace" }
+vapcore-trace = { version = "0.1.0", path = "trace" }
 trace-time = "0.1"
 trie-vm-factories = { version = "0.1.0", path = "trie-vm-factories" }
 triehash-vapory = { version = "0.2",  path = "../util/triehash-vapory" }
