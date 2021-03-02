@@ -27,7 +27,7 @@ use common_types::{
 	transaction::UNSIGNED_SENDER,
 	log_entry::LogEntry,
 };
-use trace::{Tracer, VMTracer};
+use vapcore_trace::{Tracer, VMTracer};
 use tetsy_vm::{
 	self, ActionParams, ActionValue, EnvInfo, ActionType, Schedule,
 	Ext, ContractCreateResult, MessageCallResult, CreateContractAddress,
