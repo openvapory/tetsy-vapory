@@ -89,7 +89,7 @@ extern crate account_state;
 extern crate tetsy_stats;
 extern crate snapshot;
 extern crate tempdir;
-extern crate trace;
+extern crate vapcore_trace;
 extern crate tetsy_vm;
 
 #[cfg(any(test, feature = "vapcore-accounts"))]
