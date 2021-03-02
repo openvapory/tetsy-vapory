@@ -24,7 +24,7 @@ lazy_static = "1.0"
 log = "0.4"
 tetsy-bytes = "0.1"
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
-tetsy-runtime = { path = "../util/runtime" }
+tetsy-runtime = { version = "0.1.0", path = "../util/runtime" }
 parking_lot = "0.9"
 percent-encoding = "2.1.0"
 rustc-hex = "1.0"
