@@ -4,12 +4,15 @@ description = "Manages persistent local node data."
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
+license = "GPL-3.0"
+documentation = "https://docs.rs/tetsy-local-store"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 common-types = { version = "0.1.0", path = "../../vapcore/types" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
 tetsy-kvdb = "0.3.2"
-# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"
 tetsy-rlp = "0.4.5"
 serde = "1.0"
@@ -17,7 +20,6 @@ serde_derive = "1.0"
 serde_json = "1.0"
 
 [dev-dependencies]
-vapkey = { path = "../../accounts/vapkey" }
+vapkey = { version = "0.4.0", path = "../../accounts/vapkey" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 tetsy-kvdb-memorydb = "0.3.2"
-# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
