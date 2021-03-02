@@ -29,8 +29,8 @@ use common_types::{
 use tetsy_keccak_hash::keccak;
 use machine::{Machine, ExecutedBlock};
 use engine::{SystemOrCodeCall, SystemOrCodeCallKind};
-use trace;
-use trace::{Tracer, ExecutiveTracer, Tracing};
+use vapcore_trace;
+use vapcore_trace::{Tracer, ExecutiveTracer, Tracing};
 
 use_contract!(block_reward_contract, "res/block_reward.json");
 
@@ -68,13 +68,13 @@ impl From<RewardKind> for u16 {
 	}
 }
 
-impl Into<trace::RewardType> for RewardKind {
-	fn into(self) -> trace::RewardType {
+impl Into<vapcore_trace::RewardType> for RewardKind {
+	fn into(self) -> vapcore_trace::RewardType {
 		match self {
-			RewardKind::Author => trace::RewardType::Block,
-			RewardKind::Uncle(_) => trace::RewardType::Uncle,
-			RewardKind::EmptyStep => trace::RewardType::EmptyStep,
-			RewardKind::External => trace::RewardType::External,
+			RewardKind::Author => vapcore_trace::RewardType::Block,
+			RewardKind::Uncle(_) => vapcore_trace::RewardType::Uncle,
+			RewardKind::EmptyStep => vapcore_trace::RewardType::EmptyStep,
+			RewardKind::External => vapcore_trace::RewardType::External,
 		}
 	}
 }
