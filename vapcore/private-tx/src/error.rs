@@ -25,7 +25,7 @@ use types::{
 };
 use crypto::publickey::Error as CryptoError;
 use txpool::VerifiedTransaction;
-use private_transactions::VerifiedPrivateTransaction;
+use crate::private_transactions::VerifiedPrivateTransaction;
 use serde_json::{Error as SerdeError};
 
 type TxPoolError = txpool::Error<<VerifiedPrivateTransaction as VerifiedTransaction>::Hash>;

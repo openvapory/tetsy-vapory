@@ -24,7 +24,7 @@ use std::sync::Arc;
 use std::time::{SystemTime, Duration, Instant};
 use parking_lot::RwLock;
 use serde::ser::{Serializer, SerializeSeq};
-use error::Error;
+use crate::error::Error;
 
 #[cfg(not(time_checked_add))]
 use time_utils::CheckedSystemTime;
