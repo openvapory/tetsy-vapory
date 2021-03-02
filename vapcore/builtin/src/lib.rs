@@ -27,6 +27,8 @@ use std::{
 	str::FromStr
 };
 
+extern crate tbn;
+use tbn::*;
 use byteorder::{BigEndian, LittleEndian, ReadBytesExt};
 use common_types::errors::VapcoreError;
 use vapory_types::{H256, U256};
@@ -604,15 +606,15 @@ impl Implementation for Modexp {
 	}
 }
 
-fn read_fr(reader: &mut io::Chain<&[u8], io::Repeat>) -> Result<bn::Fr, &'static str> {
+fn read_fr(reader: &mut io::Chain<&[u8], io::Repeat>) -> Result<tbn::Fr, &'static str> {
 	let mut buf = [0u8; 32];
 
 	reader.read_exact(&mut buf[..]).expect("reading from zero-extended memory cannot fail; qed");
-	bn::Fr::from_slice(&buf[0..32]).map_err(|_| "Invalid field element")
+	tbn::Fr::from_slice(&buf[0..32]).map_err(|_| "Invalid field element")
 }
 
-fn read_point(reader: &mut io::Chain<&[u8], io::Repeat>) -> Result<bn::G1, &'static str> {
-	use bn::{Fq, AffineG1, G1, Group};
+fn read_point(reader: &mut io::Chain<&[u8], io::Repeat>) -> Result<tbn::G1, &'static str> {
+	use tbn::{Fq, AffineG1, G1, Group};
 
 	let mut buf = [0u8; 32];
 
@@ -633,7 +635,7 @@ fn read_point(reader: &mut io::Chain<&[u8], io::Repeat>) -> Result<bn::G1, &'sta
 impl Implementation for Bn128Add {
 	// Can fail if any of the 2 points does not belong the bn128 curve
 	fn execute(&self, input: &[u8], output: &mut BytesRef) -> Result<(), &'static str> {
-		use bn::AffineG1;
+		use tbn::AffineG1;
 
 		let mut padded_input = input.chain(io::repeat(0));
 		let p1 = read_point(&mut padded_input)?;
@@ -654,7 +656,7 @@ impl Implementation for Bn128Add {
 impl Implementation for Bn128Mul {
 	// Can fail if first paramter (bn128 curve point) does not actually belong to the curve
 	fn execute(&self, input: &[u8], output: &mut BytesRef) -> Result<(), &'static str> {
-		use bn::AffineG1;
+		use tbn::AffineG1;
 
 		let mut padded_input = input.chain(io::repeat(0));
 		let p = read_point(&mut padded_input)?;
@@ -691,7 +693,7 @@ impl Implementation for Bn128Pairing {
 
 impl Bn128Pairing {
 	fn execute_with_error(&self, input: &[u8], output: &mut BytesRef) -> Result<(), &'static str> {
-		use bn::{AffineG1, AffineG2, Fq, Fq2, pairing_batch, G1, G2, Gt, Group};
+		use tbn::{AffineG1, AffineG2, Fq, Fq2, pairing_batch, G1, G2, Gt, Group};
 
 		let ret_val = if input.is_empty() {
 			U256::one()
