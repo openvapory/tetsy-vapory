@@ -41,7 +41,7 @@ use engine::Engine;
 use trie_vm_factories::Factories;
 use state_db::StateDB;
 use account_state::State;
-use trace::Tracing;
+use vapcore_trace::Tracing;
 use triehash::ordered_trie_root;
 use tetsy_unexpected::{Mismatch, OutOfBounds};
 use tetsy_vm::LastHashes;
