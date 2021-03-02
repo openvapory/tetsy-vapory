@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 account-state = { version = "0.1.0", path = "../account-state" }
 bloom_journal = { package = "vapcore-bloom-journal", path = "../../util/bloom" }
-common-types = { path = "../types"}
+common-types = { version = "0.1.0", path = "../types"}
 vapcore-db = { version = "0.1.0", path = "../db" }
 vapory-types = "0.8.0"
 tetsy-hash-db = "0.15.2"

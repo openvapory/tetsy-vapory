@@ -13,7 +13,7 @@ blooms-db = { path = "util/blooms-db", version = "0.1.0" }
 clap = "2"
 cli-signer= { path = "cli-signer", version = "1.4.0" }
 client-traits = { path = "vapcore/client-traits", version = "0.1.0" }
-common-types = { path = "vapcore/types", version = "0.1.0" }
+common-types = { version = "0.1.0", path = "vapcore/types" }
 ctrlc = "1.1.1"
 # ctrlc = { git = "https://github.com/tetcoin/rust-ctrlc.git" }
 dir = { path = "util/dir", version = "0.1.2" }

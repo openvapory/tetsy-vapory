@@ -8,7 +8,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 
 [dependencies]
 client-traits = { path = "../client-traits" }
-common-types = { path = "../types" }
+common-types = { version = "0.1.0", path = "../types" }
 vapcore = { path = ".."}
 vapcore-network = { path = "../../util/network" }
 vapcore-network-devp2p = { path = "../../util/network-devp2p" }

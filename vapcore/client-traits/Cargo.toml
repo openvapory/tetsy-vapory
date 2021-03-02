@@ -11,7 +11,7 @@ account-state = { version = "0.1.0", path = "../account-state" }
 blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../call-contract" }
-common-types = { path = "../types" }
+common-types = { version = "0.1.0", path = "../types" }
 vapcore-db = { path = "../db" }
 vapcore-miner = { path = "../../miner" }
 vapory-types = "0.8.0"

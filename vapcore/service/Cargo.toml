@@ -12,9 +12,9 @@ repository = "https://github.com/openvapory/tetsy-vapory"
 [dependencies]
 ansi_term = "0.11"
 client-traits = { path = "../client-traits" }
-common-types = { path = "../types" }
+common-types = { version = "0.1.0", path = "../types" }
 vapcore = { path = ".." }
-vapcore-blockchain = { path = "../blockchain" }
+vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapcore-private-tx = { path = "../private-tx" }
 vapcore-sync = { path = "../sync" }

@@ -8,7 +8,7 @@ license = "GPL-3.0"
 
 [dependencies]
 client-traits = { path = "../../client-traits" }
-common-types = { path = "../../types" }
+common-types = { version = "0.1.0", path = "../../types" }
 vapory-types = "0.8.0"
 vapjson = { path = "../../../json" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }

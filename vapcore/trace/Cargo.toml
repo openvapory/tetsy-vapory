@@ -7,7 +7,7 @@ license = "GPL-3.0"
 edition = "2018"
 
 [dependencies]
-vapcore-blockchain = { path = "../blockchain" }
+vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
 vapcore-db = { version = "0.1.0", path = "../db" }
 vapory-types = "0.8.0"
 vvm = { version = "0.1.0", path = "../vvm" }

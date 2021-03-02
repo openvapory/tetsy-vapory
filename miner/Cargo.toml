@@ -15,7 +15,7 @@ url = { version = "2", optional = true }
 
 # Miner
 ansi_term = "0.11"
-common-types = { path = "../vapcore/types" }
+common-types = { version = "0.1.0", path = "../vapcore/types" }
 vapabi = "9.0.1"
 vapabi-derive = "9.0.1"
 vapabi-contract = "9.0.0"

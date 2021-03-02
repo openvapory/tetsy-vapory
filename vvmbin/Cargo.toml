@@ -11,7 +11,7 @@ path = "./src/main.rs"
 
 [dependencies]
 account-state = { version = "0.1.0", path = "../vapcore/account-state" }
-common-types = { path = "../vapcore/types", features = ["test-helpers"] }
+common-types = { version = "0.1.0", path = "../vapcore/types", features = ["test-helpers"] }
 docopt = "1.0"
 env_logger = "0.5"
 vapcore = { path = "../vapcore", features = ["test-helpers", "json-tests"] }

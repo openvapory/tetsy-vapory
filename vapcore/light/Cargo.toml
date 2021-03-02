@@ -10,11 +10,11 @@ authors = ["Parity Technologies <admin@parity.io>"]
 log = "0.4"
 tetsy-bytes = "0.1"
 client-traits = { path = "../client-traits" }
-common-types = { path = "../types" }
+common-types = { version = "0.1.0", path = "../types" }
 derive_more = "0.14.0"
 engine = { path = "../engine" }
 vapcore-db = { version = "0.1.0", path = "../db" }
-vapcore-blockchain = { path = "../blockchain" }
+vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
 vapory-types = "0.8.0"
 executive-state = { path = "../executive-state" }
 machine = { path = "../machine" }

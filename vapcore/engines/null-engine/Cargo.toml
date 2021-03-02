@@ -7,7 +7,7 @@ edition = "2018"
 license = "GPL-3.0"
 
 [dependencies]
-common-types = { path = "../../types" }
+common-types = { version = "0.1.0", path = "../../types" }
 block-reward = { path = "../../block-reward" }
 engine = { path = "../../engine" }
 vapjson = { path = "../../../json" }

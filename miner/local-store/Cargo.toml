@@ -6,7 +6,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
 
 [dependencies]
-common-types = { path = "../../vapcore/types" }
+common-types = { version = "0.1.0", path = "../../vapcore/types" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }

@@ -8,7 +8,7 @@ license = "GPL-3.0"
 
 [dependencies]
 block-reward = { path = "../../block-reward" }
-common-types = { path = "../../types" }
+common-types = { version = "0.1.0", path = "../../types" }
 engine = { path = "../../engine" }
 vapash= { path = "../../../vapash" }
 vapory-types = "0.8.0"

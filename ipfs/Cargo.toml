@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 client-traits = { path = "../vapcore/client-traits" }
-common-types = { path = "../vapcore/types" }
+common-types = { version = "0.1.0", path = "../vapcore/types" }
 bytes = { package = "tetsy-bytes", version = "0.1"}
 vapory-types = "0.8.0"
 tetsy-jsonrpc-core = "14.2.1"

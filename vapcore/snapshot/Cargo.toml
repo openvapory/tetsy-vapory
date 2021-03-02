@@ -17,7 +17,7 @@ blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
 bloom-journal = { package = "vapcore-bloom-journal", path = "../../util/bloom" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 client-traits = { path = "../client-traits" }
-common-types = { path = "../types" }
+common-types = { version = "0.1.0", path = "../types" }
 crossbeam-utils = "0.6"
 engine = { path = "../engine" }
 vapcore-db = { version = "0.1.0", path = "../db" }

@@ -11,7 +11,7 @@ account-state = { version = "0.1.0", path = "../../account-state" }
 blockchain = { package = "vapcore-blockchain", path = "../../blockchain" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 client-traits = { path = "../../client-traits" }
-common-types = { path = "../../types" }
+common-types = { version = "0.1.0", path = "../../types" }
 engine = { path = "../../engine", features = ["test-helpers"] }
 env_logger = "0.5"
 vapcore = { path = "../..", features = ["test-helpers"] }
