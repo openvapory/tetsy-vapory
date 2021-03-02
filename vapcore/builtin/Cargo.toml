@@ -10,7 +10,7 @@ homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
-tbn = { version = "0.4.4, default-features = false }
+tbn = { version = "0.4.4", default-features = false }
 # tbn = { git = "https://github.com/tetcoin/tbn", default-features = false }
 byteorder = "1.3.2"
 common-types = { version = "0.1.0", path = "../types" }
