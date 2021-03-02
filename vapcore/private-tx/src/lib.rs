@@ -112,7 +112,7 @@ use client_traits::{BlockInfo, ChainNotify};
 use vapcore::miner::{self, Miner, MinerService, pool_client::NonceCache};
 use state_db::StateDB;
 use account_state::State;
-use trace::{Tracer, VMTracer};
+use vapcore_trace::{Tracer, VMTracer};
 use call_contract::CallContract;
 use tetsy_kvdb::KeyValueDB;
 use rustc_hex::FromHex;
