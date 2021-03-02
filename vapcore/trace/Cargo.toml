@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 vapcore-blockchain = { path = "../blockchain" }
-vapcore-db = { path = "../db" }
+vapcore-db = { version = "0.1.0", path = "../db" }
 vapory-types = "0.8.0"
 vvm = { path = "../vvm" }
 tetsy-kvdb = "0.3.2"

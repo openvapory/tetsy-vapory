@@ -13,7 +13,7 @@ client-traits = { path = "../client-traits" }
 common-types = { path = "../types" }
 derive_more = "0.14.0"
 engine = { path = "../engine" }
-vapcore-db = { path = "../db" }
+vapcore-db = { version = "0.1.0", path = "../db" }
 vapcore-blockchain = { path = "../blockchain" }
 vapory-types = "0.8.0"
 executive-state = { path = "../executive-state" }
@@ -23,7 +23,7 @@ tetsy-trie-db = "0.19.2"
 patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }
 vapcore-network = { path = "../../util/network" }
 vapcore-miner = { path = "../../miner" }
-vapcore-io = { path = "../../util/io" }
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
 tetsy-hash-db = "0.15.2"
 tetsy-util-mem = "0.3.0"
 tetsy-vm = { version = "0.1.0", path = "../vm" }

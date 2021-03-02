@@ -19,8 +19,8 @@ vapash = { path = "../vapash", optional = true }
 vapjson = { path = "../json", optional = true }
 vapcore-blockchain = { path = "./blockchain" }
 vapcore-call-contract = { version = "0.1.0", path = "./call-contract" }
-vapcore-db = { path = "./db" }
-vapcore-io = { path = "../util/io" }
+vapcore-db = { version = "0.1.0", path = "./db" }
+vapcore-io = { version = "1.12.0", path = "../util/io" }
 vapcore-miner = { path = "../miner" }
 vapcore-stratum = { path = "../miner/stratum", optional = true }
 vapory-types = "0.8.0"

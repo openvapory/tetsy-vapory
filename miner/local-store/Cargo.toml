@@ -7,7 +7,7 @@ edition = "2018"
 
 [dependencies]
 common-types = { path = "../../vapcore/types" }
-vapcore-io = { path = "../../util/io" }
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"

@@ -14,7 +14,7 @@ client-traits = { path = "../client-traits" }
 common-types = { path = "../types" }
 devp2p = { package = "vapcore-network-devp2p", path = "../../util/network-devp2p" }
 enum_primitive = "0.1.1"
-vapcore-io = { path = "../../util/io" }
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapcore-private-tx = { path = "../private-tx" }
 vapory-types = "0.8.0"
 fastmap = { path = "../../util/fastmap" }
@@ -39,7 +39,7 @@ triehash-vapory = { version = "0.2", path = "../../util/triehash-vapory" }
 env_logger = "0.5"
 engine = { path = "../engine" }
 vapcore = { path = "..", features = ["test-helpers"] }
-vapcore-io = { path = "../../util/io", features = ["mio"] }
+vapcore-io = { version = "1.12.0", path = "../../util/io", features = ["mio"] }
 tetsy-kvdb-memorydb = "0.3.2"
 # tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 machine = { path = "../machine" }

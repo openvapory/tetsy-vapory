@@ -21,7 +21,7 @@ vapabi-contract = "9.0.0"
 vapabi-derive = "9.0.1"
 vapcore-builtin = { path = "../builtin" }
 vapcore-call-contract = { version = "0.1.0", path = "../call-contract" }
-vapcore-io = { path = "../../util/io" }
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapory-types = "0.8.0"
 # Used for tests in other crates through the `test-helpers` feature
 vapjson = { path = "../../json", optional = true }
@@ -41,7 +41,7 @@ tetsy-vm = { version = "0.1.0", path = "../vm" }
 common-types = { path = "../types", features = ["test-helpers"] }
 criterion = "0.3"
 vapcore = { path = "../", features = ["test-helpers"] }
-vapcore-io = { path = "../../util/io" }
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapjson = { path = "../../json" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 tetsy-macros = { version = "0.1.0", path = "../../util/macros" }

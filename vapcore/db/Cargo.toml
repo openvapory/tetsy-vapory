@@ -6,9 +6,12 @@ name = "vapcore-db"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
+documentation = "https://docs.rs/vapcore-db"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
-common-types = { path = "../types" }
+common-types = { version = "0.1.0", path = "../types" }
 vapory-types = "0.8.0"
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
