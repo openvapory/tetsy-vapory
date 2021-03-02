@@ -23,8 +23,8 @@ use vapory_types::H256;
 use futures::sync::mpsc;
 use txpool::{self, VerifiedTransaction};
 
-use pool::VerifiedTransaction as Transaction;
-use pool::TxStatus;
+use crate::pool::VerifiedTransaction as Transaction;
+use crate::pool::TxStatus;
 
 /// Transaction pool logger.
 #[derive(Default, Debug)]

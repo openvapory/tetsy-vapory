@@ -18,7 +18,7 @@
 
 use vapory_types::U256;
 #[cfg(feature = "price-info")]
-use gas_price_calibrator::GasPriceCalibrator;
+use crate::gas_price_calibrator::GasPriceCalibrator;
 
 /// Struct to look after updating the acceptable gas price of a miner.
 #[derive(Debug, PartialEq)]

@@ -27,11 +27,11 @@ use parking_lot::RwLock;
 use txpool::{self, Verifier};
 use types::transaction;
 
-use pool::{
+use crate::pool::{
 	self, replace, scoring, verifier, client, ready, listener,
 	PrioritizationStrategy, PendingOrdering, PendingSettings, TxStatus
 };
-use pool::local_transactions::LocalTransactionsList;
+use crate::pool::local_transactions::LocalTransactionsList;
 
 type Listener = (LocalTransactionsList, (listener::TransactionsPoolNotifier, listener::Logger));
 type Pool = txpool::Pool<pool::VerifiedTransaction, scoring::NonceAndGasPrice, Listener>;
