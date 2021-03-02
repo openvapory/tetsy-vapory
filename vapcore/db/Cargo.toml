@@ -1,6 +1,5 @@
 [package]
 description = "Vapcore DB access utilities"
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "vapcore-db"
 version = "0.1.0"
