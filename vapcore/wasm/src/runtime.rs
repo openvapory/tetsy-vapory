@@ -748,7 +748,7 @@ impl<'a> Runtime<'a> {
 mod ext_impl {
 
 	use twasmi::{Externals, RuntimeArgs, RuntimeValue, Trap};
-	use env::ids::*;
+	use crate::env::ids::*;
 
 	macro_rules! void {
 		{ $e: expr } => { { $e?; Ok(None) } }
