@@ -51,7 +51,7 @@ extern crate serde;
 extern crate snapshot;
 extern crate spec;
 extern crate state_db;
-extern crate trace;
+extern crate vapcore_trace;
 extern crate trie_vm_factories;
 extern crate triehash_vapory as triehash;
 extern crate tetsy_unexpected;
