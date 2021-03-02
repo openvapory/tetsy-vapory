@@ -39,7 +39,7 @@ use tetsy_vm::{
 };
 
 use vvm::CostType;
-use instructions::{self, Instruction, InstructionInfo};
+use crate::instructions::{self, Instruction, InstructionInfo};
 
 use self::gasometer::Gasometer;
 use self::stack::{Stack, VecStack};

@@ -15,7 +15,7 @@
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::fmt;
-use instructions;
+use crate::instructions;
 
 /// Stack trait with VM-friendly API
 pub trait Stack<T> {

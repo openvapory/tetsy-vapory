@@ -19,7 +19,7 @@ use vapory_types::{BigEndianHash, U256};
 use super::u256_to_address;
 
 use {vvm, tetsy_vm};
-use instructions::{self, Instruction, InstructionInfo};
+use crate::instructions::{self, Instruction, InstructionInfo};
 use interpreter::stack::Stack;
 use tetsy_vm::Schedule;
 
