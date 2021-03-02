@@ -51,7 +51,7 @@ use vapcore_db::keys::BlockReceipts;
 use vapcore_miner::pool::VerifiedTransaction;
 use tetsy_kvdb::DBValue;
 use tetsy_stats;
-use trace::{
+use vapcore_trace::{
 	FlatTrace,
 	localized::LocalizedTrace,
 	VMTrace,
