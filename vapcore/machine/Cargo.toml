@@ -34,7 +34,7 @@ parking_lot = "0.9"
 tetsy-rlp = "0.4.5"
 state-db = { path = "../state-db" }
 trace = { path = "../trace" }
-trie-vm-factories = { version = "0.1.0", , path = "../trie-vm-factories" }
+trie-vm-factories = { version = "0.1.0", path = "../trie-vm-factories" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }
 
 [dev-dependencies]
