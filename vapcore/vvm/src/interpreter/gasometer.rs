@@ -31,7 +31,7 @@ macro_rules! overflowing {
 	}}
 }
 
-enum Request<Cost: ::vvm::CostType> {
+enum Request<Cost: crate::vvm::CostType> {
 	Gas(Cost),
 	GasMem(Cost, Cost),
 	GasMemProvide(Cost, Cost, Option<U256>),

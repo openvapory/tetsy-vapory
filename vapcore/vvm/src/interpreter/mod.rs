@@ -38,7 +38,7 @@ use tetsy_vm::{
 	TrapKind, TrapError
 };
 
-use vvm::CostType;
+use crate::vvm::CostType;
 use crate::instructions::{self, Instruction, InstructionInfo};
 
 use self::gasometer::Gasometer;
