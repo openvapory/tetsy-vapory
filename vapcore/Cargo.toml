@@ -63,7 +63,7 @@ state-db = { path = "state-db" }
 tempdir = { version = "0.3", optional = true }
 trace = { path = "trace" }
 trace-time = "0.1"
-trie-vm-factories = { version = "0.1.0", , path = "trie-vm-factories" }
+trie-vm-factories = { version = "0.1.0", path = "trie-vm-factories" }
 triehash-vapory = { version = "0.2",  path = "../util/triehash-vapory" }
 tetsy-unexpected = { path = "../util/tetsy-unexpected" }
 using_queue = { path = "../miner/using-queue" }
