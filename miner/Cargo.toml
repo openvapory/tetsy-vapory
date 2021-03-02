@@ -30,7 +30,7 @@ tetsy-util-mem = "0.3.0"
 tetsy-keccak-hash = "0.4.0"
 linked-hash-map = "0.5"
 log = "0.4"
-tetsy-runtime = { path = "../util/runtime" }
+tetsy-runtime = { version = "0.1.0", path = "../util/runtime" }
 parking_lot = "0.9"
 price-info = { version = "1.12.0", path = "./price-info", optional = true }
 tetsy-registrar = { version = "0.0.1", path = "../util/tetsy-registrar" }
