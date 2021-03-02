@@ -48,7 +48,7 @@ use tetsy_keccak_hash::{KECCAK_NULL_RLP, keccak};
 use log::{trace, warn};
 use machine::{executive::Executive, Machine, substate::Substate};
 use null_engine::NullEngine;
-use pod::PodState;
+use vapcore_pod::PodState;
 use tetsy_rlp::{Rlp, RlpStream};
 use trace::{NoopTracer, NoopVMTracer};
 use trie_vm_factories::Factories;

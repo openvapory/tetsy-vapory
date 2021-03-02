@@ -43,7 +43,7 @@ use tetsy_keccak_hasher::KeccakHasher;
 use tetsy_kvdb::DBValue;
 use log::{warn, trace};
 use tetsy_bytes::Bytes;
-use pod::{self, PodAccount, PodState};
+use vapcore_pod::{self, PodAccount, PodState};
 use tetsy_trie_db::{Trie, TrieError, Recorder};
 
 use crate::{
@@ -922,7 +922,7 @@ impl<B: Backend> State<B> {
 	pub fn diff_from<X: Backend>(&self, mut orig: State<X>) -> TrieResult<StateDiff> {
 		let pod_state_post = self.to_pod_cache();
 		let pod_state_pre = orig.to_pod_diff(self)?;
-		Ok(pod::state::diff_pod(&pod_state_pre, &pod_state_post))
+		Ok(vapcore_pod::state::diff_pod(&pod_state_pre, &pod_state_post))
 	}
 
 	/// Load required account data from the databases. Returns whether the cache succeeds.

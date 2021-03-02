@@ -32,7 +32,7 @@ use tetsy_trie_db::{Recorder, Trie};
 use common_types::basic_account::BasicAccount;
 use vaptrie::{Result as TrieResult, SecTrieDB, TrieDB, TrieFactory};
 use tetsy_keccak_hasher::KeccakHasher;
-use pod::PodAccount;
+use vapcore_pod::PodAccount;
 
 const STORAGE_CACHE_ITEMS: usize = 8192;
 

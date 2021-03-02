@@ -44,7 +44,7 @@ machine = { path = "./machine" }
 memory-cache = { path = "../util/memory-cache" }
 tetsy-bytes = "0.1"
 parking_lot = "0.9"
-pod = { path = "pod", optional = true }
+vapcore-pod = { version = "0.1.0", path = "pod", optional = true }
 tetsy-trie-db = "0.19.2"
 tetsy-crypto = { version = "0.4.2", features = ["publickey"], optional = true }
 patricia-trie-vapory = { version = "0.1.1", path = "../util/patricia-trie-vapory" }
@@ -91,7 +91,7 @@ tetsy-macros = { version = "0.1.0", path = "../util/macros" }
 tetsy-runtime = { path = "../util/runtime" }
 serde_json = "1.0"
 tetsy-stats = { version = "0.1.0", path = "../util/stats" }
-pod = { path = "pod" }
+vapcore-pod = { version = "0.1.0", path = "pod" }
 tempdir = "0.3"
 tetsy-trie-standardmap = "0.15.2"
 

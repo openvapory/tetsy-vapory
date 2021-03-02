@@ -21,7 +21,7 @@ use std::io;
 
 use vapory_types::{H256, U256, BigEndianHash};
 use tetsy_bytes::ToPretty;
-use pod::PodState;
+use vapcore_pod::PodState;
 use serde::Serialize;
 use trace;
 

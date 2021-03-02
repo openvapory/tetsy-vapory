@@ -277,7 +277,7 @@ mod tests {
 	};
 	use trie;
 	use machine::Machine;
-	use pod::{self, PodAccount, PodState};
+	use vapcore_pod::{self, PodAccount, PodState};
 	use rustc_hex::FromHex;
 	use spec;
 	use ::trace::{FlatTrace, TraceError, trace};
@@ -1614,7 +1614,7 @@ mod tests {
 		assert_eq!(diff_map.len(), 1);
 		assert!(diff_map.get(&a).is_some());
 		assert_eq!(diff_map.get(&a),
-			pod::account::diff_pod(
+			vapcore_pod::account::diff_pod(
 				Some(&PodAccount {
 					balance: U256::from(100),
 					nonce: U256::zero(),
@@ -1645,7 +1645,7 @@ mod tests {
 		assert_eq!(diff_map.len(), 1);
 		assert!(diff_map.get(&a).is_some());
 		assert_eq!(diff_map.get(&a),
-			pod::account::diff_pod(
+			vapcore_pod::account::diff_pod(
 				Some(&PodAccount {
 						balance: U256::zero(),
 						nonce: U256::zero(),

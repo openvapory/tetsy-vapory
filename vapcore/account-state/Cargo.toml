@@ -24,7 +24,7 @@ tetsy-memory-db = "0.18.1"
 tetsy-bytes = "0.1.0"
 tetsy-util-mem = "0.3.0"
 parking_lot = "0.9"
-pod = { path = "../pod" }
+vapcore-pod = { version = "0.1.0", path = "../pod" }
 tetsy-rlp = "0.4.5"
 serde = { version = "1.0", features = ["derive"] }
 tetsy-trie-db = "0.19.2"

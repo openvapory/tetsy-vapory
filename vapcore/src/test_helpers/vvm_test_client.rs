@@ -22,7 +22,7 @@ use vapory_types::{H256, U256, H160};
 use {trie_vm_factories, journaldb, trie, tetsy_kvdb_memorydb};
 use tetsy_kvdb::{self, KeyValueDB};
 use {state_db, trace, db, spec};
-use pod::PodState;
+use vapcore_pod::PodState;
 use types::{
 	errors::VapcoreError,
 	log_entry,

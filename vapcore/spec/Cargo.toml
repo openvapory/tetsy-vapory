@@ -30,7 +30,7 @@ tetsy-kvdb-memorydb = "0.3.2"
 log = "0.4.8"
 machine = { path = "../machine" }
 null-engine = { path = "../engines/null-engine" }
-pod = { path = "../pod" }
+vapcore-pod = { version = "0.1.0", path = "../pod" }
 tetsy-rlp = "0.4.5"
 trace = { path = "../trace" }
 trie-vm-factories = { path = "../trie-vm-factories" }

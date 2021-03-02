@@ -16,7 +16,7 @@
 
 use std::path::Path;
 use super::test_common::*;
-use pod::PodState;
+use vapcore_pod::PodState;
 use trace;
 use vapjson;
 use test_helpers::{VvmTestClient, VvmTestError, TransactErr, TransactSuccess};

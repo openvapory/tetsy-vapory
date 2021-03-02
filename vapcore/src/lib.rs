@@ -87,7 +87,7 @@ extern crate lazy_static;
 #[macro_use]
 extern crate tetsy_macros;
 #[cfg(any(test, feature = "test-helpers"))]
-extern crate pod;
+extern crate vapcore_pod;
 #[cfg(any(test, feature = "blooms-db"))]
 extern crate blooms_db;
 #[cfg(feature = "env_logger")]
