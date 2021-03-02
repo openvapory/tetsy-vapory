@@ -23,12 +23,12 @@ use vapcore_miner::pool;
 use vapory_types::{H256, U256, Address};
 use tetsy_util_mem::MallocSizeOfExt;
 use crypto::publickey::Signature;
-use messages::PrivateTransaction;
+use crate::messages::PrivateTransaction;
 use parking_lot::RwLock;
 use types::transaction::{UnverifiedTransaction, SignedTransaction};
 use txpool;
 use txpool::{VerifiedTransaction, Verifier};
-use error::Error;
+use crate::error::Error;
 
 type Pool = txpool::Pool<VerifiedPrivateTransaction, pool::scoring::NonceAndGasPrice>;
 

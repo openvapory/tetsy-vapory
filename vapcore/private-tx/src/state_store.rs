@@ -21,9 +21,9 @@ use parking_lot::RwLock;
 use vapory_types::H256;
 use tetsy_kvdb::KeyValueDB;
 use types::transaction::SignedTransaction;
-use private_transactions::VerifiedPrivateTransaction;
-use private_state_db::PrivateStateDB;
-use log::Logging;
+use crate::private_transactions::VerifiedPrivateTransaction;
+use crate::private_state_db::PrivateStateDB;
+use crate::log::Logging;
 
 /// Max duration of retrieving state (in ms)
 const MAX_REQUEST_SESSION_DURATION: u64 = 120 * 1000;

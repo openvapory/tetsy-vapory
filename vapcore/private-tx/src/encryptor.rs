@@ -31,7 +31,7 @@ use crypto;
 use futures::Future;
 use tetsy_fetch::{Fetch, Client as FetchClient, Method, BodyReader, Request};
 use bytes::{Bytes, ToPretty};
-use error::Error;
+use crate::error::Error;
 use url::Url;
 use super::Signer;
 use super::key_server_keys::address_to_key;

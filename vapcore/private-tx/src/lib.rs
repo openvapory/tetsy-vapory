@@ -79,11 +79,11 @@ extern crate env_logger;
 
 pub use encryptor::{Encryptor, SecretStoreEncryptor, EncryptorConfig, NoopEncryptor};
 pub use key_server_keys::{KeyProvider, SecretStoreKeys, StoringKeyProvider};
-pub use private_transactions::{VerifiedPrivateTransaction, VerificationStore, PrivateTransactionSigningDesc, SigningStore};
-pub use messages::{PrivateTransaction, SignedPrivateTransaction};
-pub use private_state_db::PrivateStateDB;
-pub use error::Error;
-pub use log::{Logging, TransactionLog, ValidatorLog, PrivateTxStatus, FileLogsSerializer};
+pub use crate::private_transactions::{VerifiedPrivateTransaction, VerificationStore, PrivateTransactionSigningDesc, SigningStore};
+pub use crate::messages::{PrivateTransaction, SignedPrivateTransaction};
+pub use crate::private_state_db::PrivateStateDB;
+pub use crate::error::Error;
+pub use crate::log::{Logging, TransactionLog, ValidatorLog, PrivateTxStatus, FileLogsSerializer};
 use state_store::{PrivateStateStorage, RequestType};
 
 use std::sync::{Arc, Weak};

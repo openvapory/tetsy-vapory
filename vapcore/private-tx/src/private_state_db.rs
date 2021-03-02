@@ -21,7 +21,7 @@ use tetsy_kvdb::{KeyValueDB, DBTransaction};
 use tetsy_keccak_hasher::KeccakHasher;
 use tetsy_hash_db::Hasher;
 use vapcore_db::COL_PRIVATE_TRANSACTIONS_STATE;
-use error::Error;
+use crate::error::Error;
 
 /// Wrapper around local db with private state for sync purposes
 pub struct PrivateStateDB {
