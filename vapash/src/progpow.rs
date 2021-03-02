@@ -33,9 +33,9 @@
 //! We use ProgPoW 0.9.3 version as suggested on Specification
 //! https://github.com/vaporyco/VIPs/blob/master/EIPS/eip-1057.md#specification
 
-use compute::{FNV_PRIME, calculate_dag_item};
-use keccak::H256;
-use shared::{VAPASH_ACCESSES, VAPASH_MIX_BYTES, Node, get_data_size};
+use crate::compute::{FNV_PRIME, calculate_dag_item};
+use crate::keccak::H256;
+use crate::shared::{VAPASH_ACCESSES, VAPASH_MIX_BYTES, Node, get_data_size};
 
 const PROGPOW_CACHE_BYTES: usize = 16 * 1024;
 const PROGPOW_CACHE_WORDS: usize = PROGPOW_CACHE_BYTES / 4;

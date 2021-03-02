@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use shared;
+use crate::shared;
 use keccak::{keccak_256, H256};
 
 use std::cell::Cell;

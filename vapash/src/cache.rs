@@ -14,14 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use compute::Light;
+use crate::compute::Light;
 use either::Either;
-use keccak::{H256, keccak_512};
+use crate::keccak::{H256, keccak_512};
 use memmap::MmapMut;
 use parking_lot::Mutex;
-use seed_compute::SeedHashCompute;
+use crate::seed_compute::SeedHashCompute;
 
-use shared::{VAPASH_CACHE_ROUNDS, NODE_BYTES, Node, epoch, get_cache_size, to_hex};
+use crate::shared::{VAPASH_CACHE_ROUNDS, NODE_BYTES, Node, epoch, get_cache_size, to_hex};
 
 use std::borrow::Cow;
 use std::fs;
