@@ -11,5 +11,5 @@ vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-v
 account-db = { path = "../account-db" }
 vvm = { version = "0.1.0", path = "../vvm" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }
-wasm = { path = "../wasm" }
+vapcore-wasm = { version = "0.1.0", path = "../wasm" }
 tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }

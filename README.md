@@ -268,9 +268,9 @@ Caching, Importing Blocks, and Block Information
     ```bash
     wasm
     ```
-  * Tetsy Vapory WASM Test Runner
+  * Vapcore WASM Test Runner
     ```bash
-    twasm-run-test
+    vapcore-wasm-run-test
     ```
   * Parity VVM Implementation
     ```bash

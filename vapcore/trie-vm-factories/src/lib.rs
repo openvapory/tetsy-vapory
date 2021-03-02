@@ -19,7 +19,7 @@ use vaptrie::Layout;
 use account_db::Factory as AccountFactory;
 use vvm::{Factory as VvmFactory};
 use tetsy_vm::{Exec, ActionParams, VersionedSchedule, Schedule};
-use wasm::WasmInterpreter;
+use vapcore_wasm::WasmInterpreter;
 
 const WASM_MAGIC_NUMBER: &'static [u8; 4] = b"\0asm";
 

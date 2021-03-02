@@ -1,8 +1,13 @@
 [package]
-description = "WASM Interpreter"
-name = "wasm"
+description = "Vapcore WASM Interpreter"
+name = "vapcore-wasm"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+license = "GPL-3.0"
+edition = "2018"
+documentation = "https://docs.rs/vapcore-wasm"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 byteorder = "1.0"

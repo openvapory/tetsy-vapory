@@ -1,8 +1,9 @@
 [package]
-description = "Tetsy WASM Test Run"
-name = "twasm-run-test"
+description = "Vapcore WASM Test Run"
+name = "vapcore-wasm-run-test"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+publish = false
 
 [dependencies]
 serde = "1"
@@ -11,7 +12,7 @@ serde_derive = "1"
 vapory-types = "0.8.0"
 vapjson = { path = "../../../json" }
 tetsy-vm = { version = "0.1.0", path = "../../vm" }
-wasm = { path = "../" }
+vapcore-wasm = { version = "0.1.0", path = "../" }
 clap = "2.24"
 env_logger = "0.5"
 rustc-hex = "1"

@@ -35,7 +35,7 @@ use std::fs;
 fn main() {
 	::env_logger::init();
 
-	let matches = App::new("twasm-run-test")
+	let matches = App::new("vapcore-wasm-run-test")
 		.arg(Arg::with_name("target")
 			.index(1)
 			.required(true)
