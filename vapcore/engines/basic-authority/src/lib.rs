@@ -26,7 +26,7 @@ use common_types::{
 		SealingState,
 		Seal,
 		params::CommonParams,
-		mashina::{AuxiliaryData, Call},
+		machine::{AuxiliaryData, Call},
 	},
 	errors::{EngineError, BlockError, VapcoreError as Error},
 };

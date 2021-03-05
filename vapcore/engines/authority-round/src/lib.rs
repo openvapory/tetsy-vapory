@@ -72,7 +72,7 @@ use common_types::{
 		PendingTransitionStore,
 		Seal,
 		SealingState,
-		mashina::{Call, AuxiliaryData},
+		machine::{Call, AuxiliaryData},
 	},
 	errors::{BlockError, VapcoreError as Error, EngineError},
 	ids::BlockId,
