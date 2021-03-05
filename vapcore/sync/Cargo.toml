@@ -10,7 +10,7 @@ edition = "2018"
 
 [dependencies]
 bytes = { package = "tetsy-bytes", version = "0.1" }
-client-traits = { path = "../client-traits" }
+client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
 devp2p = { package = "vapcore-network-devp2p", path = "../../util/network-devp2p" }
 enum_primitive = "0.1.1"

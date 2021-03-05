@@ -16,7 +16,7 @@ account-state = { version = "0.1.0", path = "../account-state" }
 blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
 bloom-journal = { package = "vapcore-bloom-journal", path = "../../util/bloom" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
-client-traits = { path = "../client-traits" }
+client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
 crossbeam-utils = "0.6"
 engine = { path = "../engine" }
@@ -28,7 +28,7 @@ tetsy-hash-db = "0.15.2"
 itertools = "0.5"
 journaldb = { path = "../../util/journaldb" }
 tetsy-keccak-hash = "0.4.0"
-tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }
+tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4.8"

@@ -7,7 +7,7 @@ edition = "2018"
 license = "GPL-3.0"
 
 [dependencies]
-client-traits = { path = "../../client-traits" }
+client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
 engine = { path = "../../engine" }
 vapory-types = "0.8.0"

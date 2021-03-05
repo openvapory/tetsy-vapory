@@ -6,7 +6,7 @@ license = "GPL-3.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 
 [dependencies]
-client-traits = { path = "../vapcore/client-traits" }
+client-traits = { version = "0.1.0", path = "../vapcore/client-traits" }
 common-types = { version = "0.1.0", path = "../vapcore/types" }
 vapabi = "9.0.1"
 vapabi-contract = "9.0.0"

@@ -14,7 +14,7 @@ vapcore-db = { version = "0.1.0", path = "../db" }
 vapory-types = "0.8.0"
 tetsy-hash-db = "0.15.2"
 tetsy-keccak-hash = "0.4.0"
-tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }
+tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
 journaldb = { path = "../../util/journaldb" }
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }

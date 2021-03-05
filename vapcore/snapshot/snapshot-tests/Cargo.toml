@@ -10,7 +10,7 @@ account-db = { path = "../../account-db" }
 account-state = { version = "0.1.0", path = "../../account-state" }
 blockchain = { package = "vapcore-blockchain", path = "../../blockchain" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
-client-traits = { path = "../../client-traits" }
+client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
 engine = { path = "../../engine", features = ["test-helpers"] }
 env_logger = "0.5"
@@ -22,7 +22,7 @@ vaptrie  = { package = "patricia-trie-vapory", path = "../../../util/patricia-tr
 tetsy-hash-db = "0.15.2"
 journaldb = { path = "../../../util/journaldb" }
 tetsy-keccak-hash = "0.4.0"
-tetsy-keccak-hasher = { path = "../../../util/tetsy-keccak-hasher" }
+tetsy-keccak-hasher = { version = "0.1.1", path = "../../../util/tetsy-keccak-hasher" }
 tetsy-kvdb = "0.3.2"
 tetsy-kvdb-rocksdb = "0.4.3"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }

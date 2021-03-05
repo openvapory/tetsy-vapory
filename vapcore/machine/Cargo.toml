@@ -13,7 +13,7 @@ required-features = ["test-helpers"]
 
 [dependencies]
 account-state = { version = "0.1.0", path = "../account-state" }
-client-traits = { path = "../client-traits" }
+client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
 crossbeam-utils = "0.6"
 vapabi = "9.0.1"

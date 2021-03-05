@@ -9,7 +9,7 @@ authors = ["Parity Technologies <admin@parity.io>"]
 [dependencies]
 log = "0.4"
 tetsy-bytes = "0.1"
-client-traits = { path = "../client-traits" }
+client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
 derive_more = "0.14.0"
 engine = { path = "../engine" }
@@ -41,7 +41,7 @@ spec = { path = "../spec" }
 parking_lot = "0.9"
 tetsy-stats = { version = "0.1.0", path = "../../util/stats" }
 tetsy-keccak-hash = "0.4.0"
-tetsy-keccak-hasher = { path = "../../util/tetsy-keccak-hasher" }
+tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
 triehash-vapory = { version = "0.2",  path = "../../util/triehash-vapory" }
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }

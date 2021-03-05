@@ -9,7 +9,7 @@ license = "GPL-3.0"
 [dependencies]
 block-gas-limit = { path = "../../block-gas-limit" }
 block-reward = { path = "../../block-reward" }
-client-traits = { path = "../../client-traits" }
+client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
 derive_more = "0.15.0"
 vapabi = "9.0.1"
