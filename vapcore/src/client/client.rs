@@ -115,7 +115,7 @@ use types::{
 	engines::{
 		epoch::{PendingTransition, Transition as EpochTransition},
 		ForkChoice,
-		mashina::{AuxiliaryData, Call as MachineCall},
+		machine::{AuxiliaryData, Call as MachineCall},
 		MAX_UNCLE_AGE,
 		SealingState,
 	},
@@ -1210,7 +1210,7 @@ impl Client {
 		t: &SignedTransaction,
 		analytics: CallAnalytics,
 	) -> Result<Executed, CallError> {
-		use types::engines::mashina::Executed as RawExecuted;
+		use types::engines::machine::Executed as RawExecuted;
 		fn call<V, T>(
 			state: &mut State<StateDB>,
 			env_info: &EnvInfo,
