@@ -19,7 +19,7 @@ crossbeam-utils = "0.6"
 vapabi = "9.0.1"
 vapabi-contract = "9.0.0"
 vapabi-derive = "9.0.1"
-vapcore-builtin = { version = "0.1.0"path = "../builtin" }
+vapcore-builtin = { version = "0.1.0", path = "../builtin" }
 vapcore-call-contract = { version = "0.1.0", path = "../call-contract" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapory-types = "0.8.0"
