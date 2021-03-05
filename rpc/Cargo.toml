@@ -37,7 +37,7 @@ tetsy-jsonrpc-pubsub = "14.2.1"
 
 client-traits = { version = "0.1.0", path = "../vapcore/client-traits" }
 common-types = { version = "0.1.0", path = "../vapcore/types" }
-engine = { version = "0.1.0", path = "../vapcore/engine" }
+engine = { version = "0.1.0", path = "../vapcore/enjen" }
 vapash = { version = "1.12.0", path = "../vapash" }
 vapcore = { path = "../vapcore" }
 vapcore-accounts = { path = "../accounts", optional = true }
