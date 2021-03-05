@@ -25,7 +25,7 @@ use common_types::{
 	},
 	errors::VapcoreError as Error,
 };
-use engine::Engine;
+use enjen::Engine;
 use vapjson;
 use mashina::{
 	ExecutedBlock,

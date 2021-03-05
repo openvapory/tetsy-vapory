@@ -79,9 +79,9 @@ impl ValidatorSet for SimpleList {
 	}
 
 	fn signals_epoch_end(&self, _: bool, _: &Header, _: AuxiliaryData)
-		-> engine::EpochChange
+		-> enjen::EpochChange
 	{
-		engine::EpochChange::No
+		enjen::EpochChange::No
 	}
 
 	fn epoch_set(&self, _first: bool, _: &Machine, _: BlockNumber, _: &[u8]) -> Result<(SimpleList, Option<H256>), VapcoreError> {

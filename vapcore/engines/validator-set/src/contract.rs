@@ -34,7 +34,7 @@ use common_types::{
 };
 
 use client_traits::{EngineClient, TransactionRequest};
-use engine::SystemCall;
+use enjen::SystemCall;
 
 use crate::{
 	ValidatorSet, SimpleList,
