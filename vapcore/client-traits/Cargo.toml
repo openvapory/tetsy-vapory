@@ -8,7 +8,7 @@ license = "GPL-3.0"
 
 [dependencies]
 account-state = { version = "0.1.0", path = "../account-state" }
-blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
+blockchain = { version = "0.1.0", package = "vapcore-blockchain", path = "../blockchain" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../call-contract" }
 common-types = { version = "0.1.0", path = "../types" }
