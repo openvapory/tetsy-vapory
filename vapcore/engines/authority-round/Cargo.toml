@@ -18,7 +18,7 @@ vapabi-derive = "9.0.1"
 vapory-types = "0.8.0"
 vapjson = { path = "../../../json" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
-engine = { version = "0.1.0", path = "../../enjen" }
+enjen = { version = "0.1.0", path = "../../enjen" }
 io = { version = "1.12.0", package = "vapcore-io", path = "../../../util/io" }
 itertools = "0.5"
 tetsy-keccak-hash = "0.4.0"
@@ -37,7 +37,7 @@ validator-set = { path = "../validator-set" }
 
 [dev-dependencies]
 accounts = { package = "vapcore-accounts", path = "../../../accounts" }
-engine = { version = "0.1.0", path = "../../enjen", features = ["test-helpers"] }
+enjen = { version = "0.1.0", path = "../../enjen", features = ["test-helpers"] }
 env_logger = "0.6.2"
 vapcore = { path = "../..", features = ["test-helpers"] }
 spec = { path = "../../spec" }

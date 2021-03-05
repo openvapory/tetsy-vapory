@@ -14,7 +14,7 @@ builtin = { package = "vapcore-builtin", path = "../builtin" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 clique = { path = "../engines/clique" }
 common-types = { version = "0.1.0", path = "../types" }
-engine = { version = "0.1.0", path = "../enjen" }
+enjen = { version = "0.1.0", path = "../enjen" }
 vapash = { version = "1.12.0", path = "../../vapash" }
 vapash-engine = { path = "../engines/vapash" }
 vapory-types = "0.8.0"

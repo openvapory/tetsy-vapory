@@ -12,7 +12,7 @@ blockchain = { package = "vapcore-blockchain", path = "../../blockchain" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
-engine = { version = "0.1.0", path = "../../enjen", features = ["test-helpers"] }
+enjen = { version = "0.1.0", path = "../../enjen", features = ["test-helpers"] }
 env_logger = "0.5"
 vapcore = { path = "../..", features = ["test-helpers"] }
 vapcore-db = { version = "0.1.0", path = "../../db" }

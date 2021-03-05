@@ -12,7 +12,7 @@ tetsy-bytes = "0.1"
 client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
 derive_more = "0.14.0"
-engine = { version = "0.1.0", path = "../enjen" }
+enjen = { version = "0.1.0", path = "../enjen" }
 vapcore-db = { version = "0.1.0", path = "../db" }
 vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
 vapory-types = "0.8.0"

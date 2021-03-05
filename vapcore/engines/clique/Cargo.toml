@@ -12,7 +12,7 @@ common-types = { version = "0.1.0", path = "../../types" }
 vapory-types = "0.8.0"
 vapjson = { path = "../../../json" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
-engine = { version = "0.1.0", path = "../../enjen" }
+enjen = { version = "0.1.0", path = "../../enjen" }
 tetsy-keccak-hash = "0.4.0"
 lazy_static = "1.3.0"
 log = "0.4"
