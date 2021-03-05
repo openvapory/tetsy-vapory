@@ -26,7 +26,7 @@ use crate::{BlockNumber, errors::{BlockError, VapcoreError}};
 
 pub mod epoch;
 pub mod params;
-pub mod mashina;
+pub mod machine;
 
 /// Optimize cache for CPU or memory usage
 #[derive(PartialEq, Eq, Debug, Clone, Copy)]
