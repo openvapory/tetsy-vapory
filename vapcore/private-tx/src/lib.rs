@@ -105,7 +105,7 @@ use types::{
 	ids::BlockId,
 	io_message::ClientIoMessage,
 	transaction::{SignedTransaction, Transaction, Action, UnverifiedTransaction},
-	engines::mashina::Executed,
+	engines::machine::Executed,
 };
 use vapcore::client::{Client, Call};
 use client_traits::{BlockInfo, ChainNotify};
