@@ -474,7 +474,7 @@ impl<T: ChainDataFetcher> Client<T> {
 	}
 
 	fn check_epoch_signal(&self, verified_header: &Header) -> Result<Option<Proof>, T::Error> {
-		use common_types::engines::mashina::{AuxiliaryRequest, AuxiliaryData};
+		use common_types::engines::machine::{AuxiliaryRequest, AuxiliaryData};
 
 		let mut block: Option<Vec<u8>> = None;
 		let mut receipts: Option<Vec<_>> = None;
