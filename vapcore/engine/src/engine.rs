@@ -27,8 +27,8 @@ use common_types::{
 	engines::{
 		Seal, SealingState, Headers, PendingTransitionStore,
 		params::CommonParams,
-		mashina as machine_types,
-		mashina::{AuxiliaryData, AuxiliaryRequest},
+		machine as machine_types,
+		machine::{AuxiliaryData, AuxiliaryRequest},
 	},
 	errors::{VapcoreError as Error, EngineError},
 	snapshot::Snapshotting,
