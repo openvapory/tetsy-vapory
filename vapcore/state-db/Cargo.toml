@@ -5,22 +5,24 @@ authors = ["Parity Technologies <admin@parity.io>"]
 license = "GPL-3.0"
 version = "0.1.0"
 edition = "2018"
+documentation = "https://docs.rs/state-db"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 account-state = { version = "0.1.0", path = "../account-state" }
-bloom_journal = { package = "vapcore-bloom-journal", path = "../../util/bloom" }
+bloom_journal = { version = "0.1.0", package = "vapcore-bloom-journal", path = "../../util/bloom" }
 common-types = { version = "0.1.0", path = "../types"}
 vapcore-db = { version = "0.1.0", path = "../db" }
 vapory-types = "0.8.0"
 tetsy-hash-db = "0.15.2"
 tetsy-keccak-hash = "0.4.0"
 tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
-journaldb = { path = "../../util/journaldb" }
+journaldb = { version = "0.2.0", path = "../../util/journaldb" }
 tetsy-kvdb = "0.3.2"
-# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4.6"
 lru-cache = "0.1.2"
-memory-cache = { path = "../../util/memory-cache" }
+memory-cache = { version = "0.1.0", path = "../../util/memory-cache" }
 parking_lot = "0.9"
 
 [dev-dependencies]

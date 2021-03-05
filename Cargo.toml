@@ -18,7 +18,7 @@ ctrlc = "1.1.1"
 # ctrlc = { git = "https://github.com/tetcoin/rust-ctrlc.git" }
 dir = { path = "util/dir", version = "0.1.2" }
 docopt = "1.0"
-engine = { path = "vapcore/engine", version = "0.1.0" }
+engine = { version = "0.1.0", path = "vapcore/engine" }
 vapabi = { version = "9.0.1", optional = true }
 vapcore = { version = "1.12.0", path = "vapcore", features = ["tetsy"] }
 vapcore-accounts = { version = "0.1.0", path = "accounts", optional = true }

@@ -8,7 +8,7 @@ license = "GPL-3.0"
 
 [dependencies]
 common-types = { version = "0.1.0", path = "../types" }
-engine = { path = "../engine" }
+engine = { version = "0.1.0", path = "../engine" }
 vapabi = "9.0.1"
 vapabi-derive = "9.0.1"
 vapabi-contract = "9.0.0"
