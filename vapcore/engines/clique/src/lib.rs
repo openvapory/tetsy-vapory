@@ -94,7 +94,7 @@ use common_types::{
 		Seal,
 		SealingState,
 		params::CommonParams,
-		mashina::Call,
+		machine::Call,
 	},
 	errors::{BlockError, VapcoreError as Error, EngineError},
 };
