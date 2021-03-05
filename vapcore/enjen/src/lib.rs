@@ -16,7 +16,7 @@
 
 //! This crate defines the Engine trait and related types.
 
-mod engine;
+mod enjen;
 pub mod signer;
 
 pub use crate::engine::{
