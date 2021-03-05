@@ -24,7 +24,7 @@ use account_state::{
 };
 use bytes::Bytes;
 use common_types::{
-	engines::mashina::Executed as RawExecuted,
+	engines::machine::Executed as RawExecuted,
 	errors::{ExecutionError, VapcoreError as Error},
 	transaction::SignedTransaction,
 	receipt::{TransactionOutcome, Receipt},
