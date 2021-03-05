@@ -36,7 +36,7 @@ use vapcore_trace::{self, Tracer, VMTracer};
 use common_types::{
 	errors::ExecutionError,
 	transaction::{Action, SignedTransaction},
-	engines::mashina::Executed,
+	engines::machine::Executed,
 };
 
 use crate::{

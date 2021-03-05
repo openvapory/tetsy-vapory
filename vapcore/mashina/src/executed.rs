@@ -23,7 +23,7 @@ use common_types::{
 };
 
 /// /// Transaction execution receipt, parametrised with convenient defaults.
-pub type Executed = mashina::Executed<FlatTrace, VMTrace>;
+pub type Executed = machine::Executed<FlatTrace, VMTrace>;
 
 /// Transaction execution result.
 pub type ExecutionResult = Result<Box<Executed>, ExecutionError>;
