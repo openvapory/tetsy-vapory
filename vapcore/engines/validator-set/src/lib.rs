@@ -31,7 +31,7 @@ use common_types::{
 	header::Header,
 	ids::BlockId,
 	errors::VapcoreError,
-	engines::mashina::{Call, AuxiliaryData},
+	engines::machine::{Call, AuxiliaryData},
 };
 use engine::SystemCall;
 use vapory_types::{H256, Address};

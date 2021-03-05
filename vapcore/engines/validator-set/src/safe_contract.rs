@@ -25,7 +25,7 @@ use common_types::{
 	errors::{EngineError, VapcoreError, BlockError},
 	ids::BlockId,
 	log_entry::LogEntry,
-	engines::mashina::{Call, AuxiliaryData, AuxiliaryRequest},
+	engines::machine::{Call, AuxiliaryData, AuxiliaryRequest},
 	receipt::Receipt,
 };
 use vapabi::FunctionOutputDecoder;

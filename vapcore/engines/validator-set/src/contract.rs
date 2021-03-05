@@ -30,7 +30,7 @@ use common_types::{
 	ids::BlockId,
 	header::Header,
 	errors::VapcoreError,
-	engines::mashina::{Call, AuxiliaryData},
+	engines::machine::{Call, AuxiliaryData},
 };
 
 use client_traits::{EngineClient, TransactionRequest};

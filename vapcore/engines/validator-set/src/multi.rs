@@ -24,7 +24,7 @@ use common_types::{
 	header::Header,
 	ids::BlockId,
 	errors::VapcoreError,
-	engines::mashina::{Call, AuxiliaryData},
+	engines::machine::{Call, AuxiliaryData},
 };
 use client_traits::EngineClient;
 use vapory_types::{H256, Address};

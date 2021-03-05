@@ -21,7 +21,7 @@ use common_types::{
 	ids::BlockId,
 	header::Header,
 	errors::VapcoreError,
-	engines::mashina::{Call, AuxiliaryData},
+	engines::machine::{Call, AuxiliaryData},
 };
 use vapory_types::{H256, Address};
 use log::warn;
