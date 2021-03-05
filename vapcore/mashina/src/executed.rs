@@ -18,7 +18,7 @@
 
 use vapcore_trace::{VMTrace, FlatTrace};
 use common_types::{
-	engines::mashina,
+	engines::machine,
 	errors::ExecutionError,
 };
 
