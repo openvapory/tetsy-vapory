@@ -12,11 +12,10 @@ blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../call-contract" }
 common-types = { version = "0.1.0", path = "../types" }
-vapcore-db = { path = "../db" }
+vapcore-db = { version = "0.1.0", path = "../db" }
 vapcore-miner = { version = "1.12.0", path = "../../miner" }
 vapory-types = "0.8.0"
 tetsy-kvdb = "0.3.2"
-# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 tetsy-registrar = { version = "0.0.1", path = "../../util/tetsy-registrar" }
 tetsy-stats = { version = "0.1.0", path = "../../util/stats" }
 vapcore-trace = { version = "0.1.0", path = "../trace" }
