@@ -512,7 +512,7 @@ Full Changes:
 - Ui/SectionList component [#4292](https://github.com/tetcoin/tetsy/pull/4292)
 - Stratum up [#4233](https://github.com/tetcoin/tetsy/pull/4233)
 - Logging transaction duration [#4297](https://github.com/tetcoin/tetsy/pull/4297)
-- Generic engine utilities [#4258](https://github.com/tetcoin/tetsy/pull/4258)
+- Generic enjen utilities [#4258](https://github.com/tetcoin/tetsy/pull/4258)
 - JSON-RPC interfaces with documentation [#4276](https://github.com/tetcoin/tetsy/pull/4276)
 - Dont decode seal fields [#4263](https://github.com/tetcoin/tetsy/pull/4263)
 - Skip misbehaving test until properly fixed [#4283](https://github.com/tetcoin/tetsy/pull/4283)

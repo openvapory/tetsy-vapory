@@ -255,7 +255,7 @@ Tetsy-Vapory 2.2.1-beta is the first v2.2 release, and might introduce features 
 - Produce portable binaries ([#9725](https://github.com/openvapory/tetsy-vapory/pull/9725)): we now produce portable binaries, but it may incur some performance degradation. For ultimate performance it's now better to compile Tetsy Vapory from source with `PORTABLE=OFF` environment variable.
 - RPC: `tetsy_allTransactionHashes` ([#9745](https://github.com/openvapory/tetsy-vapory/pull/9745)): Get all pending transactions from the queue with the high performant `tetsy_allTransactionHashes` RPC method.
 - Support `vap_chainId` RPC method ([#9783](https://github.com/openvapory/tetsy-vapory/pull/9783)): implements EIP-695 to get the chainID via RPC.
-- AuRa: finalize blocks ([#9692](https://github.com/openvapory/tetsy-vapory/pull/9692)): The AuRa engine was updated to emit ancestry actions to finalize blocks. The full client stores block finality in the database, the engine builds finality from an ancestry of `ExtendedHeader`; `is_epoch_end` was updated to take a vec of recently finalized headers; `is_epoch_end_light` was added which maintains the previous interface and is used by the light client since the client itself doesn't track finality.
+- AuRa: finalize blocks ([#9692](https://github.com/openvapory/tetsy-vapory/pull/9692)): The AuRa enjen was updated to emit ancestry actions to finalize blocks. The full client stores block finality in the database, the enjen builds finality from an ancestry of `ExtendedHeader`; `is_epoch_end` was updated to take a vec of recently finalized headers; `is_epoch_end_light` was added which maintains the previous interface and is used by the light client since the client itself doesn't track finality.
 
 The full list of included changes:
 
@@ -318,7 +318,7 @@ The full list of included changes:
 - Vapcore: fix detection of major import ([#9552](https://github.com/openvapory/tetsy-vapory/pull/9552))
 - Return 0 on error ([#9705](https://github.com/openvapory/tetsy-vapory/pull/9705))
 - Vapcore: delay ropsten hardfork ([#9704](https://github.com/openvapory/tetsy-vapory/pull/9704))
-- Make instantSeal engine backwards compatible, closes [#9696](https://github.com/openvapory/tetsy-vapory/issues/9696) ([#9700](https://github.com/openvapory/tetsy-vapory/pull/9700))
+- Make instantSeal enjen backwards compatible, closes [#9696](https://github.com/openvapory/tetsy-vapory/issues/9696) ([#9700](https://github.com/openvapory/tetsy-vapory/pull/9700))
 - Implement CREATE2 gas changes and fix some potential overflowing ([#9694](https://github.com/openvapory/tetsy-vapory/pull/9694))
 - Don't hash the init_code of CREATE. ([#9688](https://github.com/openvapory/tetsy-vapory/pull/9688))
 - Vapcore: minor optimization of modexp by using LR exponentiation ([#9697](https://github.com/openvapory/tetsy-vapory/pull/9697))

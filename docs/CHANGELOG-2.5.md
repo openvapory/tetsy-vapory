@@ -208,7 +208,7 @@ The full list of included changes:
 
 Tetsy-Vapory 2.5.0-beta is a minor release that improves performance and stabilizes the 2.5 branch by marking it as beta release.
 
-- This release adds support for the Clique consensus engine ([#9981](https://github.com/openvapory/tetsy-vapory/pull/9981))
+- This release adds support for the Clique consensus enjen ([#9981](https://github.com/openvapory/tetsy-vapory/pull/9981))
   - This enables Tetsy-Vapory users to use the Görli, the Kotti Classic, and the legacy Rinkeby testnet. To get started try `tetsy --chain goerli`; note that light client support is currently not yet fully functional.
 - This release removes the dead chain configs for Easthub and Vapory Social ([#10531](https://github.com/openvapory/tetsy-vapory/pull/10531))
 

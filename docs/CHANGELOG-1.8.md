@@ -220,7 +220,7 @@ The full list of included changes:
 
 ## Tetsy [v1.8.5](https://github.com/openvapory/tetsy-vapory/releases/tag/v1.8.5) (2017-12-29)
 
-Tetsy 1.8.5 changes the default behavior of JSON-RPC CORS setting, detects same-key engine signers in Aura networks, and updates bootnodes for the Kovan and Foundation networks.
+Tetsy 1.8.5 changes the default behavior of JSON-RPC CORS setting, detects same-key enjen signers in Aura networks, and updates bootnodes for the Kovan and Foundation networks.
 
 Note: The default value of `--jsonrpc-cors` option has been altered to disallow (potentially malicious) websites from accessing the low-sensitivity RPCs (viewing exposed accounts, proposing transactions for signing). Currently domains need to be whitelisted manually. To bring back previous behaviour run with `--jsonrpc-cors all` or `--jsonrpc-cors http://example.com`.
 
@@ -369,7 +369,7 @@ We are happy to announce our newest Tetsy 1.8 release. Among others, it enables 
 
 Further, users upgrading from 1.7 should acknowledge the following changes:
 
-- The chain-engine was further abstracted and chain-specs need to be upgraded. [#6134](https://github.com/openvapory/tetsy-vapory/pull/6134) [#6591](https://github.com/openvapory/tetsy-vapory/pull/6591)
+- The chain-enjen was further abstracted and chain-specs need to be upgraded. [#6134](https://github.com/openvapory/tetsy-vapory/pull/6134) [#6591](https://github.com/openvapory/tetsy-vapory/pull/6591)
 - `network_id` was renamed to `chain_id` where applicable. [#6345](https://github.com/openvapory/tetsy-vapory/pull/6345)
 - `trace_filter` RPC method now comes with pagination. [#6312](https://github.com/openvapory/tetsy-vapory/pull/6312)
 - Added tracing of rewards on closing blocks. [#6194](https://github.com/openvapory/tetsy-vapory/pull/6194)
@@ -441,7 +441,7 @@ The full list of included changes:
 - SecretStore: administrative sessions prototypes [#6605](https://github.com/openvapory/tetsy-vapory/pull/6605)
 - fix tetcoin.org link 404 [#6617](https://github.com/openvapory/tetsy-vapory/pull/6617)
 - SecretStore: add node to existing session poc + discussion [#6480](https://github.com/openvapory/tetsy-vapory/pull/6480)
-- Generalize engine trait [#6591](https://github.com/openvapory/tetsy-vapory/pull/6591)
+- Generalize enjen trait [#6591](https://github.com/openvapory/tetsy-vapory/pull/6591)
 - Add RPC vap_chainId for querying the current blockchain chain ID [#6329](https://github.com/openvapory/tetsy-vapory/pull/6329)
 - Debounce sync status. [#6572](https://github.com/openvapory/tetsy-vapory/pull/6572)
 - [Public Node] Disable tx scheduling and hardware wallets [#6588](https://github.com/openvapory/tetsy-vapory/pull/6588)
@@ -471,7 +471,7 @@ The full list of included changes:
 - Fix slow balances [#6471](https://github.com/openvapory/tetsy-vapory/pull/6471)
 - WASM runtime update [#6467](https://github.com/openvapory/tetsy-vapory/pull/6467)
 - Compatibility with whisper v6 [#6179](https://github.com/openvapory/tetsy-vapory/pull/6179)
-- light-poa round 2: allow optional casting of engine client to full client [#6468](https://github.com/openvapory/tetsy-vapory/pull/6468)
+- light-poa round 2: allow optional casting of enjen client to full client [#6468](https://github.com/openvapory/tetsy-vapory/pull/6468)
 - Moved attributes under docs [#6475](https://github.com/openvapory/tetsy-vapory/pull/6475)
 - cleanup util dependencies [#6464](https://github.com/openvapory/tetsy-vapory/pull/6464)
 - removed redundant earlymergedb trace guards [#6463](https://github.com/openvapory/tetsy-vapory/pull/6463)

@@ -330,7 +330,7 @@ See [full list of changes](https://github.com/tetcoin/tetsy/compare/v1.5.0...v1.
 
 ## Tetsy [v1.5.0: "Nativity"](https://github.com/tetcoin/tetsy/releases/tag/v1.5.0) (2017-01-19)
 
-Major feature release including _Tendermint_ consensus engine, _Multisig wallet_ support, _badge/certification_ UI integration and _automatic updates_.
+Major feature release including _Tendermint_ consensus enjen, _Multisig wallet_ support, _badge/certification_ UI integration and _automatic updates_.
 
 Directories:
 
@@ -367,15 +367,15 @@ Tetsy Wallet:
 
 [Proof of Authority](https://github.com/tetcoin/tetsy/wiki/Proof-of-Authority-Chains):
 
-- Authority Round consensus engine: `engine: authorityRound {...}`; this is a high-performance Proof-of-Authority consensus engine. It is not BFT under normal circumstances (however the `--force-sealing` flag can be used to ensure consensus even with Byzantine nodes).
-- Tendermint Engine: `engine: tendermint {...}`; this is an experimental Proof-of-Authority consensus engine. BFT up to one third of the authorities and falling back to delayed finalization chain ordering (50% fault tolerant).
-- Generic seal JSON spec includes engine-specific types (`seal: { generic: { rlp: "0x..." } }` becomes `seal: { authority_round { step: 0, signature: "0x..." } }`.
-- To set a node as authority either `--engine-signer ADDRESS` should be used with `--password` or `tetsy_setEngineSigner(address, password)` RPC should be called. Unlocking the account permanently or using `--author` is now unnecessary.
-- Set of authorities can now be specified using a [list or a contract](https://github.com/tetcoin/tetsy/wiki/Consensus-Engines#validator-engines).
+- Authority Round consensus enjen: `enjen: authorityRound {...}`; this is a high-performance Proof-of-Authority consensus enjen. It is not BFT under normal circumstances (however the `--force-sealing` flag can be used to ensure consensus even with Byzantine nodes).
+- Tendermint Engine: `enjen: tendermint {...}`; this is an experimental Proof-of-Authority consensus enjen. BFT up to one third of the authorities and falling back to delayed finalization chain ordering (50% fault tolerant).
+- Generic seal JSON spec includes enjen-specific types (`seal: { generic: { rlp: "0x..." } }` becomes `seal: { authority_round { step: 0, signature: "0x..." } }`.
+- To set a node as authority either `--enjen-signer ADDRESS` should be used with `--password` or `tetsy_setEngineSigner(address, password)` RPC should be called. Unlocking the account permanently or using `--author` is now unnecessary.
+- Set of authorities can now be specified using a [list or a contract](https://github.com/tetcoin/tetsy/wiki/Consensus-Engines#validator-enjens).
 
 Chains:
 
-- Dev chain: `--chain=dev`; instant seal engine (no mining needed). Great for development work.
+- Dev chain: `--chain=dev`; instant seal enjen (no mining needed). Great for development work.
 - Ropsten chain (`--chain=ropsten` or `--chain=testnet`) configures for Ropsten, the new test net.
 - Morden chain (`--chain=morden`) changed to "Classic" rules and stays as the Vapory Classic test net.
 
@@ -482,7 +482,7 @@ Full changes:
   - dir
   - simple validator list
   - stub validator contract
-  - make the engine hold Weak<Client> instead of IoChannel
+  - make the enjen hold Weak<Client> instead of IoChannel
   - validator set factory
   - register weak client with ValidatorContract
   - check chain security
@@ -692,7 +692,7 @@ Full changes:
 - Fix grammar ("you try" -> "you tried" + article) [#3902](https://github.com/tetcoin/tetsy/pull/3902)
 - Remove light server capability temporarily [#3872](https://github.com/tetcoin/tetsy/pull/3872)
 - Allow retry for future blocks [#3896](https://github.com/tetcoin/tetsy/pull/3896)
-- Consistent engine and seal names [#3895](https://github.com/tetcoin/tetsy/pull/3895)
+- Consistent enjen and seal names [#3895](https://github.com/tetcoin/tetsy/pull/3895)
 - Update email certification ABI [#3893](https://github.com/tetcoin/tetsy/pull/3893)
 - Remove existence & length checks on passwords & phrases [#3854](https://github.com/tetcoin/tetsy/pull/3854)
 - Refresh certifications automatically [#3878](https://github.com/tetcoin/tetsy/pull/3878)
@@ -747,7 +747,7 @@ Full changes:
 - Fix padding in App [#3813](https://github.com/tetcoin/tetsy/pull/3813)
 - Light server improvements and protocol adjustments [#3801](https://github.com/tetcoin/tetsy/pull/3801)
 - Tolerate errors in user_defaults [#3810](https://github.com/tetcoin/tetsy/pull/3810)
-- Block: enforce gas limit falls within engine bounds [#3809](https://github.com/tetcoin/tetsy/pull/3809)
+- Block: enforce gas limit falls within enjen bounds [#3809](https://github.com/tetcoin/tetsy/pull/3809)
 - Target Babel to latest Chrome Versions in dev [#3806](https://github.com/tetcoin/tetsy/pull/3806)
 - Lowercase npm packages [#3807](https://github.com/tetcoin/tetsy/pull/3807)
 - Extended publishing of libraries to npm [#3786](https://github.com/tetcoin/tetsy/pull/3786)
@@ -781,7 +781,7 @@ Full changes:
 - Cleanups [#3742](https://github.com/tetcoin/tetsy/pull/3742)
 - Update babel, fix CI build due to breaking changes [#3754](https://github.com/tetcoin/tetsy/pull/3754)
 - Small fixes to contract [#3751](https://github.com/tetcoin/tetsy/pull/3751)
-- Make engine hold AccountProvider [#3725](https://github.com/tetcoin/tetsy/pull/3725)
+- Make enjen hold AccountProvider [#3725](https://github.com/tetcoin/tetsy/pull/3725)
 - Properly delete addresses/contracts in addressbook [#3739](https://github.com/tetcoin/tetsy/pull/3739)
 - Display Wallet Owners Icons in Accounts list [#3741](https://github.com/tetcoin/tetsy/pull/3741)
 - Edit Multisig Wallet settings [#3740](https://github.com/tetcoin/tetsy/pull/3740)
@@ -928,7 +928,7 @@ Full changes:
 - Save sort order in LocalStorage [#3457](https://github.com/tetcoin/tetsy/pull/3457)
 - Adds onPaste event to Inputs [#3456](https://github.com/tetcoin/tetsy/pull/3456)
 - Update signer to take care of text overflows [#3450](https://github.com/tetcoin/tetsy/pull/3450)
-- Authority round consensus engine [#3426](https://github.com/tetcoin/tetsy/pull/3426)
+- Authority round consensus enjen [#3426](https://github.com/tetcoin/tetsy/pull/3426)
 - Fix transfer token decimal calculation [#3445](https://github.com/tetcoin/tetsy/pull/3445)
 - Restrict max code size for EIP-150 and after. [#3363](https://github.com/tetcoin/tetsy/pull/3363)
 - Contract queries should display IdentityIcons [#3453](https://github.com/tetcoin/tetsy/pull/3453)
@@ -1010,7 +1010,7 @@ Full changes:
 - Add copy address button to Contract deploy [#3199](https://github.com/tetcoin/tetsy/pull/3199)
 - Expose Tetsy api as window.secureApi [#3207](https://github.com/tetcoin/tetsy/pull/3207)
 - Add error for sendRawTransaction and estimateGas [#3194](https://github.com/tetcoin/tetsy/pull/3194)
-- Exposing engine extra info in block RPC [#3169](https://github.com/tetcoin/tetsy/pull/3169)
+- Exposing enjen extra info in block RPC [#3169](https://github.com/tetcoin/tetsy/pull/3169)
 - V1.5 [#3195](https://github.com/tetcoin/tetsy/pull/3195)
 - Remove dapp logos (GHH points to dapp-assets) [#3192](https://github.com/tetcoin/tetsy/pull/3192)
 - Fixing possible race in vapcore_hashContent [#3191](https://github.com/tetcoin/tetsy/pull/3191)

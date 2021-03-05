@@ -332,7 +332,7 @@ Full changes:
 - vapcore-db crate [#1097](https://github.com/openvapory/tetsy-vapory/pull/1097)
 - Fix the default for pruning. [#1107](https://github.com/openvapory/tetsy-vapory/pull/1107)
 - Make Id/ID and db/Db/DB usage consistent [#1105](https://github.com/openvapory/tetsy-vapory/pull/1105)
-- Miner holds it's own copy of spec/engine [#1091](https://github.com/openvapory/tetsy-vapory/pull/1091)
+- Miner holds it's own copy of spec/enjen [#1091](https://github.com/openvapory/tetsy-vapory/pull/1091)
 - Apps listing API & Home webapp. [#1101](https://github.com/openvapory/tetsy-vapory/pull/1101)
 - CLI option for using JITVVM [#1103](https://github.com/openvapory/tetsy-vapory/pull/1103)
 - Fix up the seal fields in RPC output [#1096](https://github.com/openvapory/tetsy-vapory/pull/1096)

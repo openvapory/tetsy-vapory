@@ -75,7 +75,7 @@ See [full list of changes](https://github.com/openvapory/tetsy-vapory/compare/v1
 This maintenance release fixes an issue with sync falling behind occasionally.
 
 - Backporting to beta [#3980](https://github.com/openvapory/tetsy-vapory/pull/3980)
-- [beta] enforce gas limit falls within engine bounds [#3816](https://github.com/openvapory/tetsy-vapory/pull/3816)
+- [beta] enforce gas limit falls within enjen bounds [#3816](https://github.com/openvapory/tetsy-vapory/pull/3816)
 
 
 ## Tetsy [v1.4.6](https://github.com/openvapory/tetsy-vapory/releases/tag/v1.4.6) (2016-12-05)

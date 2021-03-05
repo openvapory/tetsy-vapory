@@ -35,7 +35,7 @@ Full Changes:
 - Tweak timeout and packet size to handle slow networks better [#1004](https://github.com/openvapory/tetsy-vapory/pull/1004)
 - db key is generic and can be made smaller [#1006](https://github.com/openvapory/tetsy-vapory/pull/1006)
 - IPC with new serialization [#998](https://github.com/openvapory/tetsy-vapory/pull/998)
-- make jsonrpc api engine agnostic [#1001](https://github.com/openvapory/tetsy-vapory/pull/1001)
+- make jsonrpc api enjen agnostic [#1001](https://github.com/openvapory/tetsy-vapory/pull/1001)
 - updated cargo.lock [#1002](https://github.com/openvapory/tetsy-vapory/pull/1002)
 - updated tetsy dependencies [#993](https://github.com/openvapory/tetsy-vapory/pull/993)
 - Auto (with codegen) binary serializer  [#980](https://github.com/openvapory/tetsy-vapory/pull/980)

@@ -154,7 +154,7 @@ Configuration changes:
 
 - The EIP-98 transition is now disabled by default. If you previously had no `eip98transition` specified in your chain specification, you would enable this now manually on block `0x0`. ([#9955](https://github.com/openvapory/tetsy-vapory/pull/9955))
 - Also, unknown fields in chain specs are now rejected. ([#9972](https://github.com/openvapory/tetsy-vapory/pull/9972))
-- The Tendermint engine was removed from Tetsy Vapory and is no longer available and maintained. ([#9980](https://github.com/openvapory/tetsy-vapory/pull/9980))
+- The Tendermint enjen was removed from Tetsy Vapory and is no longer available and maintained. ([#9980](https://github.com/openvapory/tetsy-vapory/pull/9980))
 - Ropsten testnet data and keys moved from `test/` to `ropsten/` subdir. To reuse your old keys and data either copy or symlink them to the new location.  ([#10123](https://github.com/openvapory/tetsy-vapory/pull/10123))
 - Strict empty steps validation ([#10041](https://github.com/openvapory/tetsy-vapory/pull/10041))
   - If you have a chain with`empty_steps` already running, some blocks most likely contain non-strict entries (unordered or duplicated empty steps). In this release `strict_empty_steps_transition` is enabled by default at block `0x0` for any chain with `empty_steps`.
@@ -220,7 +220,7 @@ The full list of included changes:
 - Docs: update changelogs ([#9990](https://github.com/openvapory/tetsy-vapory/pull/9990))
 - Fix daemonize ([#10000](https://github.com/openvapory/tetsy-vapory/pull/10000))
 - Fix Bloom migration ([#9992](https://github.com/openvapory/tetsy-vapory/pull/9992))
-- Remove tendermint engine support ([#9980](https://github.com/openvapory/tetsy-vapory/pull/9980))
+- Remove tendermint enjen support ([#9980](https://github.com/openvapory/tetsy-vapory/pull/9980))
 - Calculate gas for deployment transaction ([#9840](https://github.com/openvapory/tetsy-vapory/pull/9840))
 - Fix unstable peers and slowness in sync ([#9967](https://github.com/openvapory/tetsy-vapory/pull/9967))
 - Adds tetsy_verifySignature RPC method ([#9507](https://github.com/openvapory/tetsy-vapory/pull/9507))

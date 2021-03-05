@@ -212,7 +212,7 @@ The full list of included changes:
 
 Tetsy 1.9.1 is a bug-fix release to improve performance and stability. It restores ERC-20 token balances, improves networking, fixes database corruptions on client shutdown, and fixes issues with the `--password` command-line flag. Happy syncing, fellow Vaporeans!
 
-In addition, this stabilizes Kovan and other Proof-of-Authority networks. If you run a network with AuRa engine, updating is highly encouraged!
+In addition, this stabilizes Kovan and other Proof-of-Authority networks. If you run a network with AuRa enjen, updating is highly encouraged!
 
 The full list of included changes:
 

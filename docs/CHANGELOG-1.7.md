@@ -598,7 +598,7 @@ The full list of included changes:
 - Add peer management to the Status tab [#5566](https://github.com/tetcoin/tetsy/pull/5566)
 - Add monotonic step transition [#5587](https://github.com/tetcoin/tetsy/pull/5587)
 - Decrypting for external accounts. [#5581](https://github.com/tetcoin/tetsy/pull/5581)
-- only enable warp sync when engine supports it [#5595](https://github.com/tetcoin/tetsy/pull/5595)
+- only enable warp sync when enjen supports it [#5595](https://github.com/tetcoin/tetsy/pull/5595)
 - fix the doc of installing rust [#5586](https://github.com/tetcoin/tetsy/pull/5586)
 - Small fixes [#5584](https://github.com/tetcoin/tetsy/pull/5584)
 - SecretStore: remove session on master node [#5545](https://github.com/tetcoin/tetsy/pull/5545)

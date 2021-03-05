@@ -1,15 +1,15 @@
 [package]
 description = "Vapory engine trait definition"
-name = "engine"
+name = "enjen"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
 license = "GPL-3.0"
 
 [dependencies]
-blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
-builtin = { path = "../builtin", package = "vapcore-builtin" }
-bytes = { package = "tetsy-bytes", version = "0.1.0" }
+blockchain = { version = "0.1.0", package = "vapcore-blockchain", path = "../blockchain" }
+builtin = { version = "0.1.0", path = "../builtin", package = "vapcore-builtin" }
+bytes = { version = "0.1.0", package = "tetsy-bytes" }
 client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
 vapory-types = "0.8.0"
@@ -18,13 +18,13 @@ mashina = { version = "0.1.0", path = "../mashina" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }
 
 # used from test-helpers
-accounts = { package = "vapcore-accounts", path = "../../accounts", optional = true }
+accounts = { version = "0.1.0", package = "vapcore-accounts", path = "../../accounts", optional = true }
 log = { version = "0.4.8", optional = true }
-vapkey = { path = "../../accounts/vapkey", optional = true }
+vapkey = { version = "0.4.0", path = "../../accounts/vapkey", optional = true }
 
 [dev-dependencies]
-accounts = { package = "vapcore-accounts", path = "../../accounts" }
-vapkey = { path = "../../accounts/vapkey" }
+accounts = { version = "0.1.0", package = "vapcore-accounts", path = "../../accounts" }
+vapkey = { version = "0.4.0", path = "../../accounts/vapkey" }
 log = "0.4.8"
 
 [features]

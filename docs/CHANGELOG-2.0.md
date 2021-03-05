@@ -280,7 +280,7 @@ The full list of included changes:
 
 Tetsy-Vapory 2.0.1-beta is a bug-fix release to improve performance and stability.
 
-Note, authorities in PoA networks based on the Aura engine, should upgrade their nodes to 1.11.8-stable or 2.0.1-beta as this release includes a critical fix.
+Note, authorities in PoA networks based on the Aura enjen, should upgrade their nodes to 1.11.8-stable or 2.0.1-beta as this release includes a critical fix.
 
 The full list of included changes:
 

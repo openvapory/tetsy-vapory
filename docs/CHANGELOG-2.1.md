@@ -223,7 +223,7 @@ The full list of included changes:
   - Docker: run tetsy as normal user ([#9689](https://github.com/openvapory/tetsy-vapory/pull/9689))
   - CI: Skip docs job for master and nightly ([#9693](https://github.com/openvapory/tetsy-vapory/pull/9693))
   - Implement CREATE2 gas changes and fix some potential overflowing ([#9694](https://github.com/openvapory/tetsy-vapory/pull/9694))
-  - Make instantSeal engine backwards compatible ([#9700](https://github.com/openvapory/tetsy-vapory/pull/9700))
+  - Make instantSeal enjen backwards compatible ([#9700](https://github.com/openvapory/tetsy-vapory/pull/9700))
   - Vapcore: delay ropsten hardfork ([#9704](https://github.com/openvapory/tetsy-vapory/pull/9704))
 
 ## Tetsy-Vapory [v2.1.1](https://github.com/openvapory/tetsy-vapory/releases/tag/v2.1.1) (2018-09-20)
@@ -424,8 +424,8 @@ The full list of included changes:
   - `clippyfy` light-client
   - Revert inefficient change `collect_ready()`
 - Aura: don't report skipped primaries when empty steps are enabled ([#9435](https://github.com/openvapory/tetsy-vapory/pull/9435))
-- Support millisecond timestamp for instant seal engine ([#9469](https://github.com/openvapory/tetsy-vapory/pull/9469))
-  - Support millisecond timestamp for instant seal engine
+- Support millisecond timestamp for instant seal enjen ([#9469](https://github.com/openvapory/tetsy-vapory/pull/9469))
+  - Support millisecond timestamp for instant seal enjen
   - Forgot to checkin instant_seal mod
   - Fix instant seal config
   - Fix json crate compile
@@ -953,7 +953,7 @@ The full list of included changes:
   - Fix warnings
 - Update snapcraft.yaml ([#9132](https://github.com/openvapory/tetsy-vapory/pull/9132))
 - Fix verification in vapcore-sync collect_blocks ([#9135](https://github.com/openvapory/tetsy-vapory/pull/9135))
-- Unify engine error to reject blocks ([#9085](https://github.com/openvapory/tetsy-vapory/pull/9085))
+- Unify enjen error to reject blocks ([#9085](https://github.com/openvapory/tetsy-vapory/pull/9085))
   - Reject if Engine::on_close_block returns error
   - Unify open block behaviors
   - Fix tests in vapcore

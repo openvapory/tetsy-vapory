@@ -82,7 +82,7 @@ The full list of included changes:
 
 Tetsy 1.11.8-stable is a bug-fix release to improve performance and stability.
 
-Note, authorities in PoA networks based on the Aura engine, should upgrade their nodes immediately as this release includes a critical fix.
+Note, authorities in PoA networks based on the Aura enjen, should upgrade their nodes immediately as this release includes a critical fix.
 
 The full list of included changes:
 
@@ -442,8 +442,8 @@ Notable changes in reversed alphabetical order:
   - This changes the behaviors of `vap_call` to respect VM errors if any.
   - In case of `REVERT`, it will also return the reverted return data in hex format.
 - ENGINES: **Block Reward Contract** [#8419](https://github.com/openvapory/tetsy-vapory/pull/8419)
-  - The _AuRa_ PoA engine has now support for having a contract to calculate the block rewards.
-  - The engine passes a list of benefactors and reward types to the contract which then returns a list of addresses and respective rewards.
+  - The _AuRa_ PoA enjen has now support for having a contract to calculate the block rewards.
+  - The enjen passes a list of benefactors and reward types to the contract which then returns a list of addresses and respective rewards.
 - CORE: **Private Transactions** [#6422](https://github.com/openvapory/tetsy-vapory/pull/6422)
   - Tetsy now provides a private transactions system.
   - Please, check out our wiki to get an [overview and setup instructions](https://wiki.tetcoin.org/Private-Transactions.html).
@@ -680,7 +680,7 @@ The full list of included changes:
 - Vapcore-sync ([#8347](https://github.com/openvapory/tetsy-vapory/pull/8347))
 - Rpc, vap_filter: return error if the filter id does not exist ([#8341](https://github.com/openvapory/tetsy-vapory/pull/8341))
 - Vapcore-stratum crate moved to vapcore directory ([#8338](https://github.com/openvapory/tetsy-vapory/pull/8338))
-- Secretstore: get rid of engine.signer dependency ([#8173](https://github.com/openvapory/tetsy-vapory/pull/8173))
+- Secretstore: get rid of enjen.signer dependency ([#8173](https://github.com/openvapory/tetsy-vapory/pull/8173))
 - Whisper cli ([#8201](https://github.com/openvapory/tetsy-vapory/pull/8201))
 - Replace_home for password_files, reserved_peers and log_file ([#8324](https://github.com/openvapory/tetsy-vapory/pull/8324))
 - Add Vapory Social support ([#8325](https://github.com/openvapory/tetsy-vapory/pull/8325))
