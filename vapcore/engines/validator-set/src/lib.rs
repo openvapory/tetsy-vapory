@@ -33,7 +33,7 @@ use common_types::{
 	errors::VapcoreError,
 	engines::machine::{Call, AuxiliaryData},
 };
-use engine::SystemCall;
+use enjen::SystemCall;
 use vapory_types::{H256, Address};
 use vapjson::spec::ValidatorSet as ValidatorSpec;
 use mashina::Machine;

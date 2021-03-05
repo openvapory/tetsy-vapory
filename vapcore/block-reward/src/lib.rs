@@ -28,7 +28,7 @@ use common_types::{
 };
 use tetsy_keccak_hash::keccak;
 use mashina::{Machine, ExecutedBlock};
-use engine::{SystemOrCodeCall, SystemOrCodeCallKind};
+use enjen::{SystemOrCodeCall, SystemOrCodeCallKind};
 use vapcore_trace;
 use vapcore_trace::{Tracer, ExecutiveTracer, Tracing};
 

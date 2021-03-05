@@ -67,7 +67,7 @@ use std::{
 };
 
 use client_traits::{EngineClient, ForceUpdateSealing};
-use engine::{
+use enjen::{
 	Engine,
 	signer::EngineSigner,
 };
