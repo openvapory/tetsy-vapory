@@ -9,7 +9,7 @@ license = "GPL-3.0"
 [dependencies]
 client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
-engine = { version = "0.1.0", path = "../../engine" }
+engine = { version = "0.1.0", path = "../../enjen" }
 vapjson = { path = "../../../json" }
 vapory-types = "0.8.0"
 tetsy-keccak-hash = "0.4.0"

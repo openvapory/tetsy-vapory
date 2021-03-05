@@ -9,7 +9,7 @@ license = "GPL-3.0"
 [dependencies]
 client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
-engine = { version = "0.1.0", path = "../../engine" }
+engine = { version = "0.1.0", path = "../../enjen" }
 vapory-types = "0.8.0"
 vapjson = { path = "../../../json" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
@@ -21,7 +21,7 @@ validator-set = { path = "../validator-set" }
 
 [dev-dependencies]
 accounts = { package = "vapcore-accounts", path = "../../../accounts" }
-engine = { version = "0.1.0", path = "../../engine", features = ["test-helpers"] }
+engine = { version = "0.1.0", path = "../../enjen", features = ["test-helpers"] }
 vapcore = { path = "../..", features = ["test-helpers"] }
 tetsy-keccak-hash = "0.4.0"
 tempdir = "0.3"
