@@ -14,7 +14,7 @@ client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
 vapory-types = "0.8.0"
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
-mashina = { path = "../mashina" }
+mashina = { version = "0.1.0", path = "../mashina" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }
 
 # used from test-helpers

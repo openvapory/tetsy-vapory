@@ -35,7 +35,7 @@ tetsy-unexpected = { path = "../../util/tetsy-unexpected" }
 criterion = "0.3"
 vapcore = { path = "../", features = ["test-helpers"] }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
-mashina = { path = "../mashina" }
+mashina = { version = "0.1.0", path = "../mashina" }
 null-engine = { path = "../engines/null-engine" }
 spec = { path = "../spec" }
 
