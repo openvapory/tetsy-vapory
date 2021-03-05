@@ -19,7 +19,7 @@
 mod enjen;
 pub mod signer;
 
-pub use crate::engine::{
+pub use crate::enjen::{
 	Engine,
 	EpochVerifier,
 	StateDependentProof,
