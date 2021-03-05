@@ -41,7 +41,7 @@ use parking_lot::RwLock;
 use call_contract::CallContract;
 use client_traits::{BlockInfo, Nonce};
 use engine::Engine;
-use machine::transaction_ext::Transaction;
+use mashina::transaction_ext::Transaction;
 use miner;
 
 /// Cache for state nonces.
@@ -121,8 +121,8 @@ impl<'a, C: 'a> PoolClient<'a, C> where
 	///
 	/// This should perform any verifications that rely on chain status.
 	pub fn verify_for_pending_block(&self, tx: &SignedTransaction, header: &Header) -> Result<(), transaction::Error> {
-		self.engine.machine().verify_transaction_basic(tx, header)?;
-		self.engine.machine().verify_transaction(tx, &self.best_block_header, self.chain)
+		self.engine.mashina().verify_transaction_basic(tx, header)?;
+		self.engine.mashina().verify_transaction(tx, &self.best_block_header, self.chain)
 	}
 }
 
@@ -148,7 +148,7 @@ impl<'a, C: 'a> pool::client::Client for PoolClient<'a, C> where
 		self.engine.verify_transaction_basic(&tx, &self.best_block_header)?;
 		let tx = tx.verify_unordered()?;
 
-		self.engine.machine().verify_transaction(&tx, &self.best_block_header, self.chain)?;
+		self.engine.mashina().verify_transaction(&tx, &self.best_block_header, self.chain)?;
 		Ok(tx)
 	}
 

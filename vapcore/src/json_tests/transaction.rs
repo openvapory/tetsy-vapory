@@ -24,7 +24,7 @@ use types::{
 	errors::VapcoreError as Error,
 	transaction::UnverifiedTransaction
 };
-use machine::transaction_ext::Transaction;
+use mashina::transaction_ext::Transaction;
 
 #[allow(dead_code)]
 fn do_json_test<H: FnMut(&str, HookType)>(path: &Path, json_data: &[u8], start_stop_hook: &mut H) -> Vec<String> {

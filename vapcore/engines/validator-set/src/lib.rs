@@ -31,12 +31,12 @@ use common_types::{
 	header::Header,
 	ids::BlockId,
 	errors::VapcoreError,
-	engines::machine::{Call, AuxiliaryData},
+	engines::mashina::{Call, AuxiliaryData},
 };
 use engine::SystemCall;
 use vapory_types::{H256, Address};
 use vapjson::spec::ValidatorSet as ValidatorSpec;
-use machine::Machine;
+use mashina::Machine;
 // The MallocSizeOf derive looks for this in the root
 use tetsy_util_mem as malloc_size_of;
 use tetsy_bytes::Bytes;
@@ -129,7 +129,7 @@ pub trait ValidatorSet: Send + Sync + 'static {
 	///
 	/// Returns the set, along with a flag indicating whether finality of a specific
 	/// hash should be proven.
-	fn epoch_set(&self, first: bool, machine: &Machine, number: BlockNumber, proof: &[u8])
+	fn epoch_set(&self, first: bool, mashina: &Machine, number: BlockNumber, proof: &[u8])
 		-> Result<(SimpleList, Option<H256>), VapcoreError>;
 
 	/// Checks if a given address is a validator, with the given function

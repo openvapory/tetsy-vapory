@@ -27,8 +27,8 @@ use common_types::{
 	engines::{
 		Seal, SealingState, Headers, PendingTransitionStore,
 		params::CommonParams,
-		machine as machine_types,
-		machine::{AuxiliaryData, AuxiliaryRequest},
+		mashina as machine_types,
+		mashina::{AuxiliaryData, AuxiliaryRequest},
 	},
 	errors::{VapcoreError as Error, EngineError},
 	snapshot::Snapshotting,
@@ -38,7 +38,7 @@ use client_traits::EngineClient;
 
 use vapory_types::{H256, U256, Address};
 use tetsy_crypto::publickey::Signature;
-use machine::{
+use mashina::{
 	Machine,
 	executed_block::ExecutedBlock,
 };
@@ -62,11 +62,11 @@ pub enum SystemOrCodeCallKind {
 }
 
 /// Default SystemOrCodeCall implementation.
-pub fn default_system_or_code_call<'a>(machine: &'a Machine, block: &'a mut ExecutedBlock) -> impl FnMut(SystemOrCodeCallKind, Vec<u8>) -> Result<Vec<u8>, String> + 'a {
+pub fn default_system_or_code_call<'a>(mashina: &'a Machine, block: &'a mut ExecutedBlock) -> impl FnMut(SystemOrCodeCallKind, Vec<u8>) -> Result<Vec<u8>, String> + 'a {
 	move |to, data| {
 		let result = match to {
 			SystemOrCodeCallKind::Address(address) => {
-				machine.execute_as_system(
+				mashina.execute_as_system(
 					block,
 					address,
 					U256::max_value(),
@@ -74,7 +74,7 @@ pub fn default_system_or_code_call<'a>(machine: &'a Machine, block: &'a mut Exec
 				)
 			},
 			SystemOrCodeCallKind::Code(code, code_hash) => {
-				machine.execute_code_as_system(
+				mashina.execute_code_as_system(
 					block,
 					None,
 					Some(code),
@@ -97,8 +97,8 @@ pub trait StateDependentProof: Send + Sync {
 	fn generate_proof<'a>(&self, state: &machine_types::Call) -> Result<Vec<u8>, String>;
 	/// Check a proof generated elsewhere (potentially by a peer).
 	// `engine` needed to check state proofs, while really this should
-	// just be state machine params.
-	fn check_proof(&self, machine: &Machine, proof: &[u8]) -> Result<(), String>;
+	// just be state mashina params.
+	fn check_proof(&self, mashina: &Machine, proof: &[u8]) -> Result<(), String>;
 }
 
 /// Proof generated on epoch change.
@@ -147,9 +147,9 @@ pub trait Engine: Sync + Send {
 	/// The name of this engine.
 	fn name(&self) -> &str;
 
-	/// Get access to the underlying state machine.
+	/// Get access to the underlying state mashina.
 	// TODO: decouple.
-	fn machine(&self) -> &Machine;
+	fn mashina(&self) -> &Machine;
 
 	/// The number of additional header fields required for this engine.
 	fn seal_fields(&self, _header: &Header) -> usize { 0 }
@@ -358,18 +358,18 @@ pub trait Engine: Sync + Send {
 
 	/// Get the VVM schedule for the given block number.
 	fn schedule(&self, block_number: BlockNumber) -> Schedule {
-		self.machine().schedule(block_number)
+		self.mashina().schedule(block_number)
 	}
 
 	/// Builtin-contracts for the chain..
 	fn builtins(&self) -> &BTreeMap<Address, Builtin> {
-		self.machine().builtins()
+		self.mashina().builtins()
 	}
 
 	/// Attempt to get a handle to a built-in contract.
 	/// Only returns references to activated built-ins.
 	fn builtin(&self, a: &Address, block_number: BlockNumber) -> Option<&Builtin> {
-		self.machine().builtin(a, block_number)
+		self.mashina().builtin(a, block_number)
 	}
 
 	/// Some intrinsic operation parameters; by default they take their value from the `spec()`'s `engine_params`.
@@ -377,12 +377,12 @@ pub trait Engine: Sync + Send {
 
 	/// The nonce with which accounts begin at given block.
 	fn account_start_nonce(&self, block: BlockNumber) -> U256 {
-		self.machine().account_start_nonce(block)
+		self.mashina().account_start_nonce(block)
 	}
 
 	/// The network ID that transactions should be signed with.
 	fn signing_chain_id(&self, env_info: &EnvInfo) -> Option<u64> {
-		self.machine().signing_chain_id(env_info)
+		self.mashina().signing_chain_id(env_info)
 	}
 
 	/// Perform basic/cheap transaction verification.
@@ -396,12 +396,12 @@ pub trait Engine: Sync + Send {
 	/// TODO: Add flags for which bits of the transaction to check.
 	/// TODO: consider including State in the params.
 	fn verify_transaction_basic(&self, t: &UnverifiedTransaction, header: &Header) -> Result<(), transaction::Error> {
-		self.machine().verify_transaction_basic(t, header)
+		self.mashina().verify_transaction_basic(t, header)
 	}
 
 	/// Performs pre-validation of RLP decoded transaction before other processing
 	fn decode_transaction(&self, transaction: &[u8]) -> Result<UnverifiedTransaction, transaction::Error> {
-		self.machine().decode_transaction(transaction)
+		self.mashina().decode_transaction(transaction)
 	}
 
 	/// The configured minimum gas limit.

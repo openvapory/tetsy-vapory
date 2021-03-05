@@ -15,7 +15,7 @@ vapory-types = "0.8.0"
 vapjson = { path = "../../../json" }
 tetsy-keccak-hash = "0.4.0"
 log = "0.4.8"
-machine = { path = "../../machine" }
+mashina = { path = "../../mashina" }
 tetsy-macros = { version = "0.1.0", path = "../../../util/macros" }
 tetsy-unexpected = { path = "../../../util/tetsy-unexpected" }
 

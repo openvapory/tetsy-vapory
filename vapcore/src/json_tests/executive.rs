@@ -24,7 +24,7 @@ use tetsy_vm::{
 	ContractCreateResult, EnvInfo, MessageCallResult,
 	CreateContractAddress, ReturnData,
 };
-use machine::{
+use mashina::{
 	Machine,
 	externalities::{OutputPolicy, OriginInfo, Externalities},
 	substate::Substate,
@@ -90,7 +90,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> TestExt<'a, T, V, B>
 	fn new(
 		state: &'a mut State<B>,
 		info: &'a EnvInfo,
-		machine: &'a Machine,
+		mashina: &'a Machine,
 		schedule: &'a Schedule,
 		depth: usize,
 		origin_info: &'a OriginInfo,
@@ -103,7 +103,7 @@ impl<'a, T: 'a, V: 'a, B: 'a> TestExt<'a, T, V, B>
 		let static_call = false;
 		Ok(TestExt {
 			nonce: state.nonce(&address)?,
-			ext: Externalities::new(state, info, machine, schedule, depth, 0, origin_info, substate, output, tracer, vm_tracer, static_call),
+			ext: Externalities::new(state, info, mashina, schedule, depth, 0, origin_info, substate, output, tracer, vm_tracer, static_call),
 			callcreates: vec![],
 			sender: address,
 		})
@@ -272,10 +272,10 @@ fn do_json_test<H: FnMut(&str, HookType)>(
 		let mut state = get_temp_state();
 		state.populate_from(From::from(vm.pre_state.clone()));
 		let info: EnvInfo = From::from(vm.env);
-		let machine = {
-			let mut machine = spec::new_frontier_test_machine();
-			machine.set_schedule_creation_rules(Box::new(move |s, _| s.max_depth = 1));
-			machine
+		let mashina = {
+			let mut mashina = spec::new_frontier_test_mashina();
+			mashina.set_schedule_creation_rules(Box::new(move |s, _| s.max_depth = 1));
+			mashina
 		};
 
 		let params = ActionParams::from(vm.transaction);
@@ -288,11 +288,11 @@ fn do_json_test<H: FnMut(&str, HookType)>(
 
 		// execute
 		let (res, callcreates) = {
-			let schedule = machine.schedule(info.number);
+			let schedule = mashina.schedule(info.number);
 			let mut ex = try_fail!(TestExt::new(
 				&mut state,
 				&info,
-				&machine,
+				&mashina,
 				&schedule,
 				0,
 				&origin_info,

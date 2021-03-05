@@ -42,7 +42,7 @@ vapcore = { path = "..", features = ["test-helpers"] }
 vapcore-io = { version = "1.12.0", path = "../../util/io", features = ["mio"] }
 tetsy-kvdb-memorydb = "0.3.2"
 # tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
-machine = { path = "../machine" }
+mashina = { path = "../mashina" }
 rand_xorshift = "0.2"
 rustc-hex = "1.0"
 spec = { path = "../spec" }

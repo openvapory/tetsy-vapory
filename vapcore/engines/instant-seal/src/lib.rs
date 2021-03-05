@@ -27,7 +27,7 @@ use common_types::{
 };
 use engine::Engine;
 use vapjson;
-use machine::{
+use mashina::{
 	ExecutedBlock,
 	Machine
 };
@@ -52,16 +52,16 @@ impl From<vapjson::spec::InstantSealParams> for InstantSealParams {
 /// Only seals blocks which have transactions.
 pub struct InstantSeal {
 	params: InstantSealParams,
-	machine: Machine,
+	mashina: Machine,
 	last_sealed_block: AtomicU64,
 }
 
 impl InstantSeal {
-	/// Returns new instance of InstantSeal over the given state machine.
-	pub fn new(params: InstantSealParams, machine: Machine) -> Self {
+	/// Returns new instance of InstantSeal over the given state mashina.
+	pub fn new(params: InstantSealParams, mashina: Machine) -> Self {
 		InstantSeal {
 			params,
-			machine,
+			mashina,
 			last_sealed_block: AtomicU64::new(0),
 		}
 	}
@@ -70,7 +70,7 @@ impl InstantSeal {
 impl Engine for InstantSeal {
 	fn name(&self) -> &str { "InstantSeal" }
 
-	fn machine(&self) -> &Machine { &self.machine }
+	fn mashina(&self) -> &Machine { &self.mashina }
 
 	fn sealing_state(&self) -> SealingState { SealingState::Ready }
 
@@ -117,7 +117,7 @@ impl Engine for InstantSeal {
 	}
 
 	fn params(&self) -> &CommonParams {
-		self.machine.params()
+		self.mashina.params()
 	}
 
 }

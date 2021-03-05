@@ -16,7 +16,7 @@
 
 use std::collections::BTreeMap;
 
-use machine::executed::Executed;
+use mashina::executed::Executed;
 use vapcore_trace as et;
 use vapcore_trace::{FlatTrace, LocalizedTrace as VapLocalizedTrace, trace, TraceError};
 use vapory_types::{H160, H256, U256};

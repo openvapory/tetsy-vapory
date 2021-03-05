@@ -46,7 +46,7 @@ use vapjson;
 use instant_seal::{InstantSeal, InstantSealParams};
 use tetsy_keccak_hash::{KECCAK_NULL_RLP, keccak};
 use log::{trace, warn};
-use machine::{executive::Executive, Machine, substate::Substate};
+use mashina::{executive::Executive, Machine, substate::Substate};
 use null_engine::NullEngine;
 use vapcore_pod::PodState;
 use tetsy_rlp::{Rlp, RlpStream};
@@ -170,9 +170,9 @@ fn run_constructors<T: Backend>(
 			let mut substate = Substate::new();
 
 			{
-				let machine = engine.machine();
-				let schedule = machine.schedule(env_info.number);
-				let mut exec = Executive::new(&mut state, &env_info, &machine, &schedule);
+				let mashina = engine.mashina();
+				let schedule = mashina.schedule(env_info.number);
+				let mut exec = Executive::new(&mut state, &env_info, &mashina, &schedule);
 				// failing create is not a bug
 				if let Err(e) = exec.create(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer) {
 					warn!(target: "spec", "Genesis constructor execution at {} failed: {}.", address, e);
@@ -327,8 +327,8 @@ fn load_from(spec_params: SpecParams, s: vapjson::spec::Spec) -> Result<Spec, Er
 }
 
 impl Spec {
-	// create an instance of an Vapory state machine, minus consensus logic.
-	fn machine(
+	// create an instance of an Vapory state mashina, minus consensus logic.
+	fn mashina(
 		engine_spec: &vapjson::spec::Engine,
 		params: CommonParams,
 		builtins: BTreeMap<Address, Builtin>,
@@ -348,17 +348,17 @@ impl Spec {
 		params: CommonParams,
 		builtins: BTreeMap<Address, Builtin>,
 	) -> Arc<dyn Engine> {
-		let machine = Self::machine(&engine_spec, params, builtins);
+		let mashina = Self::mashina(&engine_spec, params, builtins);
 
 		match engine_spec {
-			vapjson::spec::Engine::Null(null) => Arc::new(NullEngine::new(null.params.into(), machine)),
-			vapjson::spec::Engine::Vapash(vapash) => Arc::new(Vapash::new(spec_params.cache_dir, vapash.params.into(), machine, spec_params.optimization_setting)),
-			vapjson::spec::Engine::InstantSeal(Some(instant_seal)) => Arc::new(InstantSeal::new(instant_seal.params.into(), machine)),
-			vapjson::spec::Engine::InstantSeal(None) => Arc::new(InstantSeal::new(InstantSealParams::default(), machine)),
-			vapjson::spec::Engine::BasicAuthority(basic_authority) => Arc::new(BasicAuthority::new(basic_authority.params.into(), machine)),
-			vapjson::spec::Engine::Clique(clique) => Clique::new(clique.params.into(), machine)
+			vapjson::spec::Engine::Null(null) => Arc::new(NullEngine::new(null.params.into(), mashina)),
+			vapjson::spec::Engine::Vapash(vapash) => Arc::new(Vapash::new(spec_params.cache_dir, vapash.params.into(), mashina, spec_params.optimization_setting)),
+			vapjson::spec::Engine::InstantSeal(Some(instant_seal)) => Arc::new(InstantSeal::new(instant_seal.params.into(), mashina)),
+			vapjson::spec::Engine::InstantSeal(None) => Arc::new(InstantSeal::new(InstantSealParams::default(), mashina)),
+			vapjson::spec::Engine::BasicAuthority(basic_authority) => Arc::new(BasicAuthority::new(basic_authority.params.into(), mashina)),
+			vapjson::spec::Engine::Clique(clique) => Clique::new(clique.params.into(), mashina)
 								.expect("Failed to start Clique consensus engine."),
-			vapjson::spec::Engine::AuthorityRound(authority_round) => AuthorityRound::new(authority_round.params.into(), machine)
+			vapjson::spec::Engine::AuthorityRound(authority_round) => AuthorityRound::new(authority_round.params.into(), mashina)
 				.expect("Failed to start AuthorityRound consensus engine."),
 		}
 	}
@@ -479,8 +479,8 @@ impl Spec {
 		Ok(db)
 	}
 
-	/// Loads just the state machine from a json file.
-	pub fn load_machine<R: Read>(reader: R) -> Result<Machine, Error> {
+	/// Loads just the state mashina from a json file.
+	pub fn load_mashina<R: Read>(reader: R) -> Result<Machine, Error> {
 		vapjson::spec::Spec::load(reader)
 			.map_err(|e| Error::Msg(e.to_string()))
 			.and_then(|s| {
@@ -492,7 +492,7 @@ impl Spec {
 					.collect();
 				let builtins = builtins?;
 				let params = CommonParams::from(s.params);
-				Ok(Spec::machine(&s.engine, params, builtins))
+				Ok(Spec::mashina(&s.engine, params, builtins))
 			})
 	}
 
@@ -545,7 +545,7 @@ impl Spec {
 				db.as_hash_db_mut(),
 				*genesis.state_root(),
 				&tx,
-				self.engine.machine(),
+				self.engine.mashina(),
 				&env_info,
 				factories.clone(),
 			).ok_or_else(|| "Failed to prove call: insufficient state".into())

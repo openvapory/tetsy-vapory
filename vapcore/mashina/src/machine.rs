@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Vapory-like state machine definition.
+//! Vapory-like state mashina definition.
 
 use std::collections::BTreeMap;
 use std::cmp;
@@ -56,7 +56,7 @@ pub const TETSY_GAS_LIMIT_DETERMINANT: U256 = U256([37, 0, 0, 0]);
 /// Special rules to be applied to the schedule.
 pub type ScheduleCreationRules = dyn Fn(&mut Schedule, BlockNumber) + Sync + Send;
 
-/// An vapory-like state machine.
+/// An vapory-like state mashina.
 pub struct Machine {
 	params: CommonParams,
 	builtins: Arc<BTreeMap<Address, Builtin>>,
@@ -66,7 +66,7 @@ pub struct Machine {
 }
 
 impl Machine {
-	/// Regular vapory machine.
+	/// Regular vapory mashina.
 	pub fn regular(params: CommonParams, builtins: BTreeMap<Address, Builtin>) -> Machine {
 		let tx_filter = TransactionFilter::from_params(&params).map(Arc::new);
 		Machine {
@@ -78,12 +78,12 @@ impl Machine {
 		}
 	}
 
-	/// Vapory machine with vapash extensions.
+	/// Vapory mashina with vapash extensions.
 	// TODO: either unify or specify to mainnet specifically and include other specific-chain HFs?
 	pub fn with_vapash_extensions(params: CommonParams, builtins: BTreeMap<Address, Builtin>, extensions: VapashExtensions) -> Machine {
-		let mut machine = Machine::regular(params, builtins);
-		machine.vapash_extensions = Some(extensions);
-		machine
+		let mut mashina = Machine::regular(params, builtins);
+		mashina.vapash_extensions = Some(extensions);
+		mashina
 	}
 
 	/// Attach special rules to the creation of schedule.
@@ -426,7 +426,7 @@ mod tests {
 		let spec = spec::new_ropsten_test();
 		let vapparams = get_default_vapash_extensions();
 
-		let machine = Machine::with_vapash_extensions(
+		let mashina = Machine::with_vapash_extensions(
 			spec.params().clone(),
 			Default::default(),
 			vapparams,
@@ -434,7 +434,7 @@ mod tests {
 		let mut header = Header::new();
 		header.set_number(15);
 
-		let res = machine.verify_transaction_basic(&transaction, &header);
+		let res = mashina.verify_transaction_basic(&transaction, &header);
 		assert_eq!(res, Err(transaction::Error::InvalidSignature("invalid EC signature".into())));
 	}
 
@@ -445,7 +445,7 @@ mod tests {
 		let spec = spec::new_homestead_test();
 		let vapparams = get_default_vapash_extensions();
 
-		let machine = Machine::with_vapash_extensions(
+		let mashina = Machine::with_vapash_extensions(
 			spec.params().clone(),
 			Default::default(),
 			vapparams,
@@ -460,25 +460,25 @@ mod tests {
 
 		// when parent.gas_limit < gas_floor_target:
 		parent.set_gas_limit(U256::from(50_000));
-		machine.populate_from_parent(&mut header, &parent, U256::from(100_000), U256::from(200_000));
+		mashina.populate_from_parent(&mut header, &parent, U256::from(100_000), U256::from(200_000));
 		assert_eq!(*header.gas_limit(), U256::from(50_024));
 
 		// when parent.gas_limit > gas_ceil_target:
 		parent.set_gas_limit(U256::from(250_000));
-		machine.populate_from_parent(&mut header, &parent, U256::from(100_000), U256::from(200_000));
+		mashina.populate_from_parent(&mut header, &parent, U256::from(100_000), U256::from(200_000));
 		assert_eq!(*header.gas_limit(), U256::from(249_787));
 
 		// when parent.gas_limit is in miner's range
 		header.set_gas_used(U256::from(150_000));
 		parent.set_gas_limit(U256::from(150_000));
-		machine.populate_from_parent(&mut header, &parent, U256::from(100_000), U256::from(200_000));
+		mashina.populate_from_parent(&mut header, &parent, U256::from(100_000), U256::from(200_000));
 		assert_eq!(*header.gas_limit(), U256::from(150_035));
 
 		// when parent.gas_limit is in miner's range
 		// && we can NOT increase it to be multiple of constant
 		header.set_gas_used(U256::from(150_000));
 		parent.set_gas_limit(U256::from(150_000));
-		machine.populate_from_parent(&mut header, &parent, U256::from(100_000), U256::from(150_002));
+		mashina.populate_from_parent(&mut header, &parent, U256::from(100_000), U256::from(150_002));
 		assert_eq!(*header.gas_limit(), U256::from(149_998));
 
 		// when parent.gas_limit is in miner's range
@@ -486,7 +486,7 @@ mod tests {
 		// && we can NOT decrease it to be multiple of constant
 		header.set_gas_used(U256::from(150_000));
 		parent.set_gas_limit(U256::from(150_000));
-		machine.populate_from_parent(&mut header, &parent, U256::from(150_000), U256::from(150_002));
+		mashina.populate_from_parent(&mut header, &parent, U256::from(150_000), U256::from(150_002));
 		assert_eq!(*header.gas_limit(), U256::from(150_002));
 	}
 }

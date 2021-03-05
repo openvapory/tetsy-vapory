@@ -28,7 +28,7 @@ tetsy-keccak-hash = "0.4.0"
 tetsy-kvdb-memorydb = "0.3.2"
 # tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4.8"
-machine = { path = "../machine" }
+mashina = { path = "../mashina" }
 null-engine = { path = "../engines/null-engine" }
 vapcore-pod = { version = "0.1.0", path = "../pod" }
 tetsy-rlp = "0.4.5"

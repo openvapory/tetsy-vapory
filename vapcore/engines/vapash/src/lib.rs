@@ -38,7 +38,7 @@ use vapash::{self, quick_get_difficulty, slow_hash_block_number, VapashManager};
 use tetsy_keccak_hash::{KECCAK_EMPTY_LIST_RLP};
 use log::trace;
 use tetsy_macros::map;
-use machine::{
+use mashina::{
 	ExecutedBlock,
 	Machine,
 };
@@ -152,7 +152,7 @@ impl From<vapjson::spec::VapashParams> for VapashParams {
 pub struct Vapash {
 	vapash_params: VapashParams,
 	pow: Arc<VapashManager>,
-	machine: Machine,
+	mashina: Machine,
 }
 
 impl Vapash {
@@ -160,14 +160,14 @@ impl Vapash {
 	pub fn new<T: Into<Option<OptimizeFor>>>(
 		cache_dir: &Path,
 		vapash_params: VapashParams,
-		machine: Machine,
+		mashina: Machine,
 		optimize_for: T,
 	) -> Self {
 		let progpow_transition = vapash_params.progpow_transition;
 
 		Vapash {
 			vapash_params,
-			machine,
+			mashina,
 			pow: Arc::new(VapashManager::new(
 				cache_dir.as_ref(),
 				optimize_for.into(),
@@ -225,7 +225,7 @@ impl engine::EpochVerifier for EpochVerifier {
 impl Engine for Vapash {
 	fn name(&self) -> &str { "Vapash" }
 
-	fn machine(&self) -> &Machine { &self.machine }
+	fn mashina(&self) -> &Machine { &self.mashina }
 
 	// Two fields - nonce and mix.
 	fn seal_fields(&self, _header: &Header) -> usize { 2 }
@@ -263,7 +263,7 @@ impl Engine for Vapash {
 					beneficiaries.push((*uncle_author, RewardKind::uncle(number, u.number())));
 				}
 
-				let mut call = engine::default_system_or_code_call(&self.machine, block);
+				let mut call = engine::default_system_or_code_call(&self.mashina, block);
 
 				let rewards = c.reward(beneficiaries, &mut call)?;
 				rewards.into_iter().map(|(author, amount)| (author, RewardKind::External, amount)).collect()
@@ -305,7 +305,7 @@ impl Engine for Vapash {
 			},
 		};
 
-		block_reward::apply_block_rewards(&rewards, block, &self.machine)
+		block_reward::apply_block_rewards(&rewards, block, &self.mashina)
 	}
 
 	#[cfg(not(feature = "miner-debug"))]
@@ -380,7 +380,7 @@ impl Engine for Vapash {
 		}
 	}
 
-	fn params(&self) -> &CommonParams { self.machine.params() }
+	fn params(&self) -> &CommonParams { self.mashina.params() }
 }
 
 impl Vapash {
@@ -505,7 +505,7 @@ mod tests {
 		test_helpers::get_temp_state_db,
 	};
 	use rlp;
-	use spec::{new_morden, new_mcip3_test, new_homestead_test_machine, Spec};
+	use spec::{new_morden, new_mcip3_test, new_homestead_test_mashina, Spec};
 	use tempdir::TempDir;
 
 	use super::{Vapash, VapashParams, ecip1017_eras_block_reward};
@@ -778,10 +778,10 @@ mod tests {
 
 	#[test]
 	fn difficulty_frontier() {
-		let machine = new_homestead_test_machine();
+		let mashina = new_homestead_test_mashina();
 		let vapparams = get_default_vapash_params();
 		let tempdir = TempDir::new("").unwrap();
-		let vapash = Vapash::new(tempdir.path(), vapparams, machine, None);
+		let vapash = Vapash::new(tempdir.path(), vapparams, mashina, None);
 
 		let mut parent_header = Header::default();
 		parent_header.set_number(1000000);
@@ -797,10 +797,10 @@ mod tests {
 
 	#[test]
 	fn difficulty_homestead() {
-		let machine = new_homestead_test_machine();
+		let mashina = new_homestead_test_mashina();
 		let vapparams = get_default_vapash_params();
 		let tempdir = TempDir::new("").unwrap();
-		let vapash = Vapash::new(tempdir.path(), vapparams, machine, None);
+		let vapash = Vapash::new(tempdir.path(), vapparams, mashina, None);
 
 		let mut parent_header = Header::default();
 		parent_header.set_number(1500000);
@@ -816,13 +816,13 @@ mod tests {
 
 	#[test]
 	fn difficulty_classic_bomb_delay() {
-		let machine = new_homestead_test_machine();
+		let mashina = new_homestead_test_mashina();
 		let vapparams = VapashParams {
 			ecip1010_pause_transition: 3000000,
 			..get_default_vapash_params()
 		};
 		let tempdir = TempDir::new("").unwrap();
-		let vapash = Vapash::new(tempdir.path(), vapparams, machine, None);
+		let vapash = Vapash::new(tempdir.path(), vapparams, mashina, None);
 
 		let mut parent_header = Header::default();
 		parent_header.set_number(3500000);
@@ -850,14 +850,14 @@ mod tests {
 
 	#[test]
 	fn test_difficulty_bomb_continue() {
-		let machine = new_homestead_test_machine();
+		let mashina = new_homestead_test_mashina();
 		let vapparams = VapashParams {
 			ecip1010_pause_transition: 3000000,
 			ecip1010_continue_transition: 5000000,
 			..get_default_vapash_params()
 		};
 		let tempdir = TempDir::new("").unwrap();
-		let vapash = Vapash::new(tempdir.path(), vapparams, machine, None);
+		let vapash = Vapash::new(tempdir.path(), vapparams, mashina, None);
 
 		let mut parent_header = Header::default();
 		parent_header.set_number(5000102);
@@ -901,10 +901,10 @@ mod tests {
 
 	#[test]
 	fn difficulty_max_timestamp() {
-		let machine = new_homestead_test_machine();
+		let mashina = new_homestead_test_mashina();
 		let vapparams = get_default_vapash_params();
 		let tempdir = TempDir::new("").unwrap();
-		let vapash = Vapash::new(tempdir.path(), vapparams, machine, None);
+		let vapash = Vapash::new(tempdir.path(), vapparams, mashina, None);
 
 		let mut parent_header = Header::default();
 		parent_header.set_number(1000000);
@@ -920,10 +920,10 @@ mod tests {
 
 	#[test]
 	fn test_extra_info() {
-		let machine = new_homestead_test_machine();
+		let mashina = new_homestead_test_mashina();
 		let vapparams = get_default_vapash_params();
 		let tempdir = TempDir::new("").unwrap();
-		let vapash = Vapash::new(tempdir.path(), vapparams, machine, None);
+		let vapash = Vapash::new(tempdir.path(), vapparams, mashina, None);
 		let mut header = Header::default();
 		header.set_seal(vec![tetsy_rlp::encode(&H256::from_str("b251bd2e0283d0658f2cadfdc8ca619b5de94eca5742725e2e757dd13ed7503d").unwrap()), tetsy_rlp::encode(&H64::zero())]);
 		let info = vapash.extra_info(&header);

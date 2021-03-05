@@ -75,7 +75,7 @@ use client_traits::{
 	StateOrBlock, ForceUpdateSealing, TransactionRequest
 };
 use engine::Engine;
-use machine::executed::Executed;
+use mashina::executed::Executed;
 use journaldb;
 use miner::{self, Miner, MinerService};
 use spec::{Spec, self};

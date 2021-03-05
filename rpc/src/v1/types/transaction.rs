@@ -18,7 +18,7 @@ use std::sync::Arc;
 
 use serde::{Serialize, Serializer};
 use serde::ser::SerializeStruct;
-use machine::executive::{contract_address};
+use mashina::executive::{contract_address};
 use tetsy_vm::CreateContractAddress;
 use vapory_types::{H160, H256, H512, U64, U256};
 use miner;

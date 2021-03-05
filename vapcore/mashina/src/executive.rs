@@ -36,7 +36,7 @@ use vapcore_trace::{self, Tracer, VMTracer};
 use common_types::{
 	errors::ExecutionError,
 	transaction::{Action, SignedTransaction},
-	engines::machine::Executed,
+	engines::mashina::Executed,
 };
 
 use crate::{
@@ -224,7 +224,7 @@ enum CallCreateExecutiveKind {
 /// Executive for a raw call/create action.
 pub struct CallCreateExecutive<'a> {
 	info: &'a EnvInfo,
-	machine: &'a Machine,
+	mashina: &'a Machine,
 	schedule: &'a Schedule,
 	factory: &'a VmFactory,
 	depth: usize,
@@ -237,14 +237,14 @@ pub struct CallCreateExecutive<'a> {
 
 impl<'a> CallCreateExecutive<'a> {
 	/// Create a new call executive using raw data.
-	pub fn new_call_raw(params: ActionParams, info: &'a EnvInfo, machine: &'a Machine, schedule: &'a Schedule, factory: &'a VmFactory, depth: usize, stack_depth: usize, parent_static_flag: bool) -> Self {
+	pub fn new_call_raw(params: ActionParams, info: &'a EnvInfo, mashina: &'a Machine, schedule: &'a Schedule, factory: &'a VmFactory, depth: usize, stack_depth: usize, parent_static_flag: bool) -> Self {
 		trace!("Executive::call(params={:?}) self.env_info={:?}, parent_static={}", params, info, parent_static_flag);
 
 		let gas = params.gas;
 		let static_flag = parent_static_flag || params.action_type == ActionType::StaticCall;
 
 		// if destination is builtin, try to execute it
-		let kind = if let Some(builtin) = machine.builtin(&params.code_address, info.number) {
+		let kind = if let Some(builtin) = mashina.builtin(&params.code_address, info.number) {
 			// Engines aren't supposed to return builtins until activation, but
 			// prefer to fail rather than silently break consensus.
 			if !builtin.is_active(info.number) {
@@ -261,13 +261,13 @@ impl<'a> CallCreateExecutive<'a> {
 		};
 
 		Self {
-			info, machine, schedule, factory, depth, stack_depth, static_flag, kind, gas,
+			info, mashina, schedule, factory, depth, stack_depth, static_flag, kind, gas,
 			is_create: false,
 		}
 	}
 
 	/// Create a new create executive using raw data.
-	pub fn new_create_raw(params: ActionParams, info: &'a EnvInfo, machine: &'a Machine, schedule: &'a Schedule, factory: &'a VmFactory, depth: usize, stack_depth: usize, static_flag: bool) -> Self {
+	pub fn new_create_raw(params: ActionParams, info: &'a EnvInfo, mashina: &'a Machine, schedule: &'a Schedule, factory: &'a VmFactory, depth: usize, stack_depth: usize, static_flag: bool) -> Self {
 		trace!("Executive::create(params={:?}) self.env_info={:?}, static={}", params, info, static_flag);
 
 		let gas = params.gas;
@@ -275,7 +275,7 @@ impl<'a> CallCreateExecutive<'a> {
 		let kind = CallCreateExecutiveKind::ExecCreate(params, Substate::new());
 
 		Self {
-			info, machine, schedule, factory, depth, stack_depth, static_flag, kind, gas,
+			info, mashina, schedule, factory, depth, stack_depth, static_flag, kind, gas,
 			is_create: true,
 		}
 	}
@@ -363,7 +363,7 @@ impl<'a> CallCreateExecutive<'a> {
 	fn as_externalities<'any, B: 'any + StateBackend, T, V>(
 		state: &'any mut State<B>,
 		info: &'any EnvInfo,
-		machine: &'any Machine,
+		mashina: &'any Machine,
 		schedule: &'any Schedule,
 		depth: usize,
 		stack_depth: usize,
@@ -374,7 +374,7 @@ impl<'a> CallCreateExecutive<'a> {
 		tracer: &'any mut T,
 		vm_tracer: &'any mut V,
 	) -> Externalities<'any, T, V, B> where T: Tracer, V: VMTracer {
-		Externalities::new(state, info, machine, schedule, depth, stack_depth, origin_info, substate, output, tracer, vm_tracer, static_flag)
+		Externalities::new(state, info, mashina, schedule, depth, stack_depth, origin_info, substate, output, tracer, vm_tracer, static_flag)
 	}
 
 	/// Execute the executive. If a sub-call/create action is required, a resume trap error is returned. The caller is
@@ -403,7 +403,7 @@ impl<'a> CallCreateExecutive<'a> {
 				assert!(!self.is_create);
 
 				let mut inner = || {
-					let builtin = self.machine.builtin(&params.code_address, self.info.number).expect("Builtin is_some is checked when creating this kind in new_call_raw; qed");
+					let builtin = self.mashina.builtin(&params.code_address, self.info.number).expect("Builtin is_some is checked when creating this kind in new_call_raw; qed");
 
 					Self::check_static_flag(&params, self.static_flag, self.is_create)?;
 					state.checkpoint();
@@ -470,7 +470,7 @@ impl<'a> CallCreateExecutive<'a> {
 
 				let out = match exec {
 					Some(exec) => {
-						let mut ext = Self::as_externalities(state, self.info, self.machine, self.schedule, self.depth, self.stack_depth, self.static_flag, &origin_info, &mut unconfirmed_substate, OutputPolicy::Return, tracer, vm_tracer);
+						let mut ext = Self::as_externalities(state, self.info, self.mashina, self.schedule, self.depth, self.stack_depth, self.static_flag, &origin_info, &mut unconfirmed_substate, OutputPolicy::Return, tracer, vm_tracer);
 						match exec.exec(&mut ext) {
 							Ok(val) => Ok(val.finalize(ext)),
 							Err(err) => Err(err),
@@ -521,7 +521,7 @@ impl<'a> CallCreateExecutive<'a> {
 
 				let out = match exec {
 					Some(exec) => {
-						let mut ext = Self::as_externalities(state, self.info, self.machine, self.schedule, self.depth, self.stack_depth, self.static_flag, &origin_info, &mut unconfirmed_substate, OutputPolicy::InitContract, tracer, vm_tracer);
+						let mut ext = Self::as_externalities(state, self.info, self.mashina, self.schedule, self.depth, self.stack_depth, self.static_flag, &origin_info, &mut unconfirmed_substate, OutputPolicy::InitContract, tracer, vm_tracer);
 						match exec.exec(&mut ext) {
 							Ok(val) => Ok(val.finalize(ext)),
 							Err(err) => Err(err),
@@ -558,7 +558,7 @@ impl<'a> CallCreateExecutive<'a> {
 				let out = {
 					let exec = resume.resume_call(result);
 
-					let mut ext = Self::as_externalities(state, self.info, self.machine, self.schedule, self.depth, self.stack_depth, self.static_flag, &origin_info, &mut unconfirmed_substate, if self.is_create { OutputPolicy::InitContract } else { OutputPolicy::Return }, tracer, vm_tracer);
+					let mut ext = Self::as_externalities(state, self.info, self.mashina, self.schedule, self.depth, self.stack_depth, self.static_flag, &origin_info, &mut unconfirmed_substate, if self.is_create { OutputPolicy::InitContract } else { OutputPolicy::Return }, tracer, vm_tracer);
 					match exec.exec(&mut ext) {
 						Ok(val) => Ok(val.finalize(ext)),
 						Err(err) => Err(err),
@@ -597,7 +597,7 @@ impl<'a> CallCreateExecutive<'a> {
 				let out = {
 					let exec = resume.resume_create(result);
 
-					let mut ext = Self::as_externalities(state, self.info, self.machine, self.schedule, self.depth, self.stack_depth, self.static_flag, &origin_info, &mut unconfirmed_substate, if self.is_create { OutputPolicy::InitContract } else { OutputPolicy::Return }, tracer, vm_tracer);
+					let mut ext = Self::as_externalities(state, self.info, self.mashina, self.schedule, self.depth, self.stack_depth, self.static_flag, &origin_info, &mut unconfirmed_substate, if self.is_create { OutputPolicy::InitContract } else { OutputPolicy::Return }, tracer, vm_tracer);
 					match exec.exec(&mut ext) {
 						Ok(val) => Ok(val.finalize(ext)),
 						Err(err) => Err(err),
@@ -725,13 +725,13 @@ impl<'a> CallCreateExecutive<'a> {
 					}
 				},
 				Some((_, _, Err(TrapError::Call(subparams, resume)))) => {
-					tracer.prepare_trace_call(&subparams, resume.depth + 1, resume.machine.builtin(&subparams.address, resume.info.number).is_some());
+					tracer.prepare_trace_call(&subparams, resume.depth + 1, resume.mashina.builtin(&subparams.address, resume.info.number).is_some());
 					vm_tracer.prepare_subtrace(subparams.code.as_ref().map_or_else(|| &[] as &[u8], |d| &*d as &[u8]));
 
 					let sub_exec = CallCreateExecutive::new_call_raw(
 						subparams,
 						resume.info,
-						resume.machine,
+						resume.mashina,
 						resume.schedule,
 						resume.factory,
 						resume.depth + 1,
@@ -750,7 +750,7 @@ impl<'a> CallCreateExecutive<'a> {
 					let sub_exec = CallCreateExecutive::new_create_raw(
 						subparams,
 						resume.info,
-						resume.machine,
+						resume.mashina,
 						resume.schedule,
 						resume.factory,
 						resume.depth + 1,
@@ -771,7 +771,7 @@ impl<'a> CallCreateExecutive<'a> {
 pub struct Executive<'a, B: 'a> {
 	state: &'a mut State<B>,
 	info: &'a EnvInfo,
-	machine: &'a Machine,
+	mashina: &'a Machine,
 	schedule: &'a Schedule,
 	depth: usize,
 	static_flag: bool,
@@ -779,11 +779,11 @@ pub struct Executive<'a, B: 'a> {
 
 impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 	/// Basic constructor.
-	pub fn new(state: &'a mut State<B>, info: &'a EnvInfo, machine: &'a Machine, schedule: &'a Schedule) -> Self {
+	pub fn new(state: &'a mut State<B>, info: &'a EnvInfo, mashina: &'a Machine, schedule: &'a Schedule) -> Self {
 		Executive {
 			state: state,
 			info: info,
-			machine: machine,
+			mashina: mashina,
 			schedule: schedule,
 			depth: 0,
 			static_flag: false,
@@ -791,11 +791,11 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 	}
 
 	/// Populates executive from parent properties. Increments executive depth.
-	pub fn from_parent(state: &'a mut State<B>, info: &'a EnvInfo, machine: &'a Machine, schedule: &'a Schedule, parent_depth: usize, static_flag: bool) -> Self {
+	pub fn from_parent(state: &'a mut State<B>, info: &'a EnvInfo, mashina: &'a Machine, schedule: &'a Schedule, parent_depth: usize, static_flag: bool) -> Self {
 		Executive {
 			state: state,
 			info: info,
-			machine: machine,
+			mashina: mashina,
 			schedule: schedule,
 			depth: parent_depth + 1,
 			static_flag: static_flag,
@@ -960,7 +960,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		tracer: &mut T,
 		vm_tracer: &mut V
 	) -> tetsy_vm::Result<FinalizationResult> where T: Tracer, V: VMTracer {
-		tracer.prepare_trace_call(&params, self.depth, self.machine.builtin(&params.address, self.info.number).is_some());
+		tracer.prepare_trace_call(&params, self.depth, self.mashina.builtin(&params.address, self.info.number).is_some());
 		vm_tracer.prepare_subtrace(params.code.as_ref().map_or_else(|| &[] as &[u8], |d| &*d as &[u8]));
 
 		let gas = params.gas;
@@ -969,7 +969,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		let result = CallCreateExecutive::new_call_raw(
 			params,
 			self.info,
-			self.machine,
+			self.mashina,
 			self.schedule,
 			&vm_factory,
 			self.depth,
@@ -1059,7 +1059,7 @@ impl<'a, B: 'a + StateBackend> Executive<'a, B> {
 		let result = CallCreateExecutive::new_create_raw(
 			params,
 			self.info,
-			self.machine,
+			self.mashina,
 			self.schedule,
 			&vm_factory,
 			self.depth,
@@ -1249,24 +1249,24 @@ mod tests {
 		Machine,
 		substate::Substate,
 		test_helpers::{
-			new_frontier_test_machine,
-			new_byzantium_test_machine,
-			new_constantinople_test_machine,
-			new_kovan_wasm_test_machine,
+			new_frontier_test_mashina,
+			new_byzantium_test_mashina,
+			new_constantinople_test_mashina,
+			new_kovan_wasm_test_mashina,
 		},
 	};
 	use vapcore::test_helpers::{get_temp_state_with_factory, get_temp_state};
 
-	fn make_frontier_machine(max_depth: usize) -> Machine {
-		let mut machine = new_frontier_test_machine();
-		machine.set_schedule_creation_rules(Box::new(move |s, _| s.max_depth = max_depth));
-		machine
+	fn make_frontier_mashina(max_depth: usize) -> Machine {
+		let mut mashina = new_frontier_test_mashina();
+		mashina.set_schedule_creation_rules(Box::new(move |s, _| s.max_depth = max_depth));
+		mashina
 	}
 
-	fn make_byzantium_machine(max_depth: usize) -> Machine {
-		let mut machine = new_byzantium_test_machine();
-		machine.set_schedule_creation_rules(Box::new(move |s, _| s.max_depth = max_depth));
-		machine
+	fn make_byzantium_mashina(max_depth: usize) -> Machine {
+		let mut mashina = new_byzantium_test_mashina();
+		mashina.set_schedule_creation_rules(Box::new(move |s, _| s.max_depth = max_depth));
+		mashina
 	}
 
 	#[test]
@@ -1317,12 +1317,12 @@ mod tests {
 		let mut state = get_temp_state_with_factory(factory);
 		state.add_balance(&sender, &U256::from(0x100u64), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 
 		let FinalizationResult { gas_left, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.create(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap()
 		};
 
@@ -1375,12 +1375,12 @@ mod tests {
 		let mut state = get_temp_state_with_factory(factory);
 		state.add_balance(&sender, &U256::from(100), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 
 		let FinalizationResult { gas_left, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.create(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap()
 		};
 
@@ -1418,13 +1418,13 @@ mod tests {
 		let mut state = get_temp_state();
 		state.add_balance(&sender, &U256::from(100), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_byzantium_machine(5);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_byzantium_mashina(5);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 		let mut tracer = ExecutiveTracer::default();
 		let mut vm_tracer = ExecutiveVMTracer::toplevel();
 
-		let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+		let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 		ex.call(params, &mut substate, &mut tracer, &mut vm_tracer).unwrap();
 
 		assert_eq!(tracer.drain(), vec![FlatTrace {
@@ -1502,14 +1502,14 @@ mod tests {
 		let mut state = get_temp_state();
 		state.add_balance(&sender, &U256::from(100), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(5);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(5);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 		let mut tracer = ExecutiveTracer::default();
 		let mut vm_tracer = ExecutiveVMTracer::toplevel();
 
 		let FinalizationResult { gas_left, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.call(params, &mut substate, &mut tracer, &mut vm_tracer).unwrap()
 		};
 
@@ -1619,14 +1619,14 @@ mod tests {
 		let mut state = get_temp_state();
 		state.add_balance(&sender, &U256::from(100), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = new_byzantium_test_machine();
-		let schedule = machine.schedule(info.number);
+		let mashina = new_byzantium_test_mashina();
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 		let mut tracer = ExecutiveTracer::default();
 		let mut vm_tracer = ExecutiveVMTracer::toplevel();
 
 		let FinalizationResult { gas_left, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.call(params, &mut substate, &mut tracer, &mut vm_tracer).unwrap()
 		};
 
@@ -1692,14 +1692,14 @@ mod tests {
 		let mut state = get_temp_state();
 		state.add_balance(&sender, &U256::from(100), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(5);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(5);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 		let mut tracer = ExecutiveTracer::default();
 		let mut vm_tracer = ExecutiveVMTracer::toplevel();
 
 		let FinalizationResult { gas_left, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.create(params.clone(), &mut substate, &mut tracer, &mut vm_tracer).unwrap()
 		};
 
@@ -1781,12 +1781,12 @@ mod tests {
 		let mut state = get_temp_state_with_factory(factory);
 		state.add_balance(&sender, &U256::from(100), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 
 		let FinalizationResult { gas_left, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.create(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap()
 		};
 
@@ -1833,12 +1833,12 @@ mod tests {
 		let mut state = get_temp_state_with_factory(factory);
 		state.add_balance(&sender, &U256::from(100), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(1024);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(1024);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 
 		{
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.create(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap();
 		}
 
@@ -1894,12 +1894,12 @@ mod tests {
 		state.add_balance(&sender, &U256::from(100_000), CleanupMode::NoEmpty).unwrap();
 
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 
 		let FinalizationResult { gas_left, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.call(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap()
 		};
 
@@ -1945,12 +1945,12 @@ mod tests {
 		let mut state = get_temp_state_with_factory(factory);
 		state.init_code(&address, code).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 
 		let FinalizationResult { gas_left, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.call(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap()
 		};
 
@@ -1979,11 +1979,11 @@ mod tests {
 		state.add_balance(&sender, &U256::from(18), CleanupMode::NoEmpty).unwrap();
 		let mut info = EnvInfo::default();
 		info.gas_limit = U256::from(100_000);
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 
 		let executed = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			let opts = TransactOptions::with_no_tracing();
 			ex.transact(&t, opts).unwrap()
 		};
@@ -2017,11 +2017,11 @@ mod tests {
 		state.add_balance(&sender, &U256::from(17), CleanupMode::NoEmpty).unwrap();
 		let mut info = EnvInfo::default();
 		info.gas_limit = U256::from(100_000);
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 
 		let res = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			let opts = TransactOptions::with_no_tracing();
 			ex.transact(&t, opts)
 		};
@@ -2051,11 +2051,11 @@ mod tests {
 		let mut info = EnvInfo::default();
 		info.gas_used = U256::from(20_000);
 		info.gas_limit = U256::from(100_000);
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 
 		let res = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			let opts = TransactOptions::with_no_tracing();
 			ex.transact(&t, opts)
 		};
@@ -2085,11 +2085,11 @@ mod tests {
 		state.add_balance(&sender, &U256::from(100_017), CleanupMode::NoEmpty).unwrap();
 		let mut info = EnvInfo::default();
 		info.gas_limit = U256::from(100_000);
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 
 		let res = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			let opts = TransactOptions::with_no_tracing();
 			ex.transact(&t, opts)
 		};
@@ -2119,12 +2119,12 @@ mod tests {
 		let mut state = get_temp_state_with_factory(factory);
 		state.add_balance(&sender, &U256::from_str("152d02c7e14af6800000").unwrap(), CleanupMode::NoEmpty).unwrap();
 		let info = EnvInfo::default();
-		let machine = make_frontier_machine(0);
-		let schedule = machine.schedule(info.number);
+		let mashina = make_frontier_mashina(0);
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 
 		let result = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.create(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer)
 		};
 
@@ -2153,13 +2153,13 @@ mod tests {
 		params.code = Some(Arc::new(code));
 		params.value = ActionValue::Transfer(U256::zero());
 		let info = EnvInfo::default();
-		let machine = new_byzantium_test_machine();
-		let schedule = machine.schedule(info.number);
+		let mashina = new_byzantium_test_mashina();
+		let schedule = mashina.schedule(info.number);
 		let mut substate = Substate::new();
 
 		let mut output = [0u8; 14];
 		let FinalizationResult { gas_left: result, return_data, .. } = {
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.call(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap()
 		};
 		(&mut output).copy_from_slice(&return_data[..(cmp::min(14, return_data.len()))]);
@@ -2189,8 +2189,8 @@ mod tests {
 		state.init_code(&y2, "600060006000600061100162fffffff4".from_hex().unwrap()).unwrap();
 
 		let info = EnvInfo::default();
-		let machine = new_constantinople_test_machine();
-		let schedule = machine.schedule(info.number);
+		let mashina = new_constantinople_test_mashina();
+		let schedule = mashina.schedule(info.number);
 
 		assert_eq!(state.storage_at(&operating_address, &k).unwrap(), BigEndianHash::from_uint(&U256::from(0)));
 		// Test a call via top-level -> y1 -> x1
@@ -2200,7 +2200,7 @@ mod tests {
 			params.code = Some(Arc::new("6001600055600060006000600061200163fffffffff4".from_hex().unwrap()));
 			params.gas = gas;
 			let mut substate = Substate::new();
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			let res = ex.call(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap();
 
 			(res, substate.sstore_clears_refund, gas)
@@ -2218,7 +2218,7 @@ mod tests {
 			params.code = Some(Arc::new("6001600055600060006000600061200263fffffffff4".from_hex().unwrap()));
 			params.gas = gas;
 			let mut substate = Substate::new();
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			let res = ex.call(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer).unwrap();
 
 			(res, substate.sstore_clears_refund, gas)
@@ -2259,12 +2259,12 @@ mod tests {
 		info.number = 100;
 
 		// Network with wasm activated at block 10
-		let machine = new_kovan_wasm_test_machine();
+		let mashina = new_kovan_wasm_test_mashina();
 
 		let mut output = [0u8; 20];
 		let FinalizationResult { gas_left: result, return_data, .. } = {
-			let schedule = machine.schedule(info.number);
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let schedule = mashina.schedule(info.number);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.call(params.clone(), &mut Substate::new(), &mut NoopTracer, &mut NoopVMTracer).unwrap()
 		};
 		(&mut output).copy_from_slice(&return_data[..(cmp::min(20, return_data.len()))]);
@@ -2278,8 +2278,8 @@ mod tests {
 
 		let mut output = [0u8; 20];
 		let FinalizationResult { gas_left: result, return_data, .. } = {
-			let schedule = machine.schedule(info.number);
-			let mut ex = Executive::new(&mut state, &info, &machine, &schedule);
+			let schedule = mashina.schedule(info.number);
+			let mut ex = Executive::new(&mut state, &info, &mashina, &schedule);
 			ex.call(params, &mut Substate::new(), &mut NoopTracer, &mut NoopVMTracer).unwrap()
 		};
 		(&mut output[..((cmp::min(20, return_data.len())))]).copy_from_slice(&return_data[..(cmp::min(20, return_data.len()))]);

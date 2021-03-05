@@ -35,7 +35,7 @@ use vvm::FinalizationResult;
 use tetsy_vm::{self, ActionParams, CreateContractAddress};
 use vaptrie;
 use account_state::{CleanupMode, State};
-use machine::{
+use mashina::{
 	executive,
 	substate::Substate,
 };
@@ -238,9 +238,9 @@ impl<'a> VvmTestClient<'a> {
 	) -> Result<FinalizationResult, VvmTestError>
 	{
 		let mut substate = Substate::new();
-		let machine = self.spec.engine.machine();
-		let schedule = machine.schedule(info.number);
-		let mut executive = executive::Executive::new(&mut self.state, &info, &machine, &schedule);
+		let mashina = self.spec.engine.mashina();
+		let schedule = mashina.schedule(info.number);
+		let mut executive = executive::Executive::new(&mut self.state, &info, &mashina, &schedule);
 		executive.call(
 			params,
 			&mut substate,
@@ -271,13 +271,13 @@ impl<'a> VvmTestClient<'a> {
 		}
 
 		// Apply transaction
-		let result = self.state.apply_with_tracing(&env_info, self.spec.engine.machine(), &transaction, tracer, vm_tracer);
+		let result = self.state.apply_with_tracing(&env_info, self.spec.engine.mashina(), &transaction, tracer, vm_tracer);
 		let scheme = CreateContractAddress::FromSenderAndNonce;
 
 		// Touch the coinbase at the end of the test to simulate
 		// miner reward.
 		// Details: https://github.com/openvapory/tetsy-vapory/issues/9431
-		let schedule = self.spec.engine.machine().schedule(env_info.number);
+		let schedule = self.spec.engine.mashina().schedule(env_info.number);
 		self.state.add_balance(&env_info.author, &0.into(), if schedule.no_empty {
 			CleanupMode::NoEmpty
 		} else {

@@ -36,7 +36,7 @@ extern crate itertools;
 extern crate journaldb;
 extern crate tetsy_keccak_hash as hash;
 extern crate tetsy_kvdb;
-extern crate machine;
+extern crate mashina;
 extern crate memory_cache;
 extern crate tetsy_bytes as bytes;
 extern crate parking_lot;

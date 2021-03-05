@@ -24,14 +24,14 @@ use common_types::{
 	header::Header,
 	ids::BlockId,
 	errors::VapcoreError,
-	engines::machine::{Call, AuxiliaryData},
+	engines::mashina::{Call, AuxiliaryData},
 };
 use client_traits::EngineClient;
 use vapory_types::{H256, Address};
 use log::{debug, trace};
 use tetsy_bytes::Bytes;
 use parking_lot::RwLock;
-use machine::Machine;
+use mashina::Machine;
 
 use super::{SystemCall, ValidatorSet};
 
@@ -109,11 +109,11 @@ impl ValidatorSet for Multi {
 		set.signals_epoch_end(first, header, aux)
 	}
 
-	fn epoch_set(&self, _first: bool, machine: &Machine, number: BlockNumber, proof: &[u8]) -> Result<(super::SimpleList, Option<H256>), VapcoreError> {
+	fn epoch_set(&self, _first: bool, mashina: &Machine, number: BlockNumber, proof: &[u8]) -> Result<(super::SimpleList, Option<H256>), VapcoreError> {
 		let (set_block, set) = self.correct_set_by_number(number);
 		let first = set_block == number;
 
-		set.epoch_set(first, machine, number, proof)
+		set.epoch_set(first, mashina, number, proof)
 	}
 
 	fn contains_with_caller(&self, bh: &H256, address: &Address, caller: &Call) -> bool {

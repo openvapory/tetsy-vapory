@@ -43,7 +43,7 @@ extern crate tetsy_hash_db;
 extern crate tetsy_keccak_hash as hash;
 extern crate tetsy_keccak_hasher;
 extern crate tetsy_kvdb;
-extern crate machine;
+extern crate mashina;
 extern crate journaldb;
 extern crate tetsy_bytes as bytes;
 extern crate tetsy_crypto as crypto;
@@ -96,7 +96,7 @@ use parking_lot::RwLock;
 use bytes::Bytes;
 use crypto::publickey::{Signature, recover, public_to_address, Message, KeyPair};
 use io::{IoChannel, IoHandler, IoContext, TimerToken};
-use machine::{
+use mashina::{
 	executive::{Executive, TransactOptions, contract_address as vapcore_contract_address},
 	executed::Executed as FlatExecuted,
 };
@@ -105,7 +105,7 @@ use types::{
 	ids::BlockId,
 	io_message::ClientIoMessage,
 	transaction::{SignedTransaction, Transaction, Action, UnverifiedTransaction},
-	engines::machine::Executed,
+	engines::mashina::Executed,
 };
 use vapcore::client::{Client, Call};
 use client_traits::{BlockInfo, ChainNotify};
@@ -728,9 +728,9 @@ impl Provider {
 				}
 			}
 		}
-		let machine = engine.machine();
-		let schedule = machine.schedule(env_info.number);
-		let result = Executive::new(&mut state, &env_info, &machine, &schedule).transact_virtual(transaction, options)?;
+		let mashina = engine.mashina();
+		let schedule = mashina.schedule(env_info.number);
+		let result = Executive::new(&mut state, &env_info, &mashina, &schedule).transact_virtual(transaction, options)?;
 		let (encrypted_code, encrypted_storage) = {
 			let (code, storage) = state.into_account(&contract_address)?;
 			trace!(target: "privatetx", "Private contract executed. code: {:?}, state: {:?}, result: {:?}", code, storage, result.output);

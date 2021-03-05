@@ -24,7 +24,7 @@ use client_traits::BlockChainClient;
 use vapcore::test_helpers::{EachBlockWith, TestBlockChainClient};
 use vapcore::miner::{self, MinerService};
 use vapory_types::{H160, H256, U256, Address, Bloom};
-use machine::executed::Executed;
+use mashina::executed::Executed;
 use miner::external::ExternalMiner;
 use tetsy_runtime::Runtime;
 use parking_lot::Mutex;

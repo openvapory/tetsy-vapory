@@ -16,7 +16,7 @@
 
 use std::sync::Arc;
 
-use machine::executed::Executed;
+use mashina::executed::Executed;
 use trace::trace::{Action, Res, Call};
 use trace::LocalizedTrace;
 use vapcore::test_helpers::TestBlockChainClient;

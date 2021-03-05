@@ -76,7 +76,7 @@ use tetsy_crypto::publickey::Signature;
 use tetsy_keccak_hash::KECCAK_EMPTY_LIST_RLP;
 use log::{trace, warn};
 use lru_cache::LruCache;
-use machine::{
+use mashina::{
 	ExecutedBlock,
 	Machine,
 };
@@ -94,7 +94,7 @@ use common_types::{
 		Seal,
 		SealingState,
 		params::CommonParams,
-		machine::Call,
+		mashina::Call,
 	},
 	errors::{BlockError, VapcoreError as Error, EngineError},
 };
@@ -177,7 +177,7 @@ impl VoteType {
 pub struct Clique {
 	epoch_length: u64,
 	period: u64,
-	machine: Machine,
+	mashina: Machine,
 	client: RwLock<Option<Weak<dyn EngineClient>>>,
 	block_state_by_hash: RwLock<LruCache<H256, CliqueBlockState>>,
 	proposals: RwLock<HashMap<Address, VoteType>>,
@@ -189,7 +189,7 @@ pub struct Clique {
 pub struct Clique {
 	pub epoch_length: u64,
 	pub period: u64,
-	pub machine: Machine,
+	pub mashina: Machine,
 	pub client: RwLock<Option<Weak<dyn EngineClient>>>,
 	pub block_state_by_hash: RwLock<LruCache<H256, CliqueBlockState>>,
 	pub proposals: RwLock<HashMap<Address, VoteType>>,
@@ -198,7 +198,7 @@ pub struct Clique {
 
 impl Clique {
 	/// Initialize Clique engine from empty state.
-	pub fn new(params: CliqueParams, machine: Machine) -> Result<Arc<Self>, Error> {
+	pub fn new(params: CliqueParams, mashina: Machine) -> Result<Arc<Self>, Error> {
 		/// Step Clique at most every 2 seconds
 		const SEALING_FREQ: Duration = Duration::from_secs(2);
 
@@ -209,7 +209,7 @@ impl Clique {
 			block_state_by_hash: RwLock::new(LruCache::new(STATE_CACHE_NUM)),
 			proposals: Default::default(),
 			signer: Default::default(),
-			machine,
+			mashina,
 		};
 		let engine = Arc::new(engine);
 		let weak_eng = Arc::downgrade(&engine);
@@ -247,7 +247,7 @@ impl Clique {
 			block_state_by_hash: RwLock::new(LruCache::new(STATE_CACHE_NUM)),
 			proposals: Default::default(),
 			signer: Default::default(),
-			machine: spec::new_test_machine(),
+			mashina: spec::new_test_mashina(),
 		}
 	}
 
@@ -372,7 +372,7 @@ impl Clique {
 impl Engine for Clique {
 	fn name(&self) -> &str { "Clique" }
 
-	fn machine(&self) -> &Machine { &self.machine }
+	fn mashina(&self) -> &Machine { &self.mashina }
 
 	// Clique use same fields, nonce + mixHash
 	fn seal_fields(&self, _header: &Header) -> usize { 2 }
@@ -803,6 +803,6 @@ impl Engine for Clique {
 	}
 
 	fn params(&self) -> &CommonParams {
-		self.machine.params()
+		self.mashina.params()
 	}
 }

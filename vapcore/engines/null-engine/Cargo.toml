@@ -12,4 +12,4 @@ block-reward = { version = "0.1.0", path = "../../block-reward" }
 engine = { version = "0.1.0", path = "../../engine" }
 vapjson = { path = "../../../json" }
 vapory-types = "0.8.0"
-machine = { path = "../../machine" }
+mashina = { path = "../../mashina" }

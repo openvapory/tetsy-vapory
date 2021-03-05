@@ -90,7 +90,7 @@ use vvm::Schedule;
 use executive_state;
 use io::IoChannel;
 use journaldb;
-use machine::{
+use mashina::{
 	executed::Executed,
 	executive::{contract_address, Executive, TransactOptions},
 	transaction_ext::Transaction,
@@ -115,7 +115,7 @@ use types::{
 	engines::{
 		epoch::{PendingTransition, Transition as EpochTransition},
 		ForkChoice,
-		machine::{AuxiliaryData, Call as MachineCall},
+		mashina::{AuxiliaryData, Call as MachineCall},
 		MAX_UNCLE_AGE,
 		SealingState,
 	},
@@ -642,9 +642,9 @@ impl Importer {
 							).expect("state known to be available for just-imported block; qed");
 
 							let options = TransactOptions::with_no_tracing().dont_check_nonce();
-							let machine = self.engine.machine();
-							let schedule = machine.schedule(env_info.number);
-							let res = Executive::new(&mut state, &env_info, &machine, &schedule)
+							let mashina = self.engine.mashina();
+							let schedule = mashina.schedule(env_info.number);
+							let res = Executive::new(&mut state, &env_info, &mashina, &schedule)
 								.transact(&transaction, options);
 
 							match res {
@@ -764,7 +764,7 @@ impl Client {
 
 		let importer = Importer::new(&config, engine.clone(), message_channel.clone(), miner)?;
 
-		let registrar_address = engine.machine().params().registrar;
+		let registrar_address = engine.mashina().params().registrar;
 		if let Some(ref addr) = registrar_address {
 			trace!(target: "client", "Found registrar at {}", addr);
 		}
@@ -1204,17 +1204,17 @@ impl Client {
 	}
 
 	fn do_virtual_call(
-		machine: &::machine::Machine,
+		mashina: &::mashina::Machine,
 		env_info: &EnvInfo,
 		state: &mut State<StateDB>,
 		t: &SignedTransaction,
 		analytics: CallAnalytics,
 	) -> Result<Executed, CallError> {
-		use types::engines::machine::Executed as RawExecuted;
+		use types::engines::mashina::Executed as RawExecuted;
 		fn call<V, T>(
 			state: &mut State<StateDB>,
 			env_info: &EnvInfo,
-			machine: &::machine::Machine,
+			mashina: &::mashina::Machine,
 			state_diff: bool,
 			transaction: &SignedTransaction,
 			options: TransactOptions<T, V>,
@@ -1226,9 +1226,9 @@ impl Client {
 				.dont_check_nonce()
 				.save_output_from_contract();
 			let original_state = if state_diff { Some(state.clone()) } else { None };
-			let schedule = machine.schedule(env_info.number);
+			let schedule = mashina.schedule(env_info.number);
 
-			let mut ret = Executive::new(state, env_info, &machine, &schedule).transact_virtual(transaction, options)?;
+			let mut ret = Executive::new(state, env_info, &mashina, &schedule).transact_virtual(transaction, options)?;
 
 			if let Some(original) = original_state {
 				ret.state_diff = Some(state.diff_from(original).map_err(ExecutionError::from)?);
@@ -1239,10 +1239,10 @@ impl Client {
 		let state_diff = analytics.state_diffing;
 
 		match (analytics.transaction_tracing, analytics.vm_tracing) {
-			(true, true) => call(state, env_info, machine, state_diff, t, TransactOptions::with_tracing_and_vm_tracing()),
-			(true, false) => call(state, env_info, machine, state_diff, t, TransactOptions::with_tracing()),
-			(false, true) => call(state, env_info, machine, state_diff, t, TransactOptions::with_vm_tracing()),
-			(false, false) => call(state, env_info, machine, state_diff, t, TransactOptions::with_no_tracing()),
+			(true, true) => call(state, env_info, mashina, state_diff, t, TransactOptions::with_tracing_and_vm_tracing()),
+			(true, false) => call(state, env_info, mashina, state_diff, t, TransactOptions::with_tracing()),
+			(false, true) => call(state, env_info, mashina, state_diff, t, TransactOptions::with_vm_tracing()),
+			(false, false) => call(state, env_info, mashina, state_diff, t, TransactOptions::with_no_tracing()),
 		}
 	}
 
@@ -1510,9 +1510,9 @@ impl Call for Client {
 			gas_used: U256::default(),
 			gas_limit: U256::max_value(),
 		};
-		let machine = self.engine.machine();
+		let mashina = self.engine.mashina();
 
-		Self::do_virtual_call(&machine, &env_info, state, transaction, analytics)
+		Self::do_virtual_call(&mashina, &env_info, state, transaction, analytics)
 	}
 
 	fn call_many(&self, transactions: &[(SignedTransaction, CallAnalytics)], state: &mut Self::State, header: &Header) -> Result<Vec<Executed>, CallError> {
@@ -1527,10 +1527,10 @@ impl Call for Client {
 		};
 
 		let mut results = Vec::with_capacity(transactions.len());
-		let machine = self.engine.machine();
+		let mashina = self.engine.mashina();
 
 		for &(ref t, analytics) in transactions {
-			let ret = Self::do_virtual_call(machine, &env_info, state, t, analytics)?;
+			let ret = Self::do_virtual_call(mashina, &env_info, state, t, analytics)?;
 			env_info.gas_used = ret.cumulative_gas_used;
 			results.push(ret);
 		}
@@ -1565,9 +1565,9 @@ impl Call for Client {
 			let tx = tx.fake_sign(sender);
 
 			let mut clone = state.clone();
-			let machine = self.engine.machine();
-			let schedule = machine.schedule(env_info.number);
-			Executive::new(&mut clone, &env_info, &machine, &schedule)
+			let mashina = self.engine.mashina();
+			let schedule = mashina.schedule(env_info.number);
+			Executive::new(&mut clone, &env_info, &mashina, &schedule)
 				.transact_virtual(&tx, options())
 		};
 
@@ -1658,8 +1658,8 @@ impl BlockChainClient for Client {
 			.map(move |t| {
 				let transaction_hash = t.hash();
 				let t = SignedTransaction::new(t).expect(PROOF);
-				let machine = engine.machine();
-				let x = Self::do_virtual_call(machine, &env_info, &mut state, &t, analytics).expect(EXECUTE_PROOF);
+				let mashina = engine.mashina();
+				let x = Self::do_virtual_call(mashina, &env_info, &mut state, &t, analytics).expect(EXECUTE_PROOF);
 				env_info.gas_used = env_info.gas_used + x.gas_used;
 				(transaction_hash, x)
 			})))
@@ -2528,7 +2528,7 @@ impl ProvingBlockChainClient for Client {
 			jdb.as_hash_db_mut(),
 			header.state_root(),
 			&transaction,
-			self.engine.machine(),
+			self.engine.mashina(),
 			&env_info,
 			self.factories.clone(),
 		)

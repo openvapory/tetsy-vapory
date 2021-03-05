@@ -17,7 +17,7 @@ vapcore-db = { version = "0.1.0", path = "../db" }
 vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
 vapory-types = "0.8.0"
 executive-state = { path = "../executive-state" }
-machine = { path = "../machine" }
+mashina = { path = "../mashina" }
 tetsy-memory-db = "0.18.1"
 tetsy-trie-db = "0.19.2"
 patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }

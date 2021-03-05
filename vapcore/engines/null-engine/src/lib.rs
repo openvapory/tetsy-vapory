@@ -23,7 +23,7 @@ use common_types::{
 use engine::Engine;
 use block_reward::{self, RewardKind};
 use vapory_types::U256;
-use machine::{
+use mashina::{
 	ExecutedBlock,
 	Machine,
 };
@@ -54,22 +54,22 @@ impl From<vapjson::spec::NullEngineParams> for NullEngineParams {
 /// An engine which does not provide any consensus mechanism and does not seal blocks.
 pub struct NullEngine {
 	params: NullEngineParams,
-	machine: Machine,
+	mashina: Machine,
 }
 
 impl NullEngine {
 	/// Returns new instance of NullEngine with default VM Factory
-	pub fn new(params: NullEngineParams, machine: Machine) -> Self {
+	pub fn new(params: NullEngineParams, mashina: Machine) -> Self {
 		NullEngine {
 			params,
-			machine,
+			mashina,
 		}
 	}
 }
 impl Engine for NullEngine {
 	fn name(&self) -> &str { "NullEngine" }
 
-	fn machine(&self) -> &Machine { &self.machine }
+	fn mashina(&self) -> &Machine { &self.mashina }
 
 	fn maximum_uncle_count(&self, _block: BlockNumber) -> usize { 2 }
 
@@ -101,7 +101,7 @@ impl Engine for NullEngine {
 			rewards.push((*uncle_author, RewardKind::uncle(number, u.number()), result_uncle_reward));
 		}
 
-		block_reward::apply_block_rewards(&rewards, block, &self.machine)
+		block_reward::apply_block_rewards(&rewards, block, &self.mashina)
 	}
 
 	fn verify_local_seal(&self, _header: &Header) -> Result<(), Error> {
@@ -113,7 +113,7 @@ impl Engine for NullEngine {
 	}
 
 	fn params(&self) -> &CommonParams {
-		self.machine.params()
+		self.mashina.params()
 	}
 
 	fn ancestry_actions(&self, _header: &Header, ancestry: &mut dyn Iterator<Item=ExtendedHeader>) -> Vec<AncestryAction> {

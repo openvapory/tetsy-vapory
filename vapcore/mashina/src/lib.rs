@@ -14,16 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Transaction execution format module.
+//! This crate provides a state mashina and the facilities needed to execute transactions and the
+//! code contained therein, as well as contract based transaction permissions. All vapory
+//! engines embed a `Machine`.
 
-use vapcore_trace::{VMTrace, FlatTrace};
-use common_types::{
-	engines::machine,
-	errors::ExecutionError,
+pub mod executed;
+pub mod executed_block;
+pub mod executive;
+pub mod externalities;
+pub mod mashina;
+pub mod substate;
+pub mod transaction_ext;
+pub mod tx_filter;
+
+pub use crate::{
+	executed_block::ExecutedBlock,
+	mashina::Machine
 };
 
-/// /// Transaction execution receipt, parametrised with convenient defaults.
-pub type Executed = machine::Executed<FlatTrace, VMTrace>;
-
-/// Transaction execution result.
-pub type ExecutionResult = Result<Box<Executed>, ExecutionError>;
+#[cfg(any(test, feature = "test-helpers"))]
+pub mod test_helpers;

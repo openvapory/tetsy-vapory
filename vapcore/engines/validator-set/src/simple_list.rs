@@ -21,11 +21,11 @@ use common_types::{
 	ids::BlockId,
 	header::Header,
 	errors::VapcoreError,
-	engines::machine::{Call, AuxiliaryData},
+	engines::mashina::{Call, AuxiliaryData},
 };
 use vapory_types::{H256, Address};
 use log::warn;
-use machine::Machine;
+use mashina::Machine;
 use tetsy_util_mem::MallocSizeOf;
 
 use super::ValidatorSet;

@@ -26,7 +26,7 @@ use types::{
 
 use block::{OpenBlock, SealedBlock, ClosedBlock};
 use engine::Engine;
-use machine::executed::Executed;
+use mashina::executed::Executed;
 use account_state::state::StateInfo;
 
 /// Provides `call` and `call_many` methods

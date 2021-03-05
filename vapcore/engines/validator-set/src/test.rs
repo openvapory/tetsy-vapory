@@ -27,10 +27,10 @@ use common_types::{
 	ids::BlockId,
 	header::Header,
 	errors::VapcoreError,
-	engines::machine::{Call, AuxiliaryData},
+	engines::mashina::{Call, AuxiliaryData},
 };
 use vapory_types::{H256, Address};
-use machine::Machine;
+use mashina::Machine;
 use tetsy_bytes::Bytes;
 
 use super::{ValidatorSet, SimpleList};

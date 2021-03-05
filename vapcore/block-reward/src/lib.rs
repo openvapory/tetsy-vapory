@@ -27,7 +27,7 @@ use common_types::{
 	errors::{EngineError, VapcoreError as Error},
 };
 use tetsy_keccak_hash::keccak;
-use machine::{Machine, ExecutedBlock};
+use mashina::{Machine, ExecutedBlock};
 use engine::{SystemOrCodeCall, SystemOrCodeCallKind};
 use vapcore_trace;
 use vapcore_trace::{Tracer, ExecutiveTracer, Tracing};
@@ -108,7 +108,7 @@ impl BlockRewardContract {
 	/// Calls the block reward contract with the given beneficiaries list (and associated reward kind)
 	/// and returns the reward allocation (address - value). The block reward contract *must* be
 	/// called by the system address so the `caller` must ensure that (e.g. using
-	/// `machine.execute_as_system`).
+	/// `mashina.execute_as_system`).
 	pub fn reward(
 		&self,
 		beneficiaries: Vec<(Address, RewardKind)>,
@@ -140,10 +140,10 @@ impl BlockRewardContract {
 pub fn apply_block_rewards(
 	rewards: &[(Address, RewardKind, U256)],
 	block: &mut ExecutedBlock,
-	machine: &Machine,
+	mashina: &Machine,
 ) -> Result<(), Error> {
 	for &(ref author, _, ref block_reward) in rewards {
-		machine.add_balance(block, author, block_reward)?;
+		mashina.add_balance(block, author, block_reward)?;
 	}
 
 	if let Tracing::Enabled(ref mut traces) = *block.traces_mut() {
@@ -176,7 +176,7 @@ mod test {
 	fn block_reward_contract() {
 		let client = generate_dummy_client_with_spec(spec::new_test_round_block_reward_contract);
 
-		let machine = spec::new_test_machine();
+		let mashina = spec::new_test_machine();
 
 		// the spec has a block reward contract defined at the given address
 		let block_reward_contract = BlockRewardContract::new_from_address(
@@ -192,7 +192,7 @@ mod test {
 
 			let result = match to {
 				SystemOrCodeCallKind::Address(to) => {
-					machine.execute_as_system(
+					mashina.execute_as_system(
 						block.block_mut(),
 						to,
 						U256::max_value(),

@@ -21,7 +21,7 @@ tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 lazy_static = "1.3.0"
 log = "0.4.8"
-machine = { path = "../../machine" }
+mashina = { path = "../../mashina" }
 memory-cache = { path = "../../../util/memory-cache" }
 tetsy-bytes = "0.1.0"
 tetsy-util-mem = "0.3.0"

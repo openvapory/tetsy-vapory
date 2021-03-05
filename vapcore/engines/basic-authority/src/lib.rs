@@ -26,7 +26,7 @@ use common_types::{
 		SealingState,
 		Seal,
 		params::CommonParams,
-		machine::{AuxiliaryData, Call},
+		mashina::{AuxiliaryData, Call},
 	},
 	errors::{EngineError, BlockError, VapcoreError as Error},
 };
@@ -36,7 +36,7 @@ use parking_lot::RwLock;
 use engine::{Engine, ConstructedVerifier, signer::EngineSigner};
 use tetsy_crypto::publickey::Signature;
 use log::trace;
-use machine::{Machine, executed_block::ExecutedBlock};
+use mashina::{Machine, executed_block::ExecutedBlock};
 use tetsy_rlp::Rlp;
 use validator_set::{ValidatorSet, SimpleList, new_validator_set};
 
@@ -82,16 +82,16 @@ fn verify_external(header: &Header, validators: &dyn ValidatorSet) -> Result<(),
 
 /// Engine using `BasicAuthority`, trivial proof-of-authority consensus.
 pub struct BasicAuthority {
-	machine: Machine,
+	mashina: Machine,
 	signer: RwLock<Option<Box<dyn EngineSigner>>>,
 	validators: Box<dyn ValidatorSet>,
 }
 
 impl BasicAuthority {
 	/// Create a new instance of BasicAuthority engine
-	pub fn new(our_params: BasicAuthorityParams, machine: Machine) -> Self {
+	pub fn new(our_params: BasicAuthorityParams, mashina: Machine) -> Self {
 		BasicAuthority {
-			machine: machine,
+			mashina: mashina,
 			signer: RwLock::new(None),
 			validators: new_validator_set(our_params.validators),
 		}
@@ -101,7 +101,7 @@ impl BasicAuthority {
 impl Engine for BasicAuthority {
 	fn name(&self) -> &str { "BasicAuthority" }
 
-	fn machine(&self) -> &Machine { &self.machine }
+	fn mashina(&self) -> &Machine { &self.mashina }
 
 	// One field - the signature
 	fn seal_fields(&self, _header: &Header) -> usize { 1 }
@@ -179,7 +179,7 @@ impl Engine for BasicAuthority {
 	fn epoch_verifier<'a>(&self, header: &Header, proof: &'a [u8]) -> ConstructedVerifier<'a> {
 		let first = header.number() == 0;
 
-		match self.validators.epoch_set(first, &self.machine, header.number(), proof) {
+		match self.validators.epoch_set(first, &self.mashina, header.number(), proof) {
 			Ok((list, finalize)) => {
 				let verifier = Box::new(EpochVerifier { list });
 
@@ -210,7 +210,7 @@ impl Engine for BasicAuthority {
 	}
 
 	fn params(&self) -> &CommonParams {
-		self.machine.params()
+		self.mashina.params()
 	}
 }
 

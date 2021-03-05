@@ -1046,7 +1046,7 @@ impl TransactionProof {
 			state_items,
 			root,
 			&self.tx,
-			self.engine.machine(),
+			self.engine.mashina(),
 			&self.env_info,
 		);
 
@@ -1082,7 +1082,7 @@ pub struct Signal {
 impl Signal {
 	/// Check the signal, returning the signal or indicate that it's bad.
 	pub fn check_response(&self, _: &Mutex<::cache::Cache>, signal: &[u8]) -> Result<Vec<u8>, Error> {
-		self.proof_check.check_proof(self.engine.machine(), signal)
+		self.proof_check.check_proof(self.engine.mashina(), signal)
 			.map(|_| signal.to_owned())
 			.map_err(|_| Error::BadProof)
 	}

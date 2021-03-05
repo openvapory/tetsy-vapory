@@ -39,7 +39,7 @@ use vapcore_private_tx::{
 };
 use tetsy_crypto::publickey::KeyPair;
 use tetsy_keccak_hash::keccak;
-use machine::executive::contract_address;
+use mashina::executive::contract_address;
 use rustc_hex::FromHex;
 use tetsy_rlp::Rlp;
 use spec::Spec;

@@ -23,7 +23,7 @@ use criterion::{Criterion, criterion_group, criterion_main};
 use vapash::{VapashParams, Vapash};
 use vapory_types::U256;
 use vapcore::test_helpers::TestBlockChainClient;
-use spec::new_constantinople_test_machine;
+use spec::new_constantinople_test_mashina;
 use tempdir::TempDir;
 
 use ::verification::{
@@ -70,13 +70,13 @@ fn vapash_params() -> VapashParams {
 }
 
 fn build_vapash() -> Vapash {
-	let machine = new_constantinople_test_machine();
+	let mashina = new_constantinople_test_mashina();
 	let vapash_params = vapash_params();
 	let cache_dir = TempDir::new("").unwrap();
 	Vapash::new(
 		cache_dir.path(),
 		vapash_params,
-		machine,
+		mashina,
 		None
 	)
 }

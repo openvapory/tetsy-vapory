@@ -25,7 +25,7 @@ extern crate vapcore_private_tx;
 extern crate tetsy_crypto;
 extern crate tetsy_keccak_hash as hash;
 extern crate rustc_hex;
-extern crate machine;
+extern crate mashina;
 extern crate spec;
 
 #[macro_use]
@@ -42,7 +42,7 @@ use vapcore::{
 };
 use client_traits::BlockChainClient;
 use tetsy_crypto::publickey::{Secret, KeyPair, Signature};
-use machine::executive::contract_address;
+use mashina::executive::contract_address;
 use hash::keccak;
 
 use vapcore_private_tx::{NoopEncryptor, Provider, ProviderConfig, StoringKeyProvider};

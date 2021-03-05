@@ -215,7 +215,7 @@ impl AncestorSearch {
 	}
 }
 
-// synchronization state machine.
+// synchronization state mashina.
 #[derive(Debug)]
 enum SyncState {
 	// Idle (waiting for peers) or at chain head.
@@ -501,7 +501,7 @@ impl<L: AsLightClient> LightSync<L> {
 		self.set_state(state, next_state);
 	}
 
-	// handles request dispatch, block import, state machine transitions, and timeouts.
+	// handles request dispatch, block import, state mashina transitions, and timeouts.
 	fn maintain_sync(&self, ctx: &dyn BasicContext) {
 		use common_types::errors::{VapcoreError, ImportError};
 

@@ -33,7 +33,7 @@ use common_types::{
 	chain_notify::{NewBlocks, ChainMessageType},
 	client_types::Mode,
 	encoded,
-	engines::{epoch::Transition as EpochTransition, machine::Executed},
+	engines::{epoch::Transition as EpochTransition, mashina::Executed},
 	errors::{VapcoreError, VapcoreResult},
 	filter::Filter,
 	header::Header,

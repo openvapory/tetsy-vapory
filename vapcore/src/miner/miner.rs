@@ -60,7 +60,7 @@ use block::{ClosedBlock, SealedBlock};
 use client::{BlockProducer, SealedBlockImporter, Client};
 use client_traits::{BlockChain, ChainInfo, Nonce, TransactionInfo, EngineClient, ForceUpdateSealing};
 use engine::{Engine, signer::EngineSigner};
-use machine::executive::contract_address;
+use mashina::executive::contract_address;
 use spec::Spec;
 use account_state::State;
 use tetsy_vm::CreateContractAddress;

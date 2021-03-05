@@ -39,7 +39,7 @@ use net::{
 use cache::Cache;
 use request::{self as basic_request, Request as NetworkRequest};
 use self::request::CheckedRequest;
-use machine::executed::ExecutionResult;
+use mashina::executed::ExecutionResult;
 
 pub use self::request::{Request, Response, HeaderRef, Error as ValidityError};
 pub use self::request_guard::{RequestGuard, Error as RequestError};

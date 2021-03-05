@@ -45,12 +45,12 @@ macro_rules! bundle_test_spec {
 	}
 }
 
-macro_rules! bundle_test_machine {
+macro_rules! bundle_test_mashina {
 	($($path: expr => $name: ident), *) => {
 		$(
 			/// Bundled test spec
-			pub fn $name() -> machine::Machine {
-				crate::spec::Spec::load_machine(
+			pub fn $name() -> mashina::Machine {
+				crate::spec::Spec::load_mashina(
 					include_bytes!(concat!("../../res/", $path, ".json")) as &[u8]
 				).expect(concat!("Chain spec ", $path, " is invalid."))
 			}
@@ -115,15 +115,15 @@ bundle_test_spec! {
 	"validator_safe_contract" => new_validator_safe_contract
 }
 
-bundle_test_machine! {
-	"vapory/byzantium_test" => new_byzantium_test_machine,
-	"vapory/constantinople_test" => new_constantinople_test_machine,
-	"vapory/istanbul_test" => new_istanbul_test_machine,
-	"vapory/eip210_test" => new_eip210_test_machine,
-	"vapory/frontier_test" => new_frontier_test_machine,
-	"vapory/homestead_test" => new_homestead_test_machine,
-	"vapory/kovan_wasm_test" => new_kovan_wasm_test_machine,
-	"null_morden" => new_test_machine
+bundle_test_mashina! {
+	"vapory/byzantium_test" => new_byzantium_test_mashina,
+	"vapory/constantinople_test" => new_constantinople_test_mashina,
+	"vapory/istanbul_test" => new_istanbul_test_mashina,
+	"vapory/eip210_test" => new_eip210_test_mashina,
+	"vapory/frontier_test" => new_frontier_test_mashina,
+	"vapory/homestead_test" => new_homestead_test_mashina,
+	"vapory/kovan_wasm_test" => new_kovan_wasm_test_mashina,
+	"null_morden" => new_test_mashina
 }
 
 #[cfg(test)]

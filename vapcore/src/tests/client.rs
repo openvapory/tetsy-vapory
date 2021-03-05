@@ -40,7 +40,7 @@ use client_traits::{
 };
 use spec;
 use tetsy_stats;
-use machine::executive::{Executive, TransactOptions};
+use mashina::executive::{Executive, TransactOptions};
 use miner::{Miner, PendingOrdering, MinerService};
 use account_state::{State, CleanupMode, backend};
 use test_helpers::{
@@ -362,11 +362,11 @@ fn transaction_proof() {
 	factories.accountdb = ::account_db::Factory::Plain; // raw state values, no mangled keys.
 	let root = *client.best_block_header().state_root();
 
-	let machine = test_spec.engine.machine();
+	let mashina = test_spec.engine.mashina();
 	let env_info = client.latest_env_info();
-	let schedule = machine.schedule(env_info.number);
+	let schedule = mashina.schedule(env_info.number);
 	let mut state = State::from_existing(backend, root, 0.into(), factories.clone()).unwrap();
-	Executive::new(&mut state, &env_info, &machine, &schedule)
+	Executive::new(&mut state, &env_info, &mashina, &schedule)
 		.transact(&transaction, TransactOptions::with_no_tracing().dont_check_nonce()).unwrap();
 
 	assert_eq!(state.balance(&Address::zero()).unwrap(), 5.into());

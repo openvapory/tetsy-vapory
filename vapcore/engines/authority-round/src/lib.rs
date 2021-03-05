@@ -45,7 +45,7 @@ use engine::{Engine, ConstructedVerifier};
 use block_gas_limit::block_gas_limit;
 use block_reward::{self, BlockRewardContract, RewardKind};
 use vapjson;
-use machine::{
+use mashina::{
 	ExecutedBlock,
 	Machine,
 };
@@ -72,7 +72,7 @@ use common_types::{
 		PendingTransitionStore,
 		Seal,
 		SealingState,
-		machine::{Call, AuxiliaryData},
+		mashina::{Call, AuxiliaryData},
 	},
 	errors::{BlockError, VapcoreError as Error, EngineError},
 	ids::BlockId,
@@ -354,7 +354,7 @@ impl EpochManager {
 	fn zoom_to_after(
 		&mut self,
 		client: &dyn EngineClient,
-		machine: &Machine,
+		mashina: &Machine,
 		validators: &dyn ValidatorSet,
 		hash: H256
 	) -> bool {
@@ -396,7 +396,7 @@ impl EpochManager {
 			let first = signal_number == 0;
 			let epoch_set = validators.epoch_set(
 				first,
-				machine,
+				mashina,
 				signal_number, // use signal number so multi-set first calculation is correct.
 				set_proof,
 			)
@@ -574,7 +574,7 @@ pub struct AuthorityRound {
 	strict_empty_steps_transition: u64,
 	two_thirds_majority_transition: BlockNumber,
 	maximum_empty_steps: usize,
-	machine: Machine,
+	mashina: Machine,
 	/// History of step hashes recently received from peers.
 	received_step_hashes: RwLock<BTreeMap<(u64, Address), H256>>,
 	/// If set, enables random number contract integration. It maps the transition block to the contract address.
@@ -817,7 +817,7 @@ impl<'a, A: ?Sized, B> Deref for CowLike<'a, A, B> where B: AsRef<A> {
 
 impl AuthorityRound {
 	/// Create a new instance of AuthorityRound engine.
-	pub fn new(our_params: AuthorityRoundParams, machine: Machine) -> Result<Arc<Self>, Error> {
+	pub fn new(our_params: AuthorityRoundParams, mashina: Machine) -> Result<Arc<Self>, Error> {
 		if !our_params.step_durations.contains_key(&0) {
 			error!(target: "engine", "Authority Round step 0 duration is undefined, aborting");
 			return Err(Error::Engine(EngineError::Custom(String::from("step 0 duration is undefined"))));
@@ -882,7 +882,7 @@ impl AuthorityRound {
 				maximum_empty_steps: our_params.maximum_empty_steps,
 				two_thirds_majority_transition: our_params.two_thirds_majority_transition,
 				strict_empty_steps_transition: our_params.strict_empty_steps_transition,
-				machine,
+				mashina,
 				received_step_hashes: RwLock::new(Default::default()),
 				randomness_contract_address: our_params.randomness_contract_address,
 				block_gas_limit_contract_transitions: our_params.block_gas_limit_contract_transitions,
@@ -915,7 +915,7 @@ impl AuthorityRound {
 				}
 			};
 
-			if !epoch_manager.zoom_to_after(&*client, &self.machine, &*self.validators, *header.parent_hash()) {
+			if !epoch_manager.zoom_to_after(&*client, &self.mashina, &*self.validators, *header.parent_hash()) {
 				debug!(target: "engine", "Unable to zoom to epoch.");
 				return Err(EngineError::MissingParent(*header.parent_hash()).into())
 			}
@@ -1027,7 +1027,7 @@ impl AuthorityRound {
 		};
 
 		let mut epoch_manager = self.epoch_manager.lock();
-		if !epoch_manager.zoom_to_after(&*client, &self.machine, &*self.validators, *chain_head.parent_hash()) {
+		if !epoch_manager.zoom_to_after(&*client, &self.mashina, &*self.validators, *chain_head.parent_hash()) {
 			return Vec::new();
 		}
 
@@ -1163,7 +1163,7 @@ impl IoHandler<()> for TransitionHandler {
 impl Engine for AuthorityRound {
 	fn name(&self) -> &str { "AuthorityRound" }
 
-	fn machine(&self) -> &Machine { &self.machine }
+	fn mashina(&self) -> &Machine { &self.mashina }
 
 	/// Three fields - consensus step and the corresponding proposer signature, and a list of empty
 	/// step messages (which should be empty if no steps are skipped)
@@ -1277,7 +1277,7 @@ impl Engine for AuthorityRound {
 			CowLike::Borrowed(&*self.validators)
 		} else {
 			let mut epoch_manager = self.epoch_manager.lock();
-			if !epoch_manager.zoom_to_after(&*client, &self.machine, &*self.validators, parent.hash()) {
+			if !epoch_manager.zoom_to_after(&*client, &self.mashina, &*self.validators, parent.hash()) {
 				debug!(target: "engine", "Not preparing block: Unable to zoom to epoch.");
 				return SealingState::NotReady;
 			}
@@ -1448,7 +1448,7 @@ impl Engine for AuthorityRound {
 		let first = header.number() == 0;
 
 		let mut call = |to, data| {
-			let result = self.machine.execute_as_system(
+			let result = self.mashina.execute_as_system(
 				block,
 				to,
 				U256::max_value(), // unbounded gas? maybe make configurable.
@@ -1498,14 +1498,14 @@ impl Engine for AuthorityRound {
 			.range(..=block.header.number())
 			.last();
 		let rewards: Vec<_> = if let Some((_, contract)) = block_reward_contract_transition {
-			let mut call = engine::default_system_or_code_call(&self.machine, block);
+			let mut call = engine::default_system_or_code_call(&self.mashina, block);
 			let rewards = contract.reward(beneficiaries, &mut call)?;
 			rewards.into_iter().map(|(author, amount)| (author, RewardKind::External, amount)).collect()
 		} else {
 			beneficiaries.into_iter().map(|(author, reward_kind)| (author, reward_kind, self.block_reward)).collect()
 		};
 
-		block_reward::apply_block_rewards(&rewards, block, &self.machine)
+		block_reward::apply_block_rewards(&rewards, block, &self.mashina)
 	}
 
 	fn generate_engine_transactions(&self, block: &ExecutedBlock) -> Result<Vec<SignedTransaction>, Error> {
@@ -1701,7 +1701,7 @@ impl Engine for AuthorityRound {
 			};
 
 			let mut epoch_manager = self.epoch_manager.lock();
-			if !epoch_manager.zoom_to_after(&*client, &self.machine, &*self.validators, *chain_head.parent_hash()) {
+			if !epoch_manager.zoom_to_after(&*client, &self.mashina, &*self.validators, *chain_head.parent_hash()) {
 				return None;
 			}
 
@@ -1803,7 +1803,7 @@ impl Engine for AuthorityRound {
 		};
 
 		let first = signal_number == 0;
-		match self.validators.epoch_set(first, &self.machine, signal_number, set_proof) {
+		match self.validators.epoch_set(first, &self.mashina, signal_number, set_proof) {
 			Ok((list, finalize)) => {
 				let verifier = Box::new(EpochVerifier {
 					step: self.step.clone(),
@@ -1860,7 +1860,7 @@ impl Engine for AuthorityRound {
 	}
 
 	fn params(&self) -> &CommonParams {
-		self.machine.params()
+		self.mashina.params()
 	}
 
 	fn gas_limit_override(&self, header: &Header) -> Option<U256> {
@@ -1933,7 +1933,7 @@ mod tests {
 	};
 	use engine::Engine;
 	use block_reward::BlockRewardContract;
-	use machine::Machine;
+	use mashina::Machine;
 	use spec::{self, Spec};
 	use validator_set::{TestSet, SimpleList};
 	use vapjson;
@@ -1971,8 +1971,8 @@ mod tests {
 		// create engine
 		let mut c_params = CommonParams::default();
 		c_params.gas_limit_bound_divisor = 5.into();
-		let machine = Machine::regular(c_params, Default::default());
-		AuthorityRound::new(params, machine).unwrap()
+		let mashina = Machine::regular(c_params, Default::default());
+		AuthorityRound::new(params, mashina).unwrap()
 	}
 
 	#[test]

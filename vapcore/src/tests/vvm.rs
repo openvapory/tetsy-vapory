@@ -20,10 +20,10 @@ use std::sync::Arc;
 use hash::keccak;
 use tetsy_vm::{EnvInfo, ActionParams, ActionValue, ActionType, ParamsType};
 use vvm::Factory;
-use machine::{
+use mashina::{
 	executive::Executive,
 	substate::Substate,
-	test_helpers::new_eip210_test_machine,
+	test_helpers::new_eip210_test_mashina,
 };
 use test_helpers::get_temp_state_with_factory;
 use trace::{NoopVMTracer, NoopTracer};
@@ -41,7 +41,7 @@ fn test_blockhash_eip210(factory: Factory) {
 	let test_blockhash_contract = "73fffffffffffffffffffffffffffffffffffffffe33141561007a57600143036020526000356101006020510755600061010060205107141561005057600035610100610100602051050761010001555b6000620100006020510714156100755760003561010062010000602051050761020001555b61014a565b4360003512151561009057600060405260206040f35b610100600035430312156100b357610100600035075460605260206060f3610149565b62010000600035430312156100d157600061010060003507146100d4565b60005b156100f6576101006101006000350507610100015460805260206080f3610148565b630100000060003543031215610116576000620100006000350714610119565b60005b1561013c57610100620100006000350507610200015460a052602060a0f3610147565b600060c052602060c0f35b5b5b5b5b";
 	let blockhash_contract_code = Arc::new(test_blockhash_contract.from_hex::<Vec<_>>().unwrap());
 	let blockhash_contract_code_hash = keccak(blockhash_contract_code.as_ref());
-	let machine = new_eip210_test_machine();
+	let mashina = new_eip210_test_mashina();
 	let mut env_info = EnvInfo::default();
 
 	// populate state with 256 last hashes
@@ -65,8 +65,8 @@ fn test_blockhash_eip210(factory: Factory) {
 			action_type: ActionType::Call,
 			params_type: ParamsType::Separate,
 		};
-		let schedule = machine.schedule(env_info.number);
-		let mut ex = Executive::new(&mut state, &env_info, &machine, &schedule);
+		let schedule = mashina.schedule(env_info.number);
+		let mut ex = Executive::new(&mut state, &env_info, &mashina, &schedule);
 		let mut substate = Substate::new();
 		if let Err(e) = ex.call(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer) {
 			panic!("Encountered error on updating last hashes: {}", e);
@@ -89,8 +89,8 @@ fn test_blockhash_eip210(factory: Factory) {
 		action_type: ActionType::Call,
 		params_type: ParamsType::Separate,
 	};
-	let schedule = machine.schedule(env_info.number);
-	let mut ex = Executive::new(&mut state, &env_info, &machine, &schedule);
+	let schedule = mashina.schedule(env_info.number);
+	let mut ex = Executive::new(&mut state, &env_info, &mashina, &schedule);
 	let mut substate = Substate::new();
 	let res = ex.call(params, &mut substate, &mut NoopTracer, &mut NoopVMTracer);
 	let output = match res {

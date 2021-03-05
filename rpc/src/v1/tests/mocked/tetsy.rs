@@ -19,7 +19,7 @@ use vapcore::test_helpers::TestBlockChainClient;
 use vapcore_logger::RotatingLogger;
 use vapory_types::{Address, U256, H256, BigEndianHash, Bloom};
 use crypto::publickey::{Generator, Random};
-use machine::executed::Executed;
+use mashina::executed::Executed;
 use miner::pool::local_transactions::Status as LocalTransactionStatus;
 use sync::ManageNetwork;
 use types::{

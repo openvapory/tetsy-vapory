@@ -28,7 +28,7 @@
 //! `LockedBlock` is a version of a `ClosedBlock` that cannot be reopened. It can be sealed
 //! using an engine.
 //!
-//! `ExecutedBlock` from the `machine` crate is the underlying data structure used by all structs
+//! `ExecutedBlock` from the `mashina` crate is the underlying data structure used by all structs
 //! above to store block related info.
 
 use std::{cmp, ops};
@@ -56,7 +56,7 @@ use types::{
 	receipt::{Receipt, TransactionOutcome},
 };
 use executive_state::ExecutiveState;
-use machine::ExecutedBlock;
+use mashina::ExecutedBlock;
 
 /// Block that is ready for transactions to be added.
 ///
@@ -127,10 +127,10 @@ impl<'x> OpenBlock<'x> {
 		let gas_floor_target = cmp::max(gas_range_target.0, engine.params().min_gas_limit);
 		let gas_ceil_target = cmp::max(gas_range_target.1, gas_floor_target);
 
-		engine.machine().populate_from_parent(&mut r.block.header, parent, gas_floor_target, gas_ceil_target);
+		engine.mashina().populate_from_parent(&mut r.block.header, parent, gas_floor_target, gas_ceil_target);
 		engine.populate_from_parent(&mut r.block.header, parent);
 
-		engine.machine().on_new_block(&mut r.block)?;
+		engine.mashina().on_new_block(&mut r.block)?;
 		engine.on_new_block(&mut r.block, is_epoch_begin)?;
 
 		Ok(r)
@@ -174,7 +174,7 @@ impl<'x> OpenBlock<'x> {
 		}
 
 		let env_info = self.block.env_info();
-		let outcome = self.block.state.apply(&env_info, self.engine.machine(), &t, self.block.traces.is_enabled())?;
+		let outcome = self.block.state.apply(&env_info, self.engine.mashina(), &t, self.block.traces.is_enabled())?;
 
 		self.block.transactions_set.insert(h.unwrap_or_else(||t.hash()));
 		self.block.transactions.push(t.into());

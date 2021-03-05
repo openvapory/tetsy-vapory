@@ -44,7 +44,7 @@ use light::on_demand::{
 use light::on_demand::error::Error as OnDemandError;
 use light::request::Field;
 use light::TransactionQueue;
-use machine::executed::ExecutionResult;
+use mashina::executed::ExecutionResult;
 
 use sync::{LightNetworkDispatcher, ManageNetwork, LightSyncProvider};
 

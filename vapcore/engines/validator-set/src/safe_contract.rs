@@ -25,7 +25,7 @@ use common_types::{
 	errors::{EngineError, VapcoreError, BlockError},
 	ids::BlockId,
 	log_entry::LogEntry,
-	engines::machine::{Call, AuxiliaryData, AuxiliaryRequest},
+	engines::mashina::{Call, AuxiliaryData, AuxiliaryRequest},
 	receipt::Receipt,
 };
 use vapabi::FunctionOutputDecoder;
@@ -35,7 +35,7 @@ use tetsy_keccak_hash::keccak;
 use tetsy_kvdb::DBValue;
 use lazy_static::lazy_static;
 use log::{debug, info, trace};
-use machine::Machine;
+use mashina::Machine;
 use memory_cache::MemoryLruCache;
 use tetsy_bytes::Bytes;
 use parking_lot::RwLock;
@@ -68,14 +68,14 @@ impl engine::StateDependentProof for StateProof {
 		prove_initial(self.contract_address, &self.header, caller)
 	}
 
-	fn check_proof(&self, machine: &Machine, proof: &[u8]) -> Result<(), String> {
+	fn check_proof(&self, mashina: &Machine, proof: &[u8]) -> Result<(), String> {
 		let (header, state_items) = decode_first_proof(&Rlp::new(proof))
 			.map_err(|e| format!("proof incorrectly encoded: {}", e))?;
 		if &header != &self.header {
 			return Err("wrong header in proof".into());
 		}
 
-		check_first_proof(machine, self.contract_address, header, &state_items).map(|_| ())
+		check_first_proof(mashina, self.contract_address, header, &state_items).map(|_| ())
 	}
 }
 
@@ -100,7 +100,7 @@ fn encode_first_proof(header: &Header, state_items: &[Vec<u8>]) -> Bytes {
 }
 
 // check a first proof: fetch the validator set at the given block.
-fn check_first_proof(machine: &Machine, contract_address: Address, old_header: Header, state_items: &[DBValue])
+fn check_first_proof(mashina: &Machine, contract_address: Address, old_header: Header, state_items: &[DBValue])
 	-> Result<Vec<Address>, String>
 {
 	use common_types::transaction::{Action, Transaction};
@@ -123,13 +123,13 @@ fn check_first_proof(machine: &Machine, contract_address: Address, old_header: H
 		gas_used: 0.into(),
 	};
 
-	// check state proof using given machine.
+	// check state proof using given mashina.
 	let number = old_header.number();
 	let (data, decoder) = validator_set::functions::get_validators::call();
 
 	let from = Address::zero();
 	let tx = Transaction {
-		nonce: machine.account_start_nonce(number),
+		nonce: mashina.account_start_nonce(number),
 		action: Action::Call(contract_address),
 		gas: PROVIDED_GAS.into(),
 		gas_price: U256::default(),
@@ -141,7 +141,7 @@ fn check_first_proof(machine: &Machine, contract_address: Address, old_header: H
 		state_items,
 		*old_header.state_root(),
 		&tx,
-		machine,
+		mashina,
 		&env_info,
 	);
 
@@ -354,7 +354,7 @@ impl ValidatorSet for ValidatorSafeContract {
 		}
 	}
 
-	fn epoch_set(&self, first: bool, machine: &Machine, _number: BlockNumber, proof: &[u8])
+	fn epoch_set(&self, first: bool, mashina: &Machine, _number: BlockNumber, proof: &[u8])
 		-> Result<(SimpleList, Option<H256>), VapcoreError>
 	{
 		let rlp = Rlp::new(proof);
@@ -365,7 +365,7 @@ impl ValidatorSet for ValidatorSafeContract {
 			let (old_header, state_items) = decode_first_proof(&rlp)?;
 			let number = old_header.number();
 			let old_hash = old_header.hash();
-			let addresses = check_first_proof(machine, self.contract_address, old_header, &state_items)
+			let addresses = check_first_proof(mashina, self.contract_address, old_header, &state_items)
 				.map_err(EngineError::InsufficientProof)?;
 
 			trace!(target: "engine", "Extracted epoch validator set at block #{}: {} addresses",
@@ -457,7 +457,7 @@ mod tests {
 	use accounts::AccountProvider;
 	use common_types::{
 		ids::BlockId,
-		engines::machine::AuxiliaryRequest,
+		engines::mashina::AuxiliaryRequest,
 		header::Header,
 		log_entry::LogEntry,
 		transaction::{Transaction, Action},

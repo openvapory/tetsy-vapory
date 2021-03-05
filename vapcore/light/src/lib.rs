@@ -71,7 +71,7 @@ extern crate tetsy_util_mem as malloc_size_of;
 extern crate failsafe;
 extern crate futures;
 extern crate tetsy_keccak_hasher;
-extern crate machine;
+extern crate mashina;
 extern crate tetsy_memory_db;
 extern crate tetsy_trie_db as trie;
 extern crate patricia_trie_vapory as vaptrie;

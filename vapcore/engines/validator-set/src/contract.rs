@@ -23,14 +23,14 @@ use tetsy_bytes::Bytes;
 use vapabi_contract::use_contract;
 use vapory_types::{H256, Address};
 use log::{warn, trace};
-use machine::Machine;
+use mashina::Machine;
 use parking_lot::RwLock;
 use common_types::{
 	BlockNumber,
 	ids::BlockId,
 	header::Header,
 	errors::VapcoreError,
-	engines::machine::{Call, AuxiliaryData},
+	engines::mashina::{Call, AuxiliaryData},
 };
 
 use client_traits::{EngineClient, TransactionRequest};
@@ -103,8 +103,8 @@ impl ValidatorSet for ValidatorContract {
 		self.validators.signals_epoch_end(first, header, aux)
 	}
 
-	fn epoch_set(&self, first: bool, machine: &Machine, number: BlockNumber, proof: &[u8]) -> Result<(SimpleList, Option<H256>), VapcoreError> {
-		self.validators.epoch_set(first, machine, number, proof)
+	fn epoch_set(&self, first: bool, mashina: &Machine, number: BlockNumber, proof: &[u8]) -> Result<(SimpleList, Option<H256>), VapcoreError> {
+		self.validators.epoch_set(first, mashina, number, proof)
 	}
 
 	fn contains_with_caller(&self, bh: &H256, address: &Address, caller: &Call) -> bool {

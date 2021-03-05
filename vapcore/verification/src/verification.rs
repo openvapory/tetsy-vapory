@@ -142,7 +142,7 @@ pub fn verify_block_family<C: BlockInfo + CallContract>(
 	for tx in &params.block.transactions {
 		// transactions are verified against the parent header since the current
 		// state wasn't available when the tx was created
-		engine.machine().verify_transaction(tx, parent, params.client)?;
+		engine.mashina().verify_transaction(tx, parent, params.client)?;
 	}
 
 	Ok(())
@@ -320,7 +320,7 @@ pub(crate) fn verify_header_params(header: &Header, engine: &dyn Engine, check_s
 		})));
 	}
 
-	if let Some(ref ext) = engine.machine().vapash_extensions() {
+	if let Some(ref ext) = engine.mashina().vapash_extensions() {
 		if header.number() >= ext.dao_hardfork_transition &&
 			header.number() <= ext.dao_hardfork_transition + 9 &&
 			header.extra_data()[..] != b"dao-hard-fork"[..] {
@@ -451,7 +451,7 @@ mod tests {
 	};
 	use rlp;
 	use triehash::ordered_trie_root;
-	use machine::Machine;
+	use mashina::Machine;
 	use null_engine::NullEngine;
 
 	use crate::test_helpers::TestBlockChain;
@@ -491,7 +491,7 @@ mod tests {
 			.map(SignedTransaction::new)
 			.collect::<Result<_,_>>()?;
 
-		// TODO: client is really meant to be used for state query here by machine
+		// TODO: client is really meant to be used for state query here by mashina
 		// additions that need access to state (tx filter in specific)
 		// no existing tests need access to test, so having this not function
 		// is fine.
@@ -775,8 +775,8 @@ mod tests {
 
 		let good_transactions = [bad_transactions[0].clone(), bad_transactions[1].clone()];
 
-		let machine = Machine::regular(params, BTreeMap::new());
-		let engine = NullEngine::new(Default::default(), machine);
+		let mashina = Machine::regular(params, BTreeMap::new());
+		let engine = NullEngine::new(Default::default(), mashina);
 		check_fail(unordered_test(&create_test_block_with_data(&header, &bad_transactions, &[]), &engine), TooManyTransactions(keypair.address()));
 		unordered_test(&create_test_block_with_data(&header, &good_transactions, &[]), &engine).unwrap();
 	}

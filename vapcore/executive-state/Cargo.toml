@@ -20,7 +20,7 @@ tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hashe
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4.8"
-machine = { path = "../machine" }
+mashina = { path = "../mashina" }
 vapcore-trace = { version = "0.1.0", path = "../trace" }
 trie-vm-factories = { version = "0.1.0", path = "../trie-vm-factories" }
 tetsy-vm = { version = "0.1.0", path = "../vm" }

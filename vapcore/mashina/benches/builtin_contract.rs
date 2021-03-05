@@ -23,9 +23,9 @@ use tetsy_bytes::Bytes;
 use vapcore::test_helpers::get_temp_state_db;
 use vapory_types::{H160, U256};
 use criterion::{black_box, criterion_main, criterion_group, Criterion};
-use machine::{test_helpers, Machine};
-use machine::executive::CallCreateExecutive;
-use machine::substate::Substate;
+use mashina::{test_helpers, Machine};
+use mashina::executive::CallCreateExecutive;
+use mashina::substate::Substate;
 use trace::{NoopTracer, NoopVMTracer};
 use trie_vm_factories::VmFactory;
 use tetsy_vm::{ActionParams, EnvInfo, Schedule};
@@ -35,11 +35,11 @@ const SHA256: &str = "0000000000000000000000000000000000000002";
 const SIGNED_DATA: &str = "hash000000000001v000000000000002r000000000000003s000000000000004";
 
 fn single_builtin_pricing() -> Machine {
-	test_helpers::load_machine(include_bytes!("../../res/vapory/builtin_one_activation_bench.json"))
+	test_helpers::load_mashina(include_bytes!("../../res/vapory/builtin_one_activation_bench.json"))
 }
 
 fn multiple_builtin_pricing() -> Machine {
-	test_helpers::load_machine(include_bytes!("../../res/vapory/builtin_multi_bench.json"))
+	test_helpers::load_mashina(include_bytes!("../../res/vapory/builtin_multi_bench.json"))
 }
 
 fn builtin_params(address: H160, execute: bool) -> ActionParams {
@@ -57,7 +57,7 @@ fn single_activation(c: &mut Criterion) {
 	let params = builtin_params(contract, false);
 
 	let env_info = EnvInfo::default();
-	let machine = single_builtin_pricing();
+	let mashina = single_builtin_pricing();
 	let schedule = Schedule::default();
 	let factory = VmFactory::default();
 	let depth = 0;
@@ -72,7 +72,7 @@ fn single_activation(c: &mut Criterion) {
         b.iter(|| black_box(CallCreateExecutive::new_call_raw(
 				params.clone(),
 				&env_info,
-				&machine,
+				&mashina,
 				&schedule,
 				&factory,
 				depth,
@@ -88,7 +88,7 @@ fn ten_multiple_activations(c: &mut Criterion) {
 	let params = builtin_params(contract, false);
 
 	let env_info = EnvInfo::default();
-	let machine = multiple_builtin_pricing();
+	let mashina = multiple_builtin_pricing();
 	let schedule = Schedule::default();
 	let factory = VmFactory::default();
 	let depth = 0;
@@ -103,7 +103,7 @@ fn ten_multiple_activations(c: &mut Criterion) {
         b.iter(|| black_box(CallCreateExecutive::new_call_raw(
 				params.clone(),
 				&env_info,
-				&machine,
+				&mashina,
 				&schedule,
 				&factory,
 				depth,
@@ -119,7 +119,7 @@ fn fourty_multiple_activations(c: &mut Criterion) {
 	let params = builtin_params(contract, false);
 
 	let env_info = EnvInfo::default();
-	let machine = multiple_builtin_pricing();
+	let mashina = multiple_builtin_pricing();
 	let schedule = Schedule::default();
 	let factory = VmFactory::default();
 	let depth = 0;
@@ -134,7 +134,7 @@ fn fourty_multiple_activations(c: &mut Criterion) {
         b.iter(|| black_box(CallCreateExecutive::new_call_raw(
 				params.clone(),
 				&env_info,
-				&machine,
+				&mashina,
 				&schedule,
 				&factory,
 				depth,

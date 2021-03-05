@@ -20,7 +20,7 @@ extern crate criterion;
 #[macro_use]
 extern crate lazy_static;
 
-extern crate machine;
+extern crate mashina;
 extern crate vapcore;
 extern crate vapcore_builtin;
 extern crate vapory_types;
@@ -31,8 +31,8 @@ use criterion::{Criterion, Bencher};
 use bytes::BytesRef;
 use vapcore_builtin::Builtin;
 use vapory_types::H160;
-use machine::Machine;
-use machine::test_helpers::new_byzantium_test_machine;
+use mashina::Machine;
+use mashina::test_helpers::new_byzantium_test_machine;
 use rustc_hex::FromHex;
 
 lazy_static! {
