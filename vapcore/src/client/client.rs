@@ -97,7 +97,7 @@ use mashina::{
 };
 use miner::{Miner, MinerService, PendingOrdering};
 use tetsy_registrar::RegistrarClient;
-use snapshot::{self, SnapshotClient, SnapshotWriter};
+use vapcore_snapshot::{self, SnapshotClient, SnapshotWriter};
 use spec::Spec;
 use state_db::StateDB;
 use vapcore_trace::{self, Database as TraceDatabase, ImportRequest as TraceImportRequest, LocalizedTrace, TraceDB};
