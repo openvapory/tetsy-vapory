@@ -87,7 +87,7 @@ extern crate tetsy_rlp;
 extern crate account_state;
 
 extern crate tetsy_stats;
-extern crate snapshot;
+extern crate vapcore_snapshot;
 extern crate tempdir;
 extern crate vapcore_trace;
 extern crate tetsy_vm;
