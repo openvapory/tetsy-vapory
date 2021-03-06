@@ -2593,9 +2593,9 @@ impl SnapshotClient for Client {
 				trace!(target: "snapshot", "Re-enabling pruning.");
 				self.snapshotting_at.store(0, Ordering::SeqCst)
 			}};
-			let chunker = snapshot::chunker(self.engine.snapshot_mode()).ok_or_else(|| SnapshotError::SnapshotsUnsupported)?;
+			let chunker = vapcore_snapshot::chunker(self.engine.snapshot_mode()).ok_or_else(|| SnapshotError::SnapshotsUnsupported)?;
 			// Spawn threads and take snapshot
-			snapshot::take_snapshot(
+			vapcore_snapshot::take_snapshot(
 				chunker,
 				&self.chain.read(),
 				block_hash,
