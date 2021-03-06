@@ -328,7 +328,7 @@ impl ValidatorSet for ValidatorSafeContract {
 				contract_address: self.contract_address,
 				header: header.clone(),
 			});
-			return enjen::EpochChange::Yes(engine::Proof::WithState(state_proof as Arc<_>));
+			return enjen::EpochChange::Yes(enjen::Proof::WithState(state_proof as Arc<_>));
 		}
 
 		// otherwise, we're checking for logs.
@@ -340,7 +340,7 @@ impl ValidatorSet for ValidatorSafeContract {
 		trace!(target: "engine", "detected epoch change event bloom");
 
 		match receipts {
-			None => engine::EpochChange::Unsure(AuxiliaryRequest::Receipts),
+			None => enjen::EpochChange::Unsure(AuxiliaryRequest::Receipts),
 			Some(receipts) => match self.extract_from_event(bloom, header, receipts) {
 				None => enjen::EpochChange::No,
 				Some(list) => {
@@ -348,7 +348,7 @@ impl ValidatorSet for ValidatorSafeContract {
 						&*list);
 
 					let proof = encode_proof(&header, receipts);
-					engine::EpochChange::Yes(engine::Proof::Known(proof))
+					enjen::EpochChange::Yes(enjen::Proof::Known(proof))
 				}
 			},
 		}
