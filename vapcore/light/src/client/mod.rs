@@ -18,7 +18,7 @@
 
 use std::sync::{Weak, Arc};
 
-use engine::{Engine, EpochChange, Proof};
+use enjen::{Engine, EpochChange, Proof};
 use verification::queue::{self, HeaderQueue};
 use spec::{Spec, SpecHardcodedSync};
 use io::IoChannel;
