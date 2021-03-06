@@ -1,6 +1,5 @@
 [package]
 description = "Tetsy Smart Contract based Node Filter, Manage Permissions of Network Connections"
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "node-filter"
 version = "1.12.0"
