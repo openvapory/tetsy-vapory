@@ -28,8 +28,8 @@ use sync::PrivateTxHandler;
 use blockchain::{BlockChainDB, BlockChainDBHandler};
 use vapcore::client::{Client, ClientConfig};
 use vapcore::miner::Miner;
-use snapshot::service::{Service as SnapshotService, ServiceParams as SnapServiceParams};
-use snapshot::{SnapshotService as _SnapshotService, SnapshotClient};
+use vapcore_snapshot::service::{Service as SnapshotService, ServiceParams as SnapServiceParams};
+use vapcore_snapshot::{SnapshotService as _SnapshotService, SnapshotClient};
 use spec::Spec;
 use common_types::{
 	io_message::ClientIoMessage,
@@ -239,7 +239,7 @@ where
 		trace_time!("service::read");
 		match timer {
 			CLIENT_TICK_TIMER => {
-				use snapshot::SnapshotService;
+				use vapcore_snapshot::SnapshotService;
 				let snapshot_restoration = if let RestorationStatus::Ongoing{..} = self.snapshot.status() { true } else { false };
 				self.client.tick(snapshot_restoration)
 			},
