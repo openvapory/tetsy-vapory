@@ -56,7 +56,7 @@ extern crate log;
 extern crate bincode;
 extern crate client_traits;
 extern crate common_types;
-extern crate engine;
+extern crate enjen;
 extern crate vapcore_blockchain;
 extern crate vapcore_db;
 extern crate vapcore_io as io;

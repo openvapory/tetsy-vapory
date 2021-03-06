@@ -22,7 +22,7 @@ extern crate account_state;
 extern crate ansi_term;
 extern crate client_traits;
 extern crate common_types as types;
-extern crate engine;
+extern crate enjen;
 extern crate vapcore_blockchain as blockchain;
 extern crate vapcore_call_contract as call_contract;
 extern crate vapcore_db as db;
