@@ -33,7 +33,7 @@ use common_types::{
 use client_traits::EngineClient;
 use vapory_types::{H256, H520};
 use parking_lot::RwLock;
-use engine::{Engine, ConstructedVerifier, signer::EngineSigner};
+use enjen::{Engine, ConstructedVerifier, signer::EngineSigner};
 use tetsy_crypto::publickey::Signature;
 use log::trace;
 use mashina::{Machine, executed_block::ExecutedBlock};
@@ -59,7 +59,7 @@ struct EpochVerifier {
 	list: SimpleList,
 }
 
-impl engine::EpochVerifier for EpochVerifier {
+impl enjen::EpochVerifier for EpochVerifier {
 	fn verify_light(&self, header: &Header) -> Result<(), Error> {
 		verify_external(header, &self.list)
 	}
@@ -142,13 +142,13 @@ impl Engine for BasicAuthority {
 	}
 
 	#[cfg(not(any(test, feature = "test-helpers")))]
-	fn signals_epoch_end(&self, _header: &Header, _auxiliary: AuxiliaryData) -> engine::EpochChange {
+	fn signals_epoch_end(&self, _header: &Header, _auxiliary: AuxiliaryData) -> enjen::EpochChange {
 		// don't bother signalling even though a contract might try.
-		engine::EpochChange::No
+		enjen::EpochChange::No
 	}
 
 	#[cfg(any(test, feature = "test-helpers"))]
-	fn signals_epoch_end(&self, header: &Header, auxiliary: AuxiliaryData) -> engine::EpochChange {
+	fn signals_epoch_end(&self, header: &Header, auxiliary: AuxiliaryData) -> enjen::EpochChange {
 		// in test mode, always signal even though they don't be finalized.
 		let first = header.number() == 0;
 		self.validators.signals_epoch_end(first, header, auxiliary)
