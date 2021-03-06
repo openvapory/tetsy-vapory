@@ -31,7 +31,7 @@ use common_types::{
 	errors::{BlockError, VapcoreError as Error},
 	snapshot::Snapshotting,
 };
-use engine::Engine;
+use enjen::Engine;
 use vapory_types::{H256, U256};
 use vapjson;
 use vapash::{self, quick_get_difficulty, slow_hash_block_number, VapashManager};
@@ -216,7 +216,7 @@ struct EpochVerifier {
 	pow: Arc<VapashManager>
 }
 
-impl engine::EpochVerifier for EpochVerifier {
+impl enjen::EpochVerifier for EpochVerifier {
 	fn verify_heavy(&self, header: &Header) -> Result<(), Error> {
 		verify_block_unordered(&self.pow, header)
 	}
@@ -263,7 +263,7 @@ impl Engine for Vapash {
 					beneficiaries.push((*uncle_author, RewardKind::uncle(number, u.number())));
 				}
 
-				let mut call = engine::default_system_or_code_call(&self.mashina, block);
+				let mut call = enjen::default_system_or_code_call(&self.mashina, block);
 
 				let rewards = c.reward(beneficiaries, &mut call)?;
 				rewards.into_iter().map(|(author, amount)| (author, RewardKind::External, amount)).collect()

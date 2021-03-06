@@ -79,7 +79,7 @@ pub trait Kind: 'static + Sized + Send + Sync {
 pub mod blocks {
 	use super::{Kind, BlockLike};
 
-	use engine::Engine;
+	use enjen::Engine;
 	use common_types::{
 		block::PreverifiedBlock,
 		errors::{VapcoreError as Error, BlockError},

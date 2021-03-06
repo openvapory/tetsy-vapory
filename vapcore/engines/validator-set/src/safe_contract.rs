@@ -317,7 +317,7 @@ impl ValidatorSet for ValidatorSafeContract {
 	}
 
 	fn signals_epoch_end(&self, first: bool, header: &Header, aux: AuxiliaryData)
-		-> engine::EpochChange
+		-> enjen::EpochChange
 	{
 		let receipts = aux.receipts;
 
@@ -335,7 +335,7 @@ impl ValidatorSet for ValidatorSafeContract {
 		let bloom = self.expected_bloom(header);
 		let header_bloom = header.log_bloom();
 
-		if &bloom & header_bloom != bloom { return engine::EpochChange::No }
+		if &bloom & header_bloom != bloom { return enjen::EpochChange::No }
 
 		trace!(target: "engine", "detected epoch change event bloom");
 
