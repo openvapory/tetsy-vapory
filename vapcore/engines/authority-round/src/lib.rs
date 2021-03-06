@@ -41,7 +41,7 @@ use std::time::{UNIX_EPOCH, Duration};
 use std::u64;
 
 use client_traits::{EngineClient, ForceUpdateSealing, TransactionRequest};
-use engine::{Engine, ConstructedVerifier};
+use enjen::{Engine, ConstructedVerifier};
 use block_gas_limit::block_gas_limit;
 use block_reward::{self, BlockRewardContract, RewardKind};
 use vapjson;
@@ -53,7 +53,7 @@ use tetsy_macros::map;
 use tetsy_keccak_hash::keccak;
 use log::{info, debug, error, trace, warn};
 use lru_cache::LruCache;
-use engine::signer::EngineSigner;
+use enjen::signer::EngineSigner;
 use tetsy_crypto::publickey::Signature;
 use io::{IoContext, IoHandler, TimerToken, IoService};
 use itertools::{self, Itertools};
@@ -594,7 +594,7 @@ struct EpochVerifier {
 	two_thirds_majority_transition: BlockNumber,
 }
 
-impl engine::EpochVerifier for EpochVerifier {
+impl enjen::EpochVerifier for EpochVerifier {
 	fn verify_light(&self, header: &Header) -> Result<(), Error> {
 		// Validate the timestamp
 		verify_timestamp(&self.step.inner, header_step(header, self.empty_steps_transition)?)?;
@@ -1498,7 +1498,7 @@ impl Engine for AuthorityRound {
 			.range(..=block.header.number())
 			.last();
 		let rewards: Vec<_> = if let Some((_, contract)) = block_reward_contract_transition {
-			let mut call = engine::default_system_or_code_call(&self.mashina, block);
+			let mut call = enjen::default_system_or_code_call(&self.mashina, block);
 			let rewards = contract.reward(beneficiaries, &mut call)?;
 			rewards.into_iter().map(|(author, amount)| (author, RewardKind::External, amount)).collect()
 		} else {
@@ -1675,8 +1675,8 @@ impl Engine for AuthorityRound {
 			.map(|set_proof| combine_proofs(0, &set_proof, &[]))
 	}
 
-	fn signals_epoch_end(&self, header: &Header, aux: AuxiliaryData) -> engine::EpochChange {
-		if self.immediate_transitions { return engine::EpochChange::No }
+	fn signals_epoch_end(&self, header: &Header, aux: AuxiliaryData) -> enjen::EpochChange {
+		if self.immediate_transitions { return enjen::EpochChange::No }
 
 		let first = header.number() == 0;
 		self.validators.signals_epoch_end(first, header, aux)
@@ -1931,7 +1931,7 @@ mod tests {
 			TestNotify
 		},
 	};
-	use engine::Engine;
+	use enjen::Engine;
 	use block_reward::BlockRewardContract;
 	use mashina::Machine;
 	use spec::{self, Spec};
