@@ -30,7 +30,7 @@ use ansi_term::Colour;
 use sync::{NetworkConfiguration, validate_node_url, self};
 use tetsy_crypto::publickey::{Secret, Public};
 use vapcore::miner::{stratum, MinerOptions};
-use snapshot::SnapshotConfiguration;
+use vapcore_snapshot::SnapshotConfiguration;
 use miner::pool;
 use verification::queue::VerifierSettings;
 

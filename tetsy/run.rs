@@ -23,7 +23,7 @@ use ansi_term::Colour;
 use client_traits::{BlockInfo, BlockChainClient};
 use vapcore::client::{Client, DatabaseCompactionProfile};
 use vapcore::miner::{self, stratum, Miner, MinerService, MinerOptions};
-use snapshot::{self, SnapshotConfiguration};
+use vapcore_snapshot::{self, SnapshotConfiguration};
 use spec::SpecParams;
 use verification::queue::VerifierSettings;
 use vapcore_logger::{Config as LogConfig, RotatingLogger};

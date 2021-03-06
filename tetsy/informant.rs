@@ -33,8 +33,8 @@ use types::{
 	verification::VerificationQueueInfo as BlockQueueInfo,
 	snapshot::RestorationStatus,
 };
-use snapshot::SnapshotService as SS;
-use snapshot::service::Service as SnapshotService;
+use vapcore_snapshot::SnapshotService as SS;
+use vapcore_snapshot::service::Service as SnapshotService;
 use sync::{LightSyncProvider, LightSync, SyncProvider, ManageNetwork};
 use io::{TimerToken, IoContext, IoHandler};
 use light::Cache as LightDataCache;

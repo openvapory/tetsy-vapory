@@ -21,9 +21,9 @@ use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
 use hash::keccak;
-use snapshot::{SnapshotConfiguration, SnapshotService as SS, SnapshotClient};
-use snapshot::io::{SnapshotReader, PackedReader, PackedWriter};
-use snapshot::service::Service as SnapshotService;
+use vapcore_snapshot::{SnapshotConfiguration, SnapshotService as SS, SnapshotClient};
+use vapcore_snapshot::io::{SnapshotReader, PackedReader, PackedWriter};
+use vapcore_snapshot::service::Service as SnapshotService;
 use vapcore::client::{Client, DatabaseCompactionProfile};
 use vapcore::miner::Miner;
 use vapcore_service::ClientService;

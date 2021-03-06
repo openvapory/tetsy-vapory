@@ -24,7 +24,7 @@ pub use tetsy_rpc::signer::SignerService;
 use account_utils::{self, AccountProvider};
 use vapcore::client::Client;
 use vapcore::miner::Miner;
-use snapshot::SnapshotService;
+use vapcore_snapshot::SnapshotService;
 use client_traits::BlockChainClient;
 use sync::SyncState;
 use vapcore_logger::RotatingLogger;
