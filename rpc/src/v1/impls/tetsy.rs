@@ -23,7 +23,7 @@ use vapory_types::{H64, H160, H256, H512, U64, U256};
 use vapcore::client::Call;
 use client_traits::{BlockChainClient, StateClient};
 use vapcore::miner::{self, MinerService, FilterOptions};
-use snapshot::SnapshotService;
+use vapcore_snapshot::SnapshotService;
 use account_state::state::StateInfo;
 use vapcore_logger::RotatingLogger;
 use vapkey::Brain;

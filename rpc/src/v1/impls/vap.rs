@@ -29,7 +29,7 @@ use client_traits::{BlockChainClient, StateClient, ProvingBlockChainClient, Stat
 use vapash::{self, SeedHashCompute};
 use vapcore::client::{Call, EngineInfo};
 use vapcore::miner::{self, MinerService};
-use snapshot::SnapshotService;
+use vapcore_snapshot::SnapshotService;
 use hash::keccak;
 use miner::external::ExternalMinerService;
 use sync::SyncProvider;
