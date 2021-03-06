@@ -63,7 +63,7 @@ struct StateProof {
 	header: Header,
 }
 
-impl engine::StateDependentProof for StateProof {
+impl enjen::StateDependentProof for StateProof {
 	fn generate_proof(&self, caller: &Call) -> Result<Vec<u8>, String> {
 		prove_initial(self.contract_address, &self.header, caller)
 	}

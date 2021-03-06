@@ -192,7 +192,7 @@ impl ChunkRebuilder {
 		transition_rlp: Rlp,
 		engine: &dyn Engine,
 	) -> Result<Verified, VapcoreError> {
-		use engine::ConstructedVerifier;
+		use enjen::ConstructedVerifier;
 
 		// decode.
 		let header: Header = transition_rlp.val_at(0)?;

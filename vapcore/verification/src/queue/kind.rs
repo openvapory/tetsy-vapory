@@ -16,7 +16,7 @@
 
 //! Definition of valid items for the verification queue.
 
-use engine::Engine;
+use enjen::Engine;
 
 use tetsy_util_mem::MallocSizeOf;
 use vapory_types::{H256, U256};
@@ -169,7 +169,7 @@ pub mod blocks {
 pub mod headers {
 	use super::{Kind, BlockLike};
 
-	use engine::Engine;
+	use enjen::Engine;
 	use common_types::{
 		header::Header,
 		errors::VapcoreError as Error,

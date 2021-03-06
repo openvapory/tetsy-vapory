@@ -20,7 +20,7 @@ use common_types::{
 	engines::params::CommonParams,
 	errors::VapcoreError as Error,
 };
-use engine::Engine;
+use enjen::Engine;
 use block_reward::{self, RewardKind};
 use vapory_types::U256;
 use mashina::{
