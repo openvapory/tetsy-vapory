@@ -56,7 +56,7 @@ use network::{
 	NetworkConfiguration as BasicNetworkConfiguration, NonReservedPeerMode, Error,
 	ConnectionFilter, IpFilter, NatType
 };
-use snapshot::SnapshotService;
+use vapcore_snapshot::SnapshotService;
 use parking_lot::{RwLock, Mutex};
 use tetsy_runtime::Executor;
 use trace_time::trace_time;

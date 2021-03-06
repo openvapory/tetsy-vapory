@@ -20,7 +20,7 @@ use std::iter::FromIterator;
 use vapory_types::H256;
 use tetsy_keccak_hash::keccak;
 use log::trace;
-use snapshot::SnapshotService;
+use vapcore_snapshot::SnapshotService;
 use common_types::snapshot::ManifestData;
 use indexmap::IndexSet;
 

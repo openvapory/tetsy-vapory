@@ -25,7 +25,7 @@ use vapcore_private_tx::PrivateStateDB;
 use network::client_version::ClientVersion;
 use network::{NetworkContext, PeerId, PacketId, Error, SessionInfo, ProtocolId};
 use parking_lot::RwLock;
-use snapshot::SnapshotService;
+use vapcore_snapshot::SnapshotService;
 use common_types::BlockNumber;
 
 /// IO interface for the syncing handler.
