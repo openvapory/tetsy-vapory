@@ -133,7 +133,7 @@ mod accounts {
 	}
 
 	pub fn miner_author(spec: &SpecType, dirs: &Directories, account_provider: &Arc<AccountProvider>, engine_signer: Address, passwords: &[Password]) -> Result<Option<::vapcore::miner::Author>, String> {
-		use engine::signer::EngineSigner;
+		use enjen::signer::EngineSigner;
 
 		// Check if engine signer exists
 		if !account_provider.has_account(engine_signer) {

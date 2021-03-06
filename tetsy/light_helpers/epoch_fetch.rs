@@ -16,7 +16,7 @@
 
 use std::sync::{Arc, Weak};
 
-use engine::{Engine, StateDependentProof};
+use enjen::{Engine, StateDependentProof};
 use sync::{LightSync, LightNetworkDispatcher};
 use types::{
 	header::Header,
