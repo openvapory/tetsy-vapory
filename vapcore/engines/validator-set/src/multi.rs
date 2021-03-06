@@ -101,7 +101,7 @@ impl ValidatorSet for Multi {
 	}
 
 	fn signals_epoch_end(&self, _first: bool, header: &Header, aux: AuxiliaryData)
-		-> engine::EpochChange
+		-> enjen::EpochChange
 	{
 		let (set_block, set) = self.correct_set_by_number(header.number());
 		let first = set_block == header.number();

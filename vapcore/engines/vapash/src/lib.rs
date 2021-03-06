@@ -363,9 +363,9 @@ impl Engine for Vapash {
 		Ok(())
 	}
 
-	fn epoch_verifier<'a>(&self, _header: &Header, _proof: &'a [u8]) -> engine::ConstructedVerifier<'a> {
+	fn epoch_verifier<'a>(&self, _header: &Header, _proof: &'a [u8]) -> enjen::ConstructedVerifier<'a> {
 		let v = EpochVerifier{pow: self.pow.clone()};
-		engine::ConstructedVerifier::Trusted(Box::new(v))
+		enjen::ConstructedVerifier::Trusted(Box::new(v))
 	}
 
 	fn populate_from_parent(&self, header: &mut Header, parent: &Header) {

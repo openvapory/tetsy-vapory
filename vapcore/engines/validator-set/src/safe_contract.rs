@@ -328,7 +328,7 @@ impl ValidatorSet for ValidatorSafeContract {
 				contract_address: self.contract_address,
 				header: header.clone(),
 			});
-			return engine::EpochChange::Yes(engine::Proof::WithState(state_proof as Arc<_>));
+			return enjen::EpochChange::Yes(engine::Proof::WithState(state_proof as Arc<_>));
 		}
 
 		// otherwise, we're checking for logs.
@@ -342,7 +342,7 @@ impl ValidatorSet for ValidatorSafeContract {
 		match receipts {
 			None => engine::EpochChange::Unsure(AuxiliaryRequest::Receipts),
 			Some(receipts) => match self.extract_from_event(bloom, header, receipts) {
-				None => engine::EpochChange::No,
+				None => enjen::EpochChange::No,
 				Some(list) => {
 					info!(target: "engine", "Signal for transition within contract. New validator list: {:?}",
 						&*list);

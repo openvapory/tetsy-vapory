@@ -119,7 +119,7 @@ pub trait ValidatorSet: Send + Sync + 'static {
 		first: bool,
 		header: &Header,
 		aux: AuxiliaryData,
-	) -> engine::EpochChange;
+	) -> enjen::EpochChange;
 
 	/// Recover the validator set from the given proof, the block number, and
 	/// whether this header is first in its set.

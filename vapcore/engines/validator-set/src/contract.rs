@@ -99,7 +99,7 @@ impl ValidatorSet for ValidatorContract {
 		first: bool,
 		header: &Header,
 		aux: AuxiliaryData,
-	) -> engine::EpochChange {
+	) -> enjen::EpochChange {
 		self.validators.signals_epoch_end(first, header, aux)
 	}
 
