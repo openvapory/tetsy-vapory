@@ -10,7 +10,7 @@ homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
-account-db = { path = "../account-db" }
+account-db = { version = "0.1.0", path = "../account-db" }
 account-state = { version = "0.1.0", path = "../account-state" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 common-types = { version = "0.1.0", path = "../types" }
