@@ -31,7 +31,7 @@ tetsy-util-mem = "0.3.0"
 rand = "0.7"
 parking_lot = "0.9"
 tetsy-rlp = "0.4.5"
-snapshot = { path = "../snapshot" }
+vapcore-snapshot = { path = "../snapshot" }
 trace-time = "0.1"
 triehash-vapory = { version = "0.2", path = "../../util/triehash-vapory" }
 

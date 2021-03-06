@@ -57,7 +57,7 @@ rustc-hex = "2"
 scopeguard = "1.0.0"
 serde = "1.0"
 serde_derive = "1.0"
-snapshot = { path = "snapshot" }
+vapcore-snapshot = { path = "snapshot" }
 spec = { path = "spec" }
 state-db = { version = "0.1.0", path = "state-db" }
 tempdir = { version = "0.3", optional = true }

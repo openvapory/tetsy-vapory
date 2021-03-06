@@ -22,7 +22,7 @@ vapory-types = "0.8.0"
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"
-snapshot = { path = "../snapshot" }
+vapcore-snapshot = { path = "../snapshot" }
 spec = { path = "../spec" }
 trace-time = "0.1"
 

@@ -5,6 +5,10 @@ license = "GPL-3.0"
 name = "node-filter"
 version = "1.12.0"
 authors = ["Parity Technologies <admin@parity.io>"]
+edition = "2018"
+documentation = "https://docs.rs/node-filter"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 client-traits = { version = "0.1.0", path = "../client-traits" }

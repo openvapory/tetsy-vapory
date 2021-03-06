@@ -1,6 +1,6 @@
 [package]
 description = "Take and restore snapshots of the blockchain and read/write it in chunks from/to disk"
-name = "snapshot"
+name = "vapcore-snapshot"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
 edition = "2018"
@@ -11,10 +11,10 @@ name = "to_fat_rlps"
 harness = false
 
 [dependencies]
-account-db = { path = "../account-db" }
+account-db = { version = "0.1.0", path = "../account-db" }
 account-state = { version = "0.1.0", path = "../account-state" }
-blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
-bloom-journal = { package = "vapcore-bloom-journal", path = "../../util/bloom" }
+blockchain = { version = "0.1.0", package = "vapcore-blockchain", path = "../blockchain" }
+bloom-journal = { version = "0.1.0", package = "vapcore-bloom-journal", path = "../../util/bloom" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
 client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
@@ -26,11 +26,10 @@ vapory-types = "0.8.0"
 vaptrie  = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }
 tetsy-hash-db = "0.15.2"
 itertools = "0.5"
-journaldb = { path = "../../util/journaldb" }
+journaldb = { version = "0.2.0", path = "../../util/journaldb" }
 tetsy-keccak-hash = "0.4.0"
 tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
 tetsy-kvdb = "0.3.2"
-# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4.8"
 num_cpus = "1.10.1"
 rand = "0.7"
