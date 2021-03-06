@@ -44,7 +44,7 @@ extern crate cli_signer;
 
 extern crate client_traits;
 extern crate common_types as types;
-extern crate engine;
+extern crate enjen;
 extern crate vapcore;
 extern crate vapcore_db;
 extern crate vapcore_io as io;
