@@ -73,7 +73,7 @@ extern crate tetsy_runtime;
 extern crate tetsy_updater as updater;
 extern crate tetsy_version;
 extern crate tetsy_registrar;
-extern crate snapshot;
+extern crate vapcore_snapshot;
 extern crate spec;
 extern crate verification;
 

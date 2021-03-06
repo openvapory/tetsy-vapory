@@ -48,7 +48,7 @@ extern crate tetsy_registrar;
 extern crate tetsy_rlp;
 extern crate rustc_hex;
 extern crate serde;
-extern crate snapshot;
+extern crate vapcore_snapshot;
 extern crate spec;
 extern crate state_db;
 extern crate vapcore_trace;
