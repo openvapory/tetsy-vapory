@@ -18,7 +18,6 @@ vapory-types = "0.8.0"
 tetsy-hash-db = "0.15.2"
 tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
 tetsy-kvdb = "0.3.2"
-# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4.8"
 mashina = { version = "0.1.0", path = "../mashina" }
 vapcore-trace = { version = "0.1.0", path = "../trace" }
