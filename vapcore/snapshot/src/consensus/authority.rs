@@ -33,7 +33,7 @@ use common_types::{
 	receipt::Receipt,
 	snapshot::{ChunkSink, Progress, ManifestData}
 };
-use engine::{Engine, EpochVerifier};
+use enjen::{Engine, EpochVerifier};
 use vapory_types::{H256, U256};
 use itertools::{Position, Itertools};
 use tetsy_kvdb::KeyValueDB;

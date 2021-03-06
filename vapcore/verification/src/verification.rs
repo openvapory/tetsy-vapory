@@ -32,7 +32,7 @@ use tetsy_unexpected::{Mismatch, OutOfBounds};
 use blockchain::BlockProvider;
 use call_contract::CallContract;
 use client_traits::BlockInfo;
-use engine::Engine;
+use enjen::Engine;
 use common_types::{
 	BlockNumber,
 	header::Header,

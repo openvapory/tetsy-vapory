@@ -33,7 +33,7 @@ use common_types::{
 	snapshot::{ManifestData, Progress, RestorationStatus},
 };
 use client_traits::ChainInfo;
-use engine::Engine;
+use enjen::Engine;
 use vapory_types::H256;
 use vapcore_io::IoChannel;
 use journaldb::Algorithm;

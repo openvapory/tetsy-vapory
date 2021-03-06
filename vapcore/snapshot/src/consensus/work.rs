@@ -33,7 +33,7 @@ use common_types::{
 	snapshot::{ChunkSink, ManifestData, Progress},
 	receipt::Receipt,
 };
-use engine::Engine;
+use enjen::Engine;
 use vapory_types::{H256, U256};
 use tetsy_kvdb::KeyValueDB;
 use log::trace;

@@ -38,7 +38,7 @@ use common_types::{
 	snapshot::{Progress, ManifestData},
 };
 use crossbeam_utils::thread;
-use engine::Engine;
+use enjen::Engine;
 use vapory_types::{H256, U256};
 use vaptrie::{TrieDB, TrieDBMut};
 use tetsy_hash_db::HashDB;

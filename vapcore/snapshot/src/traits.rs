@@ -24,7 +24,7 @@ use common_types::{
 	errors::{VapcoreError as Error, SnapshotError},
 	snapshot::{ManifestData, ChunkSink, Progress, RestorationStatus},
 };
-use engine::Engine;
+use enjen::Engine;
 use vapory_types::H256;
 use parking_lot::RwLock;
 
