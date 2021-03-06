@@ -795,7 +795,7 @@ fn execute_impl<Cr, Rr>(
 		true => None,
 		false => {
 			let sync = sync_provider.clone();
-			let watcher = Arc::new(snapshot::Watcher::new(
+			let watcher = Arc::new(vapcore_snapshot::Watcher::new(
 				service.client(),
 				move || sync.is_major_syncing(),
 				service.io().channel(),
