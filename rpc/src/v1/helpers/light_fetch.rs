@@ -741,7 +741,7 @@ where
 	tx: VapTransaction,
 	hdr: encoded::Header,
 	env_info: ::tetsy_vm::EnvInfo,
-	engine: Arc<dyn engine::Engine>,
+	engine: Arc<dyn enjen::Engine>,
 	on_demand: Arc<OD>,
 	sync: Arc<S>,
 }

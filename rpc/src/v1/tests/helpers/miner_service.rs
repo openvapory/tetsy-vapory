@@ -21,7 +21,7 @@ use std::collections::{BTreeMap, BTreeSet, HashMap};
 
 use bytes::Bytes;
 use client_traits::{Nonce, StateClient, ForceUpdateSealing};
-use engine::{Engine, signer::EngineSigner};
+use enjen::{Engine, signer::EngineSigner};
 use vapcore::block::SealedBlock;
 use vapcore::client::{PrepareOpenBlock, EngineInfo};
 use vapcore::miner::{self, MinerService, AuthoringParams, FilterOptions};

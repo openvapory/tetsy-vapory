@@ -34,7 +34,7 @@ impl EngineSigner {
 	}
 }
 
-impl engine::signer::EngineSigner for EngineSigner {
+impl enjen::signer::EngineSigner for EngineSigner {
 	fn sign(&self, message: Message) -> Result<Signature, Error> {
 		match self.accounts.sign(self.address, Some(self.password.clone()), message) {
 			Ok(ok) => Ok(ok),
