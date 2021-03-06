@@ -40,7 +40,7 @@ use parking_lot::RwLock;
 
 use call_contract::CallContract;
 use client_traits::{BlockInfo, Nonce};
-use engine::Engine;
+use enjen::Engine;
 use mashina::transaction_ext::Transaction;
 use miner;
 

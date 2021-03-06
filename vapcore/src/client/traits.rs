@@ -25,7 +25,7 @@ use types::{
 };
 
 use block::{OpenBlock, SealedBlock, ClosedBlock};
-use engine::Engine;
+use enjen::Engine;
 use mashina::executed::Executed;
 use account_state::state::StateInfo;
 

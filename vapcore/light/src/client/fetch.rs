@@ -23,7 +23,7 @@ use common_types::{
 	encoded,
 	receipt::Receipt,
 };
-use engine::{Engine, StateDependentProof};
+use enjen::{Engine, StateDependentProof};
 use vapory_types::H256;
 use futures::future::IntoFuture;
 

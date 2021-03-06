@@ -37,7 +37,7 @@ use std::sync::Arc;
 use bytes::Bytes;
 use vapory_types::{H256, U256, Address, Bloom};
 
-use engine::Engine;
+use enjen::Engine;
 use trie_vm_factories::Factories;
 use state_db::StateDB;
 use account_state::State;

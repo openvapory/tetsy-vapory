@@ -83,7 +83,7 @@ use client_traits::{
 	ForceUpdateSealing
 };
 use db::{keys::BlockDetails, Readable, Writable};
-use engine::Engine;
+use enjen::Engine;
 use vapcore_miner::pool::VerifiedTransaction;
 use vaptrie::Layout;
 use vvm::Schedule;
@@ -602,7 +602,7 @@ impl Importer {
 		state_db: &StateDB,
 		client: &Client,
 	) -> VapcoreResult<Option<PendingTransition>> {
-		use engine::EpochChange;
+		use enjen::EpochChange;
 
 		let hash = header.hash();
 		let auxiliary = AuxiliaryData {
@@ -612,7 +612,7 @@ impl Importer {
 
 		match self.engine.signals_epoch_end(header, auxiliary) {
 			EpochChange::Yes(proof) => {
-				use engine::Proof;
+				use enjen::Proof;
 
 				let proof = match proof {
 					Proof::Known(proof) => proof,

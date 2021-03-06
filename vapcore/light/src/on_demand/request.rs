@@ -24,7 +24,7 @@ use common_types::basic_account::BasicAccount;
 use common_types::encoded;
 use common_types::receipt::Receipt;
 use common_types::transaction::SignedTransaction;
-use engine::{Engine, StateDependentProof};
+use enjen::{Engine, StateDependentProof};
 use executive_state::{ProvedExecution, self};
 use vapory_types::{H256, U256, Address};
 use vaptrie::{TrieError, TrieDB};
