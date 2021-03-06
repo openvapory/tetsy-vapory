@@ -78,7 +78,7 @@ use log::{debug, error};
 use tetsy_crypto::publickey::{ecies, Error as CryptoError};
 use tetsy_bytes::Bytes;
 use rand::Rng;
-use engine::signer::EngineSigner;
+use enjen::signer::EngineSigner;
 
 use crate::util::{BoundContract, CallError};
 
