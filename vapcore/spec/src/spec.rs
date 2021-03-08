@@ -38,7 +38,7 @@ use authority_round::AuthorityRound;
 use basic_authority::BasicAuthority;
 use bytes::Bytes;
 use builtin::Builtin;
-use clique::Clique;
+use vapcore_clique::Clique;
 use enjen::Engine;
 use vapash_engine::Vapash;
 use vapory_types::{H256, Bloom, U256, Address};
