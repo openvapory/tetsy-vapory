@@ -13,7 +13,7 @@ repository = "https://github.com/openvapory/tetsy-vapory"
 client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
 vapory-types = "0.8.0"
-vapjson = { path = "../../../json" }
+vapjson = { version = "0.1.0",path = "../../../json" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 enjen = { version = "0.1.0", path = "../../enjen" }
 tetsy-keccak-hash = "0.4.0"
@@ -25,10 +25,10 @@ tetsy-macros = { version = "0.1.0", path = "../../../util/macros" }
 rand = "0.7"
 parking_lot = "0.9"
 tetsy-rlp = "0.4.5"
-time-utils = { path = "../../../util/time-utils" }
-tetsy-unexpected = { path = "../../../util/tetsy-unexpected" }
+time-utils = { version = "0.1.0", path = "../../../util/time-utils" }
+tetsy-unexpected = { version = "0.1.0", path = "../../../util/tetsy-unexpected" }
 
 [dev-dependencies]
 vapcore = { path = "../..", features = ["test-helpers"] }
-vapcore-spec = { version = "0.1.0", path = "../../spec" }
+vapcore-spec = { path = "../../spec" }
 state-db = { version = "0.1.0", path = "../../state-db" }
