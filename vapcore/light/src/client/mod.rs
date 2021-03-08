@@ -20,7 +20,7 @@ use std::sync::{Weak, Arc};
 
 use enjen::{Engine, EpochChange, Proof};
 use verification::queue::{self, HeaderQueue};
-use spec::{Spec, SpecHardcodedSync};
+use vapcore_spec::{Spec, SpecHardcodedSync};
 use io::IoChannel;
 use parking_lot::{Mutex, RwLock};
 use vapory_types::{H256, U256};

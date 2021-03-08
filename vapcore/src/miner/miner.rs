@@ -61,7 +61,7 @@ use client::{BlockProducer, SealedBlockImporter, Client};
 use client_traits::{BlockChain, ChainInfo, Nonce, TransactionInfo, EngineClient, ForceUpdateSealing};
 use enjen::{Engine, signer::EngineSigner};
 use mashina::executive::contract_address;
-use spec::Spec;
+use vapcore_spec::Spec;
 use account_state::State;
 use tetsy_vm::CreateContractAddress;
 

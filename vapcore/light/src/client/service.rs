@@ -26,7 +26,7 @@ use common_types::{
 };
 use vapcore_db as db;
 use vapcore_blockchain::BlockChainDB;
-use spec::Spec;
+use vapcore_spec::Spec;
 use io::{IoContext, IoError, IoHandler, IoService};
 
 use cache::Cache;

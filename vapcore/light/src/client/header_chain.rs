@@ -41,7 +41,7 @@ use common_types::{
 	header::Header,
 	ids::BlockId,
 };
-use spec::{Spec, SpecHardcodedSync};
+use vapcore_spec::{Spec, SpecHardcodedSync};
 use vapory_types::{H256, H264, U256};
 use tetsy_util_mem::{MallocSizeOf, MallocSizeOfOps};
 use tetsy_kvdb::{DBTransaction, KeyValueDB};
