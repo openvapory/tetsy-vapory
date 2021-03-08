@@ -1,0 +1,22 @@
+[package]
+name = "blooms-db"
+version = "0.1.0"
+license = "GPL-3.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+description = "Vapory blooms database"
+documentation = "https://docs.rs/blooms-db"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+vapbloom = "0.8.0"
+parking_lot = "0.9"
+
+[dev-dependencies]
+criterion = "0.3"
+tempdir = "0.3"
+
+[[bench]]
+name = "blooms"
+harness = false

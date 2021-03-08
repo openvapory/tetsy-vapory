@@ -1,0 +1,34 @@
+[package]
+description = "VapCore Client & Network Service Creation & Registration with the I/O Subsystem"
+name = "vapcore-service"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+license = "GPL-3.0"
+edition = "2018"
+documentation = "https://docs.rs/vapcore-service"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+ansi_term = "0.11"
+client-traits = { version = "0.1.0", path = "../client-traits" }
+common-types = { version = "0.1.0", path = "../types" }
+vapcore = { path = ".." }
+vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
+vapcore-private-tx = { path = "../private-tx" }
+vapcore-sync = { path = "../sync" }
+vapory-types = "0.8.0"
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+log = "0.4"
+vapcore-snapshot = { path = "../snapshot" }
+spec = { path = "../spec" }
+trace-time = "0.1"
+
+[dev-dependencies]
+vapcore = { path = "..", features = ["test-helpers"] }
+vapcore-db = { version = "0.1.0", path = "../db" }
+tetsy-kvdb-rocksdb = "0.4.3"
+# tetsy-kvdb-rocksdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+tempdir = "0.3"

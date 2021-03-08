@@ -1,0 +1,44 @@
+[package]
+description = "Vapory engine specification"
+name = "vapcore-spec"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+license = "GPL-3.0"
+documentation = "https://docs.rs/vapcore-spec"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+account-state = { version = "0.1.0", path = "../account-state" }
+authority-round = { path = "../engines/authority-round" }
+basic-authority = { path = "../engines/basic-authority" }
+builtin = { package = "vapcore-builtin", path = "../builtin" }
+bytes = { package = "tetsy-bytes", version = "0.1.0" }
+clique = { path = "../engines/clique" }
+common-types = { version = "0.1.0", path = "../types" }
+enjen = { version = "0.1.0", path = "../enjen" }
+vapash = { version = "1.12.0", path = "../../vapash" }
+vapash-engine = { path = "../engines/vapash" }
+vapory-types = "0.8.0"
+vapjson = { path = "../../json" }
+vvm = { version = "0.1.0", path = "../vvm" }
+executive-state = { path = "../executive-state" }
+tetsy-hash-db = "0.15.2"
+instant-seal = { path = "../engines/instant-seal" }
+journaldb = { path = "../../util/journaldb" }
+tetsy-keccak-hash = "0.4.0"
+tetsy-kvdb-memorydb = "0.3.2"
+log = "0.4.8"
+mashina = { path = "../mashina" }
+null-engine = { path = "../engines/null-engine" }
+vapcore-pod = { version = "0.1.0", path = "../pod" }
+tetsy-rlp = "0.4.5"
+vapcore-trace = { version = "0.1.0", path = "../trace" }
+trie-vm-factories = { version = "0.1.0", path = "../trie-vm-factories" }
+tetsy-vm = { version = "0.1.0", path = "../vm" }
+
+[dev-dependencies]
+vapcore = { path = "..", features = ["test-helpers"] }
+env_logger = "0.5"
+tempdir = "0.3.7"

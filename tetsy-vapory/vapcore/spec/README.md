@@ -1,0 +1,3 @@
+## vapcore-spec
+
+Blockchain params.

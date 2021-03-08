@@ -1,0 +1,10 @@
+[package]
+name = "using-queue"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+description = "Special queue-like data structure"
+license = "GPL-3.0"
+edition = "2018"
+documentation = "https://docs.rs/using-queue"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"

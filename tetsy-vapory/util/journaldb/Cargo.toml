@@ -1,0 +1,35 @@
+[package]
+name = "journaldb"
+version = "0.2.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+description = "A `HashDB` which can manage a short-term journal potentially containing many forks of mutually exclusive actions"
+license = "GPL-3.0"
+edition = "2018"
+documentation = "https://docs.rs/journaldb"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+tetsy-bytes = "0.1"
+vapory-types = "0.8.0"
+tetsy-hash-db = "0.15.2"
+tetsy-util-mem = "0.3.0"
+tetsy-keccak-hasher = { version = "0.1.1", path = "../tetsy-keccak-hasher" }
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+log = "0.4"
+tetsy-memory-db = "0.18.1"
+# tetsy-memory-db = { git = "https://github.com/tetcoin/trie.git", rev = "08fbb7824b2a07636d9942e0e2937d5d8b90e1bd" }
+parking_lot = "0.9"
+fastmap = { version = "0.1.0", path = "../../util/fastmap" }
+tetsy-rlp = "0.4.5"
+
+# [dependencies.tetsy-memory-db]
+# git = "https://github.com/tetcoin/trie"
+# rev = "193a225"
+
+[dev-dependencies]
+env_logger = "0.5"
+tetsy-keccak-hash = "0.4.0"
+tetsy-kvdb-memorydb = "0.3.2"
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }

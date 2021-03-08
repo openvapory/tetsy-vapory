@@ -1,0 +1,13 @@
+[package]
+name = "memory-cache"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+description = "An LRU-cache which operates on memory used"
+license = "GPL-3.0"
+documentation = "https://docs.rs/memory-cache"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+tetsy-util-mem = "0.3.0"
+lru-cache = "0.1"

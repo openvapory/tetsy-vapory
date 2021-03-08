@@ -1,0 +1,38 @@
+[package]
+description = "Vapory Blockchain Database, Test Generator, Configuration, Caching, Importing Blocks, and Block Information"
+license = "GPL-3.0"
+name = "vapcore-blockchain"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+documentation = "https://docs.rs/account-db"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+ansi_term = "0.11"
+blooms-db = { version = "0.1.0", path = "../../util/blooms-db" }
+common-types = { version = "0.1.0", path = "../types" }
+vapcore-db = { version = "0.1.0", path = "../db" }
+vapory-types = "0.8.0"
+tetsy-keccak-hash = "0.4.0"
+tetsy-util-mem = "0.3.0"
+itertools = "0.5"
+tetsy-kvdb = "0.3.2"
+log = "0.4"
+tetsy-bytes = "0.1"
+rand = "0.7"
+parking_lot = "0.9"
+rayon = "1.0"
+tetsy-rlp = "0.4.5"
+rlp-compress = { version = "0.1.0", path = "../../util/rlp-compress" }
+tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
+triehash-vapory = { version = "0.2",  path = "../../util/triehash-vapory" }
+
+[dev-dependencies]
+env_logger = "0.5"
+tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
+rustc-hex = "1.0"
+tempdir = "0.3"
+tetsy-kvdb-memorydb = "0.3.2"
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }

@@ -1,0 +1,31 @@
+[package]
+description = "Fetching hash-addressed content."
+homepage = "http://tetcoin.org"
+license = "GPL-3.0"
+name = "tetsy-hash-fetch"
+version = "1.12.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+
+[dependencies]
+call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../../vapcore/call-contract" }
+futures = "0.1"
+log = "0.4"
+mime = "0.3"
+mime_guess = "2.0.0-alpha.2"
+rand = "0.7"
+rustc-hex = "1.0"
+tetsy-fetch = { version = "0.1.0", path = "../../util/fetch" }
+tetsy-bytes = "0.1"
+vapory-types = "0.8.0"
+tetsy-runtime = { path = "../../util/runtime" }
+tetsy-keccak-hash = "0.4.0"
+tetsy-registrar = { version = "0.0.1", path = "../../util/tetsy-registrar" }
+types = { path = "../../vapcore/types", package = "common-types" }
+
+vapabi = "9.0.1"
+vapabi-derive = "9.0.1"
+vapabi-contract = "9.0.0"
+
+[dev-dependencies]
+parking_lot = "0.9"
+fake-fetch = { path = "../../util/fake-fetch" }

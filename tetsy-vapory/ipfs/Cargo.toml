@@ -1,0 +1,22 @@
+[package]
+description = "Tetsy Vapory IPFS-compatible API"
+name = "tetsy-ipfs-api"
+version = "1.12.0"
+license = "GPL-3.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+
+[dependencies]
+client-traits = { version = "0.1.0", path = "../vapcore/client-traits" }
+common-types = { version = "0.1.0", path = "../vapcore/types" }
+bytes = { package = "tetsy-bytes", version = "0.1"}
+vapory-types = "0.8.0"
+tetsy-jsonrpc-core = "14.2.1"
+http = { package = "tetsy-jsonrpc-http-server", version = "14.2.1"}
+tetsy-rlp = "0.4.5"
+cid = "0.3"
+multihash = "0.8"
+unicase = "2.0"
+
+[dev-dependencies]
+vapcore = { path = "../vapcore", features = ["test-helpers"] }

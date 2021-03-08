@@ -1,0 +1,25 @@
+[package]
+description = "A crate to interact with the block rewards contract."
+name = "block-reward"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+license = "GPL-3.0"
+documentation = "https://docs.rs/enjen"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+common-types = { version = "0.1.0", path = "../types" }
+enjen = { version = "0.1.0", path = "../enjen" }
+vapabi = "9.0.1"
+vapabi-derive = "9.0.1"
+vapabi-contract = "9.0.0"
+vapory-types = "0.8.0"
+tetsy-keccak-hash = "0.4.0"
+mashina = { version = "0.1.0", path = "../mashina" }
+vapcore-trace = { version = "0.1.0", path = "../trace" }
+
+[dev-dependencies]
+vapcore = { path = "..", features = ["test-helpers"] }
+spec = { path = "../spec" }

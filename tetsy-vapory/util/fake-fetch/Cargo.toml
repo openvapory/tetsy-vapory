@@ -1,0 +1,14 @@
+[package]
+description = "Mock fetcher for testing"
+name = "fake-fetch"
+version = "0.0.1"
+license = "GPL-3.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+documentation = "https://docs.rs/fake-fetch"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+tetsy-fetch = { version = "0.1.0", path = "../fetch" }
+futures = "0.1"
+hyper = "0.12"

@@ -1,0 +1,12 @@
+[package]
+name = "tetsy-stats"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+description = "Tetsy Statistical functions and helpers."
+license = "GPL-3.0"
+documentation = "https://docs.rs/tetsy-stats"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+log = "0.4"

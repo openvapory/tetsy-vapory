@@ -1,0 +1,48 @@
+[package]
+description = "Tetsy Vapory (VapCore) Blockchain Synchronization (Strategy, Blockchain Downloader, Blockchain Synchronization Implementation of Vapory Protocol, Propagating Data to Peers, Requesting Data from Peers, Supplying Data in Response to Peer Requests, Handling Peer Responses, Matching Packet IDs and Protocol, Light Client Synchronization of Header Chain, Header Download State Machine, Light Decoding & Verifying Header Responses, Private Transaction Handling, Synchronization Snapshot Service to Download & Verify Block Chunks, Peer Connection Management and Blockchain Client I/O Interface for Synchronization Handler, Transaction Statistics)"
+name = "vapcore-sync"
+version = "1.12.0"
+license = "GPL-3.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+
+[lib]
+
+[dependencies]
+bytes = { package = "tetsy-bytes", version = "0.1" }
+client-traits = { version = "0.1.0", path = "../client-traits" }
+common-types = { version = "0.1.0", path = "../types" }
+devp2p = { package = "vapcore-network-devp2p", path = "../../util/network-devp2p" }
+enum_primitive = "0.1.1"
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
+vapcore-private-tx = { path = "../private-tx" }
+vapory-types = "0.8.0"
+fastmap = { path = "../../util/fastmap" }
+futures = "0.1"
+indexmap = "1.3.0"
+tetsy-keccak-hash = "0.4.0"
+light = { package = "vapcore-light", path = "../light" }
+log = "0.4"
+tetsy-macros = { version = "0.1.0", path = "../../util/macros" }
+network = { package = "vapcore-network", path = "../../util/network" }
+tetsy-runtime = { path = "../../util/runtime" }
+tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
+tetsy-util-mem = "0.3.0"
+rand = "0.7"
+parking_lot = "0.9"
+tetsy-rlp = "0.4.5"
+vapcore-snapshot = { path = "../snapshot" }
+trace-time = "0.1"
+triehash-vapory = { version = "0.2", path = "../../util/triehash-vapory" }
+
+[dev-dependencies]
+env_logger = "0.5"
+enjen = { version = "0.1.0", path = "../enjen" }
+vapcore = { path = "..", features = ["test-helpers"] }
+vapcore-io = { version = "1.12.0", path = "../../util/io", features = ["mio"] }
+tetsy-kvdb-memorydb = "0.3.2"
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+mashina = { version = "0.1.0", path = "../mashina" }
+rand_xorshift = "0.2"
+rustc-hex = "1.0"
+spec = { path = "../spec" }

@@ -1,0 +1,24 @@
+[package]
+description = "Tetsy Vapory Account Management"
+license = "GPL-3.0"
+name = "vapcore-accounts"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+documentation = "https://docs.rs/vapcore-accounts"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+vapkey = { version = "0.4.0", path = "vapkey" }
+vapstore = { version = "0.2.1", path = "vapstore" }
+log = "0.4"
+tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
+parking_lot = "0.9"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+
+[dev-dependencies]
+vapory-types = "0.8.0"
+tempdir = "0.3"

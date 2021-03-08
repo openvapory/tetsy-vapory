@@ -1,0 +1,49 @@
+name:               tetsy
+version:            $VERSION
+architectures:      [$BUILD_ARCH]
+grade:              $GRADE
+confinement:        strict
+
+summary:            Fast, light, robust Vapory implementation
+description:        |
+  Tetsy's goal is to be the fastest, lightest, and most secure Vapory
+  client. We are developing Tetsy using the sophisticated and cutting-edge
+  Rust programming language. Tetsy is licensed under the GPLv3, and can be
+  used for all your Vapory needs.
+
+apps:
+  tetsy:
+    command:        tetsy
+    plugs:          [home, network, network-bind, mount-observe, removable-media, x11, unity7, desktop, desktop-legacy, wayland]
+    desktop:        ./usr/share/applications/tetsy.desktop
+  tetsy-vvm:
+    command:        tetsy-vvm
+    plugs:          [home, network, network-bind, removable-media]
+  vapkey:
+    command:        vapkey
+    plugs:          [home, removable-media]
+  vapstore:
+    command:        vapstore
+    plugs:          [home, removable-media]
+
+icon:               ./scripts/snap/icon.png
+
+parts:
+  desktop-icon:
+    source:         ./scripts/snap
+    plugin:         nil
+    override-build:        |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/applications
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps
+      cp -v ./tetsy.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications/
+      cp -v ./icon.png $SNAPCRAFT_PART_INSTALL/usr/share/pixmaps/
+  tetsy:
+    source:         ./artifacts/$CARGO_TARGET
+    plugin:         nil
+    override-build:        |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
+      cp -v tetsy $SNAPCRAFT_PART_INSTALL/usr/bin/tetsy
+      cp -v tetsy-vvm $SNAPCRAFT_PART_INSTALL/usr/bin/tetsy-vvm
+      cp -v vapkey $SNAPCRAFT_PART_INSTALL/usr/bin/vapkey
+      cp -v vapstore $SNAPCRAFT_PART_INSTALL/usr/bin/vapstore
+    stage-packages: [libstdc++6, cmake, libdb5.3]

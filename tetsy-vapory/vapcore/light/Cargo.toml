@@ -1,0 +1,65 @@
+[package]
+description = "Tetsy Vapory (VapCore) Light Client Implementation (Block Import IO Service, Blockchain Data Fetching, Light Client Header Chain Storage, Tetsy Light Protocol (PLP) Provider, Light Transaction Queue, CHT Definitions, Light Client Data Cache), Tetsy Light Protocol (PLP) Implementation, P2P Network I/O and Event Context Generalization, Peer Error Handling & Punishment, Request Load Timer & Distribution Manager, Pending Request Set Storage, Request Credit Management, Light Client Request Types, Request Chain Builder Utility, On-demand Chain Request Service over LES (for RPCs), ResponseGuard Implementation)"
+license = "GPL-3.0"
+name = "vapcore-light"
+version = "1.12.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+documentation = "https://docs.rs/vapcore-light"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+log = "0.4"
+tetsy-bytes = "0.1"
+client-traits = { version = "0.1.0", path = "../client-traits" }
+common-types = { version = "0.1.0", path = "../types" }
+derive_more = "0.14.0"
+enjen = { version = "0.1.0", path = "../enjen" }
+vapcore-db = { version = "0.1.0", path = "../db" }
+vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
+vapory-types = "0.8.0"
+executive-state = { path = "../executive-state" }
+mashina = { version = "0.1.0", path = "../mashina" }
+tetsy-memory-db = "0.18.1"
+tetsy-trie-db = "0.19.2"
+patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }
+vapcore-network = { path = "../../util/network" }
+vapcore-miner = { version = "1.12.0", path = "../../miner" }
+vapcore-io = { version = "1.12.0", path = "../../util/io" }
+tetsy-hash-db = "0.15.2"
+tetsy-util-mem = "0.3.0"
+tetsy-vm = { version = "0.1.0", path = "../vm" }
+fastmap = { path = "../../util/fastmap" }
+failsafe = { version = "0.3.0", default-features = false, features = ["parking_lot_mutex"] }
+tetsy-rlp = "0.4.5"
+tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
+smallvec = "0.6"
+futures = "0.1"
+rand = "0.7"
+bincode = "1.1"
+serde = "1.0"
+serde_derive = "1.0"
+spec = { path = "../spec" }
+parking_lot = "0.9"
+tetsy-stats = { version = "0.1.0", path = "../../util/stats" }
+tetsy-keccak-hash = "0.4.0"
+tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
+triehash-vapory = { version = "0.2",  path = "../../util/triehash-vapory" }
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+memory-cache = { path = "../../util/memory-cache" }
+journaldb = { path = "../../util/journaldb" }
+verification = { path = "../verification" }
+
+# [dependencies.tetsy-memory-db]
+# git = "https://github.com/tetcoin/trie"
+# rev = "193a225"
+
+[dev-dependencies]
+vapcore = { path = "..", features = ["test-helpers"] }
+tetsy-kvdb-memorydb = "0.3.2"
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+tempdir = "0.3"
+
+[features]
+default = []

@@ -1,0 +1,22 @@
+[package]
+description = "Tetsy Vapory JSON Deserialization"
+name = "vapjson"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+license = "GPL-3.0"
+documentation = "https://docs.rs/vapjson"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+vapory-types = "0.8.0"
+rustc-hex = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[dev-dependencies]
+tetsy-macros = { version = "0.1.0", path = "../util/macros" }
+
+[features]
+test-helpers = []

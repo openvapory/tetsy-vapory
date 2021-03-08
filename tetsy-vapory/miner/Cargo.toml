@@ -1,0 +1,50 @@
+[package]
+description = "Tetsy Vapory Miner Interface."
+name = "vapcore-miner"
+license = "GPL-3.0"
+version = "1.12.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+documentation = "https://docs.rs/vapcore-miner"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+
+[dependencies]
+# Only work_notify, consider a separate crate
+vapash = { version = "1.12.0", path = "../vapash", optional = true }
+tetsy-fetch = { version = "0.1.0", path = "../util/fetch", optional = true }
+hyper = { version = "0.12", optional = true }
+url = { version = "2", optional = true }
+
+# Miner
+ansi_term = "0.11"
+common-types = { version = "0.1.0", path = "../vapcore/types" }
+vapabi = "9.0.1"
+vapabi-derive = "9.0.1"
+vapabi-contract = "9.0.0"
+vapcore-call-contract = { version = "0.1.0", path = "../vapcore/call-contract" }
+vapory-types = "0.8.0"
+futures = "0.1"
+tetsy-util-mem = "0.3.0"
+tetsy-keccak-hash = "0.4.0"
+linked-hash-map = "0.5"
+log = "0.4"
+tetsy-runtime = { version = "0.1.0", path = "../util/runtime" }
+parking_lot = "0.9"
+price-info = { version = "1.12.0", path = "./price-info", optional = true }
+tetsy-registrar = { version = "0.0.1", path = "../util/tetsy-registrar" }
+tetsy-rlp = "0.4.5"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+trace-time = "0.1"
+transaction-pool = "2.0.1"
+
+[dev-dependencies]
+env_logger = "0.5"
+tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
+rustc-hex = "1.0"
+
+[features]
+work-notify = ["vapash", "tetsy-fetch", "hyper", "url"]

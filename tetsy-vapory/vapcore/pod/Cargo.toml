@@ -1,0 +1,31 @@
+[package]
+name = "vapcore-pod"
+description = "State/Account system expressed in Plain Old Data."
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+license = "GPL-3.0"
+version = "0.1.0"
+edition = "2018"
+documentation = "https://docs.rs/vapcore-pod"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+common-types = { version = "0.1.0", path = "../types" }
+vapory-types = "0.8.0"
+vapjson = { version = "0.1.0", path = "../../json" }
+vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }
+tetsy-hash-db = "0.15.2"
+itertools = "0.8"
+tetsy-keccak-hash = "0.4.0"
+tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
+tetsy-kvdb = "0.3.2"
+log = "0.4"
+tetsy-bytes = "0.1.0"
+tetsy-rlp = "0.4.5"
+rustc-hex = "1"
+serde = { version = "1.0", features = ["derive"] }
+tetsy-trie-db = "0.19.2"
+triehash = { package = "triehash-vapory", version = "0.2",  path = "../../util/triehash-vapory" }
+
+[dev-dependencies]
+tetsy-macros = { version = "0.1.0", path = "../../util/macros" }

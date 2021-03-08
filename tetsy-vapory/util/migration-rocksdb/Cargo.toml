@@ -1,0 +1,21 @@
+[package]
+name = "migration-rocksdb"
+description = "Tetsy RocksDB Migration module."
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+license = "GPL-3.0"
+documentation = "https://docs.rs/migration-rocksdb"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+log = "0.4"
+tetsy-macros = { version = "0.1.0", path = "../macros" }
+tetsy-kvdb = "0.3.2"
+tetsy-kvdb-rocksdb = "0.4.3"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+# tetsy-kvdb-rocksdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+
+[dev-dependencies]
+tempdir = "0.3"

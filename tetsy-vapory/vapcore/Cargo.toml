@@ -1,0 +1,143 @@
+[package]
+description = "Tetsy Vapory (VapCore) Library"
+homepage = "http://tetcoin.org"
+license = "GPL-3.0"
+name = "vapcore"
+version = "1.12.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+
+[dependencies]
+account-state = { version = "0.1.0", path = "account-state" }
+ansi_term = "0.11"
+basic-authority = { path = "./engines/basic-authority", optional = true} # used by test-helpers feature
+blooms-db = { path = "../util/blooms-db", optional = true }
+client-traits = { version = "0.1.0", path = "./client-traits" }
+common-types = { version = "0.1.0", path = "./types" }
+enjen = { version = "0.1.0", path = "./enjen" }
+env_logger = { version = "0.5", optional = true }
+vapash = { version = "1.12.0", path = "../vapash", optional = true }
+vapjson = { path = "../json", optional = true }
+vapcore-blockchain = { version = "0.1.0", path = "./blockchain" }
+vapcore-call-contract = { version = "0.1.0", path = "./call-contract" }
+vapcore-db = { version = "0.1.0", path = "./db" }
+vapcore-io = { version = "1.12.0", path = "../util/io" }
+vapcore-miner = { version = "1.12.0", path = "../miner" }
+vapcore-stratum = { path = "../miner/stratum", optional = true }
+vapory-types = "0.8.0"
+vvm = { version = "0.1.0", path = "vvm" }
+executive-state = { path = "executive-state" }
+futures = "0.1"
+tetsy-hash-db = "0.15.2"
+itertools = "0.5"
+journaldb = { path = "../util/journaldb" }
+tetsy-keccak-hash = "0.4.0"
+tetsy-kvdb = "0.3.2"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+tetsy-kvdb-memorydb = { version = "0.3.2", optional = true }
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347", optional = true }
+tetsy-kvdb-rocksdb = { version = "0.4.3", optional = true }
+# tetsy-kvdb-rocksdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347", optional = true }
+lazy_static = { version = "1.3", optional = true }
+log = "0.4"
+tetsy-macros = { version = "0.1.0", path = "../util/macros", optional = true }
+mashina = { version = "0.1.0", path = "./mashina" }
+memory-cache = { path = "../util/memory-cache" }
+tetsy-bytes = "0.1"
+parking_lot = "0.9"
+vapcore-pod = { version = "0.1.0", path = "pod", optional = true }
+tetsy-trie-db = "0.19.2"
+tetsy-crypto = { version = "0.4.2", features = ["publickey"], optional = true }
+patricia-trie-vapory = { version = "0.1.1", path = "../util/patricia-trie-vapory" }
+rand = "0.7"
+rand_xorshift = "0.2"
+rayon = "1.1"
+tetsy-registrar = { version = "0.0.1", path = "../util/tetsy-registrar" }
+tetsy-rlp = "0.4.5"
+rustc-hex = "2"
+scopeguard = "1.0.0"
+serde = "1.0"
+serde_derive = "1.0"
+vapcore-snapshot = { path = "snapshot" }
+spec = { path = "spec" }
+state-db = { version = "0.1.0", path = "state-db" }
+tempdir = { version = "0.3", optional = true }
+vapcore-trace = { version = "0.1.0", path = "trace" }
+trace-time = "0.1"
+trie-vm-factories = { version = "0.1.0", path = "trie-vm-factories" }
+triehash-vapory = { version = "0.2",  path = "../util/triehash-vapory" }
+tetsy-unexpected = { path = "../util/tetsy-unexpected" }
+using-queue = { version = "0.1.0", path = "../miner/using-queue" }
+verification = { path = "./verification" }
+tetsy-vm = { version = "0.1.0", path = "vm" }
+
+[dev-dependencies]
+account-db = { path = "account-db" }
+blooms-db = { path = "../util/blooms-db" }
+criterion = "0.3"
+enjen = { version = "0.1.0", path = "./enjen", features = ["test-helpers"] }
+env_logger = "0.5"
+vapcore-accounts = { path = "../accounts" }
+vapcore-builtin = { path = "./builtin" }
+vapjson = { path = "../json", features = ["test-helpers"] }
+tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
+tetsy-fetch = { version = "0.1.0", path = "../util/fetch" }
+tetsy-kvdb-memorydb = "0.3.2"
+# tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+tetsy-kvdb-rocksdb = "0.4.3"
+# tetsy-kvdb-rocksdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+lazy_static = "1.3"
+mashina = { version = "0.1.0", path = "./mashina", features = ["test-helpers"] }
+tetsy-macros = { version = "0.1.0", path = "../util/macros" }
+tetsy-runtime = { path = "../util/runtime" }
+serde_json = "1.0"
+tetsy-stats = { version = "0.1.0", path = "../util/stats" }
+vapcore-pod = { version = "0.1.0", path = "pod" }
+tempdir = "0.3"
+tetsy-trie-standardmap = "0.15.2"
+
+[features]
+tetsy = ["work-notify", "price-info", "stratum", "tetsy-macros"]
+# Large optional features that are enabled by default for Tetsy,
+# but might be omitted for other dependent crates.
+work-notify = ["vapcore-miner/work-notify"]
+price-info = ["vapcore-miner/price-info"]
+stratum = [
+	"vapash",
+	"vapcore-stratum"
+]
+
+
+# Disables seal verification for mined blocks.
+# This allows you to submit any seal via RPC to test and benchmark
+# how fast pending block get's created while running on the mainnet.
+miner-debug = []
+# Display VVM debug traces.
+vvm-debug = ["vvm/vvm-debug"]
+# Display VVM debug traces when running tests.
+vvm-debug-tests = ["vvm-debug", "vvm/vvm-debug-tests"]
+# Measure time of transaction execution.
+# Whenever the transaction execution time (in millis) exceeds the value of
+# SLOW_TX_DURATION env variable (provided compile time!)
+# VVM debug traces are printed.
+slow-blocks = []
+# Run JSON consensus tests.
+json-tests = ["env_logger", "test-helpers", "lazy_static", "mashina/test-helpers", "common-types/test-helpers"]
+# Run memory/cpu heavy tests.
+test-heavy = []
+# Compile test helpers
+# note[dvdplm]: "basic-authority/test-helpers" is needed so that `generate_dummy_client_with_spec` works
+test-helpers = [
+    "blooms-db",
+    "vapjson/test-helpers",
+    "tetsy-crypto",
+    "tetsy-kvdb-memorydb",
+    "tetsy-kvdb-rocksdb",
+    "tetsy-macros",
+    "vapcore-pod",
+    "tempdir",
+    "basic-authority/test-helpers"
+ ]
+
+[[bench]]
+name = "builtin"
+harness = false

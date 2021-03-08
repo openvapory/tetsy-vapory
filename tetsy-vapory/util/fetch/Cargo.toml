@@ -1,0 +1,22 @@
+[package]
+description = "HTTP/HTTPS fetching library"
+license = "GPL-3.0"
+name = "tetsy-fetch"
+version = "0.1.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+documentation = "https://docs.rs/fake-fetch"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+futures = "0.1"
+hyper = "~0.12.9"
+hyper-rustls = "0.18"
+http = "0.1"
+log = "0.4"
+tokio = "0.1.22"
+url = "2"
+bytes = "0.4"
+
+[features]
+default = []

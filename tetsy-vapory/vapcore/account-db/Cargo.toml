@@ -1,0 +1,18 @@
+[package]
+name = "account-db"
+description = "DB backend wrapper for Account trie"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+license = "GPL-3.0"
+version = "0.1.0"
+edition = "2018"
+documentation = "https://docs.rs/account-db"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
+
+[dependencies]
+vapory-types = "0.8.0"
+tetsy-hash-db = "0.15.2"
+tetsy-keccak-hash = "0.4.0"
+tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
+tetsy-kvdb = "0.3.2"
+tetsy-rlp = "0.4.5"

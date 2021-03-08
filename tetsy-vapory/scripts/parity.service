@@ -1,0 +1,22 @@
+[Unit]
+Description=Tetsy Vapory Daemon
+After=network.target
+
+[Service]
+# run as root, set base_path in config.toml
+ExecStart=/usr/bin/tetsy --config /etc/tetsy/config.toml
+# To run as user, comment out above and uncomment below, fill in user and group
+# picks up users default config.toml in $HOME/.local/share/io.tetsy.vapory/
+# User=username
+# Group=groupname
+# ExecStart=/usr/bin/tetsy
+Restart=on-failure
+
+# Specifies which signal to use when killing a service. Defaults to SIGTERM.
+# SIGHUP gives tetsy time to exit cleanly before SIGKILL (default 90s)
+KillSignal=SIGHUP
+
+[Install]
+WantedBy=default.target
+
+

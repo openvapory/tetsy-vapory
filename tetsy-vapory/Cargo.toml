@@ -1,0 +1,141 @@
+[package]
+description = "Tetsy Vapory client"
+name = "tetsy-vapory"
+# NOTE Make sure to update util/version/Cargo.toml as well
+version = "2.7.2"
+license = "GPL-3.0"
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+
+[dependencies]
+ansi_term = "0.11"
+atty = "0.2.8"
+blooms-db = { path = "util/blooms-db", version = "0.1.0" }
+clap = "2"
+cli-signer= { path = "cli-signer", version = "1.4.0" }
+client-traits = { version = "0.1.0", path = "vapcore/client-traits" }
+common-types = { version = "0.1.0", path = "vapcore/types" }
+ctrlc = "1.1.1"
+# ctrlc = { git = "https://github.com/tetcoin/rust-ctrlc.git" }
+dir = { path = "util/dir", version = "0.1.2" }
+docopt = "1.0"
+enjen = { version = "0.1.0", path = "vapcore/enjen" }
+vapabi = { version = "9.0.1", optional = true }
+vapcore = { version = "1.12.0", path = "vapcore", features = ["tetsy"] }
+vapcore-accounts = { version = "0.1.0", path = "accounts", optional = true }
+vapcore-blockchain = { version = "0.1.0", path = "vapcore/blockchain" }
+vapcore-call-contract = { version = "0.1.0", path = "vapcore/call-contract", optional = true }
+vapcore-db = { version = "0.1.0", path = "vapcore/db" }
+vapcore-io = { version = "1.12.0", path = "util/io" }
+vapcore-light = { version = "1.12.0", path = "vapcore/light" }
+vapcore-logger = { version = "1.12.0", path = "tetsy/logger" }
+vapcore-miner = { version = "1.12.0", path = "miner" }
+vapcore-network = { version = "1.12.0", path = "util/network" }
+vapcore-private-tx = { version = "1.0.0", path = "vapcore/private-tx" }
+vapcore-secretstore = { version = "1.0.0", path = "secret-store", optional = true }
+vapcore-service = { version = "0.1.0", path = "vapcore/service" }
+vapcore-sync = { version = "1.12.0", path = "vapcore/sync" }
+vapory-types = "0.8.0"
+vapkey = { version = "0.4.0", path = "accounts/vapkey" }
+vapstore = { version = "0.2.1", path = "accounts/vapstore" }
+fdlimit = "0.1"
+futures = "0.1"
+journaldb = { version = "0.2.0", path = "util/journaldb" }
+tetsy-jsonrpc-core = "14.2.1"
+tetsy-keccak-hash = "0.4.0"
+tetsy-kvdb = "0.3.2"
+tetsy-kvdb-rocksdb = "0.4.3"
+# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+# tetsy-kvdb-rocksdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
+log = "0.4"
+migration-rocksdb = { version = "0.1.0", path = "util/migration-rocksdb" }
+node-filter = { version = "1.12.0", path = "vapcore/node-filter" }
+num_cpus = "1.2"
+number_prefix = "0.2"
+panic-hook = { version = "0.1.0", path = "util/panic-hook" }
+tetsy-bytes = "0.1"
+tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
+tetsy-daemonize = "0.3"
+tetsy-hash-fetch = { version = "1.12.0", path = "updater/hash-fetch" }
+tetsy-ipfs-api = { version = "1.12.0", path = "ipfs" }
+tetsy-local-store = { version = "0.1.0", path = "miner/local-store" }
+tetsy-path = "0.1"
+tetsy-rpc = { version = "1.12.0", path = "rpc" }
+tetsy-runtime = { version = "0.1.0", path = "util/runtime" }
+tetsy-updater = { version = "1.12.0", path = "updater" }
+tetsy-util-mem = { version = "0.3.0", features = ["jemalloc-global"] }
+tetsy-version = { version = "2.7.2", path = "util/version" }
+parking_lot = "0.9"
+regex = "1.0"
+tetsy-registrar = { version = "0.0.1", path = "util/tetsy-registrar" }
+tetsy-rlp = "0.4.5"
+rpassword = "1.0"
+rustc-hex = "1.0"
+semver = "0.9"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+vapcore-snapshot = { version = "0.1.0", path = "vapcore/snapshot" }
+spec = { version = "0.1.0", path = "vapcore/spec" }
+term_size = "0.3"
+textwrap = "0.9"
+toml = "0.4"
+verification = { version = "0.1.0", path = "vapcore/verification" }
+
+[build-dependencies]
+rustc_version = "0.2"
+
+[dev-dependencies]
+pretty_assertions = "0.1"
+ipnetwork = "0.12.6"
+tempdir = "0.3"
+fake-fetch = { path = "util/fake-fetch" }
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3.4", features = ["winsock2", "winuser", "shellapi"] }
+
+[features]
+default = ["accounts"]
+accounts = ["vapcore-accounts", "tetsy-rpc/accounts"]
+miner-debug = ["vapcore/miner-debug"]
+json-tests = ["vapcore/json-tests"]
+test-heavy = ["vapcore/test-heavy"]
+vvm-debug = ["vapcore/vvm-debug"]
+vvm-debug-tests = ["vapcore/vvm-debug-tests"]
+slow-blocks = ["vapcore/slow-blocks"]
+secretstore = ["vapcore-secretstore", "accounts", "vapabi", "vapcore-call-contract"]
+final = ["tetsy-version/final"]
+deadlock_detection = ["parking_lot/deadlock_detection"]
+# to create a memory profile (requires nightly rust), use e.g.
+# `heaptrack /path/to/parity <parity params>`,
+# to visualize a memory profile, use `heaptrack_gui`
+# or
+# `valgrind --tool=massif /path/to/parity <parity params>`
+# and `massif-visualizer` for visualization
+memory_profiling = []
+# hardcode version number 1.3.7 of parity to force an update
+# in order to manually test that parity fall-over to the local version
+# in case of invalid or deprecated command line arguments are entered
+test-updater = ["tetsy-updater/test-updater"]
+
+[lib]
+path = "tetsy/lib.rs"
+
+[[bin]]
+path = "tetsy/main.rs"
+name = "tetsy"
+
+[profile.release]
+debug = false
+lto = true
+
+[workspace]
+# This should only list projects that are not
+# in the dependency tree in any other way
+# (i.e. pretty much only standalone CLI tools)
+members = [
+	"accounts/vapkey/cli",
+	"accounts/vapstore/cli",
+	"chainspec",
+	"vapcore/wasm/run",
+	"vvmbin",
+]
