@@ -24,7 +24,7 @@ use client_traits::{BlockInfo, BlockChainClient};
 use vapcore::client::{Client, DatabaseCompactionProfile};
 use vapcore::miner::{self, stratum, Miner, MinerService, MinerOptions};
 use vapcore_snapshot::{self, SnapshotConfiguration};
-use spec::SpecParams;
+use vapcore_spec::SpecParams;
 use verification::queue::VerifierSettings;
 use vapcore_logger::{Config as LogConfig, RotatingLogger};
 use vapcore_service::ClientService;

@@ -18,7 +18,7 @@ use std::sync::Arc;
 use std::time::Duration;
 
 use vapcore::client::DatabaseCompactionProfile;
-use spec::SpecParams;
+use vapcore_spec::SpecParams;
 use light::client::fetch::Unavailable as UnavailableDataFetcher;
 use light::Cache as LightDataCache;
 use types::engines::OptimizeFor;

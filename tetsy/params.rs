@@ -18,7 +18,7 @@ use std::collections::HashSet;
 use std::time::Duration;
 use std::{str, fs, fmt};
 
-use spec::{Spec, SpecParams, self};
+use vapcore_spec::{Spec, SpecParams, self};
 use vapory_types::{U256, Address};
 use tetsy_runtime::Executor;
 use hash_fetch::tetsy_fetch::Client as FetchClient;
@@ -131,28 +131,28 @@ impl SpecType {
 	pub fn spec<'a, T: Into<SpecParams<'a>>>(&self, params: T) -> Result<Spec, String> {
 		let params = params.into();
 		match *self {
-			SpecType::Foundation => Ok(spec::new_foundation(params)),
-			SpecType::Classic => Ok(spec::new_classic(params)),
-			SpecType::Poanet => Ok(spec::new_poanet(params)),
-			SpecType::Xdai => Ok(spec::new_xdai(params)),
-			SpecType::Volta => Ok(spec::new_volta(params)),
-			SpecType::Ewc => Ok(spec::new_ewc(params)),
-			SpecType::Musicoin => Ok(spec::new_musicoin(params)),
-			SpecType::Ellaism => Ok(spec::new_ellaism(params)),
-			SpecType::Mix => Ok(spec::new_mix(params)),
-			SpecType::Callisto => Ok(spec::new_callisto(params)),
-			SpecType::VaporCore => Ok(spec::new_vaporcore(params)),
-			SpecType::Morden => Ok(spec::new_morden(params)),
-			SpecType::Mordor => Ok(spec::new_mordor(params)),
-			SpecType::Ropsten => Ok(spec::new_ropsten(params)),
-			SpecType::Kovan => Ok(spec::new_kovan(params)),
-			SpecType::Rinkeby => Ok(spec::new_rinkeby(params)),
-			SpecType::Goerli => Ok(spec::new_goerli(params)),
-			SpecType::Kotti => Ok(spec::new_kotti(params)),
-			SpecType::Sokol => Ok(spec::new_sokol(params)),
-			SpecType::Evantestcore => Ok(spec::new_evantestcore(params)),
-			SpecType::Evancore => Ok(spec::new_evancore(params)),
-			SpecType::Dev => Ok(spec::new_instant()),
+			SpecType::Foundation => Ok(vapcore_spec::new_foundation(params)),
+			SpecType::Classic => Ok(vapcore_spec::new_classic(params)),
+			SpecType::Poanet => Ok(vapcore_spec::new_poanet(params)),
+			SpecType::Xdai => Ok(vapcore_spec::new_xdai(params)),
+			SpecType::Volta => Ok(vapcore_spec::new_volta(params)),
+			SpecType::Ewc => Ok(vapcore_spec::new_ewc(params)),
+			SpecType::Musicoin => Ok(vapcore_spec::new_musicoin(params)),
+			SpecType::Ellaism => Ok(vapcore_spec::new_ellaism(params)),
+			SpecType::Mix => Ok(vapcore_spec::new_mix(params)),
+			SpecType::Callisto => Ok(vapcore_spec::new_callisto(params)),
+			SpecType::VaporCore => Ok(vapcore_spec::new_vaporcore(params)),
+			SpecType::Morden => Ok(vapcore_spec::new_morden(params)),
+			SpecType::Mordor => Ok(vapcore_spec::new_mordor(params)),
+			SpecType::Ropsten => Ok(vapcore_spec::new_ropsten(params)),
+			SpecType::Kovan => Ok(vapcore_spec::new_kovan(params)),
+			SpecType::Rinkeby => Ok(vapcore_spec::new_rinkeby(params)),
+			SpecType::Goerli => Ok(vapcore_spec::new_goerli(params)),
+			SpecType::Kotti => Ok(vapcore_spec::new_kotti(params)),
+			SpecType::Sokol => Ok(vapcore_spec::new_sokol(params)),
+			SpecType::Evantestcore => Ok(vapcore_spec::new_evantestcore(params)),
+			SpecType::Evancore => Ok(vapcore_spec::new_evancore(params)),
+			SpecType::Dev => Ok(vapcore_spec::new_instant()),
 			SpecType::Custom(ref filename) => {
 				let file = fs::File::open(filename).map_err(|e| format!("Could not load specification file at {}: {}", filename, e))?;
 				Spec::load(params, file).map_err(|e| e.to_string())
