@@ -1,7 +1,7 @@
 [package]
 name = "tetsy-macros"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 edition = "2018"
 description =  "Tetsy utils common types and macros global reexport."
 license = "GPL-3.0"

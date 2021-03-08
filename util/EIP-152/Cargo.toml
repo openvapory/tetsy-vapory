@@ -1,7 +1,7 @@
 [package]
 name = "eip-152"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 repository = "https://github.com/openvapory/tetsy-vapory"
 homepage = "https://github.com/openvapory/tetsy-vapory"
 documentation = "https://docs.rs/eip-152"

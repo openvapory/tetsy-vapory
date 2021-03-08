@@ -4,7 +4,7 @@ name = "tetsy-vapory"
 # NOTE Make sure to update util/version/Cargo.toml as well
 version = "2.7.2"
 license = "GPL-3.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 
 [dependencies]
 ansi_term = "0.11"

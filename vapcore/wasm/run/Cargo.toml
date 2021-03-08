@@ -2,7 +2,7 @@
 description = "Vapcore WASM Test Run"
 name = "vapcore-wasm-run-test"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 publish = false
 
 [dependencies]

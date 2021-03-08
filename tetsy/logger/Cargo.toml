@@ -3,7 +3,7 @@ description = "Tetsy Vapory Logger Implementation"
 name = "vapcore-logger"
 version = "1.12.0"
 license = "GPL-3.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 
 [dependencies]
 log = "0.4"

@@ -3,8 +3,11 @@ description = "Tetsy Vapory (VapCore) Blockchain Synchronization (Strategy, Bloc
 name = "vapcore-sync"
 version = "1.12.0"
 license = "GPL-3.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 edition = "2018"
+documentation = "https://docs.rs/vapcore-sync"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [lib]
 

@@ -1,10 +1,12 @@
 [package]
 description = "Tetsy Vapory (VapCore) Light Client Implementation (Block Import IO Service, Blockchain Data Fetching, Light Client Header Chain Storage, Tetsy Light Protocol (PLP) Provider, Light Transaction Queue, CHT Definitions, Light Client Data Cache), Tetsy Light Protocol (PLP) Implementation, P2P Network I/O and Event Context Generalization, Peer Error Handling & Punishment, Request Load Timer & Distribution Manager, Pending Request Set Storage, Request Credit Management, Light Client Request Types, Request Chain Builder Utility, On-demand Chain Request Service over LES (for RPCs), ResponseGuard Implementation)"
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "vapcore-light"
 version = "1.12.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+documentation = "https://docs.rs/vapcore-light"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 log = "0.4"

@@ -1,7 +1,7 @@
 [package]
 name = "vip-712"
 version = "0.1.1"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 repository = "https://github.com/openvapory/tetsy-vapory"
 documentation = "https://docs.rs/vip-712"
 readme = "README.md"

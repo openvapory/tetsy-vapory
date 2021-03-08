@@ -4,7 +4,7 @@ homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "cli-signer"
 version = "1.4.0"
-authors = ["Parity <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 
 [dependencies]
 vapory-types = "0.8.0"

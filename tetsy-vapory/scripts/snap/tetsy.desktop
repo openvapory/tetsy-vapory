@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=Tetsy Vapory
-Comment=The fastest and most advanced Vapory client.
-Exec=tetsy
-Icon=/usr/share/pixmaps/icon.png
-Terminal=true

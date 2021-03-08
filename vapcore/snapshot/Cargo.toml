@@ -2,7 +2,7 @@
 description = "Take and restore snapshots of the blockchain and read/write it in chunks from/to disk"
 name = "vapcore-snapshot"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 edition = "2018"
 license = "GPL-3.0"
 

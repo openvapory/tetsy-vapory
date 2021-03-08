@@ -2,7 +2,7 @@
 name = "tetsy-keccak-hasher"
 version = "0.1.1"
 edition = "2018"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 description = "Tetsy Keccak-256 implementation of the Hasher trait"
 license = "GPL-3.0"
 documentation = "https://docs.rs/tetsy-keccak-hasher"

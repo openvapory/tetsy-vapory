@@ -2,7 +2,7 @@
 description = "Tetsy Vapory Keys Generator CLI"
 name = "vapkey-cli"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 license = "GPL-3.0"
 documentation = "https://docs.rs/vapkey-cli"
 homepage = "https://github.com/openvapory/tetsy-vapory"

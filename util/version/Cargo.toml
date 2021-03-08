@@ -4,7 +4,7 @@
 name = "tetsy-version"
 # NOTE: this value is used for Tetsy Vapory version string (via env CARGO_PKG_VERSION)
 version = "2.7.2"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 build = "build.rs"
 edition = "2018"
 license = "GPL-3.0"

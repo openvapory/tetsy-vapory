@@ -4,7 +4,7 @@ homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "tetsy-hash-fetch"
 version = "1.12.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 
 [dependencies]
 call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../../vapcore/call-contract" }

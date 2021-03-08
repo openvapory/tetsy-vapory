@@ -1,7 +1,7 @@
 [package]
 name = "tetsy-stats"
 version = "0.1.0"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 description = "Tetsy Statistical functions and helpers."
 license = "GPL-3.0"
 documentation = "https://docs.rs/tetsy-stats"

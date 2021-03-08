@@ -1,7 +1,7 @@
 [package]
 name = "vapcore-pod"
 description = "State/Account system expressed in Plain Old Data."
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 license = "GPL-3.0"
 version = "0.1.0"
 edition = "2018"

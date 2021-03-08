@@ -2,7 +2,7 @@
 description = "Tetsy Vapory Key Management"
 name = "vapstore"
 version = "0.2.1"
-authors = ["Parity Technologies <admin@parity.io>"]
+authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 license = "GPL-3.0"
 documentation = "https://docs.rs/vapstore"
 homepage = "https://github.com/openvapory/tetsy-vapory"
