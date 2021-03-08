@@ -13,7 +13,7 @@ repository = "https://github.com/openvapory/tetsy-vapory"
 client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
 enjen = { version = "0.1.0", path = "../../enjen" }
-vapjson = { path = "../../../json" }
+vapjson = { version = "0.1.0", path = "../../../json" }
 vapory-types = "0.8.0"
 tetsy-keccak-hash = "0.4.0"
 mashina = { version = "0.1.0", path = "../../mashina" }
@@ -21,5 +21,5 @@ vapcore-trace = { version = "0.1.0", path = "../../trace" }
 
 [dev-dependencies]
 vapcore = { path = "../..", features = ["test-helpers"] }
-vapcore-spec = { version = "0.1.0", path = "../../spec" }
+vapcore-spec = { path = "../../spec" }
 tetsy-rlp = "0.4.5"
