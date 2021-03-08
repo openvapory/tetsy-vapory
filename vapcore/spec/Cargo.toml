@@ -15,7 +15,7 @@ authority-round = { path = "../engines/authority-round" }
 basic-authority = { path = "../engines/basic-authority" }
 builtin = { package = "vapcore-builtin", path = "../builtin" }
 bytes = { package = "tetsy-bytes", version = "0.1.0" }
-clique = { path = "../engines/clique" }
+vapcore-clique = { version = "0.1.0", path = "../engines/clique" }
 common-types = { version = "0.1.0", path = "../types" }
 enjen = { version = "0.1.0", path = "../enjen" }
 vapash = { version = "1.12.0", path = "../../vapash" }
