@@ -82,7 +82,7 @@ extern crate parking_lot;
 #[macro_use]
 extern crate tetsy_rlp_derive;
 extern crate serde;
-extern crate spec;
+extern crate vapcore_spec;
 extern crate smallvec;
 extern crate tetsy_stats;
 extern crate tetsy_vm;

@@ -49,7 +49,7 @@ extern crate tetsy_rlp;
 extern crate rustc_hex;
 extern crate serde;
 extern crate vapcore_snapshot;
-extern crate spec;
+extern crate vapcore_spec;
 extern crate state_db;
 extern crate vapcore_trace;
 extern crate trie_vm_factories;
