@@ -1574,7 +1574,7 @@ mod tests {
 		let mut config = Config::default();
 		let mut operating = Operating::default();
 		operating.chain = Some("mordor".into());
-		config.parity = Some(operating);
+		config.tetsy = Some(operating);
 
 		// when
 		let args = Args::parse_with_config(&["tetsy"], config).unwrap();
@@ -1589,7 +1589,7 @@ mod tests {
 		let mut config = Config::default();
 		let mut operating = Operating::default();
 		operating.chain = Some("mordor".into());
-		config.parity = Some(operating);
+		config.tetsy = Some(operating);
 
 		// when
 		let args = Args::parse_with_config(&["tetsy", "--chain", "xyz"], config).unwrap();
