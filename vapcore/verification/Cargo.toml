@@ -23,16 +23,16 @@ enjen = { version = "0.1.0", path = "../enjen" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapory-types = "0.8.0"
 tetsy-keccak-hash = "0.4.0"
-len-caching-lock = { path = "../../util/len-caching-lock" }
+len-caching-lock = { version = "0.1.1", path = "../../util/len-caching-lock" }
 log = "0.4"
 num_cpus = "1.2"
 tetsy-bytes = "0.1.0"
 tetsy-util-mem = "0.3.0"
 parking_lot = "0.9"
 tetsy-rlp = "0.4.5"
-time-utils = { path = "../../util/time-utils" }
-triehash = { package = "triehash-vapory", version = "0.2",  path = "../../util/triehash-vapory" }
-tetsy-unexpected = { path = "../../util/tetsy-unexpected" }
+time-utils = { version = "0.1.0", path = "../../util/time-utils" }
+triehash = { version = "0.2", package = "triehash-vapory", path = "../../util/triehash-vapory" }
+tetsy-unexpected = { version = "0.1.0", path = "../../util/tetsy-unexpected" }
 
 [dev-dependencies]
 criterion = "0.3"
