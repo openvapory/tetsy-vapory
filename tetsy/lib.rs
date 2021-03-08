@@ -74,7 +74,7 @@ extern crate tetsy_updater as updater;
 extern crate tetsy_version;
 extern crate tetsy_registrar;
 extern crate vapcore_snapshot;
-extern crate spec;
+extern crate vapcore_spec;
 extern crate verification;
 
 #[macro_use]
