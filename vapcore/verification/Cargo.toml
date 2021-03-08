@@ -15,7 +15,7 @@ harness = false
 required-features = ['bench']
 
 [dependencies]
-blockchain = { package = "vapcore-blockchain", path = "../blockchain" }
+blockchain = { version = "0.1.0", package = "vapcore-blockchain", path = "../blockchain" }
 call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../call-contract" }
 client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
