@@ -28,5 +28,5 @@ vapcore = { path = "..", features = ["test-helpers"] }
 tetsy-kvdb-memorydb = "0.3.2"
 # tetsy-kvdb-memorydb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }
 tempdir = "0.3"

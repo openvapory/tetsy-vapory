@@ -24,7 +24,7 @@ vapcore-pod = { version = "0.1.0", path = "../vapcore/pod" }
 rustc-hex = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-spec = { path = "../vapcore/spec" }
+vapcore-spec = { version = "0.1.0", path = "../vapcore/spec" }
 vapcore-trace = { version = "0.1.0", path = "../vapcore/trace" }
 tetsy-vm = { version = "0.1.0", path = "../vapcore/vm" }
 

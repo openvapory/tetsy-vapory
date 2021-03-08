@@ -48,4 +48,4 @@ tetsy-kvdb-memorydb = "0.3.2"
 mashina = { version = "0.1.0", path = "../mashina" }
 rand_xorshift = "0.2"
 rustc-hex = "1.0"
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }

@@ -49,7 +49,7 @@ vapjson = { path = "../../json" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 tetsy-macros = { version = "0.1.0", path = "../../util/macros" }
 rustc-hex = "1.0"
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }
 tempdir = "0.3"
 vapcore-trace = { version = "0.1.0", path = "../trace" }
 

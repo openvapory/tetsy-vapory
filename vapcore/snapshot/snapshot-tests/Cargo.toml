@@ -35,7 +35,7 @@ rand_xorshift = "0.2"
 tetsy-rlp = "0.4.5"
 snappy = { package = "tetsy-snappy", version ="0.1.0" }
 vapcore-snapshot = { path = "../../snapshot", features = ["test-helpers"] }
-spec = { path = "../../spec" }
+vapcore-spec = { version = "0.1.0", path = "../../spec" }
 tempdir = "0.3"
 tetsy-trie-db = "0.19.2"
 tetsy-trie-standardmap = "0.15.2"

@@ -25,7 +25,7 @@ enjen = { version = "0.1.0", path = "../../enjen", features = ["test-helpers"] }
 vapcore = { path = "../..", features = ["test-helpers"] }
 tetsy-keccak-hash = "0.4.0"
 tempdir = "0.3"
-spec = { path = "../../spec" }
+vapcore-spec = { version = "0.1.0", path = "../../spec" }
 
 [features]
 test-helpers = []

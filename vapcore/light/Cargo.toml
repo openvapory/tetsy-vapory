@@ -39,7 +39,7 @@ rand = "0.7"
 bincode = "1.1"
 serde = "1.0"
 serde_derive = "1.0"
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }
 parking_lot = "0.9"
 tetsy-stats = { version = "0.1.0", path = "../../util/stats" }
 tetsy-keccak-hash = "0.4.0"

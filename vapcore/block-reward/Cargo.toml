@@ -22,4 +22,4 @@ vapcore-trace = { version = "0.1.0", path = "../trace" }
 
 [dev-dependencies]
 vapcore = { path = "..", features = ["test-helpers"] }
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }

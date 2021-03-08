@@ -23,7 +23,7 @@ tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"
 vapcore-snapshot = { path = "../snapshot" }
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }
 trace-time = "0.1"
 
 [dev-dependencies]

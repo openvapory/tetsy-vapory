@@ -56,7 +56,7 @@ vapkey = { path = "../../accounts/vapkey" }
 tetsy-kvdb-rocksdb = "0.4.3"
 # tetsy-kvdb-rocksdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 lazy_static = { version = "1.3" }
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }
 tempdir = "0.3"
 tetsy-trie-standardmap = "0.15.2"
 # Note[dvdplm]: Ensure the snapshot tests are included in the dependency tree, which in turn means that

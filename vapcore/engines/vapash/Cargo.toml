@@ -23,5 +23,5 @@ tetsy-unexpected = { path = "../../../util/tetsy-unexpected" }
 vapcore = { path = "../..", features = ["test-helpers"] }
 tetsy-keccak-hash = "0.4.0"
 tetsy-rlp = "0.4.5"
-spec = { path = "../../spec" }
+vapcore-spec = { version = "0.1.0", path = "../../spec" }
 tempdir = "0.3"

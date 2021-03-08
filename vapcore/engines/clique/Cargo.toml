@@ -30,5 +30,5 @@ tetsy-unexpected = { path = "../../../util/tetsy-unexpected" }
 
 [dev-dependencies]
 vapcore = { path = "../..", features = ["test-helpers"] }
-spec = { path = "../../spec" }
+vapcore-spec = { version = "0.1.0", path = "../../spec" }
 state-db = { version = "0.1.0", path = "../../state-db" }

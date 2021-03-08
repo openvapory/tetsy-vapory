@@ -58,7 +58,7 @@ scopeguard = "1.0.0"
 serde = "1.0"
 serde_derive = "1.0"
 vapcore-snapshot = { path = "snapshot" }
-spec = { path = "spec" }
+vapcore-spec = { version = "0.1.0", path = "spec" }
 state-db = { version = "0.1.0", path = "state-db" }
 tempdir = { version = "0.3", optional = true }
 vapcore-trace = { version = "0.1.0", path = "trace" }

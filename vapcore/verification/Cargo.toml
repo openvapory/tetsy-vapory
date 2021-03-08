@@ -40,7 +40,7 @@ vapcore = { path = "../", features = ["test-helpers"] }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 mashina = { version = "0.1.0", path = "../mashina" }
 null-engine = { path = "../engines/null-engine" }
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }
 
 # Benches
 vapash = { package = "vapash-engine", path = "../engines/vapash" }

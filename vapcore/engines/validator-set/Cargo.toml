@@ -40,7 +40,7 @@ vapcore = { path = "../..", features = ["test-helpers"] }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 tetsy-keccak-hash = "0.4.0"
 rustc-hex = "1.0"
-spec = { path = "../../spec" }
+vapcore-spec = { version = "0.1.0", path = "../../spec" }
 
 [features]
 test-helpers = []

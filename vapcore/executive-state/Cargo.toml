@@ -32,6 +32,6 @@ vvm = { version = "0.1.0", path = "../vvm" }
 tetsy-keccak-hash = "0.4.0"
 vapcore-pod = { version = "0.1.0", path = "../pod" }
 rustc-hex = "1.0"
-spec = { path = "../spec" }
+vapcore-spec = { version = "0.1.0", path = "../spec" }
 tetsy-trie-db = "0.19.2"
 vaptrie = { package = "patricia-trie-vapory", path = "../../util/patricia-trie-vapory", version = "0.1.1" }
