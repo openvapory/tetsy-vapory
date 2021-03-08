@@ -24,7 +24,7 @@ extern crate vapcore_private_tx;
 extern crate vapcore_sync as sync;
 extern crate vapory_types;
 extern crate tetsy_kvdb;
-extern crate spec;
+extern crate vapcore_spec;
 extern crate vapcore_snapshot;
 
 #[macro_use]
