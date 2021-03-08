@@ -30,7 +30,7 @@ use vapcore::client::{Client, ClientConfig};
 use vapcore::miner::Miner;
 use vapcore_snapshot::service::{Service as SnapshotService, ServiceParams as SnapServiceParams};
 use vapcore_snapshot::{SnapshotService as _SnapshotService, SnapshotClient};
-use spec::Spec;
+use vapcore_spec::Spec;
 use common_types::{
 	io_message::ClientIoMessage,
 	errors::{VapcoreError, SnapshotError},
