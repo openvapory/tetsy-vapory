@@ -5,9 +5,12 @@ version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 edition = "2018"
 license = "GPL-3.0"
+documentation = "https://docs.rs/authority-round"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
-block-gas-limit = { path = "../../block-gas-limit" }
+block-gas-limit = { version = "0.1.0", path = "../../block-gas-limit" }
 block-reward = { version = "0.1.0", path = "../../block-reward" }
 client-traits = { version = "0.1.0", path = "../../client-traits" }
 common-types = { version = "0.1.0", path = "../../types" }
@@ -16,7 +19,7 @@ vapabi = "9.0.1"
 vapabi-contract = "9.0.0"
 vapabi-derive = "9.0.1"
 vapory-types = "0.8.0"
-vapjson = { path = "../../../json" }
+vapjson = { version = "0.1.0", path = "../../../json" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 enjen = { version = "0.1.0", path = "../../enjen" }
 io = { version = "1.12.0", package = "vapcore-io", path = "../../../util/io" }
@@ -31,16 +34,16 @@ tetsy-bytes = "0.1"
 parking_lot = "0.9"
 rand = "0.7"
 tetsy-rlp = "0.4.5"
-time-utils = { path = "../../../util/time-utils" }
-tetsy-unexpected = { path = "../../../util/tetsy-unexpected" }
-validator-set = { path = "../validator-set" }
+time-utils = { version = "0.1.0", path = "../../../util/time-utils" }
+tetsy-unexpected = { version = "0.1.0", path = "../../../util/tetsy-unexpected" }
+validator-set = { version = "0.1.0", path = "../validator-set" }
 
 [dev-dependencies]
 accounts = { package = "vapcore-accounts", path = "../../../accounts" }
 enjen = { version = "0.1.0", path = "../../enjen", features = ["test-helpers"] }
 env_logger = "0.6.2"
 vapcore = { path = "../..", features = ["test-helpers"] }
-vapcore-spec = { version = "0.1.0", path = "../../spec" }
+vapcore-spec = { path = "../../spec" }
 state-db = { version = "0.1.0", path = "../../state-db" }
 validator-set = { path = "../validator-set", features = ["test-helpers"] }
 serde_json = "1"
