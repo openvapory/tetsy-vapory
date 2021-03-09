@@ -54,7 +54,7 @@ use tetsy_registrar::RegistrarClient;
 #[test]
 fn imports_from_empty() {
 	let db = test_helpers::new_db();
-	let spec = spec::new_test();
+	let spec = vapcore_spec::new_test();
 
 	let client = Client::new(
 		ClientConfig::default(),
@@ -70,7 +70,7 @@ fn imports_from_empty() {
 fn should_return_registrar() {
 	let db = test_helpers::new_db();
 	let tempdir = TempDir::new("").unwrap();
-	let spec = spec::new_morden(&tempdir.path().to_owned());
+	let spec = vapcore_spec::new_morden(&tempdir.path().to_owned());
 
 	let client = Client::new(
 		ClientConfig::default(),
@@ -86,7 +86,7 @@ fn should_return_registrar() {
 #[test]
 fn returns_state_root_basic() {
 	let client = generate_dummy_client(6);
-	let test_spec = spec::new_test();
+	let test_spec = vapcore_spec::new_test();
 	let genesis_header = test_spec.genesis_header();
 
 	assert!(client.state_data(genesis_header.state_root()).is_some());
@@ -95,7 +95,7 @@ fn returns_state_root_basic() {
 #[test]
 fn imports_good_block() {
 	let db = test_helpers::new_db();
-	let spec = spec::new_test();
+	let spec = vapcore_spec::new_test();
 
 	let client = Client::new(
 		ClientConfig::default(),
@@ -117,7 +117,7 @@ fn imports_good_block() {
 #[test]
 fn query_none_block() {
 	let db = test_helpers::new_db();
-	let spec = spec::new_test();
+	let spec = vapcore_spec::new_test();
 
 	let client = Client::new(
 		ClientConfig::default(),
@@ -265,7 +265,7 @@ fn can_mine() {
 #[test]
 fn change_history_size() {
 	let db = test_helpers::new_db();
-	let test_spec = spec::new_null();
+	let test_spec = vapcore_spec::new_null();
 	let mut config = ClientConfig::default();
 
 	config.history = 2;
@@ -337,7 +337,7 @@ fn transaction_proof() {
 
 	let client = generate_dummy_client(0);
 	let address = Address::random();
-	let test_spec = spec::new_test();
+	let test_spec = vapcore_spec::new_test();
 	for _ in 0..20 {
 		let mut b = client.prepare_open_block(Address::zero(), (3141562.into(), 31415620.into()), vec![]).unwrap();
 		b.block_mut().state_mut().add_balance(&address, &5.into(), CleanupMode::NoEmpty).unwrap();
