@@ -43,7 +43,7 @@ use tetsy_stats;
 use mashina::executive::{Executive, TransactOptions};
 use crate::miner::{Miner, PendingOrdering, MinerService};
 use account_state::{State, CleanupMode, backend};
-use test_helpers::{
+use crate::test_helpers::{
 	self,
 	generate_dummy_client, push_blocks_to_client, get_test_client_with_blocks, get_good_dummy_block_seq,
 	generate_dummy_client_with_data, get_good_dummy_block, get_bad_state_dummy_block

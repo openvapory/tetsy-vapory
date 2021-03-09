@@ -65,7 +65,7 @@ use tetsy_vm::{Schedule, LastHashes};
 use crate::block::{OpenBlock, SealedBlock, ClosedBlock};
 use call_contract::CallContract;
 use tetsy_registrar::RegistrarClient;
-use client::{
+use crate::client::{
 	ReopenBlock, PrepareOpenBlock, ImportSealedBlock, BroadcastProposalBlock, Call,
 	EngineInfo, BlockProducer, SealedBlockImporter,
 };
@@ -77,7 +77,7 @@ use client_traits::{
 use enjen::Engine;
 use mashina::executed::Executed;
 use journaldb;
-use miner::{self, Miner, MinerService};
+use crate::miner::{self, Miner, MinerService};
 use vapcore_spec::{Spec, self};
 use account_state::state::StateInfo;
 use state_db::StateDB;

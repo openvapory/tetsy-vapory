@@ -21,16 +21,16 @@ use hash::keccak;
 use crate::block::*;
 use vapory_types::{U256, Address};
 use io::*;
-use spec;
-use test_helpers::get_temp_state_db;
-use client::{Client, ClientConfig};
+use vapcore_spec;
+use crate::test_helpers::get_temp_state_db;
+use crate::client::{Client, ClientConfig};
 use client_traits::{BlockChainClient, ImportBlock};
 use std::sync::Arc;
 use std::str::FromStr;
 use crate::miner::Miner;
 use vapcore_trace::{RewardType, LocalizedTrace};
 use vapcore_trace::trace::Action::Reward;
-use test_helpers;
+use crate::test_helpers;
 use types::{
 	ids::BlockId,
 	transaction::{Action, Transaction},

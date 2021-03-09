@@ -56,11 +56,11 @@ use types::{
 	verification::Unverified,
 };
 
-use block::{OpenBlock, Drain};
-use client::{Client, ClientConfig, PrepareOpenBlock};
+use crate::block::{OpenBlock, Drain};
+use crate::client::{Client, ClientConfig, PrepareOpenBlock};
 use client_traits::{ChainInfo, ChainNotify, ImportBlock};
 use trie_vm_factories::Factories;
-use miner::Miner;
+use crate::miner::Miner;
 use vapcore_spec::{Spec, self};
 use account_state::*;
 use state_db::StateDB;
