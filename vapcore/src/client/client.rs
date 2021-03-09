@@ -52,7 +52,7 @@ use blockchain::{
 	TreeRoute
 };
 use call_contract::CallContract;
-use client::{
+use crate::client::{
 	bad_blocks, BlockProducer, BroadcastProposalBlock, Call,
 	ClientConfig, EngineInfo, ImportSealedBlock, PrepareOpenBlock,
 	ReopenBlock, SealedBlockImporter,

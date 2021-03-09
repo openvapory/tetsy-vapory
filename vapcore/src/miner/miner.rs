@@ -31,9 +31,9 @@ use vapcore_miner::work_notify::NotifyWork;
 use vapory_types::{H256, U256, Address};
 use futures::sync::mpsc;
 use io::IoChannel;
-use miner::filter_options::FilterOptions;
-use miner::pool_client::{PoolClient, CachedNonceClient, NonceCache};
-use miner::{self, MinerService};
+use crate::miner::filter_options::FilterOptions;
+use crate::miner::pool_client::{PoolClient, CachedNonceClient, NonceCache};
+use crate::miner::{self, MinerService};
 use parking_lot::{Mutex, RwLock};
 use rayon::prelude::*;
 use types::{
