@@ -62,7 +62,7 @@ use types::{
 };
 use tetsy_vm::{Schedule, LastHashes};
 
-use block::{OpenBlock, SealedBlock, ClosedBlock};
+use crate::block::{OpenBlock, SealedBlock, ClosedBlock};
 use call_contract::CallContract;
 use tetsy_registrar::RegistrarClient;
 use client::{

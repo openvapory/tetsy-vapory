@@ -18,7 +18,7 @@
 
 use tetsy_crypto::publickey::KeyPair;
 use hash::keccak;
-use block::*;
+use crate::block::*;
 use vapory_types::{U256, Address};
 use io::*;
 use spec;
@@ -27,9 +27,9 @@ use client::{Client, ClientConfig};
 use client_traits::{BlockChainClient, ImportBlock};
 use std::sync::Arc;
 use std::str::FromStr;
-use miner::Miner;
-use trace::{RewardType, LocalizedTrace};
-use trace::trace::Action::Reward;
+use crate::miner::Miner;
+use vapcore_trace::{RewardType, LocalizedTrace};
+use vapcore_trace::trace::Action::Reward;
 use test_helpers;
 use types::{
 	ids::BlockId,

@@ -25,8 +25,8 @@ use mashina::{
 	substate::Substate,
 	test_helpers::new_eip210_test_mashina,
 };
-use test_helpers::get_temp_state_with_factory;
-use trace::{NoopVMTracer, NoopTracer};
+use crate::test_helpers::get_temp_state_with_factory;
+use vapcore_trace::{NoopVMTracer, NoopTracer};
 use types::transaction::SYSTEM_ADDRESS;
 
 use rustc_hex::FromHex;

@@ -483,7 +483,7 @@ pub fn enact_verified(
 
 #[cfg(test)]
 mod tests {
-	use test_helpers::get_temp_state_db;
+	use crate::test_helpers::get_temp_state_db;
 	use super::*;
 	use enjen::Engine;
 	use tetsy_vm::LastHashes;

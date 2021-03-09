@@ -16,7 +16,7 @@
 
 use blockchain::BlockProvider;
 
-use test_helpers::{
+use crate::test_helpers::{
 	generate_dummy_blockchain,
 	generate_dummy_blockchain_with_extra,
 	generate_dummy_empty_blockchain,
