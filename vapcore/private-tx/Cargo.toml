@@ -31,10 +31,9 @@ tetsy-hash-db = "0.15.2"
 tetsy-keccak-hash = "0.4.0"
 tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
 tetsy-kvdb = "0.3.2"
-# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"
 mashina = { version = "0.1.0", path = "../mashina" }
-journaldb = { path = "../../util/journaldb" }
+journaldb = { version = "0.2.0", path = "../../util/journaldb" }
 tetsy-bytes = "0.1"
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 parking_lot = "0.9"
@@ -42,7 +41,7 @@ tetsy-trie-db = "0.19.2"
 patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }
 tetsy-registrar = { version = "0.0.1", path = "../../util/tetsy-registrar" }
 tetsy-rlp = "0.4.5"
-tetsy-rlp-derive = { path = "../../util/tetsy-rlp-derive" }
+tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
 rustc-hex = "1.0"
 serde = "1.0"
 serde_derive = "1.0"

@@ -18,18 +18,18 @@ enjen = { version = "0.1.0", path = "../enjen" }
 vapcore-db = { version = "0.1.0", path = "../db" }
 vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
 vapory-types = "0.8.0"
-executive-state = { path = "../executive-state" }
+executive-state = { version = "0.1.0", path = "../executive-state" }
 mashina = { version = "0.1.0", path = "../mashina" }
 tetsy-memory-db = "0.18.1"
 tetsy-trie-db = "0.19.2"
 patricia-trie-vapory = { version = "0.1.1", path = "../../util/patricia-trie-vapory" }
-vapcore-network = { path = "../../util/network" }
+vapcore-network = { version = "1.12.0", path = "../../util/network" }
 vapcore-miner = { version = "1.12.0", path = "../../miner" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
 tetsy-hash-db = "0.15.2"
 tetsy-util-mem = "0.3.0"
 tetsy-vm = { version = "0.1.0", path = "../vm" }
-fastmap = { path = "../../util/fastmap" }
+fastmap = { version = "0.1.0", path = "../../util/fastmap" }
 failsafe = { version = "0.3.0", default-features = false, features = ["parking_lot_mutex"] }
 tetsy-rlp = "0.4.5"
 tetsy-rlp-derive = { version = "0.0.1", path = "../../util/tetsy-rlp-derive" }
@@ -46,10 +46,9 @@ tetsy-keccak-hash = "0.4.0"
 tetsy-keccak-hasher = { version = "0.1.1", path = "../../util/tetsy-keccak-hasher" }
 triehash-vapory = { version = "0.2",  path = "../../util/triehash-vapory" }
 tetsy-kvdb = "0.3.2"
-# tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
-memory-cache = { path = "../../util/memory-cache" }
-journaldb = { path = "../../util/journaldb" }
-verification = { path = "../verification" }
+memory-cache = { version = "0.1.0", path = "../../util/memory-cache" }
+journaldb = { version = "0.2.0", path = "../../util/journaldb" }
+verification = { version = "0.1.0", path = "../verification" }
 
 # [dependencies.tetsy-memory-db]
 # git = "https://github.com/tetcoin/trie"
