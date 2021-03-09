@@ -27,7 +27,7 @@ use common_types::{
 	ids::BlockId,
 	header::Header,
 	errors::VapcoreError,
-	engines::mashina::{Call, AuxiliaryData},
+	engines::machine::{Call, AuxiliaryData},
 };
 use vapory_types::{H256, Address};
 use mashina::Machine;
@@ -85,9 +85,9 @@ impl ValidatorSet for TestSet {
 	fn is_epoch_end(&self, _first: bool, _chain_head: &Header) -> Option<Vec<u8>> { None }
 
 	fn signals_epoch_end(&self, _: bool, _: &Header, _: AuxiliaryData)
-		-> engine::EpochChange
+		-> enjen::EpochChange
 	{
-		engine::EpochChange::No
+		enjen::EpochChange::No
 	}
 
 	fn epoch_set(&self, _: bool, _: &Machine, _: BlockNumber, _: &[u8]) -> Result<(SimpleList, Option<H256>), VapcoreError> {
