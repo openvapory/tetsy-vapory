@@ -32,7 +32,7 @@ use types::{
 use vapjson::spec::ForkSpec;
 use trie_vm_factories::Factories;
 use vvm::FinalizationResult;
-use vm::{self, ActionParams, CreateContractAddress};
+use tetsy_vm::{self, ActionParams, CreateContractAddress};
 use vaptrie;
 use account_state::{CleanupMode, State};
 use mashina::{
@@ -48,7 +48,7 @@ pub enum VvmTestError {
 	/// Trie integrity error.
 	Trie(Box<vaptrie::TrieError>),
 	/// VVM error.
-	Vvm(vm::Error),
+	Vvm(tetsy_vm::Error),
 	/// Initialization error.
 	ClientError(VapcoreError),
 	/// Post-condition failure,
@@ -77,7 +77,7 @@ impl fmt::Display for VvmTestError {
 /// Simplified, single-block VVM test client.
 pub struct VvmTestClient<'a> {
 	state: State<state_db::StateDB>,
-	spec: &'a spec::Spec,
+	spec: &'a vapcore_spec::Spec,
 	dump_state: fn(&State<state_db::StateDB>) -> Option<PodState>,
 }
 
@@ -100,17 +100,17 @@ impl<'a> fmt::Debug for VvmTestClient<'a> {
 
 impl<'a> VvmTestClient<'a> {
 	/// Converts a json spec definition into spec.
-	pub fn fork_spec_from_json(spec: &ForkSpec) -> Option<spec::Spec> {
+	pub fn fork_spec_from_json(spec: &ForkSpec) -> Option<vapcore_spec::Spec> {
 		match *spec {
-			ForkSpec::Frontier => Some(spec::new_frontier_test()),
-			ForkSpec::Homestead => Some(spec::new_homestead_test()),
-			ForkSpec::EIP150 => Some(spec::new_eip150_test()),
-			ForkSpec::EIP158 => Some(spec::new_eip161_test()),
-			ForkSpec::Byzantium => Some(spec::new_byzantium_test()),
-			ForkSpec::Constantinople => Some(spec::new_constantinople_test()),
-			ForkSpec::ConstantinopleFix => Some(spec::new_constantinople_fix_test()),
-			ForkSpec::Istanbul => Some(spec::new_istanbul_test()),
-			ForkSpec::EIP158ToByzantiumAt5 => Some(spec::new_transition_test()),
+			ForkSpec::Frontier => Some(vapcore_spec::new_frontier_test()),
+			ForkSpec::Homestead => Some(vapcore_spec::new_homestead_test()),
+			ForkSpec::EIP150 => Some(vapcore_spec::new_eip150_test()),
+			ForkSpec::EIP158 => Some(vapcore_spec::new_eip161_test()),
+			ForkSpec::Byzantium => Some(vapcore_spec::new_byzantium_test()),
+			ForkSpec::Constantinople => Some(vapcore_spec::new_constantinople_test()),
+			ForkSpec::ConstantinopleFix => Some(vapcore_spec::new_constantinople_fix_test()),
+			ForkSpec::Istanbul => Some(vapcore_spec::new_istanbul_test()),
+			ForkSpec::EIP158ToByzantiumAt5 => Some(vapcore_spec::new_transition_test()),
 			ForkSpec::FrontierToHomesteadAt5 | ForkSpec::HomesteadToDaoAt5 | ForkSpec::HomesteadToEIP150At5 => None,
 		}
 	}
@@ -122,7 +122,7 @@ impl<'a> VvmTestClient<'a> {
 
 	/// Creates new VVM test client with in-memory DB initialized with genesis of given Spec.
 	/// Takes a `TrieSpec` to set the type of trie.
-	pub fn new_with_trie(spec: &'a spec::Spec, trie_spec: trie::TrieSpec) -> Result<Self, VvmTestError> {
+	pub fn new_with_trie(spec: &'a vapcore_spec::Spec, trie_spec: trie::TrieSpec) -> Result<Self, VvmTestError> {
 		let factories = Self::factories(trie_spec);
 		let state =	Self::state_from_spec(spec, &factories)?;
 
@@ -134,13 +134,13 @@ impl<'a> VvmTestClient<'a> {
 	}
 
 	/// Creates new VVM test client with an in-memory DB initialized with genesis of given chain Spec.
-	pub fn new(spec: &'a spec::Spec) -> Result<Self, VvmTestError> {
+	pub fn new(spec: &'a vapcore_spec::Spec) -> Result<Self, VvmTestError> {
 		Self::new_with_trie(spec, trie::TrieSpec::Secure)
 	}
 
 	/// Creates new VVM test client with an in-memory DB initialized with given PodState.
 	/// Takes a `TrieSpec` to set the type of trie.
-	pub fn from_pod_state_with_trie(spec: &'a spec::Spec, pod_state: PodState, trie_spec: trie::TrieSpec) -> Result<Self, VvmTestError> {
+	pub fn from_pod_state_with_trie(spec: &'a vapcore_spec::Spec, pod_state: PodState, trie_spec: trie::TrieSpec) -> Result<Self, VvmTestError> {
 		let factories = Self::factories(trie_spec);
 		let state =	Self::state_from_pod(spec, &factories, pod_state)?;
 
@@ -152,7 +152,7 @@ impl<'a> VvmTestClient<'a> {
 	}
 
 	/// Creates new VVM test client with an in-memory DB initialized with given PodState.
-	pub fn from_pod_state(spec: &'a spec::Spec, pod_state: PodState) -> Result<Self, VvmTestError> {
+	pub fn from_pod_state(spec: &'a vapcore_spec::Spec, pod_state: PodState) -> Result<Self, VvmTestError> {
 		Self::from_pod_state_with_trie(spec, pod_state, trie::TrieSpec::Secure)
 	}
 
@@ -164,7 +164,7 @@ impl<'a> VvmTestClient<'a> {
 		}
 	}
 
-	fn state_from_spec(spec: &'a spec::Spec, factories: &Factories) -> Result<State<state_db::StateDB>, VvmTestError> {
+	fn state_from_spec(spec: &'a vapcore_spec::Spec, factories: &Factories) -> Result<State<state_db::StateDB>, VvmTestError> {
 		let db = Arc::new(tetsy_kvdb_memorydb::create(db::NUM_COLUMNS));
 		let journal_db = journaldb::new(db.clone(), journaldb::Algorithm::EarlyMerge, db::COL_STATE);
 		let mut state_db = state_db::StateDB::new(journal_db, 5 * 1024 * 1024);
@@ -186,7 +186,7 @@ impl<'a> VvmTestClient<'a> {
 		).map_err(VvmTestError::Trie)
 	}
 
-	fn state_from_pod(spec: &'a spec::Spec, factories: &Factories, pod_state: PodState) -> Result<State<state_db::StateDB>, VvmTestError> {
+	fn state_from_pod(spec: &'a vapcore_spec::Spec, factories: &Factories, pod_state: PodState) -> Result<State<state_db::StateDB>, VvmTestError> {
 		let db = Arc::new(tetsy_kvdb_memorydb::create(db::NUM_COLUMNS));
 		let journal_db = journaldb::new(db.clone(), journaldb::Algorithm::EarlyMerge, db::COL_STATE);
 		let state_db = state_db::StateDB::new(journal_db, 5 * 1024 * 1024);
