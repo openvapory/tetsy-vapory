@@ -24,7 +24,7 @@ macro_rules! bundle_release_spec {
 				let params = params.into();
 				crate::spec::Spec::load(
 					params,
-					include_bytes!(concat!("../../res/", $path, ".json")) as &[u8]
+					include_bytes!(concat!("res/", $path, ".json")) as &[u8]
 				).expect(concat!("Chain spec ", $path, " is invalid."))
 			}
 		)*
@@ -38,7 +38,7 @@ macro_rules! bundle_test_spec {
 			pub fn $name() -> crate::spec::Spec {
 				crate::spec::Spec::load(
 					&::std::env::temp_dir(),
-					include_bytes!(concat!("../../res/", $path, ".json")) as &[u8]
+					include_bytes!(concat!("res/", $path, ".json")) as &[u8]
 				).expect(concat!("Chain spec ", $path, " is invalid."))
 			}
 		)*
@@ -51,7 +51,7 @@ macro_rules! bundle_test_mashina {
 			/// Bundled test spec
 			pub fn $name() -> mashina::Machine {
 				crate::spec::Spec::load_mashina(
-					include_bytes!(concat!("../../res/", $path, ".json")) as &[u8]
+					include_bytes!(concat!("res/", $path, ".json")) as &[u8]
 				).expect(concat!("Chain spec ", $path, " is invalid."))
 			}
 		)*
