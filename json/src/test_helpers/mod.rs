@@ -33,5 +33,5 @@ pub mod trie;
 /// Vm test helpers
 pub mod vm {
 	/// Type for running `vm` tests
-	pub type Test = super::tester::GenericTester<String, crate::tetsy_vm::Vm>;
+	pub type Test = super::tester::GenericTester<String, crate::vm::Vm>;
 }
