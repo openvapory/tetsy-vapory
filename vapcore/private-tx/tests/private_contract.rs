@@ -26,7 +26,7 @@ extern crate tetsy_crypto;
 extern crate tetsy_keccak_hash as hash;
 extern crate rustc_hex;
 extern crate mashina;
-extern crate spec;
+extern crate vapcore_spec;
 
 #[macro_use]
 extern crate log;
@@ -68,7 +68,7 @@ fn private_contract() {
 	};
 
 	let io = vapcore_io::IoChannel::disconnected();
-	let miner = Arc::new(Miner::new_for_tests(&spec::new_test(), None));
+	let miner = Arc::new(Miner::new_for_tests(&vapcore_spec::new_test(), None));
 	let private_keys = Arc::new(StoringKeyProvider::default());
 	let db = new_db();
 	let pm = Arc::new(Provider::new(
@@ -206,7 +206,7 @@ fn call_other_private_contract() {
 	};
 
 	let io = vapcore_io::IoChannel::disconnected();
-	let miner = Arc::new(Miner::new_for_tests(&spec::new_test(), None));
+	let miner = Arc::new(Miner::new_for_tests(&vapcore_spec::new_test(), None));
 	let private_keys = Arc::new(StoringKeyProvider::default());
 	let db = new_db();
 	let pm = Arc::new(Provider::new(
