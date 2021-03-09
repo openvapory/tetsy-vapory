@@ -1715,7 +1715,7 @@ mod tests {
 
 	#[test]
 	fn should_reject_local_transaction_with_invalid_chain_id() {
-		let spec = spec::new_test();
+		let spec = vapcore_spec::new_test();
 		let miner = Miner::new_for_tests(&spec, None);
 		let client = TestBlockChainClient::default();
 		let chain_id = spec.chain_id();
