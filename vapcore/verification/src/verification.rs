@@ -438,7 +438,7 @@ mod tests {
 	use vapory_types::{H256, U256, Address};
 	use tetsy_bytes::Bytes;
 	use tetsy_keccak_hash::keccak;
-	use engine::Engine;
+	use enjen::Engine;
 	use tetsy_crypto::publickey::{Random, Generator};
 	use spec;
 	use vapcore::test_helpers::{

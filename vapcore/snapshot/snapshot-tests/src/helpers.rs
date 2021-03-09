@@ -30,7 +30,7 @@ use common_types::{
 	errors::VapcoreError,
 	snapshot::Progress,
 };
-use engine::Engine;
+use enjen::Engine;
 use vapcore::client::Client;
 use vapory_types::H256;
 use vaptrie::{SecTrieDBMut, TrieDB, TrieDBMut};

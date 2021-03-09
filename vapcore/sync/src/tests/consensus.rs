@@ -22,7 +22,7 @@ use crate::{
 };
 
 use client_traits::ChainInfo;
-use engine::signer;
+use enjen::signer;
 use vapcore::client::Client;
 use vapcore::miner::{self, MinerService};
 use vapcore_io::{IoHandler, IoChannel};

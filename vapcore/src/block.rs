@@ -485,7 +485,7 @@ pub fn enact_verified(
 mod tests {
 	use test_helpers::get_temp_state_db;
 	use super::*;
-	use engine::Engine;
+	use enjen::Engine;
 	use tetsy_vm::LastHashes;
 	use trie_vm_factories::Factories;
 	use state_db::StateDB;

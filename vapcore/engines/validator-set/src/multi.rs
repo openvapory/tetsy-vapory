@@ -164,7 +164,7 @@ mod tests {
 	use client_traits::{
 		BlockChainClient, BlockInfo, ChainInfo, ImportBlock, EngineClient, ForceUpdateSealing, TransactionRequest
 	};
-	use engine::EpochChange;
+	use enjen::EpochChange;
 	use vapcore::{
 		miner::{self, MinerService},
 		test_helpers::generate_dummy_client_with_spec,

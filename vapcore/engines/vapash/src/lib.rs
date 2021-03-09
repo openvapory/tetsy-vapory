@@ -498,7 +498,7 @@ mod tests {
 		header::Header,
 		errors::{BlockError, VapcoreError as Error}
 	};
-	use engine::Engine;
+	use enjen::Engine;
 	use vapory_types::{H64, H256, U256, Address};
 	use vapcore::{
 		block::*,

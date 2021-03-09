@@ -74,7 +74,7 @@ use client_traits::{
 	AccountData, BlockChain, IoClient, BadBlocks, ScheduleInfo, StateClient, ProvingBlockChainClient,
 	StateOrBlock, ForceUpdateSealing, TransactionRequest
 };
-use engine::Engine;
+use enjen::Engine;
 use mashina::executed::Executed;
 use journaldb;
 use miner::{self, Miner, MinerService};

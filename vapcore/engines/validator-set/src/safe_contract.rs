@@ -464,7 +464,7 @@ mod tests {
 		verification::Unverified,
 	};
 	use client_traits::{BlockInfo, ChainInfo, ImportBlock, EngineClient, ForceUpdateSealing};
-	use engine::{EpochChange, Proof};
+	use enjen::{EpochChange, Proof};
 	use vapcore::{
 		miner::{self, MinerService},
 		test_helpers::generate_dummy_client_with_spec

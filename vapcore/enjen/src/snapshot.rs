@@ -27,7 +27,7 @@ use common_types::{
 	snapshot::{ManifestData, ChunkSink, Progress},
 };
 
-use crate::engine::Engine;
+use crate::enjen::Engine;
 
 /// Restore from secondary snapshot chunks.
 pub trait Rebuilder: Send {

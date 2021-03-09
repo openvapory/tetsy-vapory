@@ -167,7 +167,7 @@ mod test {
 		test_helpers::generate_dummy_client_with_spec,
 	};
 	use vapory_types::{U256, Address};
-	use engine::SystemOrCodeCallKind;
+	use enjen::SystemOrCodeCallKind;
 	use spec;
 
 	use crate::{BlockRewardContract, RewardKind};

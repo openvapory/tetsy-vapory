@@ -24,7 +24,7 @@ use vapcore::{
 	block::*,
 	test_helpers::get_temp_state_db,
 };
-use engine::Engine;
+use enjen::Engine;
 use vapory_types::{Address, H256};
 use tetsy_crypto::publickey::{Secret, KeyPair};
 use state_db::StateDB;
