@@ -11,27 +11,27 @@ repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 account-state = { version = "0.1.0", path = "../account-state" }
-authority-round = { path = "../engines/authority-round" }
-basic-authority = { path = "../engines/basic-authority" }
-builtin = { package = "vapcore-builtin", path = "../builtin" }
-bytes = { package = "tetsy-bytes", version = "0.1.0" }
+authority-round = { version = "0.1.0", path = "../engines/authority-round" }
+basic-authority = { version = "0.1.0", path = "../engines/basic-authority" }
+builtin = { version = "0.1.0", package = "vapcore-builtin", path = "../builtin" }
+bytes = { version = "0.1.0", package = "tetsy-bytes" }
 vapcore-clique = { version = "0.1.0", path = "../engines/clique" }
 common-types = { version = "0.1.0", path = "../types" }
 enjen = { version = "0.1.0", path = "../enjen" }
 vapash = { version = "1.12.0", path = "../../vapash" }
-vapash-engine = { path = "../engines/vapash" }
+vapash-engine = { version = "0.1.0", path = "../engines/vapash" }
 vapory-types = "0.8.0"
-vapjson = { path = "../../json" }
+vapjson = { version = "0.1.0", path = "../../json" }
 vvm = { version = "0.1.0", path = "../vvm" }
-executive-state = { path = "../executive-state" }
+executive-state = { version = "0.1.0", path = "../executive-state" }
 tetsy-hash-db = "0.15.2"
-instant-seal = { path = "../engines/instant-seal" }
-journaldb = { path = "../../util/journaldb" }
+instant-seal = { version = "0.1.0", path = "../engines/instant-seal" }
+journaldb = { version = "0.2.0", path = "../../util/journaldb" }
 tetsy-keccak-hash = "0.4.0"
 tetsy-kvdb-memorydb = "0.3.2"
 log = "0.4.8"
-mashina = { path = "../mashina" }
-null-engine = { path = "../engines/null-engine" }
+mashina = { version = "0.1.0", path = "../mashina" }
+null-engine = { version = "0.1.0", path = "../engines/null-engine" }
 vapcore-pod = { version = "0.1.0", path = "../pod" }
 tetsy-rlp = "0.4.5"
 vapcore-trace = { version = "0.1.0", path = "../trace" }
