@@ -57,7 +57,7 @@ use client::{
 	ClientConfig, EngineInfo, ImportSealedBlock, PrepareOpenBlock,
 	ReopenBlock, SealedBlockImporter,
 };
-use client::ancient_import::AncientVerifier;
+use crate::client::ancient_import::AncientVerifier;
 use client_traits::{
 	AccountData,
 	BadBlocks,
