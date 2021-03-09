@@ -95,7 +95,7 @@ use mashina::{
 	executive::{contract_address, Executive, TransactOptions},
 	transaction_ext::Transaction,
 };
-use miner::{Miner, MinerService, PendingOrdering};
+use crate::miner::{Miner, MinerService, PendingOrdering};
 use tetsy_registrar::RegistrarClient;
 use vapcore_snapshot::{self, SnapshotClient, SnapshotWriter};
 use vapcore_spec::Spec;

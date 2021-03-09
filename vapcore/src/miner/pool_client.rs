@@ -42,7 +42,7 @@ use call_contract::CallContract;
 use client_traits::{BlockInfo, Nonce};
 use enjen::Engine;
 use mashina::transaction_ext::Transaction;
-use miner;
+use crate::miner;
 
 /// Cache for state nonces.
 #[derive(Debug, Clone)]

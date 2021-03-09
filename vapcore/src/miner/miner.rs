@@ -56,8 +56,8 @@ use types::{
 };
 use using_queue::{UsingQueue, GetAction};
 
-use block::{ClosedBlock, SealedBlock};
-use client::{BlockProducer, SealedBlockImporter, Client};
+use crate::block::{ClosedBlock, SealedBlock};
+use crate::client::{BlockProducer, SealedBlockImporter, Client};
 use client_traits::{BlockChain, ChainInfo, Nonce, TransactionInfo, EngineClient, ForceUpdateSealing};
 use enjen::{Engine, signer::EngineSigner};
 use mashina::executive::contract_address;
