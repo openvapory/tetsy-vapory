@@ -2467,8 +2467,8 @@ impl BroadcastProposalBlock for Client {
 
 impl SealedBlockImporter for Client {}
 
-impl ::miner::TransactionVerifierClient for Client {}
-impl ::miner::BlockChainClient for Client {}
+impl crate::miner::TransactionVerifierClient for Client {}
+impl crate::miner::BlockChainClient for Client {}
 
 impl client_traits::EngineClient for Client {
 	fn update_sealing(&self, force: ForceUpdateSealing) {
