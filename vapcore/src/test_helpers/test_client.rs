@@ -78,10 +78,10 @@ use enjen::Engine;
 use mashina::executed::Executed;
 use journaldb;
 use miner::{self, Miner, MinerService};
-use spec::{Spec, self};
+use vapcore_spec::{Spec, self};
 use account_state::state::StateInfo;
 use state_db::StateDB;
-use trace::LocalizedTrace;
+use vapcore_trace::LocalizedTrace;
 
 /// Test client.
 pub struct TestBlockChainClient {

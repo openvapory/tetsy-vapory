@@ -61,7 +61,7 @@ use client::{Client, ClientConfig, PrepareOpenBlock};
 use client_traits::{ChainInfo, ChainNotify, ImportBlock};
 use trie_vm_factories::Factories;
 use miner::Miner;
-use spec::{Spec, self};
+use vapcore_spec::{Spec, self};
 use account_state::*;
 use state_db::StateDB;
 

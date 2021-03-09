@@ -21,7 +21,7 @@ use std::sync::Arc;
 use vapory_types::{H256, U256, H160};
 use {trie_vm_factories, journaldb, trie, tetsy_kvdb_memorydb};
 use tetsy_kvdb::{self, KeyValueDB};
-use {state_db, trace, db, spec};
+use {state_db, vapcore_trace, db, vapcore_spec};
 use vapcore_pod::PodState;
 use types::{
 	errors::VapcoreError,
@@ -32,7 +32,7 @@ use types::{
 use vapjson::spec::ForkSpec;
 use trie_vm_factories::Factories;
 use vvm::FinalizationResult;
-use tetsy_vm::{self, ActionParams, CreateContractAddress};
+use vm::{self, ActionParams, CreateContractAddress};
 use vaptrie;
 use account_state::{CleanupMode, State};
 use mashina::{
