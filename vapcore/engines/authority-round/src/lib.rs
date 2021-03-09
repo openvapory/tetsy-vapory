@@ -1934,7 +1934,7 @@ mod tests {
 	use enjen::Engine;
 	use block_reward::BlockRewardContract;
 	use mashina::Machine;
-	use spec::{self, Spec};
+	use vapcore_spec::{self, Spec};
 	use validator_set::{TestSet, SimpleList};
 	use vapjson;
 	use serde_json;
@@ -1977,13 +1977,13 @@ mod tests {
 
 	#[test]
 	fn has_valid_metadata() {
-		let engine = spec::new_test_round().engine;
+		let engine = vapcore_spec::new_test_round().engine;
 		assert_eq!(engine.name(), "AuthorityRound");
 	}
 
 	#[test]
 	fn can_return_schedule() {
-		let engine = spec::new_test_round().engine;
+		let engine = vapcore_spec::new_test_round().engine;
 		let schedule = engine.schedule(10000000);
 
 		assert!(schedule.stack_limit > 0);
@@ -1991,7 +1991,7 @@ mod tests {
 
 	#[test]
 	fn can_do_signature_verification_fail() {
-		let engine = spec::new_test_round().engine;
+		let engine = vapcore_spec::new_test_round().engine;
 		let mut header: Header = Header::default();
 		header.set_seal(vec![encode(&H520::default())]);
 
@@ -2003,7 +2003,7 @@ mod tests {
 	fn generates_seal_and_does_not_double_propose() {
 		let tap = Arc::new(AccountProvider::transient_provider());
 		let addr1 = tap.insert_account(keccak("1").into(), &"1".into()).unwrap();
-		let spec = spec::new_test_round();
+		let spec = vapcore_spec::new_test_round();
 		let engine = &*spec.engine;
 		let genesis_header = spec.genesis_header();
 		let db1 = spec.ensure_db_good(get_temp_state_db(), &Default::default()).unwrap();
@@ -2025,7 +2025,7 @@ mod tests {
 	fn generates_seal_iff_sealer_is_set() {
 		let tap = Arc::new(AccountProvider::transient_provider());
 		let addr1 = tap.insert_account(keccak("1").into(), &"1".into()).unwrap();
-		let spec = spec::new_test_round();
+		let spec = vapcore_spec::new_test_round();
 		let engine = &*spec.engine;
 		let genesis_header = spec.genesis_header();
 		let db1 = spec.ensure_db_good(get_temp_state_db(), &Default::default()).unwrap();
@@ -2078,7 +2078,7 @@ mod tests {
 		let addr1 = tap.insert_account(keccak("1").into(), &"1".into()).unwrap();
 		let addr2 = tap.insert_account(keccak("0").into(), &"0".into()).unwrap();
 
-		let spec = spec::new_test_round();
+		let spec = vapcore_spec::new_test_round();
 		let engine = &*spec.engine;
 
 		let genesis_header = spec.genesis_header();
@@ -2118,7 +2118,7 @@ mod tests {
 		header.set_gas_limit("222222".parse::<U256>().unwrap());
 		header.set_author(addr);
 
-		let engine = spec::new_test_round().engine;
+		let engine = vapcore_spec::new_test_round().engine;
 
 		// Two validators.
 		// Spec starts with step 2.
@@ -2147,7 +2147,7 @@ mod tests {
 		header.set_gas_limit("222222".parse::<U256>().unwrap());
 		header.set_author(addr);
 
-		let engine = spec::new_test_round().engine;
+		let engine = vapcore_spec::new_test_round().engine;
 
 		// Two validators.
 		// Spec starts with step 2.
@@ -2173,7 +2173,7 @@ mod tests {
 		header.set_gas_limit("222222".parse::<U256>().unwrap());
 		header.set_author(addr);
 
-		let engine = spec::new_test_round().engine;
+		let engine = vapcore_spec::new_test_round().engine;
 
 		let signature = tap.sign(addr, Some("0".into()), header.bare_hash()).unwrap();
 		// Two validators.
@@ -2360,7 +2360,7 @@ mod tests {
 	}
 
 	fn setup_empty_steps() -> (Spec, Arc<AccountProvider>, Vec<Address>) {
-		let spec = spec::new_test_round_empty_steps();
+		let spec = vapcore_spec::new_test_round_empty_steps();
 		let tap = Arc::new(AccountProvider::transient_provider());
 
 		let addr1 = tap.insert_account(keccak("1").into(), &"1".into()).unwrap();
@@ -2413,7 +2413,7 @@ mod tests {
 
 		let last_hashes = Arc::new(vec![genesis_header.hash()]);
 
-		let client = generate_dummy_client_with_spec(spec::new_test_round_empty_steps);
+		let client = generate_dummy_client_with_spec(vapcore_spec::new_test_round_empty_steps);
 		let notify = Arc::new(TestNotify::default());
 		client.add_notify(notify.clone());
 		engine.register_client(Arc::downgrade(&client) as _);
@@ -2452,7 +2452,7 @@ mod tests {
 
 		let last_hashes = Arc::new(vec![genesis_header.hash()]);
 
-		let client = generate_dummy_client_with_spec(spec::new_test_round_empty_steps);
+		let client = generate_dummy_client_with_spec(vapcore_spec::new_test_round_empty_steps);
 		let notify = Arc::new(TestNotify::default());
 		client.add_notify(notify.clone());
 		engine.register_client(Arc::downgrade(&client) as _);
@@ -2505,7 +2505,7 @@ mod tests {
 
 		let last_hashes = Arc::new(vec![genesis_header.hash()]);
 
-		let client = generate_dummy_client_with_spec(spec::new_test_round_empty_steps);
+		let client = generate_dummy_client_with_spec(vapcore_spec::new_test_round_empty_steps);
 		let notify = Arc::new(TestNotify::default());
 		client.add_notify(notify.clone());
 		engine.register_client(Arc::downgrade(&client) as _);
@@ -2557,7 +2557,7 @@ mod tests {
 
 		let last_hashes = Arc::new(vec![genesis_header.hash()]);
 
-		let client = generate_dummy_client_with_spec(spec::new_test_round_empty_steps);
+		let client = generate_dummy_client_with_spec(vapcore_spec::new_test_round_empty_steps);
 		engine.register_client(Arc::downgrade(&client) as _);
 
 		// step 2
@@ -2644,7 +2644,7 @@ mod tests {
 
 	#[test]
 	fn block_reward_contract() {
-		let spec = spec::new_test_round_block_reward_contract();
+		let spec = vapcore_spec::new_test_round_block_reward_contract();
 		let tap = Arc::new(AccountProvider::transient_provider());
 
 		let addr1 = tap.insert_account(keccak("1").into(), &"1".into()).unwrap();
@@ -2656,7 +2656,7 @@ mod tests {
 
 		let last_hashes = Arc::new(vec![genesis_header.hash()]);
 
-		let client = generate_dummy_client_with_spec(spec::new_test_round_block_reward_contract);
+		let client = generate_dummy_client_with_spec(vapcore_spec::new_test_round_block_reward_contract);
 		engine.register_client(Arc::downgrade(&client) as _);
 
 		// step 2
@@ -2714,7 +2714,7 @@ mod tests {
 
 		let contract_addr = Address::from_str("0000000000000000000000000000000000000042").unwrap();
 		let client = generate_dummy_client_with_spec_and_data(
-			spec::new_test_round_randomness_contract, 0, 0, &[], true
+			vapcore_spec::new_test_round_randomness_contract, 0, 0, &[], true
 		);
 
 		let tap = Arc::new(AccountProvider::transient_provider());
