@@ -39,7 +39,7 @@ use trie::{Trie, TrieFactory, TrieSpec};
 
 use account_state::State;
 use account_state::state::StateInfo;
-use block::{ClosedBlock, Drain, enact_verified, LockedBlock, OpenBlock, SealedBlock};
+use crate::block::{ClosedBlock, Drain, enact_verified, LockedBlock, OpenBlock, SealedBlock};
 use blockchain::{
 	BlockChain,
 	BlockChainDB,

@@ -24,7 +24,7 @@ use types::{
 	header::Header,
 };
 
-use block::{OpenBlock, SealedBlock, ClosedBlock};
+use crate::block::{OpenBlock, SealedBlock, ClosedBlock};
 use enjen::Engine;
 use mashina::executed::Executed;
 use account_state::state::StateInfo;
