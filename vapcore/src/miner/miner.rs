@@ -1502,7 +1502,7 @@ mod tests {
 	fn should_prepare_block_to_seal() {
 		// given
 		let client = TestBlockChainClient::default();
-		let miner = Miner::new_for_tests(&spec::new_test(), None);
+		let miner = Miner::new_for_tests(&vapcore_spec::new_test(), None);
 
 		// when
 		let sealing_work = miner.work_package(&client);
@@ -1513,7 +1513,7 @@ mod tests {
 	fn should_still_work_after_a_couple_of_blocks() {
 		// given
 		let client = TestBlockChainClient::default();
-		let miner = Miner::new_for_tests(&spec::new_test(), None);
+		let miner = Miner::new_for_tests(&vapcore_spec::new_test(), None);
 
 		let res = miner.work_package(&client);
 		let hash = res.unwrap().0;
@@ -1557,7 +1557,7 @@ mod tests {
 				},
 			},
 			GasPricer::new_fixed(0u64.into()),
-			&spec::new_test(),
+			&vapcore_spec::new_test(),
 			::std::collections::HashSet::new(), // local accounts
 		)
 	}
@@ -1680,7 +1680,7 @@ mod tests {
 				..miner().options
 			},
 			GasPricer::new_fixed(0u64.into()),
-			&spec::new_test(),
+			&vapcore_spec::new_test(),
 			local_accounts,
 		);
 		let transaction = transaction();

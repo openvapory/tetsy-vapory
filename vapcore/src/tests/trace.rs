@@ -44,7 +44,7 @@ use types::{
 #[test]
 fn can_trace_block_and_uncle_reward() {
 	let db = test_helpers::new_db();
-	let spec = spec::new_test_with_reward();
+	let spec = vapcore_spec::new_test_with_reward();
 	let engine = &*spec.engine;
 
 	// Create client
