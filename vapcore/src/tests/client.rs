@@ -21,7 +21,7 @@ use account_state::state::StateInfo;
 use vapory_types::{U256, Address};
 use tetsy_crypto::publickey::KeyPair;
 use hash::keccak;
-use io::IoChannel;
+use vapcore_io::IoChannel;
 use tempdir::TempDir;
 use types::{
 	data_format::DataFormat,
@@ -33,15 +33,15 @@ use types::{
 	views::BlockView,
 };
 
-use client::{Client, ClientConfig, PrepareOpenBlock, ImportSealedBlock};
+use crate::client::{Client, ClientConfig, PrepareOpenBlock, ImportSealedBlock};
 use client_traits::{
 	BlockInfo, BlockChainClient, BlockChainReset, ChainInfo,
 	ImportExportBlocks, Tick, ImportBlock
 };
-use spec;
+use vapcore_spec;
 use tetsy_stats;
 use mashina::executive::{Executive, TransactOptions};
-use miner::{Miner, PendingOrdering, MinerService};
+use crate::miner::{Miner, PendingOrdering, MinerService};
 use account_state::{State, CleanupMode, backend};
 use test_helpers::{
 	self,

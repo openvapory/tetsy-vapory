@@ -455,8 +455,8 @@ impl BroadcastProposalBlock for TestBlockChainClient {
 
 impl SealedBlockImporter for TestBlockChainClient {}
 
-impl ::miner::TransactionVerifierClient for TestBlockChainClient {}
-impl ::miner::BlockChainClient for TestBlockChainClient {}
+impl crate::miner::TransactionVerifierClient for TestBlockChainClient {}
+impl crate::miner::BlockChainClient for TestBlockChainClient {}
 
 impl Nonce for TestBlockChainClient {
 	fn nonce(&self, address: &Address, id: BlockId) -> Option<U256> {
