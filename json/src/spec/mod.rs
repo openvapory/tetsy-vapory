@@ -40,7 +40,7 @@ pub use self::genesis::Genesis;
 pub use self::params::Params;
 pub use self::spec::{Spec, ForkSpec};
 pub use self::seal::{Seal, Vapory, AuthorityRoundSeal, TendermintSeal};
-pub use self::enjen::Engine;
+pub use self::engine::Engine;
 pub use self::state::{State, HashOrMap};
 pub use self::vapash::{Vapash, VapashParams, BlockReward};
 pub use self::validator_set::ValidatorSet;
