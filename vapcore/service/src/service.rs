@@ -39,21 +39,21 @@ use common_types::{
 use client_traits::{ImportBlock, Tick};
 
 
-use vapcore_private_tx::{self, Importer, Signer};
+use private_tx::{self, Importer, Signer};
 
 pub struct PrivateTxService {
-	provider: Arc<vapcore_private_tx::Provider>,
+	provider: Arc<private_tx::Provider>,
 }
 
 impl PrivateTxService {
-	fn new(provider: Arc<vapcore_private_tx::Provider>) -> Self {
+	fn new(provider: Arc<private_tx::Provider>) -> Self {
 		PrivateTxService {
 			provider,
 		}
 	}
 
 	/// Returns underlying provider.
-	pub fn provider(&self) -> Arc<vapcore_private_tx::Provider> {
+	pub fn provider(&self) -> Arc<private_tx::Provider> {
 		self.provider.clone()
 	}
 }
@@ -110,9 +110,9 @@ impl ClientService {
 		_ipc_path: &Path,
 		miner: Arc<Miner>,
 		signer: Arc<dyn Signer>,
-		encryptor: Box<dyn vapcore_private_tx::Encryptor>,
-		private_tx_conf: vapcore_private_tx::ProviderConfig,
-		private_encryptor_conf: vapcore_private_tx::EncryptorConfig,
+		encryptor: Box<dyn private_tx::Encryptor>,
+		private_tx_conf: private_tx::ProviderConfig,
+		private_encryptor_conf: private_tx::EncryptorConfig,
 		) -> Result<ClientService, VapcoreError>
 	{
 		let io_service = IoService::<ClientIoMessage<Client>>::start()?;
@@ -142,11 +142,11 @@ impl ClientService {
 		};
 		let snapshot = Arc::new(SnapshotService::new(snapshot_params)?);
 
-		let private_keys = Arc::new(vapcore_private_tx::SecretStoreKeys::new(
+		let private_keys = Arc::new(private_tx::SecretStoreKeys::new(
 			client.clone(),
 			private_encryptor_conf.key_server_account,
 		));
-		let provider = Arc::new(vapcore_private_tx::Provider::new(
+		let provider = Arc::new(private_tx::Provider::new(
 			client.clone(),
 			miner,
 			signer,
@@ -307,7 +307,7 @@ mod tests {
 	use tetsy_kvdb_rocksdb::{DatabaseConfig, CompactionProfile};
 	use super::*;
 
-	use vapcore_private_tx;
+	use private_tx;
 
 	#[test]
 	fn it_can_be_started() {
@@ -333,8 +333,8 @@ mod tests {
 			restoration_db_handler,
 			tempdir.path(),
 			Arc::new(Miner::new_for_tests(&spec, None)),
-			Arc::new(vapcore_private_tx::DummySigner),
-			Box::new(vapcore_private_tx::NoopEncryptor),
+			Arc::new(private_tx::DummySigner),
+			Box::new(private_tx::NoopEncryptor),
 			Default::default(),
 			Default::default(),
 		);

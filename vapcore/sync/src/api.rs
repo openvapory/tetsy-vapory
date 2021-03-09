@@ -37,7 +37,7 @@ use bytes::Bytes;
 use client_traits::{BlockChainClient, ChainNotify};
 use devp2p::NetworkService;
 use vapcore_io::TimerToken;
-use vapcore_private_tx::PrivateStateDB;
+use private_tx::PrivateStateDB;
 use vapory_types::{H256, H512, U256};
 use tetsy_crypto::publickey::Secret;
 use futures::sync::mpsc as futures_mpsc;

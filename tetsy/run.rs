@@ -48,7 +48,7 @@ use tetsy_rpc::{
 };
 use updater::{UpdatePolicy, Updater};
 use tetsy_version::version;
-use vapcore_private_tx::{ProviderConfig, EncryptorConfig, SecretStoreEncryptor};
+use private_tx::{ProviderConfig, EncryptorConfig, SecretStoreEncryptor};
 use params::{
 	SpecType, Pruning, AccountsConfig, GasPricerConfig, MinerExtras, Switch,
 	tracing_switch_to_bool, fatdb_switch_to_bool, mode_switch_to_bool

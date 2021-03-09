@@ -38,7 +38,7 @@ use params::{SpecType, Pruning, Switch, tracing_switch_to_bool, fatdb_switch_to_
 use helpers::{to_client_config, execute_upgrades};
 use dir::Directories;
 use user_defaults::UserDefaults;
-use vapcore_private_tx;
+use private_tx;
 use db;
 use ansi_term::Colour;
 use types::{
@@ -377,8 +377,8 @@ fn execute_import(cmd: ImportBlockchain) -> Result<(), String> {
 		// TODO [ToDr] don't use test miner here
 		// (actually don't require miner at all)
 		Arc::new(Miner::new_for_tests(&spec, None)),
-		Arc::new(vapcore_private_tx::DummySigner),
-		Box::new(vapcore_private_tx::NoopEncryptor),
+		Arc::new(private_tx::DummySigner),
+		Box::new(private_tx::NoopEncryptor),
 		Default::default(),
 		Default::default(),
 	).map_err(|e| format!("Client service error: {:?}", e))?;
@@ -510,8 +510,8 @@ fn start_client(
 		// It's fine to use test version here,
 		// since we don't care about miner parameters at all
 		Arc::new(Miner::new_for_tests(&spec, None)),
-		Arc::new(vapcore_private_tx::DummySigner),
-		Box::new(vapcore_private_tx::NoopEncryptor),
+		Arc::new(private_tx::DummySigner),
+		Box::new(private_tx::NoopEncryptor),
 		Default::default(),
 		Default::default(),
 	).map_err(|e| format!("Client service error: {:?}", e))?;

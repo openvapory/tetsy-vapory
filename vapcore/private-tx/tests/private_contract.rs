@@ -21,7 +21,7 @@ extern crate common_types as types;
 extern crate env_logger;
 extern crate vapcore;
 extern crate vapcore_io;
-extern crate vapcore_private_tx;
+extern crate private_tx;
 extern crate tetsy_crypto;
 extern crate tetsy_keccak_hash as hash;
 extern crate rustc_hex;
@@ -45,7 +45,7 @@ use tetsy_crypto::publickey::{Secret, KeyPair, Signature};
 use mashina::executive::contract_address;
 use hash::keccak;
 
-use vapcore_private_tx::{NoopEncryptor, Provider, ProviderConfig, StoringKeyProvider};
+use private_tx::{NoopEncryptor, Provider, ProviderConfig, StoringKeyProvider};
 
 #[test]
 fn private_contract() {
@@ -58,7 +58,7 @@ fn private_contract() {
 	let key3 = KeyPair::from_secret(Secret::from_str("0000000000000000000000000000000000000000000000000000000000000013").unwrap()).unwrap();
 	let key4 = KeyPair::from_secret(Secret::from_str("0000000000000000000000000000000000000000000000000000000000000014").unwrap()).unwrap();
 
-	let signer = Arc::new(vapcore_private_tx::KeyPairSigner(vec![key1.clone(), key3.clone(), key4.clone()]));
+	let signer = Arc::new(private_tx::KeyPairSigner(vec![key1.clone(), key3.clone(), key4.clone()]));
 
 	let config = ProviderConfig{
 		validator_accounts: vec![key3.address(), key4.address()],
@@ -196,7 +196,7 @@ fn call_other_private_contract() {
 	let _key2 = KeyPair::from_secret(Secret::from_str("0000000000000000000000000000000000000000000000000000000000000012").unwrap()).unwrap();
 	let key3 = KeyPair::from_secret(Secret::from_str("0000000000000000000000000000000000000000000000000000000000000013").unwrap()).unwrap();
 	let key4 = KeyPair::from_secret(Secret::from_str("0000000000000000000000000000000000000000000000000000000000000014").unwrap()).unwrap();
-	let signer = Arc::new(vapcore_private_tx::KeyPairSigner(vec![key1.clone(), key3.clone(), key4.clone()]));
+	let signer = Arc::new(private_tx::KeyPairSigner(vec![key1.clone(), key3.clone(), key4.clone()]));
 
 	let config = ProviderConfig{
 		validator_accounts: vec![key3.address(), key4.address()],

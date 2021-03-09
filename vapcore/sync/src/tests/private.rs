@@ -34,7 +34,7 @@ use vapcore::{
 	test_helpers::{CreateContractAddress, push_block_with_transactions, new_db},
 };
 use vapcore_io::{IoHandler, IoChannel};
-use vapcore_private_tx::{
+use private_tx::{
 	Provider, ProviderConfig, NoopEncryptor, Importer, SignedPrivateTransaction, StoringKeyProvider
 };
 use tetsy_crypto::publickey::KeyPair;
@@ -55,7 +55,7 @@ fn send_private_transaction() {
 	let s0 = KeyPair::from_secret_slice(keccak("1").as_bytes()).unwrap();
 	let s1 = KeyPair::from_secret_slice(keccak("0").as_bytes()).unwrap();
 
-	let signer = Arc::new(vapcore_private_tx::KeyPairSigner(vec![s0.clone(), s1.clone()]));
+	let signer = Arc::new(private_tx::KeyPairSigner(vec![s0.clone(), s1.clone()]));
 
 	let mut net = TestNet::with_spec(2, SyncConfig::default(), seal_spec);
 	let client0 = net.peer(0).chain.clone();
@@ -176,7 +176,7 @@ fn sync_private_state() {
 	let s0 = KeyPair::from_secret_slice(&keccak("1").as_bytes()).unwrap();
 	let s1 = KeyPair::from_secret_slice(&keccak("0").as_bytes()).unwrap();
 
-	let signer = Arc::new(vapcore_private_tx::KeyPairSigner(vec![s0.clone(), s1.clone()]));
+	let signer = Arc::new(private_tx::KeyPairSigner(vec![s0.clone(), s1.clone()]));
 
 	let mut net = TestNet::with_spec(2, SyncConfig::default(), seal_spec);
 	let client0 = net.peer(0).chain.clone();

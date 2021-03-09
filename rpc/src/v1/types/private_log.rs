@@ -16,7 +16,7 @@
 
 use std::time::SystemTime;
 use vapory_types::{H160, H256};
-use vapcore_private_tx::{TransactionLog as VapTransactionLog, ValidatorLog as VapValidatorLog, PrivateTxStatus as VapStatus};
+use private_tx::{TransactionLog as VapTransactionLog, ValidatorLog as VapValidatorLog, PrivateTxStatus as VapStatus};
 
 /// Current status of the private transaction
 #[derive(Serialize, Debug)]

@@ -20,7 +20,7 @@ extern crate client_traits;
 extern crate vapcore;
 extern crate vapcore_blockchain as blockchain;
 extern crate vapcore_io as io;
-extern crate vapcore_private_tx;
+extern crate private_tx;
 extern crate vapcore_sync as sync;
 extern crate vapory_types;
 extern crate tetsy_kvdb;

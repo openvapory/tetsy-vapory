@@ -43,7 +43,7 @@ use vapcore::{
 };
 use vapcore::miner::Miner;
 use vapcore_io::{IoChannel, IoContext, IoHandler};
-use vapcore_private_tx::PrivateStateDB;
+use private_tx::PrivateStateDB;
 use vapory_types::H256;
 use bytes::Bytes;
 use network::{self, PeerId, ProtocolId, PacketId, SessionInfo};

@@ -48,8 +48,8 @@ mod accounts {
 		Ok(None)
 	}
 
-	pub fn private_tx_signer(_account_provider: Arc<AccountProvider>, _passwords: &[Password]) -> Result<Arc<::vapcore_private_tx::Signer>, String> {
-		Ok(Arc::new(::vapcore_private_tx::DummySigner))
+	pub fn private_tx_signer(_account_provider: Arc<AccountProvider>, _passwords: &[Password]) -> Result<Arc<::private_tx::Signer>, String> {
+		Ok(Arc::new(::private_tx::DummySigner))
 	}
 
 	pub fn accounts_list(_account_provider: Arc<AccountProvider>) -> Arc<Fn() -> Vec<Address> + Send + Sync> {
@@ -167,14 +167,14 @@ mod accounts {
 	mod private_tx {
 		use super::*;
 		use tetsy_crypto::publickey::{Signature, Message};
-		use vapcore_private_tx::{Error};
+		use private_tx::{Error};
 
 		pub struct AccountSigner {
 			pub accounts: Arc<AccountProvider>,
 			pub passwords: Vec<Password>,
 		}
 
-		impl ::vapcore_private_tx::Signer for AccountSigner {
+		impl ::private_tx::Signer for AccountSigner {
 			fn decrypt(&self, account: Address, shared_mac: &[u8], payload: &[u8]) -> Result<Vec<u8>, Error> {
 				let password = self.find_account_password(&account);
 				Ok(self.accounts.decrypt(account, password, shared_mac, payload).map_err(|e| e.to_string())?)
@@ -199,7 +199,7 @@ mod accounts {
 		}
 	}
 
-	pub fn private_tx_signer(accounts: Arc<AccountProvider>, passwords: &[Password]) -> Result<Arc<dyn (vapcore_private_tx::Signer)>, String> {
+	pub fn private_tx_signer(accounts: Arc<AccountProvider>, passwords: &[Password]) -> Result<Arc<dyn (private_tx::Signer)>, String> {
 		Ok(Arc::new(self::private_tx::AccountSigner {
 			accounts,
 			passwords: passwords.to_vec(),

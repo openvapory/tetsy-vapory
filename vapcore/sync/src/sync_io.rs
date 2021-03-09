@@ -21,7 +21,7 @@ use crate::chain::sync_packet::{PacketInfo, SyncPacket};
 
 use bytes::Bytes;
 use client_traits::BlockChainClient;
-use vapcore_private_tx::PrivateStateDB;
+use private_tx::PrivateStateDB;
 use network::client_version::ClientVersion;
 use network::{NetworkContext, PeerId, PacketId, Error, SessionInfo, ProtocolId};
 use parking_lot::RwLock;

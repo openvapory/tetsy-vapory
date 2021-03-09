@@ -21,7 +21,7 @@ use std::fmt;
 use tetsy_jsonrpc_core::{futures, Result as RpcResult, Error, ErrorCode, Value};
 use tetsy_rlp::DecoderError;
 use types::transaction::Error as TransactionError;
-use vapcore_private_tx::Error as PrivateTransactionError;
+use private_tx::Error as PrivateTransactionError;
 use tetsy_vm::Error as VMError;
 use light::on_demand::error::{Error as OnDemandError};
 use client_traits::BlockChainClient;

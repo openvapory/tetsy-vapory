@@ -28,7 +28,7 @@ use vapcore_snapshot::SnapshotService;
 use client_traits::BlockChainClient;
 use sync::SyncState;
 use vapcore_logger::RotatingLogger;
-use vapcore_private_tx::Provider as PrivateTransactionManager;
+use private_tx::Provider as PrivateTransactionManager;
 use vapcore_service::PrivateTxService;
 use hash_fetch::tetsy_fetch::Client as FetchClient;
 use tetsy_jsonrpc_core::{self as core, MetaIoHandler};

@@ -72,7 +72,7 @@ extern crate vapcore_light as light;
 extern crate vapcore_logger;
 extern crate vapcore_miner as miner;
 extern crate vapcore_network as network;
-extern crate vapcore_private_tx;
+extern crate private_tx;
 extern crate vapcore_sync as sync;
 extern crate vapory_types;
 extern crate vapkey;

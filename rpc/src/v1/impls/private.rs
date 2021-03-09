@@ -20,7 +20,7 @@ use std::sync::Arc;
 
 use tetsy_rlp::Rlp;
 
-use vapcore_private_tx::Provider as PrivateTransactionManager;
+use private_tx::Provider as PrivateTransactionManager;
 use vapory_types::{Address, H160, H256, U256};
 use types::transaction::SignedTransaction;
 

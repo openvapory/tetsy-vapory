@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use vapcore_private_tx::{Receipt as VapPrivateReceipt};
+use private_tx::{Receipt as VapPrivateReceipt};
 use vapory_types::{H160, H256};
 use v1::types::TransactionRequest;
 

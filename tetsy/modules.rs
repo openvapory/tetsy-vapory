@@ -19,7 +19,7 @@ use std::sync::{Arc, mpsc};
 use client_traits::{BlockChainClient, ChainNotify};
 use sync::{self, SyncConfig, NetworkConfiguration, Params, ConnectionFilter};
 use vapcore_snapshot::SnapshotService;
-use vapcore_private_tx::PrivateStateDB;
+use private_tx::PrivateStateDB;
 use light::Provider;
 use tetsy_runtime::Executor;
 
