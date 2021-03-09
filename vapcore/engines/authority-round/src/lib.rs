@@ -2708,7 +2708,7 @@ mod tests {
 
 	#[test]
 	fn randomness_contract() -> Result<(), super::util::CallError> {
-		use_contract!(rand_contract, "../../res/contracts/test_authority_round_random.json");
+		use_contract!(rand_contract, "res/contracts/test_authority_round_random.json");
 
 		env_logger::init();
 
