@@ -86,7 +86,7 @@ use crate::util::{BoundContract, CallError};
 /// published in the reveal phase.
 pub type RandNumber = H256;
 
-use_contract!(aura_random, "../../res/contracts/authority_round_random.json");
+use_contract!(aura_random, "../../../res/contracts/authority_round_random.json");
 
 /// Validated randomness phase state.
 #[derive(Debug)]
