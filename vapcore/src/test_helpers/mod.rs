@@ -39,7 +39,7 @@ use vapory_types::{H256, U256, Address};
 use tetsy_crypto::publickey::KeyPair;
 use vvm::Factory as VvmFactory;
 use hash::keccak;
-use io::IoChannel;
+use vapcore_io::IoChannel;
 use tetsy_kvdb::KeyValueDB;
 use tetsy_kvdb_rocksdb::{self, Database, DatabaseConfig};
 use parking_lot::RwLock;

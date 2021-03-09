@@ -500,7 +500,7 @@ mod tests {
 		verification::Unverified,
 	};
 	use tetsy_hash_db::EMPTY_PREFIX;
-	use spec;
+	use vapcore_spec;
 
 	/// Enact the block given by `block_bytes` using `engine` on the database `db` with given `parent` block header
 	fn enact_bytes(

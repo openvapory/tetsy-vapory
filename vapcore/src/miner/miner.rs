@@ -1487,16 +1487,16 @@ mod tests {
 	use rustc_hex::FromHex;
 
 	use client_traits::ChainInfo;
-	use client::ImportSealedBlock;
+	use crate::client::ImportSealedBlock;
 	use miner::{MinerService, PendingOrdering, filter_options::FilterOperator};
-	use test_helpers::{
+	use crate::test_helpers::{
 		generate_dummy_client, generate_dummy_client_with_spec, TestBlockChainClient, EachBlockWith
 	};
 	use types::{
 		BlockNumber,
 		transaction::Transaction
 	};
-	use spec;
+	use vapcore_spec;
 
 	#[test]
 	fn should_prepare_block_to_seal() {

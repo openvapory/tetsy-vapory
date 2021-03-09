@@ -2851,7 +2851,7 @@ mod tests {
 		receipt::{LocalizedReceipt, Receipt, TransactionOutcome},
 		transaction::{Action, LocalizedTransaction, Transaction},
 	};
-	use test_helpers::{generate_dummy_client, generate_dummy_client_with_data, generate_dummy_client_with_spec_and_data, get_good_dummy_block_hash};
+	use crate::test_helpers::{generate_dummy_client, generate_dummy_client_with_data, generate_dummy_client_with_spec_and_data, get_good_dummy_block_hash};
 	use super::transaction_receipt;
 
 	#[test]
