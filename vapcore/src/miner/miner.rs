@@ -1747,7 +1747,7 @@ mod tests {
 				..miner().options
 			},
 			GasPricer::new_fixed(0u64.into()),
-			&spec::new_test(),
+			&vapcore_spec::new_test(),
 			HashSet::from_iter(vec![transaction.sender()].into_iter()),
 		);
 		let best_block = 0;
@@ -1779,7 +1779,7 @@ mod tests {
 	#[test]
 	fn internal_seals_without_work() {
 		let _ = env_logger::try_init();
-		let spec = spec::new_instant();
+		let spec = vapcore_spec::new_instant();
 		let miner = Miner::new_for_tests(&spec, None);
 
 		let client = generate_dummy_client(2);
@@ -1808,7 +1808,7 @@ mod tests {
 
 	#[test]
 	fn should_not_fail_setting_engine_signer_without_account_provider() {
-		let spec = spec::new_test_round;
+		let spec = vapcore_spec::new_test_round;
 		let tap = Arc::new(AccountProvider::transient_provider());
 		let addr = tap.insert_account(keccak("1").into(), &"".into()).unwrap();
 		let client = generate_dummy_client_with_spec(spec);
@@ -1824,7 +1824,7 @@ mod tests {
 
 	#[test]
 	fn should_mine_if_internal_sealing_is_enabled() {
-		let spec = spec::new_instant();
+		let spec = vapcore_spec::new_instant();
 		let miner = Miner::new_for_tests(&spec, None);
 
 		let client = generate_dummy_client(2);
@@ -1835,7 +1835,7 @@ mod tests {
 
 	#[test]
 	fn should_not_mine_if_internal_sealing_is_disabled() {
-		let spec = spec::new_test_round();
+		let spec = vapcore_spec::new_test_round();
 		let miner = Miner::new_for_tests(&spec, None);
 
 		let client = generate_dummy_client(2);
@@ -1846,7 +1846,7 @@ mod tests {
 
 	#[test]
 	fn should_not_mine_if_no_fetch_work_request() {
-		let spec = spec::new_test();
+		let spec = vapcore_spec::new_test();
 		let miner = Miner::new_for_tests(&spec, None);
 
 		let client = generate_dummy_client(2);
@@ -1864,7 +1864,7 @@ mod tests {
 			fn notify(&self, _pow_hash: H256, _difficulty: U256, _number: u64) { }
 		}
 
-		let spec = spec::new_test();
+		let spec = vapcore_spec::new_test();
 		let miner = Miner::new_for_tests(&spec, None);
 		miner.add_work_listener(Box::new(DummyNotifyWork));
 
@@ -1877,7 +1877,7 @@ mod tests {
 	#[test]
 	fn should_set_new_minimum_gas_price() {
 		// Creates a new GasPricer::Fixed behind the scenes
-		let miner = Miner::new_for_tests(&spec::new_test(), None);
+		let miner = Miner::new_for_tests(&vapcore_spec::new_test(), None);
 
 		let expected_minimum_gas_price: U256 = 0x1337.into();
 		miner.set_minimal_gas_price(expected_minimum_gas_price).unwrap();
@@ -1916,7 +1916,7 @@ mod tests {
 	#[cfg(feature = "price-info")]
 	fn should_fail_to_set_new_minimum_gas_price() {
 		// We get a fixed gas pricer by default, need to change that
-		let miner = Miner::new_for_tests(&spec::new_test(), None);
+		let miner = Miner::new_for_tests(&vapcore_spec::new_test(), None);
 		let calibrated_gas_pricer = dynamic_gas_pricer();
 		*miner.gas_pricer.lock() = calibrated_gas_pricer;
 
