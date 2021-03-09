@@ -207,7 +207,7 @@ impl<'a> VvmTestClient<'a> {
 
 	/// Execute the VM given ActionParams and tracer.
 	/// Returns amount of gas left and the output.
-	pub fn call<T: trace::Tracer, V: trace::VMTracer>(
+	pub fn call<T: vapcore_trace::Tracer, V: vapcore_trace::VMTracer>(
 		&mut self,
 		params: ActionParams,
 		tracer: &mut T,
@@ -229,7 +229,7 @@ impl<'a> VvmTestClient<'a> {
 
 	/// Execute the VM given envinfo, ActionParams and tracer.
 	/// Returns amount of gas left and the output.
-	pub fn call_envinfo<T: trace::Tracer, V: trace::VMTracer>(
+	pub fn call_envinfo<T: vapcore_trace::Tracer, V: vapcore_trace::VMTracer>(
 		&mut self,
 		params: ActionParams,
 		tracer: &mut T,
@@ -251,7 +251,7 @@ impl<'a> VvmTestClient<'a> {
 
 	/// Executes a SignedTransaction within context of the provided state and `EnvInfo`.
 	/// Returns the state root, gas left and the output.
-	pub fn transact<T: trace::Tracer, V: trace::VMTracer>(
+	pub fn transact<T: vapcore_trace::Tracer, V: vapcore_trace::VMTracer>(
 		&mut self,
 		env_info: &tetsy_vm::EnvInfo,
 		transaction: transaction::SignedTransaction,
