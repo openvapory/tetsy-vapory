@@ -321,7 +321,7 @@ impl Drop for Logging {
 #[cfg(test)]
 mod tests {
 	use serde_json;
-	use error::Error;
+	use crate::error::Error;
 	use vapory_types::{H256, Address};
 	use std::collections::{HashMap, BTreeMap};
 	use std::sync::Arc;
