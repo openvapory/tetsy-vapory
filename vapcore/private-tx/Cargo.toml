@@ -1,11 +1,11 @@
 [package]
 description = "Vapcore Private Transactions"
-name = "vapcore-private-tx"
+name = "private-tx"
 version = "1.0.0"
 license = "GPL-3.0"
 authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
 edition = "2018"
-documentation = "https://docs.rs/vapcore-private-tx"
+documentation = "https://docs.rs/private-tx"
 homepage = "https://github.com/openvapory/tetsy-vapory"
 repository = "https://github.com/openvapory/tetsy-vapory"
 

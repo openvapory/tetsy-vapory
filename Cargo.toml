@@ -30,7 +30,7 @@ vapcore-light = { version = "1.12.0", path = "vapcore/light" }
 vapcore-logger = { version = "1.12.0", path = "tetsy/logger" }
 vapcore-miner = { version = "1.12.0", path = "miner" }
 vapcore-network = { version = "1.12.0", path = "util/network" }
-vapcore-private-tx = { version = "1.0.0", path = "vapcore/private-tx" }
+private-tx = { version = "1.0.0", path = "vapcore/private-tx" }
 vapcore-secretstore = { version = "1.0.0", path = "secret-store", optional = true }
 vapcore-service = { version = "0.1.0", path = "vapcore/service" }
 vapcore-sync = { version = "1.12.0", path = "vapcore/sync" }

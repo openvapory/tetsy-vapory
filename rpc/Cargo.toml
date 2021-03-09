@@ -45,7 +45,7 @@ vapcore-light = { path = "../vapcore/light" }
 vapcore-logger = { path = "../tetsy/logger" }
 vapcore-miner = { version = "1.12.0", path = "../miner" }
 vapcore-network = { path = "../util/network" }
-vapcore-private-tx = { path = "../vapcore/private-tx" }
+private-tx = { version = "1.0.0", path = "../vapcore/private-tx" }
 vapcore-sync = { path = "../vapcore/sync" }
 vapory-types = "0.8.0"
 fastmap = { path = "../util/fastmap" }

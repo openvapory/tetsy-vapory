@@ -12,13 +12,13 @@ repository = "https://github.com/openvapory/tetsy-vapory"
 [lib]
 
 [dependencies]
-bytes = { package = "tetsy-bytes", version = "0.1" }
+bytes = { version = "0.1", package = "tetsy-bytes" }
 client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
 devp2p = { package = "vapcore-network-devp2p", path = "../../util/network-devp2p" }
 enum_primitive = "0.1.1"
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
-vapcore-private-tx = { path = "../private-tx" }
+private-tx = { version = "1.0.0", path = "../private-tx" }
 vapory-types = "0.8.0"
 fastmap = { path = "../../util/fastmap" }
 futures = "0.1"

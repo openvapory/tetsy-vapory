@@ -245,7 +245,7 @@ Caching, Importing Blocks, and Block Information
     ```
   * Parity Private Transactions
     ```bash
-    vapcore-private-tx
+    private
     ```
   * Tetsy Vapory (VapCore) Client & Network Service Creation & Registration with the I/O Subsystem
     ```bash

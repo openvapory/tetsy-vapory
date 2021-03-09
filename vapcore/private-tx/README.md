@@ -1,2 +1,3 @@
-## vapcore-private-tx
+## private-tx
 
+Vapcore Private Transactions

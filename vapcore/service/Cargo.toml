@@ -16,7 +16,7 @@ common-types = { version = "0.1.0", path = "../types" }
 vapcore = { path = ".." }
 vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
-vapcore-private-tx = { path = "../private-tx" }
+private-tx = { version = "1.0.0", path = "../private-tx" }
 vapcore-sync = { path = "../sync" }
 vapory-types = "0.8.0"
 tetsy-kvdb = "0.3.2"
