@@ -85,7 +85,7 @@ mod tests {
 
 	#[test]
 	fn it_serializes_from_json() {
-		let env_info = EnvInfo::from(vapjson::tetsy_vm::Env {
+		let env_info = EnvInfo::from(vapjson::vm::Env {
 			author: vapjson::hash::Address(Address::from_str("000000f00000000f000000000000f00000000f00").unwrap()),
 			number: vapjson::uint::Uint(U256::from(1_112_339)),
 			difficulty: vapjson::uint::Uint(U256::from(50_000)),
