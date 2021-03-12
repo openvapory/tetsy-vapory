@@ -71,7 +71,7 @@ mod tests {
         let input = vec![(b"A", b"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" as &[u8])];
 		assert_eq!(
             tetsy_trie_root(input.clone()),
-            tetsy_triehash::tetsy_trie_root::<KeccakHasher, _, _, _>(input.clone())
+            tetsy_triehash::trie_root::<KeccakHasher, _, _, _>(input.clone())
         );
 
 		assert_eq!(
