@@ -186,7 +186,7 @@ fn execute_import_light(cmd: ImportBlockchain) -> Result<(), String> {
 	// execute upgrades
 	execute_upgrades(&cmd.dirs.base, &db_dirs, algorithm, &cmd.compaction)?;
 
-	// create dirs used by parity
+	// create dirs used by tetsy
 	cmd.dirs.create_dirs(false, false)?;
 
 	let cache = Arc::new(Mutex::new(
@@ -341,7 +341,7 @@ fn execute_import(cmd: ImportBlockchain) -> Result<(), String> {
 	// execute upgrades
 	execute_upgrades(&cmd.dirs.base, &db_dirs, algorithm, &cmd.compaction)?;
 
-	// create dirs used by parity
+	// create dirs used by tetsy
 	cmd.dirs.create_dirs(false, false)?;
 
 	// prepare client config
@@ -477,7 +477,7 @@ fn start_client(
 	// execute upgrades
 	execute_upgrades(&dirs.base, &db_dirs, algorithm, &compaction)?;
 
-	// create dirs used by parity
+	// create dirs used by tetsy
 	dirs.create_dirs(false, false)?;
 
 	// prepare client config

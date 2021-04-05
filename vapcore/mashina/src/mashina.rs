@@ -408,7 +408,7 @@ mod tests {
 	use std::str::FromStr;
 	use common_types::header::Header;
 	use super::*;
-	use spec;
+	use vapcore_spec;
 
 	fn get_default_vapash_extensions() -> VapashExtensions {
 		VapashExtensions {
@@ -423,7 +423,7 @@ mod tests {
 	fn should_disallow_unsigned_transactions() {
 		let rlp = "ea80843b9aca0083015f90948921ebb5f79e9e3920abe571004d0b1d5119c154865af3107a400080038080";
 		let transaction: UnverifiedTransaction = ::tetsy_rlp::decode(&::rustc_hex::FromHex::from_hex(rlp).unwrap()).unwrap();
-		let spec = spec::new_ropsten_test();
+		let spec = vapcore_spec::new_ropsten_test();
 		let vapparams = get_default_vapash_extensions();
 
 		let mashina = Machine::with_vapash_extensions(
@@ -442,7 +442,7 @@ mod tests {
 	fn vapash_gas_limit_is_multiple_of_determinant() {
 		use vapory_types::U256;
 
-		let spec = spec::new_homestead_test();
+		let spec = vapcore_spec::new_homestead_test();
 		let vapparams = get_default_vapash_extensions();
 
 		let mashina = Machine::with_vapash_extensions(

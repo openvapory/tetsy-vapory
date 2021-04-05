@@ -199,7 +199,7 @@ mod accounts {
 		}
 	}
 
-	pub fn private_tx_signer(accounts: Arc<AccountProvider>, passwords: &[Password]) -> Result<Arc<dyn (private_tx::Signer)>, String> {
+	pub fn private_tx_signer(accounts: Arc<AccountProvider>, passwords: &[Password]) -> Result<Arc<dyn (crate::private_tx::Signer)>, String> {
 		Ok(Arc::new(self::private_tx::AccountSigner {
 			accounts,
 			passwords: passwords.to_vec(),
@@ -229,7 +229,7 @@ mod accounts {
 
 	// Construct an error `String` with an adaptive hint on how to create an account.
 	fn build_create_account_hint(spec: &SpecType, keys: &str) -> String {
-		format!("You can create an account via RPC, UI or `parity account new --chain {} --keys-path {}`.", spec, keys)
+		format!("You can create an account via RPC, UI or `tetsy account new --chain {} --keys-path {}`.", spec, keys)
 	}
 }
 

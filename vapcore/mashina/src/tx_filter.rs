@@ -180,7 +180,7 @@ mod test {
 	};
 	use tetsy_crypto::publickey::{Secret, KeyPair};
 	use vapcore_io::IoChannel;
-	use spec::Spec;
+	use vapcore_spec::Spec;
 
 	use super::TransactionFilter;
 

@@ -194,10 +194,10 @@ fn execute_light_impl<Cr>(cmd: RunCmd, logger: Arc<RotatingLogger>, on_client_rq
 	// execute upgrades
 	execute_upgrades(&cmd.dirs.base, &db_dirs, algorithm, &cmd.compaction)?;
 
-	// create dirs used by parity
+	// create dirs used by tetsy
 	cmd.dirs.create_dirs(cmd.acc_conf.unlocked_accounts.len() == 0, cmd.secretstore_conf.enabled)?;
 
-	//print out running parity environment
+	//print out running tetsy environment
 	print_running_environment(&spec.data_dir, &cmd.dirs, &db_dirs);
 
 	info!("Running in experimental {} mode.", Colour::Blue.bold().paint("Light Client"));
@@ -412,10 +412,10 @@ fn execute_impl<Cr, Rr>(
 	// execute upgrades
 	execute_upgrades(&cmd.dirs.base, &db_dirs, algorithm, &cmd.compaction)?;
 
-	// create dirs used by parity
+	// create dirs used by tetsy
 	cmd.dirs.create_dirs(cmd.acc_conf.unlocked_accounts.len() == 0, cmd.secretstore_conf.enabled)?;
 
-	//print out running parity environment
+	//print out running tetsy environment
 	print_running_environment(&spec.data_dir, &cmd.dirs, &db_dirs);
 
 	// display info about used pruning algorithm

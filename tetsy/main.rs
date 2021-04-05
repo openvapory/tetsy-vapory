@@ -138,8 +138,8 @@ fn global_init() {
 #[cfg(not(windows))]
 fn global_cleanup() {}
 
-// Starts parity binary installed via `tetsy-updater` and returns the code it exits with.
-fn run_parity() -> Result<(), Error> {
+// Starts tetsy binary installed via `tetsy-updater` and returns the code it exits with.
+fn run_tetsy() -> Result<(), Error> {
 	global_init();
 
 	let prefix = vec![OsString::from("--can-restart"), OsString::from("--force-direct")];
@@ -180,7 +180,7 @@ struct ExitStatus {
 	spec_name_override: Option<String>,
 }
 
-// Run `locally installed version` of parity (i.e, not installed via `tetsy-updater`)
+// Run `locally installed version` of tetsy (i.e, not installed via `tetsy-updater`)
 // Returns the exit error code.
 fn main_direct(force_can_restart: bool) -> i32 {
 	global_init();
@@ -389,7 +389,7 @@ fn main() {
 		})
 		.unwrap_or(false);
 
-	// the binary is named `parity`
+	// the binary is named `tetsy`
 	let same_name = exe_path
 		.as_ref()
 		.map_or(false, |p| {
@@ -403,8 +403,8 @@ fn main() {
 				same_name);
 
 	if !force_direct && !development && same_name {
-		// Try to run the latest installed version of `parity`,
-		// Upon failure it falls back to the locally installed version of `parity`
+		// Try to run the latest installed version of `tetsy`,
+		// Upon failure it falls back to the locally installed version of `tetsy`
 		// Everything run inside a loop, so we'll be able to restart from the child into a new version seamlessly.
 		loop {
 			// `Path` to the latest downloaded binary
@@ -426,9 +426,9 @@ fn main() {
 			let exit_code = if have_update && canonicalized_path_not_same && update_is_newer {
 				trace_main!("Attempting to run latest update ({})...",
 							latest_exe.as_ref().expect("guarded by have_update; latest_exe must exist for have_update; qed").display());
-				match run_parity() {
+				match run_tetsy() {
 					Ok(_) => 0,
-					// Restart parity
+					// Restart tetsy
 					Err(Error::Restart) => PLEASE_RESTART_EXIT_CODE,
 					// Fall back to local version
 					Err(e) => {

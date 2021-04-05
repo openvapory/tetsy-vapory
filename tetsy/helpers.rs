@@ -53,7 +53,7 @@ fn clean_0x(s: &str) -> &str {
 
 fn to_seconds(s: &str) -> Result<u64, String> {
 	let bad = |_| {
-		format!("{}: Invalid duration given. See parity --help for more information.", s)
+		format!("{}: Invalid duration given. See tetsy --help for more information.", s)
 	};
 
 	match s {
@@ -176,7 +176,7 @@ pub fn gvap_ipc_path(testnet: bool) -> String {
 	}
 }
 
-/// Formats and returns parity ipc path.
+/// Formats and returns tetsy ipc path.
 pub fn tetsy_ipc_path(base: &str, path: &str, shift: u16) -> String {
 	let mut path = path.to_owned();
 	if shift != 0 {
@@ -290,7 +290,7 @@ pub fn execute_upgrades(
 			debug!("Executed {} upgrade scripts - ok", upgrades_applied);
 		},
 		Err(e) => {
-			return Err(format!("Error upgrading parity data: {:?}", e));
+			return Err(format!("Error upgrading tetsy data: {:?}", e));
 		},
 		_ => {},
 	}

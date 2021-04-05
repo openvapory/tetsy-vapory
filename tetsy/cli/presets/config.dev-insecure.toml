@@ -1,4 +1,4 @@
-[parity]
+[tetsy]
 no_consensus = true
 chain = "dev"
 

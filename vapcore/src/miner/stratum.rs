@@ -20,7 +20,7 @@ use std::sync::{Arc, Weak};
 use std::net::{SocketAddr, AddrParseError};
 use std::fmt;
 
-use client::{Client, ImportSealedBlock};
+use crate::client::{Client, ImportSealedBlock};
 use vapory_types::{H64, H256, U256};
 use vapash::{self, SeedHashCompute};
 #[cfg(feature = "work-notify")]
@@ -30,7 +30,7 @@ use vapcore_stratum::PushWorkHandler;
 use vapcore_stratum::{
 	JobDispatcher, Stratum as StratumService, Error as StratumServiceError,
 };
-use miner::{Miner, MinerService};
+use crate::miner::{Miner, MinerService};
 use parking_lot::Mutex;
 use tetsy_rlp::encode;
 

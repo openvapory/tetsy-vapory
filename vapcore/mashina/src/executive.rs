@@ -1428,29 +1428,29 @@ mod tests {
 		ex.call(params, &mut substate, &mut tracer, &mut vm_tracer).unwrap();
 
 		assert_eq!(tracer.drain(), vec![FlatTrace {
-			action: vapcore_trace::Action::Call(vapcore_trace::Call {
+			action: vapcore_trace::trace::Action::Call(vapcore_trace::trace::Call {
 				from: Address::from_str("4444444444444444444444444444444444444444").unwrap(),
 				to: Address::from_str("5555555555555555555555555555555555555555").unwrap(),
 				value: 100.into(),
 				gas: 100_000.into(),
 				input: vec![],
-				call_type: Some(vapcore_trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::trace::CallType::Call).into(),
 			}),
-			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
+			result: vapcore_trace::trace::Res::Call(vapcore_trace::trace::CallResult {
 				gas_used: 33021.into(),
 				output: vec![]
 			}),
 			subtraces: 1,
 			trace_address: Default::default()
 		}, FlatTrace {
-			action: vapcore_trace::Action::Call(vapcore_trace::Call {
+			action: vapcore_trace::trace::Action::Call(vapcore_trace::trace::Call {
 				from: Address::from_str("5555555555555555555555555555555555555555").unwrap(),
 				to: Address::from_str("0000000000000000000000000000000000000003").unwrap(),
 				value: 1.into(),
 				gas: 66560.into(),
 				input: vec![],
-				call_type: Some(vapcore_trace::CallType::Call).into(),
-			}), result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
+				call_type: Some(vapcore_trace::trace::CallType::Call).into(),
+			}), result: vapcore_trace::trace::Res::Call(vapcore_trace::trace::CallResult {
 				gas_used: 600.into(),
 				output: vec![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 156, 17, 133, 165, 197, 233, 252, 84, 97, 40, 8, 151, 126, 232, 245, 72, 178, 37, 141, 49]
 			}),
@@ -1518,29 +1518,29 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: vapcore_trace::Action::Call(vapcore_trace::Call {
+			action: vapcore_trace::trace::Action::Call(vapcore_trace::trace::Call {
 				from: Address::from_str("cd1722f3947def4cf144679da39c4c32bdc35681").unwrap(),
 				to: Address::from_str("b010143a42d5980c7e5ef0e4a4416dc098a4fed3").unwrap(),
 				value: 100.into(),
 				gas: 100000.into(),
 				input: vec![],
-				call_type: Some(vapcore_trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::trace::CallType::Call).into(),
 			}),
-			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
+			result: vapcore_trace::trace::Res::Call(vapcore_trace::trace::CallResult {
 				gas_used: U256::from(55_248),
 				output: vec![],
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 0,
-			action: vapcore_trace::Action::Create(vapcore_trace::Create {
+			action: vapcore_trace::trace::Action::Create(vapcore_trace::trace::Create {
 				from: Address::from_str("b010143a42d5980c7e5ef0e4a4416dc098a4fed3").unwrap(),
 				value: 23.into(),
 				gas: 67979.into(),
 				init: vec![96, 16, 128, 96, 12, 96, 0, 57, 96, 0, 243, 0, 96, 0, 53, 84, 21, 96, 9, 87, 0, 91, 96, 32, 53, 96, 0, 53, 85],
-				creation_method: Some(vapcore_trace::CreationMethod::Create),
+				creation_method: Some(vapcore_trace::trace::CreationMethod::Create),
 			}),
-			result: vapcore_trace::Res::Create(vapcore_trace::CreateResult {
+			result: vapcore_trace::trace::Res::Create(vapcore_trace::trace::CreateResult {
 				gas_used: U256::from(3224),
 				address: Address::from_str("c6d80f262ae5e0f164e5fde365044d7ada2bfa34").unwrap(),
 				code: vec![96, 0, 53, 84, 21, 96, 9, 87, 0, 91, 96, 32, 53, 96, 0, 53]
@@ -1635,29 +1635,29 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 1,
-			action: vapcore_trace::Action::Call(vapcore_trace::Call {
+			action: vapcore_trace::trace::Action::Call(vapcore_trace::trace::Call {
 				from: Address::from_str("cd1722f3947def4cf144679da39c4c32bdc35681").unwrap(),
 				to: Address::from_str("b010143a42d5980c7e5ef0e4a4416dc098a4fed3").unwrap(),
 				value: 100.into(),
 				gas: 100_000.into(),
 				input: vec![],
-				call_type: Some(vapcore_trace::CallType::Call).into(),
+				call_type: Some(vapcore_trace::trace::CallType::Call).into(),
 			}),
-			result: vapcore_trace::Res::Call(vapcore_trace::CallResult {
+			result: vapcore_trace::trace::Res::Call(vapcore_trace::trace::CallResult {
 				gas_used: U256::from(37_033),
 				output: vec![],
 			}),
 		}, FlatTrace {
 			trace_address: vec![0].into_iter().collect(),
 			subtraces: 0,
-			action: vapcore_trace::Action::Create(vapcore_trace::Create {
+			action: vapcore_trace::trace::Action::Create(vapcore_trace::trace::Create {
 				from: Address::from_str("b010143a42d5980c7e5ef0e4a4416dc098a4fed3").unwrap(),
 				value: 23.into(),
 				gas: 66_917.into(),
 				init: vec![0x60, 0x01, 0x60, 0x00, 0xfd],
-				creation_method: Some(vapcore_trace::CreationMethod::Create),
+				creation_method: Some(vapcore_trace::trace::CreationMethod::Create),
 			}),
-			result: vapcore_trace::Res::FailedCreate(tetsy_vm::Error::Reverted.into()),
+			result: vapcore_trace::trace::Res::FailedCreate(tetsy_vm::Error::Reverted.into()),
 		}];
 
 		assert_eq!(tracer.drain(), expected_trace);
@@ -1708,14 +1708,14 @@ mod tests {
 		let expected_trace = vec![FlatTrace {
 			trace_address: Default::default(),
 			subtraces: 0,
-			action: vapcore_trace::Action::Create(vapcore_trace::Create {
+			action: vapcore_trace::trace::Action::Create(vapcore_trace::trace::Create {
 				from: params.sender,
 				value: 100.into(),
 				gas: params.gas,
 				init: vec![96, 16, 128, 96, 12, 96, 0, 57, 96, 0, 243, 0, 96, 0, 53, 84, 21, 96, 9, 87, 0, 91, 96, 32, 53, 96, 0, 53, 85],
-				creation_method: Some(vapcore_trace::CreationMethod::Create),
+				creation_method: Some(vapcore_trace::trace::CreationMethod::Create),
 			}),
-			result: vapcore_trace::Res::Create(vapcore_trace::CreateResult {
+			result: vapcore_trace::trace::Res::Create(vapcore_trace::trace::CreateResult {
 				gas_used: U256::from(3224),
 				address: params.address,
 				code: vec![96, 0, 53, 84, 21, 96, 9, 87, 0, 91, 96, 32, 53, 96, 0, 53]

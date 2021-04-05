@@ -210,7 +210,7 @@ pub fn find_deprecated(args: &Args) -> Vec<Deprecated> {
 	}
 
 	if args.cmd_dapp {
-		result.push(Deprecated::Removed("parity dapp"));
+		result.push(Deprecated::Removed("tetsy dapp"));
 	}
 
 	if args.arg_dapp_path.is_some() {

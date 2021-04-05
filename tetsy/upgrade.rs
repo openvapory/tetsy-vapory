@@ -205,7 +205,7 @@ pub fn upgrade_data_paths(base_path: &str, dirs: &DatabaseDirectories, pruning: 
 		return;
 	}
 
-	let legacy_root_path = replace_home("", "$HOME/.parity");
+	let legacy_root_path = replace_home("", "$HOME/.tetsy");
 	let default_path = default_data_path();
 	if legacy_root_path != base_path && base_path == default_path {
 		upgrade_dir_location(&PathBuf::from(legacy_root_path), &PathBuf::from(&base_path));

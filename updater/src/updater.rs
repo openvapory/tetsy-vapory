@@ -414,7 +414,7 @@ impl<O: OperationsClient, F: HashFetch, T: TimeProvider, R: GenRange> Updater<O,
 		*self.exit_handler.lock() = Some(Box::new(g));
 	}
 
-	/// Returns release track of the parity node.
+	/// Returns release track of the tetsy node.
 	/// `update_policy.track` is the track specified from the command line, whereas `this.track`
 	/// is the track of the software which is currently run
 	fn track(&self) -> ReleaseTrack {
@@ -511,7 +511,7 @@ impl<O: OperationsClient, F: HashFetch, T: TimeProvider, R: GenRange> Updater<O,
 
 		if let Some(latest) = state.latest.clone() {
 			let fetch = |latest, binary| {
-				info!(target: "updater", "Attempting to get parity binary {}", binary);
+				info!(target: "updater", "Attempting to get tetsy binary {}", binary);
 				let weak_self = self.weak_self.lock().clone();
 				let f = move |res: Result<PathBuf, fetch::Error>| {
 					if let Some(this) = weak_self.upgrade() {

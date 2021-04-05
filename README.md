@@ -134,7 +134,7 @@ bash <(curl https://get.tetcoin.org -L) -r stable
 To start Tetsy Vapory manually, just run
 
 ```bash
-$ ./target/release/parity
+$ ./target/release/tetsy
 ```
 
 so Tetsy Vapory begins syncing the Vapory blockchain.
@@ -145,8 +145,8 @@ To start Tetsy Vapory as a regular user using `systemd` init:
 
 1. Copy `./scripts/tetsy.service` to your
 `systemd` user directory (usually `~/.config/systemd/user`).
-2. Copy release to bin folder, write `sudo install ./target/release/parity /usr/bin/parity`
-3. To configure Tetsy Vapory, write a `/etc/parity/config.toml` config file, see [Configuring Tetsy Vapory](https://paritytech.github.io/wiki/Configuring-Parity) for details.
+2. Copy release to bin folder, write `sudo install ./target/release/tetsy /usr/bin/tetsy`
+3. To configure Tetsy Vapory, write a `/etc/tetsy/config.toml` config file, see [Configuring Tetsy Vapory](https://paritytech.github.io/wiki/Configuring-Parity) for details.
 
 ## 4. Testing <a id="chapter-004"></a>
 

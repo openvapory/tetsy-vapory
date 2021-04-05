@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-//! Logger for parity executables
+//! Logger for tetsy executables
 
 extern crate ansi_term;
 extern crate arrayvec;

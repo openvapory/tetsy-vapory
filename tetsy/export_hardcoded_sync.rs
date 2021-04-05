@@ -67,7 +67,7 @@ pub fn execute(cmd: ExportHsyncCmd) -> Result<String, String> {
 	// execute upgrades
 	execute_upgrades(&cmd.dirs.base, &db_dirs, algorithm, &cmd.compaction)?;
 
-	// create dirs used by parity
+	// create dirs used by tetsy
 	cmd.dirs.create_dirs(false, false)?;
 
 	// TODO: configurable cache size.

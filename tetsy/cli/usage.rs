@@ -626,7 +626,7 @@ macro_rules! usage {
 								.about($subc_help)
 								.args(&subc_usages.get(stringify!($subc)).unwrap().iter().map(|u| Arg::from_usage(u).use_delimiter(false).allow_hyphen_values(true)).collect::<Vec<Arg>>())
 								$(
-									.setting(AppSettings::SubcommandRequired) // prevent from running `parity account`
+									.setting(AppSettings::SubcommandRequired) // prevent from running `tetsy account`
 									.subcommand(
 										SubCommand::with_name(&underscore_to_hyphen!(&stringify!($subc_subc)[stringify!($subc).len()+1..]))
 										.about($subc_subc_help)

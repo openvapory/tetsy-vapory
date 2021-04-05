@@ -228,14 +228,14 @@ fn execute<Cr, Rr>(
 	}
 }
 
-/// Starts the parity client.
+/// Starts the tetsy client.
 ///
 /// `on_client_rq` is the action to perform when the client receives an RPC request to be restarted
 /// with a different chain.
 ///
 /// `on_updater_rq` is the action to perform when the updater has a new binary to execute.
 ///
-/// The first parameter is the command line arguments that you would pass when running the parity
+/// The first parameter is the command line arguments that you would pass when running the tetsy
 /// binary.
 ///
 /// On error, returns what to print on stderr.

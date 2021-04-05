@@ -425,7 +425,7 @@ usage! {
 
 			ARG arg_interface: (String) = "all", or |c: &Config| c.network.as_ref()?.interface.clone(),
 			"--interface=[IP]",
-			"Network interfaces. Valid values are 'all', 'local' or the ip of the interface you want parity to listen to.",
+			"Network interfaces. Valid values are 'all', 'local' or the ip of the interface you want tetsy to listen to.",
 
 			ARG arg_min_peers: (Option<u16>) = None, or |c: &Config| c.network.as_ref()?.min_peers.clone(),
 			"--min-peers=[NUM]",
@@ -1758,9 +1758,9 @@ mod tests {
 			flag_no_download: false,
 			flag_no_consensus: false,
 			arg_chain: "xyz".into(),
-			arg_base_path: Some("$HOME/.parity".into()),
-			arg_db_path: Some("$HOME/.parity/chains".into()),
-			arg_keys_path: "$HOME/.parity/keys".into(),
+			arg_base_path: Some("$HOME/.tetsy".into()),
+			arg_db_path: Some("$HOME/.tetsy/chains".into()),
+			arg_keys_path: "$HOME/.tetsy/keys".into(),
 			arg_identity: "".into(),
 			flag_light: false,
 			flag_no_hardcoded_sync: false,
@@ -1794,7 +1794,7 @@ mod tests {
 			arg_ui_port: None,
 			arg_ui_interface: None,
 			arg_ui_hosts: None,
-			arg_ui_path: "$HOME/.parity/signer".into(),
+			arg_ui_path: "$HOME/.tetsy/signer".into(),
 			flag_ui_no_validation: false,
 
 			// -- Networking Options
@@ -1843,11 +1843,11 @@ mod tests {
 
 			// IPC
 			flag_no_ipc: false,
-			arg_ipc_path: "$HOME/.parity/jsonrpc.ipc".into(),
+			arg_ipc_path: "$HOME/.tetsy/jsonrpc.ipc".into(),
 			arg_ipc_apis: "web3,vap,net,tetsy,tetsy_accounts,personal,traces,rpc,secretstore".into(),
 			arg_ipc_chmod: "660".into(),
 			// DAPPS
-			arg_dapps_path: Some("$HOME/.parity/dapps".into()),
+			arg_dapps_path: Some("$HOME/.tetsy/dapps".into()),
 			flag_no_dapps: false,
 
 			// SECRETSTORE
@@ -1868,7 +1868,7 @@ mod tests {
 			arg_secretstore_port: 8083u16,
 			arg_secretstore_http_interface: "local".into(),
 			arg_secretstore_http_port: 8082u16,
-			arg_secretstore_path: "$HOME/.parity/secretstore".into(),
+			arg_secretstore_path: "$HOME/.tetsy/secretstore".into(),
 			arg_secretstore_http_cors: "null".into(),
 
 			// IPFS
