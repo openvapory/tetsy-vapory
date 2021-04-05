@@ -48,7 +48,7 @@ serde_derive = "1.0"
 serde_json = "1.0"
 vapcore-spec = { version = "0.1.0", path = "../spec" }
 state-db = { version = "0.1.0", path = "../state-db" }
-time-utils = { path = "../../util/time-utils" }
+time-utils = { version = "0.1.0", path = "../../util/time-utils" }
 tiny-keccak = "1.4"
 vapcore-trace = { version = "0.1.0", path = "../trace" }
 transaction-pool = "2.0.1"
