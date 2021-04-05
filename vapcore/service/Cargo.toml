@@ -13,16 +13,16 @@ repository = "https://github.com/openvapory/tetsy-vapory"
 ansi_term = "0.11"
 client-traits = { version = "0.1.0", path = "../client-traits" }
 common-types = { version = "0.1.0", path = "../types" }
-vapcore = { path = ".." }
+vapcore = { version = "1.12.0", path = ".." }
 vapcore-blockchain = { version = "0.1.0", path = "../blockchain" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
 private-tx = { version = "1.0.0", path = "../private-tx" }
-vapcore-sync = { path = "../sync" }
+vapcore-sync = { version = "1.12.0", path = "../sync" }
 vapory-types = "0.8.0"
 tetsy-kvdb = "0.3.2"
 # tetsy-kvdb = { git = "https://github.com/tetcoin/tetsy-common", rev = "5b2e347" }
 log = "0.4"
-vapcore-snapshot = { path = "../snapshot" }
+vapcore-snapshot = { version = "0.1.0", path = "../snapshot" }
 vapcore-spec = { version = "0.1.0", path = "../spec" }
 trace-time = "0.1"
 
