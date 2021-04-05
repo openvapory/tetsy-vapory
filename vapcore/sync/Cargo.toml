@@ -28,7 +28,7 @@ light = { version = "1.12.0", package = "vapcore-light", path = "../light" }
 log = "0.4"
 tetsy-macros = { version = "0.1.0", path = "../../util/macros" }
 network = { version = "1.12.0", package = "vapcore-network", path = "../../util/network" }
-tetsy-runtime = { version = "0.1.2", path = "../../util/runtime" }
+tetsy-runtime = { version = "0.1.0", path = "../../util/runtime" }
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 tetsy-util-mem = "0.3.0"
 rand = "0.7"
