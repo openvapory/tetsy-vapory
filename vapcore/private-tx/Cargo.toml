@@ -17,13 +17,13 @@ derive_more = "0.14.0"
 vapabi = "9.0.1"
 vapabi-contract = "9.0.0"
 vapabi-derive = "9.0.1"
-vapcore = { path = ".." }
+vapcore = { version = "1.12.0", path = ".." }
 vapcore-db = { version = "0.1.0", path = "../db" }
 vapcore-call-contract = { version = "0.1.0", path = "../call-contract" }
 vapcore-io = { version = "1.12.0", path = "../../util/io" }
 vapcore-miner = { version = "1.12.0", path = "../../miner" }
 vapory-types = "0.8.0"
-vapjson = { path = "../../json" }
+vapjson = { version = "0.1.0", path = "../../json" }
 tetsy-fetch = { version = "0.1.0", path = "../../util/fetch" }
 futures = "0.1"
 tetsy-util-mem = "0.3.0"
@@ -57,4 +57,4 @@ tetsy-vm = { version = "0.1.0", path = "../vm" }
 
 [dev-dependencies]
 env_logger = "0.5"
-vapcore = { path = "..", features = ["test-helpers"] }
+vapcore = { version = "1.12.0", path = "..", features = ["test-helpers"] }
