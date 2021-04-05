@@ -40,7 +40,7 @@ tetsy-kvdb-rocksdb = { version = "0.4.3", optional = true }
 lazy_static = { version = "1.3", optional = true }
 log = "0.4"
 tetsy-macros = { version = "0.1.0", path = "../util/macros", optional = true }
-mashina = { version = "0.1.0", path = "./mashina" }
+mashina = { version = "0.1.1", path = "./mashina" }
 memory-cache = { version = "0.1.0", path = "../util/memory-cache" }
 tetsy-bytes = "0.1"
 parking_lot = "0.9"
