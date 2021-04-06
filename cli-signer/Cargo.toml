@@ -1,14 +1,17 @@
 [package]
 description = "Tetsy Vapory CLI Signer Tool"
-homepage = "http://tetcoin.org"
+edition = "2018"
 license = "GPL-3.0"
 name = "cli-signer"
 version = "1.4.0"
 authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+documentation = "https://docs.rs/cli-signer"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 vapory-types = "0.8.0"
 futures = "0.1"
 rpassword = "1.0"
-tetsy-rpc = { path = "../rpc" }
-tetsy-rpc-client = { path = "rpc-client" }
+tetsy-rpc = { version = "1.12.0", path = "../rpc" }
+rpc-client = { version = "1.4.0", path = "rpc-client" }

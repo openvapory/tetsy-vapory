@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Tetsy Vapory.  If not, see <http://www.gnu.org/licenses/>.
 
-use types::{CapState, ReleaseInfo, OperationsInfo, VersionInfo};
+use crate::types::{CapState, ReleaseInfo, OperationsInfo, VersionInfo};
 
 /// Parity updater service trait
 pub trait Service: Send + Sync {

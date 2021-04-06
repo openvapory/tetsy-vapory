@@ -1,10 +1,13 @@
 [package]
 description = "Tetsy Vapory RPC Client"
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
-name = "tetsy-rpc-client"
+name = "rpc-client"
 version = "1.4.0"
 authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+edition = "2018"
+documentation = "https://docs.rs/rpc-client"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 vapory-types = "0.8.0"

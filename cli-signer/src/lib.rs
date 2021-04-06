@@ -19,7 +19,7 @@ extern crate futures;
 extern crate rpassword;
 
 extern crate tetsy_rpc as rpc;
-extern crate tetsy_rpc_client as client;
+extern crate rpc_client as client;
 
 use vapory_types::U256;
 use rpc::signer::ConfirmationRequest;

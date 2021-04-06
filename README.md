@@ -208,7 +208,7 @@ Replacing `<spec>` with one of the following from the details section below (i.e
   ```
 * Parity CLI Signer Tool & RPC Client
   ```bash
-  cli-signer tetsy-rpc-client
+  cli-signer rpc-client
   ```
 * Tetsy Vapory Vapash & ProgPoW Implementations
   ```bash

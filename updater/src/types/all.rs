@@ -17,7 +17,7 @@
 //! Types used in the public API
 
 use vapory_types::H256;
-use types::VersionInfo;
+use crate::types::VersionInfo;
 
 /// Information regarding a particular release of Parity
 #[derive(Debug, Clone, PartialEq)]

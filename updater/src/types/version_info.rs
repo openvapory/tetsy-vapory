@@ -20,7 +20,7 @@ use std::fmt;
 use semver::Version;
 use vapory_types::H160;
 use version::raw_package_info;
-use types::ReleaseTrack;
+use crate::types::ReleaseTrack;
 
 /// Version information of a particular release.
 #[derive(Debug, Clone, PartialEq)]
