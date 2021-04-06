@@ -16,7 +16,7 @@
 
 //! Log VVM instruction output data traces from a simple formatting informant.
 
-use trace;
+use vapcore_trace;
 use tetsy_bytes::ToPretty;
 
 use crate::{
@@ -28,7 +28,7 @@ use crate::{
 #[derive(Default)]
 pub struct Informant;
 
-impl tetsy_vm::Informant for Informant {
+impl vm::Informant for Informant {
 
 	type Sink = ();
 
@@ -38,7 +38,7 @@ impl tetsy_vm::Informant for Informant {
 
 	fn clone_sink(&self) -> Self::Sink { () }
 
-	fn finish(result: tetsy_vm::RunResult<Self::Output>, _sink: &mut Self::Sink) {
+	fn finish(result: vm::RunResult<Self::Output>, _sink: &mut Self::Sink) {
 		match result {
 			Ok(success) => {
 				println!("Output: 0x{}", success.output.to_hex());
@@ -53,7 +53,7 @@ impl tetsy_vm::Informant for Informant {
 	}
 }
 
-impl trace::VMTracer for Informant {
+impl vapcore_trace::VMTracer for Informant {
 	type Output = ();
 
 	fn prepare_subtrace(&mut self, _code: &[u8]) { Default::default() }

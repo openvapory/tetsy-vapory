@@ -279,7 +279,7 @@ mod tests {
 	use mashina::Machine;
 	use vapcore_pod::{self, PodAccount, PodState};
 	use rustc_hex::FromHex;
-	use spec;
+	use vapcore_spec;
 	use ::vapcore_trace::{FlatTrace, TraceError, trace};
 	use tetsy_trie_db::{TrieFactory, TrieSpec};
 	use tetsy_vm::EnvInfo;
@@ -289,7 +289,7 @@ mod tests {
 	}
 
 	fn make_frontier_mashina(max_depth: usize) -> Machine {
-		let mut mashina = spec::new_frontier_test_mashina();
+		let mut mashina = vapcore_spec::spec::new_frontier_test_mashina();
 		mashina.set_schedule_creation_rules(Box::new(move |s, _| s.max_depth = max_depth));
 		mashina
 	}

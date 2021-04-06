@@ -16,7 +16,7 @@
 
 use std::path::Path;
 use super::test_common::*;
-use test_helpers::VvmTestClient;
+use crate::test_helpers::VvmTestClient;
 use vapjson;
 use tetsy_rlp::Rlp;
 use types::{

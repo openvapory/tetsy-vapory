@@ -16,13 +16,13 @@
 
 use std::path::Path;
 use std::sync::Arc;
-use client::{Client, ClientConfig};
+use crate::client::{Client, ClientConfig};
 use client_traits::{ImportBlock, ChainInfo};
-use spec::Genesis;
+use vapcore_spec::Genesis;
 use vapjson::test_helpers::blockchain;
-use miner::Miner;
+use crate::miner::Miner;
 use io::IoChannel;
-use test_helpers::{self, VvmTestClient};
+use crate::test_helpers::{self, VvmTestClient};
 use types::verification::Unverified;
 use verification::{VerifierType, queue::kind::BlockLike};
 use super::SKIP_TESTS;

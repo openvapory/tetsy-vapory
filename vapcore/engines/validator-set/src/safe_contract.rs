@@ -473,7 +473,7 @@ mod tests {
 	use vapory_types::Address;
 	use tetsy_keccak_hash::keccak;
 	use rustc_hex::FromHex;
-	use spec;
+	use vapcore_spec;
 
 	use super::super::ValidatorSet;
 	use super::{ValidatorSafeContract, EVENT_NAME_HASH};

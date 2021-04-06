@@ -22,7 +22,7 @@ use std::mem;
 use vapory_types::{U256, H256, BigEndianHash};
 use tetsy_bytes::ToPretty;
 use serde::Serialize;
-use trace;
+use vapcore_trace;
 
 use crate::{
 	display,
@@ -116,7 +116,7 @@ impl Informant {
 	}
 }
 
-impl tetsy_vm::Informant for Informant {
+impl vm::Informant for Informant {
 	type Sink = ();
 
 	fn before_test(&mut self, name: &str, action: &str) {
@@ -137,7 +137,7 @@ impl tetsy_vm::Informant for Informant {
 
 	fn clone_sink(&self) -> Self::Sink { () }
 
-	fn finish(result: tetsy_vm::RunResult<Self::Output>, _sink: &mut Self::Sink) {
+	fn finish(result: vm::RunResult<Self::Output>, _sink: &mut Self::Sink) {
 		match result {
 			Ok(success) => {
 				for trace in success.traces.unwrap_or_else(Vec::new) {
@@ -175,7 +175,7 @@ impl tetsy_vm::Informant for Informant {
 	}
 }
 
-impl trace::VMTracer for Informant {
+impl vapcore_trace::VMTracer for Informant {
 	type Output = Vec<String>;
 
 	fn trace_next_instruction(&mut self, pc: usize, instruction: u8, _current_gas: U256) -> bool {

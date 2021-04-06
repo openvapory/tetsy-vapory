@@ -36,7 +36,7 @@ use snappy;
 use tetsy_keccak_hash::KECCAK_NULL_RLP;
 use tetsy_kvdb::DBTransaction;
 use vapcore::test_helpers;
-use spec;
+use vapcore_spec;
 
 const SNAPSHOT_MODE: PowSnapshot = PowSnapshot { blocks: 30000, max_restore_blocks: 30000 };
 

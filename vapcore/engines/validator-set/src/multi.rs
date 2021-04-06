@@ -172,7 +172,7 @@ mod tests {
 	use vapory_types::Address;
 	use tetsy_crypto::publickey::Secret;
 	use tetsy_keccak_hash::keccak;
-	use spec;
+	use vapcore_spec;
 
 	use crate::ValidatorSet;
 	use super::Multi;

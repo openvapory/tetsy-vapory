@@ -22,13 +22,13 @@ use common_types::transaction;
 use vapcore::test_helpers::{VvmTestClient, VvmTestError, TransactErr, TransactSuccess, TrieSpec};
 use vapory_types::{H256, U256};
 use vapjson;
-use pod::PodState;
-use spec;
-use trace;
+use vapcore_pod::PodState;
+use vapcore_spec;
+use vapcore_trace;
 use tetsy_vm::ActionParams;
 
 /// VVM execution informant.
-pub trait Informant: trace::VMTracer {
+pub trait Informant: vapcore_trace::VMTracer {
 	/// Sink to use with finish
 	type Sink;
 	/// Display a single run init message
@@ -80,7 +80,7 @@ pub type RunResult<T> = Result<Success<T>, Failure<T>>;
 
 /// Execute given `ActionParams` and return the result.
 pub fn run_action<T: Informant>(
-	spec: &spec::Spec,
+	spec: &vapcore_spec::Spec,
 	mut params: ActionParams,
 	mut informant: T,
 	trie_spec: TrieSpec,
@@ -95,7 +95,7 @@ pub fn run_action<T: Informant>(
 		}
 	}
 	run(spec, trie_spec, params.gas, &spec.genesis_state, |mut client| {
-		let result = match client.call(params, &mut trace::NoopTracer, &mut informant) {
+		let result = match client.call(params, &mut vapcore_trace::NoopTracer, &mut informant) {
 			Ok(r) => (Ok(r.return_data.to_vec()), Some(r.gas_left)),
 			Err(err) => (Err(err), None),
 		};
@@ -158,7 +158,7 @@ pub fn run_transaction<T: Informant>(
 
 	let mut sink = informant.clone_sink();
 	let result = run(&fork_spec, trie_spec, transaction.gas, &pre_state, |mut client| {
-		let result = client.transact(&env_info, transaction, trace::NoopTracer, informant);
+		let result = client.transact(&env_info, transaction, vapcore_trace::NoopTracer, informant);
 		match result {
 			Ok(TransactSuccess { state_root, gas_left, output, vm_trace, end_state, .. }) => {
 				if state_root != post_root {
@@ -186,7 +186,7 @@ pub fn run_transaction<T: Informant>(
 
 /// Execute VVM with given `ActionParams`.
 pub fn run<'a, F, X>(
-	spec: &'a spec::Spec,
+	spec: &'a vapcore_spec::Spec,
 	trie_spec: TrieSpec,
 	initial_gas: U256,
 	pre_state: &'a PodState,

@@ -465,7 +465,7 @@ mod tests {
 	use vapory_types::{U256, Address};
 	use vvm::{EnvInfo, Ext, ActionType};
 	use account_state::State;
-	use vapcore::test_helpers::get_temp_state;
+	use crate::test_helpers::get_temp_state;
 	use vapcore_trace::{NoopTracer, NoopVMTracer};
 
 	use crate::{

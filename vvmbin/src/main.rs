@@ -43,7 +43,7 @@ use docopt::Docopt;
 use rustc_hex::FromHex;
 use vapory_types::{U256, Address};
 use vapcore::{json_tests, test_helpers::TrieSpec};
-use spec;
+use vapcore_spec;
 use serde::Deserialize;
 use tetsy_vm::{ActionParams, ActionType};
 
@@ -413,14 +413,14 @@ impl Args {
 
 	// CLI option `--chain PATH`
 	/// Set the path of the chain specification JSON file.
-	pub fn spec(&self) -> Result<spec::Spec, String> {
+	pub fn spec(&self) -> Result<vapcore_spec::Spec, String> {
 		Ok(match self.flag_chain {
 			Some(ref filename) => {
 				let file = fs::File::open(filename).map_err(|e| e.to_string())?;
-				spec::Spec::load(&::std::env::temp_dir(), file).map_err(|e| e.to_string())?
+				vapcore_spec::Spec::load(&::std::env::temp_dir(), file).map_err(|e| e.to_string())?
 			},
 			None => {
-				spec::new_foundation(&::std::env::temp_dir())
+				vapcore_spec::new_foundation(&::std::env::temp_dir())
 			},
 		})
 	}

@@ -115,7 +115,7 @@ impl<T: ChainDataFetcher> IoHandler<ClientIoMessage<()>> for ImportBlocks<T> {
 #[cfg(test)]
 mod tests {
 	use super::Service;
-	use spec;
+	use vapcore_spec;
 
 	use std::sync::Arc;
 	use cache::Cache;

@@ -3,8 +3,11 @@ description = "Tetsy Vapory client"
 name = "tetsy-vapory"
 # NOTE Make sure to update util/version/Cargo.toml as well
 version = "2.7.2"
+edition = "2018"
 license = "GPL-3.0"
 authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 ansi_term = "0.11"

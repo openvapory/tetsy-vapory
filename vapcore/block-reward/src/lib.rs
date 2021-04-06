@@ -168,7 +168,7 @@ mod test {
 	};
 	use vapory_types::{U256, Address};
 	use enjen::SystemOrCodeCallKind;
-	use spec;
+	use vapcore_spec;
 
 	use crate::{BlockRewardContract, RewardKind};
 

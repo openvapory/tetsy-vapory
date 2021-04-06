@@ -17,9 +17,9 @@
 use std::path::Path;
 use super::test_common::*;
 use vapcore_pod::PodState;
-use trace;
+use vapcore_trace::trace;
 use vapjson;
-use test_helpers::{VvmTestClient, VvmTestError, TransactErr, TransactSuccess};
+use crate::test_helpers::{VvmTestClient, VvmTestError, TransactErr, TransactSuccess};
 use types::transaction::SignedTransaction;
 use tetsy_vm::EnvInfo;
 use super::SKIP_TESTS;
@@ -79,7 +79,7 @@ pub fn json_chain_test<H: FnMut(&str, HookType)>(path: &Path, json_data: &[u8], 
 
 					let result = || -> Result<_, VvmTestError> {
 						Ok(VvmTestClient::from_pod_state(&spec, pre.clone())?
-							.transact(&env, transaction, trace::NoopTracer, trace::NoopVMTracer))
+							.transact(&env, transaction, vapcore_trace::NoopTracer, vapcore_trace::NoopVMTracer))
 					};
 					match result() {
 						Err(err) => {

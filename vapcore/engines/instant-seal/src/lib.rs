@@ -135,7 +135,7 @@ mod tests {
 		test_helpers::get_temp_state_db,
 		block::*,
 	};
-	use spec;
+	use vapcore_spec;
 
 	#[test]
 	fn instant_can_seal() {

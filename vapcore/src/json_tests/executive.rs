@@ -31,26 +31,26 @@ use mashina::{
 	executive::contract_address,
 };
 
-use test_helpers::get_temp_state;
+use crate::test_helpers::get_temp_state;
 use vapjson;
-use trace::{Tracer, NoopTracer, VMTracer, NoopVMTracer};
+use vapcore_trace::{Tracer, NoopTracer, VMTracer, NoopVMTracer};
 use bytes::Bytes;
 use vaptrie;
 use tetsy_rlp::RlpStream;
 use hash::keccak;
 use vapory_types::BigEndianHash;
-use spec;
+use vapcore_spec;
 
 use super::HookType;
 
 /// Run executive jsontests on a given folder.
 pub fn run_test_path<H: FnMut(&str, HookType)>(p: &Path, skip: &[&'static str], h: &mut H) {
-	::json_tests::test_common::run_test_path(p, skip, do_json_test, h)
+	crate::json_tests::test_common::run_test_path(p, skip, do_json_test, h)
 }
 
 /// Run executive jsontests on a given file.
 pub fn run_test_file<H: FnMut(&str, HookType)>(p: &Path, h: &mut H) {
-	::json_tests::test_common::run_test_file(p, do_json_test, h)
+	crate::json_tests::test_common::run_test_file(p, do_json_test, h)
 }
 
 #[derive(Debug, PartialEq, Clone)]
@@ -61,8 +61,8 @@ struct CallCreate {
 	value: U256
 }
 
-impl From<vapjson::tetsy_vm::Call> for CallCreate {
-	fn from(c: vapjson::tetsy_vm::Call) -> Self {
+impl From<vapjson::vm::Call> for CallCreate {
+	fn from(c: vapjson::vm::Call) -> Self {
 		let dst: Option<vapjson::hash::Address> = c.destination.into();
 		CallCreate {
 			data: c.data.into(),
@@ -240,7 +240,7 @@ fn do_json_test<H: FnMut(&str, HookType)>(
 	json_data: &[u8],
 	start_stop_hook: &mut H
 ) -> Vec<String> {
-	let tests = vapjson::test_helpers::tetsy_vm::Test::load(json_data)
+	let tests = vapjson::test_helpers::vm::Test::load(json_data)
 		.expect(&format!("Could not parse JSON executive test data from {}", path.display()));
 	let mut failed = Vec::new();
 
@@ -273,7 +273,7 @@ fn do_json_test<H: FnMut(&str, HookType)>(
 		state.populate_from(From::from(vm.pre_state.clone()));
 		let info: EnvInfo = From::from(vm.env);
 		let mashina = {
-			let mut mashina = spec::new_frontier_test_mashina();
+			let mut mashina = vapcore_spec::new_frontier_test_mashina();
 			mashina.set_schedule_creation_rules(Box::new(move |s, _| s.max_depth = 1));
 			mashina
 		};

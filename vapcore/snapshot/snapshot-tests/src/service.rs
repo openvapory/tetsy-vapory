@@ -36,7 +36,7 @@ use snapshot::{
 	service::{Service, ServiceParams, Guard, Restoration, RestorationParams},
 	PowSnapshot,
 };
-use spec;
+use vapcore_spec;
 use vapcore::{
 	miner,
 	test_helpers::{new_db, new_temp_db, generate_dummy_client_with_spec_and_data, restoration_db_handler}

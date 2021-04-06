@@ -159,7 +159,7 @@ mod tests {
 	use tetsy_bytes::ToPretty;
 	use tetsy_rlp::encode;
 	use rustc_hex::FromHex;
-	use spec;
+	use vapcore_spec;
 
 	use super::super::ValidatorSet;
 	use super::ValidatorContract;

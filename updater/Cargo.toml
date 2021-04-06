@@ -2,8 +2,11 @@
 description = "Tetsy Updater Service."
 name = "tetsy-updater"
 version = "1.12.0"
+edition = "2018"
 license = "GPL-3.0"
 authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 client-traits = { version = "0.1.0", path = "../vapcore/client-traits" }

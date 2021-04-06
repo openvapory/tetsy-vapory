@@ -878,7 +878,7 @@ mod tests {
 	use cache::Cache;
 	use common_types::header::Header;
 	use common_types::ids::BlockId;
-	use spec;
+	use vapcore_spec;
 	use vapory_types::U256;
 	use tetsy_kvdb::KeyValueDB;
 	use tetsy_kvdb_memorydb;

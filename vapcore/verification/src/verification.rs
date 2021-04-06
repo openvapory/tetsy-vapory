@@ -440,7 +440,7 @@ mod tests {
 	use tetsy_keccak_hash::keccak;
 	use enjen::Engine;
 	use tetsy_crypto::publickey::{Random, Generator};
-	use spec;
+	use vapcore_spec;
 	use vapcore::test_helpers::{
 		create_test_block_with_data, create_test_block, TestBlockChainClient
 	};

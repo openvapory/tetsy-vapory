@@ -23,7 +23,7 @@ use vapory_types::{H256, U256, BigEndianHash};
 use tetsy_bytes::ToPretty;
 use vapcore_pod::PodState;
 use serde::Serialize;
-use trace;
+use vapcore_trace;
 
 use crate::{
 	display,
@@ -174,7 +174,7 @@ impl<Trace: Writer, Out: Writer> Informant<Trace, Out> {
 
 }
 
-impl<Trace: Writer, Out: Writer> tetsy_vm::Informant for Informant<Trace, Out> {
+impl<Trace: Writer, Out: Writer> vm::Informant for Informant<Trace, Out> {
 
 	type Sink = (Trace, Out);
 
@@ -196,7 +196,7 @@ impl<Trace: Writer, Out: Writer> tetsy_vm::Informant for Informant<Trace, Out> {
 		(self.trace_sink.clone(), self.out_sink.clone())
 	}
 
-	fn finish(result: tetsy_vm::RunResult<<Self as trace::VMTracer>::Output>, (ref mut trace_sink, ref mut out_sink): &mut Self::Sink) {
+	fn finish(result: vm::RunResult<<Self as vapcore_trace::VMTracer>::Output>, (ref mut trace_sink, ref mut out_sink): &mut Self::Sink) {
 
 		match result {
 			Ok(success) => {
@@ -240,7 +240,7 @@ impl<Trace: Writer, Out: Writer> tetsy_vm::Informant for Informant<Trace, Out> {
 	}
 }
 
-impl<Trace: Writer, Out: Writer> trace::VMTracer for Informant<Trace, Out> {
+impl<Trace: Writer, Out: Writer> vapcore_trace::VMTracer for Informant<Trace, Out> {
 	type Output = ();
 
 	fn trace_next_instruction(&mut self, pc: usize, instruction: u8, current_gas: U256) -> bool {

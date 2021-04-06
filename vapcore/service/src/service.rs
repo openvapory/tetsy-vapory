@@ -302,7 +302,7 @@ mod tests {
 	use vapcore_db::NUM_COLUMNS;
 	use vapcore::client::ClientConfig;
 	use vapcore::miner::Miner;
-	use spec;
+	use vapcore_spec;
 	use vapcore::test_helpers;
 	use tetsy_kvdb_rocksdb::{DatabaseConfig, CompactionProfile};
 	use super::*;

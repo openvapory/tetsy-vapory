@@ -760,7 +760,7 @@ mod tests {
 		view,
 		views::BlockView,
 	};
-	use spec;
+	use vapcore_spec;
 
 	// create a test block queue.
 	// auto_scaling enables verifier adjustment.
