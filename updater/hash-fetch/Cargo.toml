@@ -1,10 +1,12 @@
 [package]
 description = "Fetching hash-addressed content."
-homepage = "http://tetcoin.org"
 license = "GPL-3.0"
 name = "tetsy-hash-fetch"
 version = "1.12.0"
 authors = ["Parity Technologies <admin@parity.io>", "Tetcoin Developers <support@tetcoin.org>"]
+documentation = "https://docs.rs/tetsy-hash-fetch"
+homepage = "https://github.com/openvapory/tetsy-vapory"
+repository = "https://github.com/openvapory/tetsy-vapory"
 
 [dependencies]
 call-contract = { version = "0.1.0", package = "vapcore-call-contract", path = "../../vapcore/call-contract" }
@@ -17,10 +19,10 @@ rustc-hex = "1.0"
 tetsy-fetch = { version = "0.1.0", path = "../../util/fetch" }
 tetsy-bytes = "0.1"
 vapory-types = "0.8.0"
-tetsy-runtime = { path = "../../util/runtime" }
+tetsy-runtime = { version = "0.1.0", path = "../../util/runtime" }
 tetsy-keccak-hash = "0.4.0"
 tetsy-registrar = { version = "0.0.1", path = "../../util/tetsy-registrar" }
-types = { path = "../../vapcore/types", package = "common-types" }
+types = { version = "0.1.0", path = "../../vapcore/types", package = "common-types" }
 
 vapabi = "9.0.1"
 vapabi-derive = "9.0.1"
