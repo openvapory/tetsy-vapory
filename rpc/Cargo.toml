@@ -39,32 +39,32 @@ client-traits = { version = "0.1.0", path = "../vapcore/client-traits" }
 common-types = { version = "0.1.0", path = "../vapcore/types" }
 enjen = { version = "0.1.0", path = "../vapcore/enjen" }
 vapash = { version = "1.12.0", path = "../vapash" }
-vapcore = { path = "../vapcore" }
-vapcore-accounts = { path = "../accounts", optional = true }
-vapcore-light = { path = "../vapcore/light" }
-vapcore-logger = { path = "../tetsy/logger" }
+vapcore = { version = "1.12.1", path = "../vapcore" }
+vapcore-accounts = { version = "0.1.0", path = "../accounts", optional = true }
+vapcore-light = { version = "1.12.0", path = "../vapcore/light" }
+vapcore-logger = { version = "1.12.0", path = "../tetsy/logger" }
 vapcore-miner = { version = "1.12.0", path = "../miner" }
-vapcore-network = { path = "../util/network" }
+vapcore-network = { version = "1.12.0", path = "../util/network" }
 private-tx = { version = "1.0.0", path = "../vapcore/private-tx" }
-vapcore-sync = { path = "../vapcore/sync" }
+vapcore-sync = { version = "1.12.0", path = "../vapcore/sync" }
 vapory-types = "0.8.0"
-fastmap = { path = "../util/fastmap" }
+fastmap = { version = "0.1.0", path = "../util/fastmap" }
 mashina = { version = "0.1.0", path = "../vapcore/mashina" }
 tetsy-bytes = "0.1"
 tetsy-crypto = { version = "0.4.2", features = ["publickey"] }
 
-vip-712 = { path = "../util/vip-712" }
-vapjson = { path = "../json" }
-vapkey = { path = "../accounts/vapkey" }
-vapstore = { path = "../accounts/vapstore" }
+vip-712 = { version = "0.1.1", path = "../util/vip-712" }
+vapjson = { version = "0.1.0", path = "../json" }
+vapkey = { version = "0.4.0", path = "../accounts/vapkey" }
+vapstore = { version = "0.2.1", path = "../accounts/vapstore" }
 tetsy-fetch = { version = "0.1.0", path = "../util/fetch" }
 tetsy-keccak-hash = "0.4.0"
-tetsy-runtime = { path = "../util/runtime" }
-tetsy-updater = { path = "../updater" }
-tetsy-version = { path = "../util/version" }
+tetsy-runtime = { version = "0.1.0", path = "../util/runtime" }
+tetsy-updater = { version = "1.12.0", path = "../updater" }
+tetsy-version = { version = "2.7.2", path = "../util/version" }
 tetsy-rlp = "0.4.5"
 account-state = { version = "0.1.0", path = "../vapcore/account-state" }
-vapcore-snapshot = { path = "../vapcore/snapshot" }
+vapcore-snapshot = { version = "0.1.0", path = "../vapcore/snapshot" }
 tetsy-stats = { version = "0.1.0", path = "../util/stats" }
 vapcore-trace = { version = "0.1.0", path = "../vapcore/trace" }
 tetsy-vm = { version = "0.1.0", path = "../vapcore/vm" }
