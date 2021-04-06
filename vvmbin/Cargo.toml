@@ -17,7 +17,7 @@ account-state = { version = "0.1.0", path = "../vapcore/account-state" }
 common-types = { version = "0.1.0", path = "../vapcore/types", features = ["test-helpers"] }
 docopt = "1.0"
 env_logger = "0.5"
-vapcore = { version = "1.12.0", path = "../vapcore", features = ["test-helpers", "json-tests"] }
+vapcore = { version = "1.12.1", path = "../vapcore", features = ["test-helpers", "json-tests"] }
 vapory-types = "0.8.0"
 vapjson = { version = "0.1.0", path = "../json", features = ["test-helpers"] }
 vvm = { version = "0.1.0", path = "../vapcore/vvm" }
